@@ -1,0 +1,15 @@
+*.gcov
+*.gcda
+*.gcno
+*.gz
+*.html
+*.css
+*.o
+main
+valgrind_output.txt
+valgrind.txt
+coverage.txt
+coverage_output.txt
+.vscode
+html
+latex
