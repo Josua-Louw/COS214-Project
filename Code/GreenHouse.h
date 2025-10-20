@@ -1,6 +1,17 @@
 #ifndef GREENHOUSE_H
 #define GREENHOUSE_H
 
+/**
+ * @file GreenHouse.h
+ * @brief Declaration of the abstract GreenHouse class.
+ *
+ * @class GreenHouse
+ * @brief GreenHouse is the common interface for Section (composite) and Plant (leaf).
+ * It defines operations used by the Composite pattern.
+ * 
+ * @note This class is abstract with pure virtual functions expand, sell, getSubsection, CreateIterator, and findItem.
+ */
+
 class GreenHouse {
 
 private:
