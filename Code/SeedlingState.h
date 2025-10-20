@@ -1,3 +1,6 @@
+#ifndef SEEDLING_STATE_H
+#define SEEDLING_STATE_H
+
 /**
 * @file SeedlingState.h
 * @brief This file contains the definition of the SeedlingState class.
@@ -20,3 +23,5 @@ public:
     */
     void transitionToNext();
 };
+
+#endif // SEEDLING_STATE_H
