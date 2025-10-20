@@ -1,6 +1,6 @@
-#include "../Visual Paradigm files/Plant.h"
+#include "Plant.h"
 
 // Returns the name of the plant.
-string Plant::getName() {
+std::string Plant::getName() {
 	return this->name;
 }

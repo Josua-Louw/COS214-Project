@@ -17,7 +17,7 @@
   * 
   * @return Pointer to the updated order.
   */
-Order* AddPlant::buildPart(Order* order, string itemName) {
+Order* AddPlant::buildPart(Order* order, std::string itemName) {
 	// TODO - implement AddPlant::buildPart
 	throw "Not yet implemented";
 }
@@ -30,7 +30,7 @@ Order* AddPlant::buildPart(Order* order, string itemName) {
  * 
  * @return true if the plant is a normal plant, false otherwise.
  */
-boolean AddPlant::checkType(Plant* plant) {
+bool AddPlant::checkType(Plant* plant) {
 	// TODO - implement AddPlant::checkType
 	throw "Not yet implemented";
 }

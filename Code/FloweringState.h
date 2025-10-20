@@ -16,7 +16,7 @@
  * @note This stage is pivotal for the plant’s reproductive success and subsequent lifecycle transitions.
  * @see PlantState, MatureState, SenescenceState, DyingState
  */
-class FloweringState : public Class_Diagram,_State_and_Prototype::PlantState {
+class FloweringState : public PlantState {
 public:
     /**
      * @brief Handles care actions for a plant in the flowering state.

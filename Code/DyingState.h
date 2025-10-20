@@ -16,7 +16,7 @@
  * @note This stage is critical, as the plant’s survival depends on immediate and effective care.
  * @see PlantState, SeedState, SeedlingState, JuvenileState, MatureState, FloweringState, DeadState
  */
-class DyingState : public Class_Diagram,_State_and_Prototype::PlantState {
+class DyingState : public PlantState {
 public:
     /**
      * @brief Handles care actions for a plant in the dying state.

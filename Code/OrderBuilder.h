@@ -1,6 +1,9 @@
 #ifndef ORDERBUILDER_H
 #define ORDERBUILDER_H
 
+#include "GreenHouse.h"
+#include "Order.h"
+
 /**
  * @file OrderBuilder.h
  * @brief Declaration of the OrderBuilder abstract class.
@@ -22,10 +25,10 @@ protected:
 	GreenHouse* greenHouse;
 
 public:
-	virtual Order* buildPart(Order* order, string itemName) = 0;
+	virtual Order* buildPart(Order* order, std::string itemName) = 0;
 
 protected:
-	virtual boolean checkType(Plant* plant) = 0;
+	virtual bool checkType(Plant* plant) = 0;
 };
 
 #endif

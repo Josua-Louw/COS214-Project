@@ -1,4 +1,4 @@
-#include "../Visual Paradigm files/Seeds.h"
+#include "Seeds.h"
 
 // Get the price of the seeds
 double Seeds::getPrice() {
@@ -13,7 +13,7 @@ Plant* Seeds::clone() {
 }
 
 // Get the type of plant the seeds are of
-string Seeds::getType() {
+std::string Seeds::getType() {
 	// TODO - implement Seeds::getType
 	throw "Not yet implemented";
 }

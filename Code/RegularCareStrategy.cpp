@@ -1,4 +1,4 @@
-#include "../Visual Paradigm files/RegularCareStrategy.h"
+#include "RegularCareStrategy.h"
 
 /**
  * @file RegularCareStrategy.cpp

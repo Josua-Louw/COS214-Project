@@ -1,6 +1,8 @@
 #ifndef SECTION_H
 #define SECTION_H
 
+#include "GreenHouse.h"
+
 /**
  * @file Section.h
  * @brief Declaration of the concrete Section class.
@@ -22,17 +24,17 @@
 class Section : GreenHouse {
 
 public:
-	vector<GreenHouse> Subsection;
+	std::vector<GreenHouse*> Subsection;
 
 	void expand(GreenHouse* greenHouse);
 
-	GreenHouse* getSubsection(string sectionName);
+	GreenHouse* getSubsection(std::string sectionName);
 
 	double sell(GreenHouse* Item);
 
 	Iterator* CreateIterator();
 
-	Plant* findItem(string itemName);
+	Plant* findItem(std::string itemName);
 };
 
 #endif

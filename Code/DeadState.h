@@ -16,7 +16,7 @@
  * @note This is the terminal state of the plant’s lifecycle, with no possibility of recovery.
  * @see PlantState, DyingState
  */
-class DeadState : public Class_Diagram,_State_and_Prototype::PlantState {
+class DeadState : public PlantState {
 public:
     /**
      * @brief Handles care actions for a plant in the dead state.

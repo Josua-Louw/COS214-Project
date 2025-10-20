@@ -1,6 +1,8 @@
 #ifndef ADDSEED_H
 #define ADDSEED_H
 
+#include "OrderBuilder.h"
+
 /**
  * @file AddSeed.h
  * @brief Declaration of the AddSeed class.
@@ -18,9 +20,9 @@ class AddSeed : OrderBuilder {
 
 
 protected:
-	Order* buildPart(Order* order, string itemName);
+	Order* buildPart(Order* order, std::string itemName);
 
-	boolean checkType(Plant* plant);
+	bool checkType(Plant* plant);
 };
 
 #endif

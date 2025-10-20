@@ -1,5 +1,8 @@
 #ifndef SEEDS_H
 #define SEEDS_H
+
+#include "Plant.h"
+
 /**
 * @file Seeds.h
 * @brief This file contains the definition of the Seeds class.
@@ -29,7 +32,7 @@ public:
 	* @brief Get the type of plant the seeds are of.
 	* @return The type of plant the seeds are of as a string.
 	*/
-	string getType();
+	std::string getType();
 };
 
 #endif

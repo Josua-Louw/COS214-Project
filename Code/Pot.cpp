@@ -1,4 +1,4 @@
-#include "../Visual Paradigm files/Pot.h"
+#include "Pot.h"
 
 double Pot::getPrice() {
 	// TODO - implement Pot::getPrice
@@ -10,7 +10,7 @@ Plant* Pot::clone() {
 	throw "Not yet implemented";
 }
 
-string Pot::getType() {
+std::string Pot::getType() {
 	// TODO - implement Pot::getType
 	throw "Not yet implemented";
 }

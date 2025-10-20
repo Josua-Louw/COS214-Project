@@ -1,4 +1,4 @@
-#include "../Visual Paradigm files/Section.h"
+#include "Section.h"
 
 /**
  * @file Section.cpp
@@ -24,7 +24,7 @@ void Section::expand(GreenHouse* greenHouse) {
  * 
  * @return Pointer to the greenhouse section that was searched for, or nullptr if not found.
 */ 
-GreenHouse* Section::getSubsection(string sectionName) {
+GreenHouse* Section::getSubsection(std::string sectionName) {
 	// TODO - implement Section::getSubsection
 	throw "Not yet implemented";
 }
@@ -58,7 +58,7 @@ Iterator* Section::CreateIterator() {
  * 
  * @return Pointer to the plant item (Plant*), otherwise nullptr if not found.
 */ 
-Plant* Section::findItem(string itemName) {
+Plant* Section::findItem(std::string itemName) {
 	// TODO - implement Section::findItem
 	throw "Not yet implemented";
 }

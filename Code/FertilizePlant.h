@@ -5,20 +5,20 @@
 #include "Plant.h"
 
 /**
- * @class FertilisePlant
+ * @class FertilizePlant
  * @brief Concrete command for fertilizing a plant in the Plant Nursery Simulator.
  * 
  * Implements the Command Pattern to encapsulate the task of fertilizing a specific plant. Assigned to PlantCaretaker via NurseryHub, it interacts with a Plant to apply fertilizer, integrating with the Strategy Pattern for care routines and State Pattern for life cycle progression.
  */
-class FertilisePlant : public Command {
+class FertilizePlant: public Command {
 private:
     Plant* plant; /**< The plant to be fertilized. */
 public:
     /**
-     * @brief Constructs a FertilisePlant command for a specific plant.
+     * @brief Constructs a FertilizePlant command for a specific plant.
      * @param plant Pointer to the Plant to be fertilized.
      */
-    FertilisePlant(Plant* plant) : plant(plant) {}
+    FertilizePlant(Plant* plant) : plant(plant) {}
     
     /**
      * @brief Executes the fertilization task, updating the plant's state.

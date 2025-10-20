@@ -1,4 +1,4 @@
-#include "../Visual Paradigm files/DeadState.h"
+#include "DeadState.h"
 
 // Implement care actions specific to the dead state
 void DeadState::handleCare() {

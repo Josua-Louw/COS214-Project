@@ -3,6 +3,7 @@
 
 #include "CareStrategy.h"
 #include "PlantState.h"
+#include "GreenHouse.h"
 #include <string>
 
 /**

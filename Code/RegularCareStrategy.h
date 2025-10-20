@@ -1,6 +1,8 @@
 #ifndef REGULARCARESTRATEGY_H
 #define REGULARCARESTRATEGY_H
 
+#include "CareStrategy.h"
+
 /**
  * @file RegularCareStrategy.h
  * @brief Declaration of the concrete RegularCareStrategy class.
