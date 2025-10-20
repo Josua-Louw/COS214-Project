@@ -1,4 +1,4 @@
-#ifndef PLANTSTATE_H'
+#ifndef PLANTSTATE_H
 #define PLANTSTATE_H
 /**
  * @file PlantState.h
