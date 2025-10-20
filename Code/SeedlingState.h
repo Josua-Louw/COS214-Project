@@ -10,7 +10,7 @@
 * @class SeedlingState
 * @brief Represents the plant being in the seedling state of its lifetime.
 */
-class SeedlingState {
+class SeedlingState : public PlantState {
 public:
 
     /**

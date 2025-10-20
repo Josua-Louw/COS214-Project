@@ -1,5 +1,7 @@
 #ifndef MATURESTATE_H
 #define MATURESTATE_H
+
+#include "PlantState.h"
 /**
  * @file MatureState.h
  * @brief This file contains the definition of the MatureState class.
@@ -9,7 +11,7 @@
 * @class MatureState
 * @brief Represents the plant being in the mature state of its lifetime.
 */
-class MatureState {
+class MatureState : public PlantState {
 public:
 
     /**

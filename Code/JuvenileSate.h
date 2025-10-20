@@ -1,6 +1,7 @@
 #ifndef JUVENILESTATE_H
 #define JUVENILESTATE_H
 
+#include "PlantState.h"
 /**
  * @file JuvenileState.h
  * @brief This file contains the definition of the JuvenileState class.
@@ -10,7 +11,7 @@
 * @class JuvenileState
 * @brief Represents the plant being in the juvenile state of its lifetime.
 */
-class JuvenileState {
+class JuvenileState : public PlantState {
 
 public:
 
