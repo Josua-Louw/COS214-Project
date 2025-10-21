@@ -1,6 +1,8 @@
 #ifndef NURSERYHUB_H
 #define NURSERYHUB_H
 
+#include "NurseryMediator.h"
+
 /**
  * @file NurseryHub.h
  * @brief Concrete mediator coordinating plants, staff and customers in the nursery.
@@ -19,16 +21,16 @@
 class NurseryHub : NurseryMediator {
 
 private:
-	vector<Plant*> plants;      ///< Plants registered with the mediator.
-	vector<Staff*> staff;       ///< Staff members available for assignments.
-	vector<customer*> customers;///< Customers interacting through the mediator.
+	std::vector<Plant*> plants;      ///< Plants registered with the mediator.
+	std::vector<Staff*> staff;       ///< Staff members available for assignments.
+	std::vector<Customer*> customers;///< Customers interacting through the mediator.
 
 public:
 	/**
 	 * @brief Assign a command to an appropriate staff member.
 	 * @param cmd Command to route/dispatch.
 	 */
-	void assign(Command cmd);
+	void assign(Command* cmd);
 
 	/**
 	 * @brief Handle/broadcast an event from a colleague.
@@ -38,7 +40,7 @@ public:
 	 *
 	 * @todo Implement event routing/notification rules to colleagues.
 	 */
-	void notify(void sender, string event, any data);
+	void notify(void* sender, std::string event, std::string data);
 
 	/**
 	 * @brief Register a plant with the mediator so it can be tracked.
