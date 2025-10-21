@@ -1,4 +1,4 @@
-#include "../Visual Paradigm files/DyingState.h"
+#include "DyingState.h"
 
 // Implement care actions specific to the dying state
 void DyingState::handleCare() {

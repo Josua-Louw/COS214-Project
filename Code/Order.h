@@ -1,6 +1,9 @@
 #ifndef ORDER_H
 #define ORDER_H
 
+#include "Plant.h"
+#include <vector>
+
 /**
  * @file Order.h
  * @brief Declaration of the Order class.
@@ -14,7 +17,7 @@
 class Order {
 
 private:
-	vector<Plant*> plants;
+	std::vector<Plant*> plants;
 
 public:
 	double getTotalCost();

@@ -1,4 +1,4 @@
-#include "../Visual Paradigm files/Customer.h"
+#include "Customer.h"
 
 void Customer::buy() {
 	// TODO - implement Customer::buy

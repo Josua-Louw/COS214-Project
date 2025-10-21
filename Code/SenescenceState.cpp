@@ -1,4 +1,4 @@
-#include "../Visual Paradigm files/SenescenceState.h"
+#include "SenescenceState.h"
 
 // Implement care actions specific to the senescence state
 void SenescenceState::handleCare() {

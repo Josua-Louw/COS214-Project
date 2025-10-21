@@ -1,7 +1,9 @@
 #ifndef DECORATION_H
 #define DECORATION_H
 
-class Decoration : PlantDecorator {
+#include "PlantDecorator.h"
+
+class Decoration : public PlantDecorator {
 
 
 public:
@@ -13,7 +15,7 @@ public:
 
 	Plant* clone();
 
-	string getType();
+	std::string getType();
 };
 
 #endif

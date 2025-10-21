@@ -1,4 +1,4 @@
-#include "../Visual Paradigm files/FertilizerBoostStrategy.h"
+#include "FertilizerBoostStrategy.h"
 
 /**
  * @file FertilizerBoostStrategy.cpp

@@ -1,6 +1,8 @@
 #ifndef WATERLIMITINGSTRATEGY_H
 #define WATERLIMITINGSTRATEGY_H
 
+#include "CareStrategy.h"
+
 /**
  * @file WaterLimitingStrategy.h
  * @brief Declaration of the concrete WaterLimitingStrategy class.

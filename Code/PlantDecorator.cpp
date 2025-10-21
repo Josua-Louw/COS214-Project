@@ -1,4 +1,4 @@
-#include "../Visual Paradigm files/PlantDecorator.h"
+#include "PlantDecorator.h"
 
 // Returns the price of the plant.
 double PlantDecorator::getPrice() {

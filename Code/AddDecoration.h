@@ -1,6 +1,8 @@
 #ifndef ADDDECORATION_H
 #define ADDDECORATION_H
 
+#include "OrderBuilder.h"
+
 /**
  * @file AddDecoration.h
  * @brief Declaration of the AddDecoration class.
@@ -18,9 +20,9 @@ class AddDecoration : OrderBuilder {
 
 
 protected:
-	Order* buildPart(Order* order, string itemName);
+	Order* buildPart(Order* order, std::string itemName);
 
-	boolean checkType(Plant* plant);
+	bool checkType(Plant* plant);
 };
 
 #endif

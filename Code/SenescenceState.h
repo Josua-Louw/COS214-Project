@@ -1,6 +1,8 @@
 #ifndef SENESCENCESTATE_H
 #define SENESCENCESTATE_H
 
+#include "PlantState.h"
+
 /**
  * @file SenescenceState.h
  * @brief Defines the SenescenceState class for representing a plant's senescence phase.
@@ -14,7 +16,7 @@
  * @note This is the end of the plant's active lifecycle, and most care actions are ineffective.
  * @see PlantState, DyingState
  */
-class SenescenceState : public Class_Diagram,_State_and_Prototype::PlantState {
+class SenescenceState : public PlantState {
 public:
     /**
      * @brief Handles care actions for a plant in the senescence state.

@@ -4,6 +4,7 @@
 #include "Person.h"
 #include "Command.h"
 #include <vector>
+#include <string>
 
 /**
  * @class Staff

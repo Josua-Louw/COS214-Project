@@ -1,6 +1,8 @@
 #ifndef FERTILIZERBOOSTSTRATEGY_H
 #define FERTILIZERBOOSTSTRATEGY_H
 
+#include "CareStrategy.h"
+
 /**
  * @file FertilizerBoostStrategy.h
  * @brief Declaration of the concrete FertilizerBoostStrategy class.
@@ -14,9 +16,7 @@
  * @note Implements the Strategy design pattern.
  */
 
-class FertilizerBoostStrategy : CareStrategy {
-
-
+class FertilizerBoostStrategy : public CareStrategy {
 public:
 	/**
 	 * @brief Applies fertilizer care to the plant.

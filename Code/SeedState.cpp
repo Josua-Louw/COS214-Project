@@ -1,4 +1,4 @@
-#include "../Visual Paradigm files/SeedState.h"
+#include "SeedState.h"
 
 // Implement care actions specific to the seed state
 void SeedState::handleCare() {

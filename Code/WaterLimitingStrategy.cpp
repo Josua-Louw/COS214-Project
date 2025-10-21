@@ -1,4 +1,4 @@
-#include "../Visual Paradigm files/WaterLimitingStrategy.h"
+#include "WaterLimitingStrategy.h"
 
 /**
  * @file WaterLimitingStrategy.cpp

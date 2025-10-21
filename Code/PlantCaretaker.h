@@ -2,6 +2,8 @@
 #define PLANT_CARETAKER_H
 
 #include "Staff.h"
+#include "Command.h"
+#include <string>
 
 /**
  * @class PlantCaretaker

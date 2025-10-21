@@ -1,4 +1,4 @@
-#include "../Visual Paradigm files/PlantIterator.h"
+#include "PlantIterator.h"
 
 /**
  * @file PlantIterator.cpp
@@ -36,7 +36,7 @@ void PlantIterator::next() {
  *
  * @note This method allows client code to determine when iteration is complete.
  */
-boolean PlantIterator::isDone() {
+bool PlantIterator::isDone() {
 	// TODO - implement PlantIterator::isDone
 	throw "Not yet implemented";
 }

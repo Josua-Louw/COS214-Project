@@ -1,4 +1,4 @@
-#include "../Visual Paradigm files/NurseryHub.h"
+#include "NurseryHub.h"
 
 /**
  * @file NurseryHub.cpp
@@ -15,7 +15,7 @@
  *
  * @todo Implement selection strategy for which Staff will receive the command.
  */
-void NurseryHub::assign(Command cmd) {
+void NurseryHub::assign(Command* cmd) {
 	// TODO - implement NurseryHub::assign
 	throw "Not yet implemented";
 }
@@ -29,7 +29,7 @@ void NurseryHub::assign(Command cmd) {
  *
  * @todo Route the event to interested colleagues (Staff, Customers).
  */
-void NurseryHub::notify(void sender, string event, any data) {
+void NurseryHub::notify(void* sender, std::string event, std::string data) {
 	// TODO - implement NurseryHub::notify
 	throw "Not yet implemented";
 }

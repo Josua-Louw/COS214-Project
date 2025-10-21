@@ -1,4 +1,4 @@
-#include "../Visual Paradigm files/Decoration.h"
+#include "Decoration.h"
 
 double Decoration::getPrice() {
 	// TODO - implement Decoration::getPrice
@@ -20,7 +20,7 @@ Plant* Decoration::clone() {
 	throw "Not yet implemented";
 }
 
-string Decoration::getType() {
+std::string Decoration::getType() {
 	// TODO - implement Decoration::getType
 	throw "Not yet implemented";
 }

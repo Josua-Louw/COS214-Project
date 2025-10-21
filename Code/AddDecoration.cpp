@@ -17,7 +17,7 @@
   * 
   * @return Pointer to the updated order.
   */
-Order* AddDecoration::buildPart(Order* order, string itemName) {
+Order* AddDecoration::buildPart(Order* order, std::string itemName) {
 	// TODO - implement AddDecoration::buildPart
 	throw "Not yet implemented";
 }
@@ -30,7 +30,7 @@ Order* AddDecoration::buildPart(Order* order, string itemName) {
  * 
  * @return true if the plant is decorative, false otherwise.
  */
-boolean AddDecoration::checkType(Plant* plant) {
+bool AddDecoration::checkType(Plant* plant) {
 	// TODO - implement AddDecoration::checkType
 	throw "Not yet implemented";
 }

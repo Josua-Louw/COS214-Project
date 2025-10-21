@@ -1,6 +1,8 @@
 #ifndef ADDPOT_H
 #define ADDPOT_H
 
+#include "OrderBuilder.h"
+
 /**
  * @file AddPot.h
  * @brief Declaration of the AddPot class.
@@ -18,9 +20,9 @@ class AddPot : OrderBuilder {
 
 
 protected:
-	Order* buildPart(Order* order, string itemName);
+	Order* buildPart(Order* order, std::string itemName);
 
-	boolean checkType(Plant* plant);
+	bool checkType(Plant* plant);
 };
 
 #endif

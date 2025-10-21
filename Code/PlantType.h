@@ -1,7 +1,9 @@
 #ifndef PLANTTYPE_H
 #define PLANTTYPE_H
 
-class PlantType : PlantDecorator {
+#include "PlantDecorator.h"
+
+class PlantType : public PlantDecorator {
 
 private:
 	int seedlingTime;
@@ -18,7 +20,7 @@ public:
 
 	Plant* clone();
 
-	string getType();
+	std::string getType();
 };
 
 #endif

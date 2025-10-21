@@ -1,6 +1,9 @@
 #ifndef PLANTITERATOR_H
 #define PLANTITERATOR_H
 
+#include "Iterator.h"
+#include "Plant.h"
+
 /**
  * @file PlantIterator.h
  * @brief Declaration of the concrete PlantIterator class.
@@ -22,7 +25,7 @@ public:
 
 	void next();
 
-	boolean isDone();
+	bool isDone();
 
 	Plant* currentItem();
 };

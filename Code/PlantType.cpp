@@ -1,4 +1,4 @@
-#include "../Visual Paradigm files/PlantType.h"
+#include "PlantType.h"
 
 void PlantType::water() {
 	// TODO - implement PlantType::water
@@ -20,7 +20,7 @@ Plant* PlantType::clone() {
 	throw "Not yet implemented";
 }
 
-string PlantType::getType() {
+std::string PlantType::getType() {
 	// TODO - implement PlantType::getType
 	throw "Not yet implemented";
 }

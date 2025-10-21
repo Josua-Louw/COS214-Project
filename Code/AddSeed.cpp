@@ -17,7 +17,7 @@
  *  
  * @return Pointer to the updated order.
 */ 
-Order* AddSeed::buildPart(Order* order, string itemName) {
+Order* AddSeed::buildPart(Order* order, std::string itemName) {
 	// TODO - implement AddSeed::buildPart
 	throw "Not yet implemented";
 }
@@ -30,7 +30,7 @@ Order* AddSeed::buildPart(Order* order, string itemName) {
  * 
  * @return true if the plant is a seed, false otherwise.
  */
-boolean AddSeed::checkType(Plant* plant) {
+bool AddSeed::checkType(Plant* plant) {
 	// TODO - implement AddSeed::checkType
 	throw "Not yet implemented";
 }

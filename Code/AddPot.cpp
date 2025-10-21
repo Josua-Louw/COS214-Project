@@ -17,7 +17,7 @@
   * 
   * @return Pointer to the updated order.
   */
-Order* AddPot::buildPart(Order* order, string itemName) {
+Order* AddPot::buildPart(Order* order, std::string itemName) {
 	// TODO - implement AddPot::buildPart
 	throw "Not yet implemented";
 }
@@ -30,7 +30,7 @@ Order* AddPot::buildPart(Order* order, string itemName) {
  * 
  * @return true if the plant is a pot, false otherwise.
  */
-boolean AddPot::checkType(Plant* plant) {
+bool AddPot::checkType(Plant* plant) {
 	// TODO - implement AddPot::checkType
 	throw "Not yet implemented";
 }
