@@ -3,24 +3,23 @@
 
 #include "PlantDecorator.h"
 
+/**
+ * @file PlantType.h
+ * @brief This file contains the definition of the PlantType class.
+ */
+
+ /**
+  * @class PlantType
+  * @brief Represents the type of a plant.
+  * Inherits from PlantDecorator.
+  * Provides method to get the type of the plant.
+  */
+
 class PlantType : public PlantDecorator {
-
-private:
-	int seedlingTime;
-	int juvenileTime;
-	int matureTime;
-	int timeForNextCare;
-
 public:
-	void water();
-
-	void feed();
-
-	double getPrice();
-
-	Plant* clone();
-
-	std::string getType();
+	PlantType(OrderPlant* plant);
+	~PlantType();
+	std::string getType() const override;
 };
 
 #endif

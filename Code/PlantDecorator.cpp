@@ -1,13 +1,16 @@
 #include "PlantDecorator.h"
 
-// Returns the price of the plant.
-double PlantDecorator::getPrice() {
+double PlantDecorator::getPrice() const {
 	// TODO - implement PlantDecorator::getPrice
 	throw "Not yet implemented";
 }
 
-// Clone the plant.
-Plant* PlantDecorator::clone() {
+PlantImplementor* PlantDecorator::clone() {
 	// TODO - implement PlantDecorator::clone
+	throw "Not yet implemented";
+}
+
+void PlantDecorator::decorate(OrderPlant* orderPlant) {
+	// TODO - implement PlantDecorator::decorate
 	throw "Not yet implemented";
 }

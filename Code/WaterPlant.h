@@ -2,7 +2,7 @@
 #define WATER_PLANT_H
 
 #include "Command.h"
-#include "Plant.h"
+#include "GreenHousePlant.h"
 
 /**
  * @class WaterPlant
@@ -12,14 +12,14 @@
  */
 class WaterPlant : public Command {
 private:
-    Plant* plant; /**< The plant to be watered. */
+    GreenHousePlant* plant; /**< The plant to be watered. */
 public:
     /**
      * @brief Constructs a WaterPlant command for a specific plant.
-     * @param plant Pointer to the Plant to be watered.
+     * @param plant Pointer to the GreenHousePlant to be watered.
      */
-    WaterPlant(Plant* plant) : plant(plant) {}
-    
+    WaterPlant(GreenHousePlant* plant) : plant(plant) {}
+
     /**
      * @brief Executes the watering task, updating the plant's state.
      */
