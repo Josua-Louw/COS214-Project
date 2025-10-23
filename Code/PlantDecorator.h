@@ -26,6 +26,8 @@ public:
 	/**
 	* @brief Gets the price of the decorated plant.
 	* @return The price of the decorated plant as a double.
+	* @note If there is a component, the price is the sum of the decorator's cost and the component's price.
+	* @note If there is no component, the price is just the decorator's cost.
 	*/
 	double getPrice() const override;
 
@@ -33,11 +35,14 @@ public:
 	* @brief Add decoration to the given plant.
 	* @param orderPlant Pointer to the plant to be decorated.
 	* @return void.
+	* @throws const char* if attempting to add more than one seed packet decoration.
+	* @warning This function requires heap-allocated OrderPlant objects to function correctly.
 	*/
 	void decorate(OrderPlant* orderPlant) override;
 
 	/**
-	 * @brief Virtual destructor to ensure proper cleanup in derived classes.
+	 * @brief Virtual destructor to ensure proper cleanup.
+	 * @note Deletes the component if it exists.
 	 */
 	virtual ~PlantDecorator();
 
