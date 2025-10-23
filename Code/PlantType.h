@@ -27,7 +27,7 @@ public:
 	 * @brief Get the type of the plant.
 	 * @return The type of the plant as a string.
 	 */
-	std::string getType() const override;
+	PLANT_TYPE getType() const override;
 };
 
 #endif

@@ -26,7 +26,7 @@ public:
 	 * @brief Create a clone of the pot.
 	 * @return A pointer to the newly created clone of the pot.
 	 */
-	std::string getType() const override;
+	PLANT_TYPE getType() const override;
 };
 
 #endif

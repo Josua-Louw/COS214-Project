@@ -7,6 +7,14 @@
  * @details This file contains the declaration of the PlantImplementor class, which serves as an abstract base class for different plant implementors in the system. It defines the interface for cloning plant implementors.
  */
 
+enum class PLANT_TYPE {
+    SEED_PACKET,
+    DECORATION,
+    POT,
+    ORDER_PLANT,
+    GREENHOUSE_PLANT
+};
+
  /**
   * @class PlantImplementor
   * @brief Abstract base class for plant implementors.
@@ -19,6 +27,7 @@ public:
     PlantImplementor(const PlantImplementor&) = default;
     virtual ~PlantImplementor() = default;
     virtual PlantImplementor* clone() = 0;
+    virtual PLANT_TYPE getType() const = 0;
 };
 
 #endif // PLANT_IMPLEMENTOR_H

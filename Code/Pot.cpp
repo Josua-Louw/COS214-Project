@@ -5,7 +5,7 @@ double Pot::getPrice() const {
 	throw "Not yet implemented";
 }
 
-std::string Pot::getType() const {
+PLANT_TYPE Pot::getType() const {
 	// TODO - implement Pot::getType
 	throw "Not yet implemented";
 }

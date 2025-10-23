@@ -5,7 +5,7 @@ double Decoration::getPrice()const {
 	throw "Not yet implemented";
 }
 
-std::string Decoration::getType() const {
+PLANT_TYPE Decoration::getType() const {
 	// TODO - implement Decoration::getType
 	throw "Not yet implemented";
 }

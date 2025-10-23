@@ -22,3 +22,37 @@ TEST_CASE("Sample Test Case") {
     CHECK(1 + 1 == 2);
     CHECK(2 * 2 == 4);
 }
+
+//TEST for seed packet functionality
+#include "SeedPacket.h"
+
+TEST_CASE("Seed Packet Test Case") {
+    SUBCASE("Default Constructor") {
+        SeedPacket sp;
+        CHECK(sp.getPrice() == 0.0);
+        CHECK(sp.getName() == "");
+    }
+    SUBCASE("Parameterized Constructor") {
+        SeedPacket sp2(10.0, "Rose Seeds");
+        CHECK(sp2.getPrice() == 10.0);
+        CHECK(sp2.getName() == "Rose Seeds");
+        CHECK(sp2.getType() == PLANT_TYPE::SEED_PACKET);
+    }
+    SUBCASE("Copy Constructor") {
+        SeedPacket sp3(15.0, "Tulip Seeds");
+        SeedPacket sp4(sp3);
+        CHECK(sp4.getPrice() == 15.0);
+        CHECK(sp4.getName() == "Tulip Seeds");
+        CHECK(sp4.getType() == PLANT_TYPE::SEED_PACKET);
+    }
+    SUBCASE("Clone Method") {
+        SeedPacket sp5(20.0, "Daisy Seeds");
+        PlantImplementor* spClone = sp5.clone();
+        SeedPacket* spCloneCasted = dynamic_cast<SeedPacket*>(spClone);
+        REQUIRE(spCloneCasted != nullptr);
+        CHECK(spCloneCasted->getPrice() == 20.0);
+        CHECK(spCloneCasted->getName() == "Daisy Seeds");
+        CHECK(spCloneCasted->getType() == PLANT_TYPE::SEED_PACKET);
+        delete spClone; // Clean up cloned object
+    }
+}

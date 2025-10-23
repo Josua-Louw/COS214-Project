@@ -27,7 +27,7 @@ public:
 	 * @brief Gets the type of the decoration.
 	 * @return The type of the decoration as a string.
 	 */
-	std::string getType() const override;
+	PLANT_TYPE getType() const override;
 };
 
 #endif
