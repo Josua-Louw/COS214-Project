@@ -3,19 +3,31 @@
 
 #include "PlantDecorator.h"
 
+/**
+ * @file Decoration.h
+ * @brief This file contains the definition of the Decoration class.
+ */
+
+ /**
+  * @class Decoration
+  * @brief Represents a decoration for a plant.
+  * Inherits from PlantDecorator.
+  * Provides methods to get the price and type of the decoration.
+  */
+
 class Decoration : public PlantDecorator {
-
-
 public:
-	double getPrice();
+	/**
+	 * @brief Gets the price of the decoration.
+	 * @return The price of the decoration as a double.
+	 */
+	double getPrice() const override;
 
-	void addRibbon();
-
-	void addCard();
-
-	Plant* clone();
-
-	std::string getType();
+	/**
+	 * @brief Gets the type of the decoration.
+	 * @return The type of the decoration as a string.
+	 */
+	std::string getType() const override;
 };
 
 #endif
