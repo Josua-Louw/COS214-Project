@@ -17,8 +17,16 @@
 
 class PlantType : public PlantDecorator {
 public:
+	/**
+	 * @brief Constructor for PlantType.
+	 * @param plant Pointer to the OrderPlant object to be decorated.
+	 */
 	PlantType(OrderPlant* plant);
 	~PlantType();
+	/**
+	 * @brief Get the type of the plant.
+	 * @return The type of the plant as a string.
+	 */
 	std::string getType() const override;
 };
 

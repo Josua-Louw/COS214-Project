@@ -17,7 +17,15 @@
 
 class Pot : public PlantDecorator {
 public:
+	/**
+	 * @brief Gets the price of the pot.
+	 * @return The price of the pot as a double.
+	 */
 	double getPrice() const override;
+	/**
+	 * @brief Create a clone of the pot.
+	 * @return A pointer to the newly created clone of the pot.
+	 */
 	std::string getType() const override;
 };
 

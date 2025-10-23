@@ -18,8 +18,19 @@ class PotAdapter : public Item {
 private:
     Pot* pot;
 public:
+    /**
+     * @brief Constructor for PotAdapter.
+     * @param p Pointer to the Pot object to be adapted.
+     */
     PotAdapter(Pot* p) : pot(p) {}
+    /**
+     * @brief Gets the name of the pot.
+     * @return The name of the pot as a string.
+     */
     std::string getName() const override;
+    /**
+     * @brief Destructor for PotAdapter.
+     */
     ~PotAdapter();
 };
 
