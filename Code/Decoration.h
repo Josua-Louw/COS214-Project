@@ -17,17 +17,21 @@
 
 class Decoration : public PlantDecorator {
 public:
-	/**
-	 * @brief Gets the price of the decoration.
-	 * @return The price of the decoration as a double.
-	 */
-	double getPrice() const override;
+	Decoration() : PlantDecorator() {}
+	Decoration(double cost, const std::string& name) : PlantDecorator(cost, name) {}
+	Decoration(const Decoration& other) : PlantDecorator(other) {}
 
 	/**
 	 * @brief Gets the type of the decoration.
 	 * @return The type of the decoration as a string.
 	 */
 	PLANT_TYPE getType() const override;
+
+	/**
+	 * @brief Creates a clone of the Decoration.
+	 * @return A pointer to the cloned Decoration.
+	 */
+	PlantImplementor* clone() override;
 };
 
 #endif

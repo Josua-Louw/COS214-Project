@@ -13,9 +13,16 @@
 * @brief Abstract base class representing a plant decorator.
 */
 class PlantDecorator : public OrderPlant {
-
 public:
-
+	PlantDecorator() : component(nullptr) {}
+	PlantDecorator(double cost, const std::string& name) : OrderPlant(cost, name), component(nullptr) {}
+	/**
+	 * @brief Copy constructor.
+	 * @param other The PlantDecorator object to copy from.
+	 * @return A new PlantDecorator object that is a copy of the given object.
+	 * @note This is a deep copy constructor.
+	 */
+	PlantDecorator(const PlantDecorator& other) : OrderPlant(other), component((other.component) ? dynamic_cast<OrderPlant*>(other.component->clone()) : nullptr) {}
 	/**
 	* @brief Gets the price of the decorated plant.
 	* @return The price of the decorated plant as a double.
@@ -23,17 +30,16 @@ public:
 	double getPrice() const override;
 
 	/**
-	* @brief Creates a clone of the PlantDecorator.
-	* @return A pointer to the cloned PlantDecorator.
-	*/
-	PlantImplementor* clone() override;
-
-	/**
 	* @brief Add decoration to the given plant.
 	* @param orderPlant Pointer to the plant to be decorated.
 	* @return void.
 	*/
 	void decorate(OrderPlant* orderPlant) override;
+
+	/**
+	 * @brief Virtual destructor to ensure proper cleanup in derived classes.
+	 */
+	virtual ~PlantDecorator();
 
 private:
 

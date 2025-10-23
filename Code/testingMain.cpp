@@ -55,4 +55,81 @@ TEST_CASE("Seed Packet Test Case") {
         CHECK(spCloneCasted->getType() == PLANT_TYPE::SEED_PACKET);
         delete spClone; // Clean up cloned object
     }
+    SUBCASE("Decorate Method") {
+        SeedPacket sp6(25.0, "Sunflower Seeds");
+        // Since decorate does nothing for SeedPacket, just ensure it doesn't throw
+        CHECK_NOTHROW(sp6.decorate(&sp6));
+        CHECK(sp6.getPrice() == 25.0); // Price should remain unchanged
+    }
+}
+
+//TEST for Decorator functionality
+#include "Decoration.h"
+
+TEST_CASE("Decoration Test Case") {
+    SUBCASE("Default Constructor") {
+        Decoration dec;
+        CHECK(dec.getPrice() == 0.0);
+        CHECK(dec.getName() == "");
+    }
+    SUBCASE("Parameterized Constructor") {
+        Decoration dec2(5.0, "Glitter");
+        CHECK(dec2.getPrice() == 5.0);
+        CHECK(dec2.getName() == "Glitter");
+        CHECK(dec2.getType() == PLANT_TYPE::DECORATION);
+    }
+    SUBCASE("Copy Constructor") {
+        Decoration dec3(7.5, "Ribbons");
+        Decoration dec4(dec3);
+        CHECK(dec4.getPrice() == 7.5);
+        CHECK(dec4.getName() == "Ribbons");
+        CHECK(dec4.getType() == PLANT_TYPE::DECORATION);
+    }
+    SUBCASE("Clone Method") {
+        Decoration dec5(12.0, "Beads");
+        PlantImplementor* decClone = dec5.clone();
+        Decoration* decCloneCasted = dynamic_cast<Decoration*>(decClone);
+        REQUIRE(decCloneCasted != nullptr);
+        CHECK(decCloneCasted->getPrice() == 12.0);
+        CHECK(decCloneCasted->getName() == "Beads");
+        CHECK(decCloneCasted->getType() == PLANT_TYPE::DECORATION);
+        delete decClone; // Clean up cloned object
+    }
+    SUBCASE("Decoration on SeedPacket") {
+        SeedPacket* sp = new SeedPacket(10.0, "Sunflower Seeds");
+        Decoration dec(3.0, "Sparkles");
+        dec.decorate(sp);
+        CHECK(dec.getPrice() == 13.0); // 10 + 3
+        CHECK(sp->getPrice() == 10.0); // Original seed packet price remains unchanged
+        CHECK(sp->getName() == "Sunflower Seeds");
+        CHECK(sp->getType() == PLANT_TYPE::SEED_PACKET);
+        CHECK(dec.getType() == PLANT_TYPE::DECORATION);
+        CHECK(dec.getName() == "Sparkles");
+        SUBCASE("Double Decoration with seeds Error") {
+            SeedPacket* sp2 = new SeedPacket(2.0, "Glitter");
+            CHECK_THROWS_AS(dec.decorate(sp2), const char*);
+            delete sp2; // Clean up seed packet
+        }
+        SUBCASE("Decoration Chain") {
+            Decoration* dec2 = new Decoration(2.0, "Ribbons");
+            dec.decorate(dec2);
+            CHECK(dec.getPrice() == 15.0); // 10 + 3 + 2
+            CHECK(dec2->getName() == "Ribbons");
+            CHECK(dec2->getType() == PLANT_TYPE::DECORATION);
+        }
+        SUBCASE("Longer decoration Chain") {
+            Decoration newDec(3.0, "Flowers");
+            Decoration* dec3 = new Decoration(1.0, "Beads");
+            Decoration* dec4 = new Decoration(2.0, "Lights");
+            newDec.decorate(dec3);
+            newDec.decorate(dec4);
+            CHECK(newDec.getPrice() == 6.0); // 3 + 1 + 2
+        }
+        SUBCASE("Null Decoration") {
+            Decoration decNull(4.0, "Feathers");
+            decNull.decorate(nullptr); // Should handle gracefully
+            CHECK(decNull.getPrice() == 4.0); // Price remains unchanged
+        }
+    }
+    
 }
