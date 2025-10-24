@@ -21,6 +21,9 @@
 class Item : public GreenHouse {
 public:
     virtual std::string getName() const = 0;
+
+    virtual double getPrice() const = 0;
+
     virtual ~Item() = default;
 };
 

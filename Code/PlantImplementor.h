@@ -1,6 +1,7 @@
 #ifndef PLANT_IMPLEMENTOR_H
 #define PLANT_IMPLEMENTOR_H
 
+#include <string>
 /**
  * @file PlantImplementor.h
  * @brief Defines the PlantImplementor class, an abstract base class for plant implementors.
@@ -19,6 +20,9 @@ public:
     PlantImplementor(const PlantImplementor&) = default;
     virtual ~PlantImplementor() = default;
     virtual PlantImplementor* clone() = 0;
+
+    virtual double getPrice() const = 0;
+    virtual std::string getName() const = 0;
 };
 
 #endif // PLANT_IMPLEMENTOR_H

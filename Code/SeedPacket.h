@@ -20,7 +20,9 @@ public:
 	* @brief Gets the price of the seeds.
 	* @return The price of the seeds as a double.
 	*/
-	double getPrice();
+	double getPrice() const;
+
+	std::string getName() const;
 
 	/**
 	* @brief Create a clone of the seeds.
@@ -32,7 +34,9 @@ public:
 	* @brief Get the type of plant the seeds are of.
 	* @return The type of plant the seeds are of as a string.
 	*/
-	std::string getType();
+	std::string getType() const;
+
+	void decorate(OrderPlant* orderPlant);
 };
 
 #endif
