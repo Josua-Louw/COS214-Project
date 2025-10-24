@@ -1,4 +1,4 @@
-#include "../Visual Paradigm files/WaterPlant.h"
+#include "WaterPlant.h"
 
 void WaterPlant::execute() {
 	// TODO - implement WaterPlant::execute

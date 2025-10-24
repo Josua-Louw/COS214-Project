@@ -1,4 +1,4 @@
-#include "../Visual Paradigm files/SalesManager.h"
+#include "SalesManager.h"
 
 void SalesManager::receiveCommand(Command* command) {
 	// TODO - implement SalesManager::receiveCommand

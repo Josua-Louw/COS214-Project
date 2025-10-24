@@ -1,16 +1,11 @@
-#include "../Visual Paradigm files/Pot.h"
+#include "Pot.h"
 
-double Pot::getPrice() {
+double Pot::getPrice() const {
 	// TODO - implement Pot::getPrice
 	throw "Not yet implemented";
 }
 
-Plant* Pot::clone() {
-	// TODO - implement Pot::clone
-	throw "Not yet implemented";
-}
-
-string Pot::getType() {
+std::string Pot::getType() const {
 	// TODO - implement Pot::getType
 	throw "Not yet implemented";
 }

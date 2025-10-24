@@ -1,11 +1,16 @@
-#include "../Visual Paradigm files/PlantDecorator.h"
+#include "PlantDecorator.h"
 
-double PlantDecorator::getPrice() {
+double PlantDecorator::getPrice() const {
 	// TODO - implement PlantDecorator::getPrice
 	throw "Not yet implemented";
 }
 
-Plant* PlantDecorator::clone() {
+PlantImplementor* PlantDecorator::clone() {
 	// TODO - implement PlantDecorator::clone
+	throw "Not yet implemented";
+}
+
+void PlantDecorator::decorate(OrderPlant* orderPlant) {
+	// TODO - implement PlantDecorator::decorate
 	throw "Not yet implemented";
 }

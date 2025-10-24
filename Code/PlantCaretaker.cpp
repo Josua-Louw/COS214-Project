@@ -1,4 +1,4 @@
-#include "../Visual Paradigm files/PlantCaretaker.h"
+#include "PlantCaretaker.h"
 
 void PlantCaretaker::receiveCommand(Command* command) {
 	// TODO - implement PlantCaretaker::receiveCommand
