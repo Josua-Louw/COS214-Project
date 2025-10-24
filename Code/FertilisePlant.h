@@ -6,22 +6,22 @@
 
 /**
  * @class FertilisePlant
- * @brief Concrete command for fertilizing a plant in the Plant Nursery Simulator.
+ * @brief Concrete command for fertilising a plant in the Plant Nursery Simulator.
  * 
- * Implements the Command Pattern to encapsulate the task of fertilizing a specific plant. Assigned to PlantCaretaker via NurseryHub, it interacts with a Plant to apply fertilizer, integrating with the Strategy Pattern for care routines and State Pattern for life cycle progression.
+ * Implements the Command Pattern to encapsulate the task of fertilising a specific plant. Assigned to PlantCaretaker via NurseryHub, it interacts with a Plant to apply fertiliser, integrating with the Strategy Pattern for care routines and State Pattern for life cycle progression.
  */
 class FertilisePlant : public Command {
 private:
-    Plant* plant; /**< The plant to be fertilized. */
+    Plant* plant; /**< The plant to be fertilised. */
 public:
     /**
      * @brief Constructs a FertilisePlant command for a specific plant.
-     * @param plant Pointer to the Plant to be fertilized.
+     * @param plant Pointer to the Plant to be fertilised.
      */
     FertilisePlant(Plant* plant) : plant(plant) {}
     
     /**
-     * @brief Executes the fertilization task, updating the plant's state.
+     * @brief Executes the fertilisation task, updating the plant's state.
      */
     void execute() override;
 };

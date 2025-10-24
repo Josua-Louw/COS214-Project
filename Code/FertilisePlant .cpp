@@ -11,9 +11,9 @@
  */
 
 /**
- * @brief Executes the fertilization task, updating the plant's state.
+ * @brief Executes the fertilisation task, updating the plant's state.
  * 
- * Calls the plant's feed method, which applies the fertilization strategy and triggers state transitions if needed. Supports FR3 (Strategy) and FR4 (State) by ensuring fertilization aligns with the plant's care requirements.
+ * Calls the plant's feed method, which applies the fertilisation strategy and triggers state transitions if needed. Supports FR3 (Strategy) and FR4 (State) by ensuring fertilisation aligns with the plant's care requirements.
  */
 void FertilisePlant::execute() {
     if (plant) {
