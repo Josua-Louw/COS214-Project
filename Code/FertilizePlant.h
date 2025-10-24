@@ -1,29 +1,29 @@
-#ifndef FERTILISE_PLANT_H
-#define FERTILISE_PLANT_H
+#ifndef FERTILIZE_PLANT_H
+#define FERTILIZE_PLANT_H
 
 #include "Command.h"
-#include "Plant.h"
+#include "GreenHousePlant.h"
 
 /**
  * @class FertilizePlant
  * @brief Concrete command for fertilizing a plant in the Plant Nursery Simulator.
  * 
- * Implements the Command Pattern to encapsulate the task of fertilizing a specific plant. Assigned to PlantCaretaker via NurseryHub, it interacts with a Plant to apply fertilizer, integrating with the Strategy Pattern for care routines and State Pattern for life cycle progression.
+ * Implements the Command Pattern (FR5) to encapsulate the task of fertilizing a specific greenhouse plant. Assigned to PlantCaretaker via NurseryHub (FR7), it calls GreenHousePlant’s feed method, which uses CareStrategy (FR3) and updates PlantState (FR4).
  */
-class FertilizePlant: public Command {
+class FertilizePlant : public Command {
 private:
-    Plant* plant; /**< The plant to be fertilized. */
+    GreenHousePlant* plant; /**< The greenhouse plant to be fertilized. */
 public:
     /**
-     * @brief Constructs a FertilizePlant command for a specific plant.
-     * @param plant Pointer to the Plant to be fertilized.
+     * @brief Constructs a FertilizePlant command for a specific greenhouse plant.
+     * @param plant Pointer to the GreenHousePlant to be fertilized.
      */
-    FertilizePlant(Plant* plant) : plant(plant) {}
+    FertilizePlant(GreenHousePlant* plant) : plant(plant) {}
     
     /**
-     * @brief Executes the fertilization task, updating the plant's state.
+     * @brief Executes the fertilization task.
      */
     void execute() override;
 };
 
-#endif // FERTILISE_PLANT_H
+#endif // FERTILIZE_PLANT_H
