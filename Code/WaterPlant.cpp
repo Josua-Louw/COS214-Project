@@ -1,7 +1,4 @@
 #include "WaterPlant.h"
-#include "Plant.h"
-#include "CareStrategy.h"
-#include "PlantState.h"
 
 /**
  * @file WaterPlant.cpp

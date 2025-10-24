@@ -1,7 +1,4 @@
 #include "SellCommand.h"
-#include "Plant.h"
-#include "Order.h"
-#include "GreenHouse.h"
 
 /**
  * @file SellCommand.cpp
