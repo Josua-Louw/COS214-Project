@@ -130,6 +130,92 @@ TEST_CASE("Decoration Test Case") {
             decNull.decorate(nullptr); // Should handle gracefully
             CHECK(decNull.getPrice() == 4.0); // Price remains unchanged
         }
+    }    
+}
+
+//TEST for Pot functionality
+#include "Pot.h"
+
+TEST_CASE("Pot Test Case") {
+    SUBCASE("Default Constructor") {
+        Pot pot;
+        CHECK(pot.getPrice() == 0.0);
+        CHECK(pot.getName() == "");
     }
-    
+    SUBCASE("Parameterized Constructor") {
+        Pot pot2(8.0, "Ceramic Pot");
+        CHECK(pot2.getPrice() == 8.0);
+        CHECK(pot2.getName() == "Ceramic Pot");
+        CHECK(pot2.getType() == PLANT_TYPE::POT);
+    }
+    SUBCASE("Copy Constructor") {
+        Pot pot3(12.0, "Plastic Pot");
+        Pot pot4(pot3);
+        CHECK(pot4.getPrice() == 12.0);
+        CHECK(pot4.getName() == "Plastic Pot");
+        CHECK(pot4.getType() == PLANT_TYPE::POT);
+    }
+    SUBCASE("Clone Method") {
+        Pot pot5(15.0, "Clay Pot");
+        PlantImplementor* potClone = pot5.clone();
+        Pot* potCloneCasted = dynamic_cast<Pot*>(potClone);
+        REQUIRE(potCloneCasted != nullptr);
+        CHECK(potCloneCasted->getPrice() == 15.0);
+        CHECK(potCloneCasted->getName() == "Clay Pot");
+        CHECK(potCloneCasted->getType() == PLANT_TYPE::POT);
+        delete potClone; // Clean up cloned object
+    }
+}
+
+//TEST for PlantType functionality
+#include "PlantType.h"
+
+TEST_CASE("PlantType Test Case") {
+    SUBCASE("Default Constructor") {
+        PlantType pt;
+        CHECK(pt.getPrice() == 0.0);
+        CHECK(pt.getName() == "");
+    }
+    SUBCASE("Parameterized Constructor") {
+        PlantType pt2(20.0, "Fern");
+        CHECK(pt2.getPrice() == 20.0);
+        CHECK(pt2.getName() == "Fern");
+        CHECK(pt2.getType() == PLANT_TYPE::ORDER_PLANT);
+    }
+    SUBCASE("Copy Constructor") {
+        PlantType pt3(25.0, "Cactus");
+        PlantType pt4(pt3);
+        CHECK(pt4.getPrice() == 25.0);
+        CHECK(pt4.getName() == "Cactus");
+        CHECK(pt4.getType() == PLANT_TYPE::ORDER_PLANT);
+    }
+    SUBCASE("Clone Method") {
+        PlantType pt5(30.0, "Bonsai");
+        PlantImplementor* ptClone = pt5.clone();
+        PlantType* ptCloneCasted = dynamic_cast<PlantType*>(ptClone);
+        REQUIRE(ptCloneCasted != nullptr);
+        CHECK(ptCloneCasted->getPrice() == 30.0);
+        CHECK(ptCloneCasted->getName() == "Bonsai");
+        CHECK(ptCloneCasted->getType() == PLANT_TYPE::ORDER_PLANT);
+        delete ptClone; // Clean up cloned object
+    }
+}
+
+//TESTING COMPLETE Decorator chain with all decorators focusing on cloning and price calculation
+TEST_CASE("Complete Decorator Chain Test Case") {
+    SeedPacket* sp = new SeedPacket(10.0, "Orchid Seeds");
+    Decoration* dec = new Decoration(5.0, "Glitter");
+    Pot* pot = new Pot(15.0, "Elegant Pot");
+    PlantType* pt = new PlantType(20.0, "Orchid Plant");
+    pt->decorate(pot);
+    pt->decorate(dec);
+    pt->decorate(sp);
+    CHECK(pt->getPrice() == 50.0); // 10 + 5 + 15 + 20
+    // Clone the entire decoration chain
+    PlantImplementor* ptClone = pt->clone();
+    PlantType* ptCloneCasted = dynamic_cast<PlantType*>(ptClone);
+    REQUIRE(ptCloneCasted != nullptr);
+    CHECK(ptCloneCasted->getPrice() == 50.0);
+    delete pt;
+    delete ptClone;
 }

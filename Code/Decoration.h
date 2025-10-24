@@ -12,7 +12,7 @@
   * @class Decoration
   * @brief Represents a decoration for a plant.
   * Inherits from PlantDecorator.
-  * Provides methods to get the price and type of the decoration.
+  * Provides methods to get type of the decoration and clone the decoration.
   */
 
 class Decoration : public PlantDecorator {
@@ -23,7 +23,7 @@ public:
 
 	/**
 	 * @brief Gets the type of the decoration.
-	 * @return The type of the decoration as a string.
+	 * @return The type of the decoration as a PLANT_TYPE enum value.
 	 */
 	PLANT_TYPE getType() const override;
 

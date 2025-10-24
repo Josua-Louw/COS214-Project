@@ -2,6 +2,9 @@
 
 
 PLANT_TYPE PlantType::getType() const {
-	// TODO - implement PlantType::getType
-	throw "Not yet implemented";
+	return PLANT_TYPE::ORDER_PLANT;
+}
+
+PlantImplementor* PlantType::clone() {
+	return new PlantType(*this);
 }
