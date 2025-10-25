@@ -24,14 +24,14 @@ private:
      * @brief Pointer to the care strategy associated with this plant.
      * @details Stores a pointer to a CareStrategy object that defines the specific care actions (e.g., watering, fertilizing) required for this plant.
      */
-    CareStrategy* strategy;
+    CareStrategy* strategy = nullptr;
 
     /**
      * @brief Pointer to the state the plant is currently in its lifecycle.
      * @details Stores a pointer to a PlantState object that represents the current lifecycle state of the plant (e.g., seed, seedling, mature).
      * @see PlantState
      */
-    PlantState* state;
+    PlantState* state = nullptr;
 
     /**
      * @brief Name of the plant.
@@ -44,6 +44,11 @@ private:
      * @details Stores the monetary value of the plant as a double.
      */
     double price;
+
+    //we can replace or extend these metrics later when we also do the state and timers
+    int hydration = 0;
+    int nutrition = 0;
+    int timeForNextCare = 0;
 
 public:
     /**
@@ -93,6 +98,17 @@ public:
      * @details Provides a virtual destructor to allow safe deletion of derived class objects through a Plant pointer.
      */
     virtual ~GreenHousePlant();
+
+    void setStrategy(CareStrategy* s) { strategy = s; }
+    void applyCurrentCare();           // optional helper used by water()/feed()
+
+    //Lightweight hooks for strategies (safe for later State/timer work)
+    void adjustHydration(int delta);
+    void adjustNutrition(int delta);
+    void setTimeForNextCare(int t);
+
+    int  getHydration() const;
+    int  getNutrition() const;
 };
 
-#endif // PLANT_H
+#endif // GREENHOUSEPLANT_H

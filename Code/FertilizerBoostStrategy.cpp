@@ -1,5 +1,5 @@
 #include "FertilizerBoostStrategy.h"
-
+#include "GreenHousePlant.h"
 /**
  * @file FertilizerBoostStrategy.cpp
  * @brief Implementation of the FertilizerBoostStrategy class.
@@ -13,12 +13,11 @@
  *
  * @note This method is part of the Strategy pattern and defines
  * how this specific care approach benefits the plant.
- *
- * @todo Implement the logic to apply fertilizer effects to the plant’s state.
  */
-void FertilizerBoostStrategy::applyCare() {
-	// TODO - implement FertilizerBoostStrategy::applyCare
-	throw "Not yet implemented";
+void FertilizerBoostStrategy::applyCare(GreenHousePlant& plant) {
+	plant.adjustHydration(+2);
+	plant.adjustNutrition(+5);
+	plant.setTimeForNextCare(12); //(vir nou n placeholder)replace met timers of ticks later saam Darius
 }
 
 /**
@@ -27,7 +26,6 @@ void FertilizerBoostStrategy::applyCare() {
  * @note Used for debugging or UI purposes to indicate which
  * care strategy is currently active.
  */
-void FertilizerBoostStrategy::getStrategyName() {
-	// TODO - implement FertilizerBoostStrategy::getStrategyName
-	throw "Not yet implemented";
+std::string FertilizerBoostStrategy::getStrategyName() const {
+	return "FertilizerBoost";
 }
