@@ -6,6 +6,19 @@ std::string GreenHousePlant::getName() const {
 	return this->name;
 }
 
+double GreenHousePlant::getPrice() const { return price; }
+
+PlantImplementor* GreenHousePlant::clone() {
+	//implement later
+	return nullptr;
+}
+
+std::string GreenHousePlant::getType() const {
+	return "GreenHousePlant";
+}
+
+GreenHousePlant::~GreenHousePlant() = default;
+
 void GreenHousePlant::applyCurrentCare() {
 	if (strategy) {
 		strategy->applyCare(*this);
