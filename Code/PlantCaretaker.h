@@ -3,10 +3,7 @@
 
 #include "Staff.h"
 #include "Command.h"
-<<<<<<< HEAD
 #include "NurseryHub.h"
-=======
->>>>>>> origin/developer
 #include <string>
 
 /**
