@@ -24,8 +24,6 @@ static bool ptrPresent(const std::vector<T*>& vec, const T* p) {//helper to chec
  *
  * @note Part of the Mediator pattern—centralizes assignment logic
  * instead of letting colleagues reference each other directly.
- *
- * @todo Implement selection strategy for which Staff will receive the command.
  */
 void NurseryHub::assign(Command* cmd) {
 	if (!cmd) {
@@ -57,8 +55,6 @@ void NurseryHub::notify(void* sender, std::string event, std::string data) {
 
 /**
  * @brief Register a plant with the mediator.
- *
- * @todo Add the plant to the internal registration for later routing and notifications.
  */
 void NurseryHub::registerPlant(Plant* p) {
 	if (p && !ptrPresent(plants, p)) {
