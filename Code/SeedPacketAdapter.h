@@ -18,8 +18,19 @@ class SeedPacketAdapter : public Item {
 private:
     SeedPacket* seedPacket;
 public:
+    /**
+     * @brief Constructor for SeedPacketAdapter.
+     * @param sp Pointer to the SeedPacket object to be adapted.
+     */
     SeedPacketAdapter(SeedPacket* sp) : seedPacket(sp) {}
+    /**
+     * @brief Gets the name of the seed packet.
+     * @return The name of the seed packet as a string.
+     */
     std::string getName() const override;
+    /**
+     * @brief Destructor for SeedPacketAdapter.
+     */
     ~SeedPacketAdapter();
 
     double getPrice() const;

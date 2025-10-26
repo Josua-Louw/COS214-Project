@@ -13,30 +13,37 @@
 * @brief Represents the seeds of the particular plant.
 */
 class SeedPacket : public OrderPlant {
-
 public:
-
+	SeedPacket() : OrderPlant() {};
+	SeedPacket(double cost, const std::string& name) : OrderPlant(cost, name) {}
+	SeedPacket(const SeedPacket&);
 	/**
 	* @brief Gets the price of the seeds.
 	* @return The price of the seeds as a double.
 	*/
-	double getPrice() const;
 
 	std::string getName() const;
+	double getPrice() const override;
 
 	/**
 	* @brief Create a clone of the seeds.
 	* @return A pointer to the newly created clone of the seeds.
 	*/
-	PlantImplementor* clone();
+	PlantImplementor* clone() override;
 
 	/**
 	* @brief Get the type of plant the seeds are of.
 	* @return The type of plant the seeds are of as a string.
 	*/
-	std::string getType() const;
 
-	void decorate(OrderPlant* orderPlant);
+	PLANT_TYPE getType() const override;
+
+	/**
+	 * @brief Add decoration to the given plant.
+	 * @param orderPlant Pointer to the plant to be decorated.
+	 * @return void.
+	 */
+	void decorate(OrderPlant* orderPlant) override {};
 };
 
 #endif

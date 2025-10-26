@@ -9,15 +9,16 @@ std::string SeedPacket::getName() const {
     return name;
 }
 
+SeedPacket::SeedPacket(const SeedPacket& other) : OrderPlant(other) {}
+
 // Clone the seeds
 PlantImplementor* SeedPacket::clone() {
-	// TODO - implement SeedPacket::clone
-	throw "Not yet implemented";
+	return new SeedPacket(*this);
 }
 
 // Get the type of plant the seeds are of
-std::string SeedPacket::getType() const {
-	return "SeedPacket";
+PLANT_TYPE SeedPacket::getType() const {
+	return PLANT_TYPE::SEED_PACKET;
 }
 
 void SeedPacket::decorate(OrderPlant* orderPlant) {

@@ -25,12 +25,38 @@ protected:
     double cost;
     std::string name;
 public:
-    OrderPlant() = default;
-    OrderPlant(const OrderPlant&) = default;
+    OrderPlant() : cost(0.0), name("") {}
+    OrderPlant(double cost, const std::string& name) : cost(cost), name(name) {}
+    /**
+     * @brief Copy constructor.
+     * @param other The OrderPlant object to copy from.
+     * @return A new OrderPlant object that is a copy of the given object.
+     */
+    OrderPlant(const OrderPlant&);
+    /**
+     * @brief Gets the price of the plant.
+     * @return The price of the plant as a double.
+     */
     virtual double getPrice() const = 0;
+    /**
+     * @brief Add decoration to the given plant.
+     * @param orderPlant Pointer to the plant to be decorated.
+     * @return void.
+     */
     virtual void decorate(OrderPlant* orderPlant) = 0;
+    /**
+     * @brief Gets the name of the plant.
+     * @return The name of the plant as a string.
+     */
     std::string getName() const;
-    virtual std::string getType() const = 0;
+    /*
+     * @brief Gets the type of the plant.
+     * @return The type of the plant as a string.
+    */
+    virtual PLANT_TYPE getType() const = 0;
+    /**
+     * @brief Virtual destructor to ensure proper cleanup in derived classes.
+     */
     virtual ~OrderPlant() = default;
 };
 

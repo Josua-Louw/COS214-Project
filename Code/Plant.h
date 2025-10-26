@@ -53,9 +53,14 @@ public:
      * by derived classes based on the plant’s type.
      * @return std::string The implementor type of the plant.
      */
-    std::string getName() const override;
 
     std::string getImplementorType();
+    /**
+     * @brief Gets the name of the plant.
+     * @details Overrides the getName method from the Item class to provide the name of the plant.
+     * @return std::string The name of the plant.
+     */
+    std::string getName() const override;
     ~Plant();
 
     void expand(GreenHouse* gh) override;
