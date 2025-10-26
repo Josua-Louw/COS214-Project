@@ -21,6 +21,8 @@ public:
 	* @brief Gets the price of the seeds.
 	* @return The price of the seeds as a double.
 	*/
+
+	std::string getName() const;
 	double getPrice() const override;
 
 	/**
@@ -33,6 +35,7 @@ public:
 	* @brief Get the type of plant the seeds are of.
 	* @return The type of plant the seeds are of as a string.
 	*/
+
 	PLANT_TYPE getType() const override;
 
 	/**
