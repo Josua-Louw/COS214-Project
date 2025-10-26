@@ -91,7 +91,7 @@ public:
      * @details Returns a string identifying the specific type of the plant (e.g., species or category), as implemented by derived classes.
      * @return The type of the plant as a string.
      */
-    std::string getType() const;
+    PLANT_TYPE getType() const override;
 
     /**
      * @brief Virtual destructor to ensure proper cleanup in derived classes.
