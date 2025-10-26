@@ -1,26 +1,11 @@
-#include "../Visual Paradigm files/Decoration.h"
+#include "Decoration.h"
 
-double Decoration::getPrice() {
+double Decoration::getPrice()const {
 	// TODO - implement Decoration::getPrice
 	throw "Not yet implemented";
 }
 
-void Decoration::addRibbon() {
-	// TODO - implement Decoration::addRibbon
-	throw "Not yet implemented";
-}
-
-void Decoration::addCard() {
-	// TODO - implement Decoration::addCard
-	throw "Not yet implemented";
-}
-
-Plant* Decoration::clone() {
-	// TODO - implement Decoration::clone
-	throw "Not yet implemented";
-}
-
-string Decoration::getType() {
+std::string Decoration::getType() const {
 	// TODO - implement Decoration::getType
 	throw "Not yet implemented";
 }

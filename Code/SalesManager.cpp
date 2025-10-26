@@ -1,6 +1,9 @@
 #include "SalesManager.h"
+<<<<<<< HEAD
 #include "SellCommand.h"
 #include "NurseryHub.h"
+=======
+>>>>>>> origin/developer
 
 /**
  * @file SalesManager.cpp

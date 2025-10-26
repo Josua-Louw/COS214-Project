@@ -1,6 +1,10 @@
 #ifndef CUSTOMER_H
 #define CUSTOMER_H
 
+#include "Person.h"
+#include "OrderBuilder.h"
+#include "NurseryMediator.h"
+
 class Customer : Person {
 
 private:

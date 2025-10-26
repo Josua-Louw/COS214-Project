@@ -1,7 +1,10 @@
 #include "PlantCaretaker.h"
+<<<<<<< HEAD
 #include "WaterPlant.h"
 #include "FertilizePlant.h"
 #include "NurseryHub.h"
+=======
+>>>>>>> origin/developer
 
 /**
  * @file PlantCaretaker.cpp
