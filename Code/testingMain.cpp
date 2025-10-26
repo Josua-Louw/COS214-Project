@@ -34,7 +34,7 @@ public:
     void feed() { fed = true; }
     void water() { watered = true; }
     double getPrice() const { return price; }
-    std::string getType() const { return "MockGreenHousePlant"; }
+    PLANT_TYPE getType() const { return PLANT_TYPE::GREENHOUSE_PLANT; }
     PlantImplementor* clone() { return new MockGreenHousePlant(*this); }
     std::string getName() const { return name; } // Satisfies Item::getName
 
