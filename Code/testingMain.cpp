@@ -12,6 +12,12 @@
 #include "GreenHouse.h"
 #include <string>
 
+#include "GreenHousePlant.h"
+#include "RegularCareStrategy.h"
+#include "FertilizerBoostStrategy.h"
+#include "WaterLimitingStrategy.h"
+
+
 /**
  * @file testingMain.cpp
  * @brief This file contains the main function for running tests using the doctest framework.
@@ -303,6 +309,54 @@ TEST_CASE("Sample Test Case") {
     CHECK(2 * 2 == 4);
 }
 
+// ---- Strategy tests ----
+
+TEST_CASE("RegularCare increases hydration & nutrition") {
+    GreenHousePlant p;
+    RegularCareStrategy s;
+    p.setStrategy(&s);
+    int h0 = p.getHydration(), n0 = p.getNutrition();
+    p.applyCurrentCare();
+    CHECK(p.getHydration() == h0 + 3);
+    CHECK(p.getNutrition() == n0 + 2);
+}
+
+TEST_CASE("FertilizerBoost focuses on nutrition") {
+    GreenHousePlant p;
+    FertilizerBoostStrategy s;
+    p.setStrategy(&s);
+    int h0 = p.getHydration(), n0 = p.getNutrition();
+    p.applyCurrentCare();
+    CHECK(p.getHydration() == h0 + 2);
+    CHECK(p.getNutrition() == n0 + 5);
+}
+
+TEST_CASE("WaterLimiting reduces watering pressure") {
+    GreenHousePlant p;
+    WaterLimitingStrategy s;
+    p.setStrategy(&s);
+    int h0 = p.getHydration(), n0 = p.getNutrition();
+    p.applyCurrentCare();
+    CHECK(p.getHydration() == h0 + 1);
+    CHECK(p.getNutrition() == n0 + 2);
+}
+
+TEST_CASE("Switching strategies changes behavior at runtime") {
+    GreenHousePlant p;
+    RegularCareStrategy reg;
+    FertilizerBoostStrategy fert;
+
+    p.setStrategy(&reg);
+    int h0 = p.getHydration(), n0 = p.getNutrition();
+    p.applyCurrentCare();
+    CHECK(p.getHydration() == h0 + 3);
+    CHECK(p.getNutrition() == n0 + 2);
+
+    p.setStrategy(&fert);
+    p.applyCurrentCare();
+    CHECK(p.getHydration() == h0 + 3 + 2); // +2 more from fert
+    CHECK(p.getNutrition() == n0 + 2 + 5); // +5 more from fert
+}
 //TEST for seed packet functionality
 #include "SeedPacket.h"
 

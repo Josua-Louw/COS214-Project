@@ -1,7 +1,15 @@
 #ifndef NURSERYHUB_H
 #define NURSERYHUB_H
 
+#include <vector>
+#include <string>
 #include "NurseryMediator.h"
+
+class Command;
+class GreenHousePlant;
+class Plant;
+class Staff;
+class Customer;
 
 /**
  * @file NurseryHub.h
@@ -18,7 +26,7 @@
  * Maintains registries of plants, staff, and customers. Implements the
  * `notify`, `assign`, and registration operations declared by NurseryMediator.
  */
-class NurseryHub : NurseryMediator {
+class NurseryHub : public NurseryMediator {
 
 private:
 	std::vector<Plant*> plants;      ///< Plants registered with the mediator.
@@ -30,7 +38,7 @@ public:
 	 * @brief Assign a command to an appropriate staff member.
 	 * @param cmd Command to route/dispatch.
 	 */
-	void assign(Command* cmd);
+	void assign(Command* cmd) override;
 
 	/**
 	 * @brief Handle/broadcast an event from a colleague.
@@ -40,17 +48,17 @@ public:
 	 *
 	 * @todo Implement event routing/notification rules to colleagues.
 	 */
-	void notify(void* sender, std::string event, std::string data);
+	void notify(void* sender, std::string event, std::string data) override;
 
 	/**
 	 * @brief Register a plant with the mediator so it can be tracked.
 	 */
-	void registerPlant(Plant* p);
+	void registerPlant(Plant* p) override;
 
 	/**
 	 * @brief Register a staff member with the mediator so it can receive assignments.
 	 */
-	void registerStaff(Staff* s);
+	void registerStaff(Staff* s) override;
 };
 
 #endif

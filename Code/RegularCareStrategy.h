@@ -15,7 +15,7 @@
  *
  * @note Implements the Strategy design pattern.
  */
-class RegularCareStrategy : CareStrategy {
+class RegularCareStrategy : public CareStrategy {
 
 
 public:
@@ -24,12 +24,12 @@ public:
 	 *
 	 * @note Represents a balanced and consistent care approach.
 	 */
-	void applyCare();
+	void applyCare(GreenHousePlant& plant) override;
 
 	/**
 	 * @brief Returns the identifying name of this strategy ("Regular Care Strategy").
 	 */
-	void getStrategyName();
+	std::string getStrategyName() const override;
 };
 
 #endif

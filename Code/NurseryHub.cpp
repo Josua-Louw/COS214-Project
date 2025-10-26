@@ -1,4 +1,16 @@
 #include "NurseryHub.h"
+#include "Staff.h"
+#include "Plant.h"
+#include "Customer.h"
+#include "Command.h"
+
+#include <algorithm>
+#include <vector>
+
+template <typename T>
+static bool ptrPresent(const std::vector<T*>& vec, const T* p) {//helper to check if a raw pointer p is already in a std::vector
+	return std::find(vec.begin(), vec.end(), p) !=vec.end();
+}
 
 /**
  * @file NurseryHub.cpp
@@ -12,12 +24,19 @@
  *
  * @note Part of the Mediator pattern—centralizes assignment logic
  * instead of letting colleagues reference each other directly.
- *
- * @todo Implement selection strategy for which Staff will receive the command.
  */
 void NurseryHub::assign(Command* cmd) {
-	// TODO - implement NurseryHub::assign
-	throw "Not yet implemented";
+	if (!cmd) {
+		return;
+	}
+	//Try Chain-of-Responsibility entry points first
+	for (Staff* s : staff) {
+		if (s && s->handleRequest(cmd)) return;
+	}
+	//Fallback(just hand it to the first available staff)
+	for (Staff* s : staff) {
+		if (s) { s->receiveCommand(cmd); return;}
+	}
 }
 
 /**
@@ -36,18 +55,18 @@ void NurseryHub::notify(void* sender, std::string event, std::string data) {
 
 /**
  * @brief Register a plant with the mediator.
- *
- * @todo Add the plant to the internal registration for later routing and notifications.
  */
 void NurseryHub::registerPlant(Plant* p) {
-	// TODO - implement NurseryHub::registerPlant
-	throw "Not yet implemented";
+	if (p && !ptrPresent(plants, p)) {
+		plants.push_back(p);
+	}
 }
 
 /**
  * @brief Register a staff member with the mediator.
  */
 void NurseryHub::registerStaff(Staff* s) {
-	// TODO - implement NurseryHub::registerStaff
-	throw "Not yet implemented";
+	if (s && !ptrPresent(staff, s)) {
+		staff.push_back(s);
+	}
 }
