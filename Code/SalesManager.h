@@ -2,26 +2,37 @@
 #define SALES_MANAGER_H
 
 #include "Staff.h"
+#include "NurseryHub.h"
 
 /**
  * @class SalesManager
  * @brief Concrete staff class for handling customer sales in the Plant Nursery Simulator.
  * 
- * Inherits from Staff to manage sales tasks, implementing the Command Pattern via receiveCommand to process SellCommand tasks. Participates in the Chain of Responsibility Pattern by receiving delegated tasks via nextStaff. Interacts with Customer and NurseryHub (Mediator) to facilitate sales and order processing.
+ * Inherits from Staff to manage sales tasks, implementing the Command Pattern (FR5) via receiveCommand to process SellCommand tasks. Participates in the Chain of Responsibility Pattern (FR6) by receiving delegated tasks via nextStaff. Interacts with Customer and NurseryHub (Mediator, FR7) to facilitate sales and order processing.
  */
 class SalesManager : public Staff {
+private:
+    NurseryHub* nurseryHub; /**< Mediator for notifications (FR7). */
 public:
     /**
-     * @brief Constructs a SalesManager with an ID.
+     * @brief Constructs a SalesManager with an ID and NurseryHub.
      * @param id Unique identifier for the SalesManager.
+     * @param hub Pointer to the NurseryHub mediator.
      */
-    SalesManager(const std::string& id) : Staff(id) {}
+    SalesManager(const std::string& id, NurseryHub* hub) : Staff(id), nurseryHub(hub) {}
     
     /**
      * @brief Receives and executes a SellCommand, processing a customer order.
      * @param command Pointer to the Command (e.g., SellCommand) to execute.
      */
     void receiveCommand(Command* command) override;
+    
+    /**
+     * @brief Handles a command request, checking availability and command type.
+     * @param command Pointer to the Command to handle.
+     * @return True if the command is handled, false if delegated or ignored.
+     */
+    bool handleRequest(Command* command) override;
 };
 
 #endif // SALES_MANAGER_H
