@@ -1,25 +1,71 @@
 #ifndef PLANT_H
 #define PLANT_H
 
-class Plant : GreenHouse {
+#include "Item.h"
+#include "PlantImplementor.h"
+#include "GreenHousePlant.h"
+#include "OrderPlant.h"
 
+/**
+ * @file Plant.h
+ * @brief Defines the Plant class, the class for representing plants overall.
+ * @details This file contains the declaration of the Plant class, which serves as the class which can be implemented by different plant class which are namely GreenHousePlant and OrderPlant.
+ */
+
+ /**
+  * @class Plant
+  * @brief Class representing a plant in the system.
+  * @details The Plant class provides a common interface for all plant types, managing their properties such as price and implementor type. It inherits from GreenHouse, integrating with the greenhouse framework.
+  * @see GreenHouse, PlantImplementor, GreenHousePlant, OrderPlant
+  */
+class Plant : public Item
+{
 private:
-	CareStrategy* strategy;
-
-	string name;
+    /**
+     * @brief Pointer to the implementor associated with this plant.
+     * @details Stores a pointer to a PlantImplementor object that defines the specific implementation details for this plant.
+     */
+    PlantImplementor* implementor;
 
 public:
-	virtual void water() = 0;
+    Plant();
+    Plant(PlantImplementor* impl);
+    Plant(const std::string& name, double price);
 
-	virtual void feed() = 0;
+    /**
+     * @brief Converts the plant to an order type.
+     * @details Defines the interface for converting the plant to an order type, with implementation details provided by derived classes based on the plant’s type.
+     * @return void
+     */
+    void convertToOrderType();
 
-	virtual double getPrice() = 0;
+    /**
+     * @brief Gets the price of the plant.
+     * @details Defines the interface for retrieving the price of the plant, with implementation details provided
+     * by derived classes based on the plant’s type.
+     * @return double The price of the plant.
+     */
+    double getPrice() const;
 
-	virtual Plant* clone() = 0;
+    /**
+     * @brief Gets the implementor type of the plant.
+     * @details Defines the interface for retrieving the implementor type of the plant, with implementation details provided
+     * by derived classes based on the plant’s type.
+     * @return std::string The implementor type of the plant.
+     */
+    std::string getName() const override;
 
-	string getName();
+    std::string getImplementorType();
+    ~Plant();
 
-	virtual string getType() = 0;
+    void expand(GreenHouse* gh) override;
+    double sell(Item* item) override;
+    GreenHouse* getSubsection(const std::string& sectionName) override;
+    Iterator<Item*>* createIterator() override;
+    Item* findItem(const std::string& itemName) override;
+    void printSummary() const override;
+    size_t getTotalItemCount() const;
+    void printSummaryHelper(int indentLevel) const;
 };
 
-#endif
+#endif // PLANT_H
