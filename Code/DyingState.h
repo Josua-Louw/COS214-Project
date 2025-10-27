@@ -18,14 +18,9 @@
  * @see PlantState, SeedState, SeedlingState, JuvenileState, MatureState, FloweringState, DeadState
  */
 class DyingState : public PlantState {
+    private:
+    PlantState* previous;
 public:
-    /**
-     * @brief Handles care actions for a plant in the dying state.
-     * @details Performs intensive care actions, such as watering or fertilizing, which may help the plant recover to a previous lifecycle state. Without sufficient care, the plant is likely to progress to the dead state.
-     * @note Effective care is critical to prevent permanent loss of the plant.
-     * @return void
-     */
-    void handleCare();
 
     /**
      * @brief Transitions the plant to the next state in its lifecycle.
@@ -34,9 +29,9 @@ public:
      * @return void
      * @see DeadState, SeedState, SeedlingState, JuvenileState, MatureState, FloweringState
      */
-    void transitionToNext();
+    void transitionToNext() override;
 
-    DyingState(GreenHousePlant* plant) : PlantState(plant) {};
+    DyingState(GreenHousePlant* plant, PlantState* previous);
 };
 
 #endif // DYINGSTATE_H

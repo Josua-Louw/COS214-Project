@@ -11,3 +11,7 @@ void DyingState::transitionToNext() {
 	// TODO - implement DyingState::transitionToNext
 	throw "Not yet implemented";
 }
+
+DyingState::DyingState(GreenHousePlant * plant, PlantState* previous) : PlantState(plant), previous(previous) {
+	DyingState::transitionToNext();
+}

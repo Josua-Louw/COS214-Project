@@ -1,13 +1,23 @@
 #include "JuvenileState.h"
 
-// Implement care actions specific to the juvenile state
-void JuvenileState::handleCare() {
-    // TODO - implement JuvenileState::handleCare
-    throw "Not yet implemented";
-}
-
 // Implement the logic to transition the plant to the next state
 void JuvenileState::transitionToNext() {
-    // TODO - implement JuvenileState::transitionToNext
-    throw "Not yet implemented";
+    std::thread([this]() {
+        std::this_thread::sleep_for(std::chrono::seconds(20));
+
+        if (plant_->getSuccess()) {
+            plant_->setState(new MatureState(plant_));
+        } else if (plant_->getBusy()) {
+            while (!plant_->getSuccess()) {
+                std::this_thread::sleep_for(std::chrono::milliseconds(100));
+            }
+            plant_->setState(new MatureState(plant_));
+        } else {
+            plant_->setState(new DyingState(plant_));
+        }
+    }).detach();
+}
+
+JuvenileState::JuvenileState(GreenHousePlant * plant) : PlantState(plant){
+    JuvenileState::transitionToNext();
 }

@@ -1,7 +1,12 @@
 #ifndef SEEDLING_STATE_H
 #define SEEDLING_STATE_H
 
+#include <thread>
+#include <chrono>
+
 #include "PlantState.h"
+#include "DyingState.h"
+#include "JuvenileState.h"
 
 /**
  * @file SeedlingState.h

@@ -1,13 +1,13 @@
 #include "SenescenceState.h"
 
-// Implement care actions specific to the senescence state
-void SenescenceState::handleCare() {
-	// TODO - implement SenescenceState::handleCare
-	throw "Not yet implemented";
-}
-
 // Implement the logic to transition the plant to the next state
 void SenescenceState::transitionToNext() {
-	// TODO - implement SenescenceState::transitionToNext
-	throw "Not yet implemented";
+	std::thread([this]() {
+		std::this_thread::sleep_for(std::chrono::seconds(20));
+		plant_->setState(new DyingState(plant_));
+	}).detach();
+}
+
+SenescenceState::SenescenceState(GreenHousePlant * plant) : PlantState(plant) {
+	SenescenceState::transitionToNext();
 }
