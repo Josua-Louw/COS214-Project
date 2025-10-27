@@ -1,5 +1,7 @@
 #ifndef COMMAND_H
 #define COMMAND_H
+
+
 #include <string>
 #include <atomic>
 
@@ -28,11 +30,14 @@ public:
      * Pure virtual method implemented by concrete command classes (e.g., WaterPlant, SellCommand).
      */
     virtual void execute() = 0;
+
+    virtual std::string getType() = 0;
+
+    virtual GreenHousePlant* getPlant() = 0;
     
     /**
      * @brief Virtual destructor for proper cleanup of derived classes.
      */
-    virtual ~Command() {}
+    virtual ~Command();
 };
-
 #endif // COMMAND_H

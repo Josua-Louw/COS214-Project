@@ -20,6 +20,8 @@ public:
      * @param plant Pointer to the GreenHousePlant to be fertilized.
      */
     FertilizePlant(GreenHousePlant* plant, int time) : plant(plant), time(time) {}
+
+    std::string getType();
     
     /**
      * @brief Executes the fertilization task.

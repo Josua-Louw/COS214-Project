@@ -62,7 +62,7 @@ public:
             staff->nextStaff = this;
         }
         else {
-            addStaffMemeber(staff->nextStaff);
+            addStaffMember(staff->nextStaff);
         }
     }
 };

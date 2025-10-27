@@ -10,6 +10,10 @@
  * Executes the fertilization task for a specific greenhouse plant, calling GreenHousePlant’s feed method, which applies the fertilization strategy (FR3, Strategy Pattern) and updates the plant’s state (FR4, State Pattern). Assigned to PlantCaretaker via NurseryHub (Mediator, FR7). Supports the Command Pattern (FR5).
  */
 
+std::string FertilizePlant::getType() {
+    return "FertilizePlant";
+}
+
 /**
  * @brief Executes the fertilization task, updating the plant’s state.
  * 
