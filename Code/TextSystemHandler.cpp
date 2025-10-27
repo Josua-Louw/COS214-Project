@@ -60,7 +60,7 @@ void TextSystemHandler::addSection() {
 
 void TextSystemHandler::addPlant() {
     std::cout << "Adding a new plant via text interface." << std::endl;
-    std::cout << "Select a section to add the plant to: ";
+    std::cout << "Select a section to add an item to: ";
     std::string sectionName;
     std::cin >> sectionName;
     GreenHouse* section = greenHouse->getSubsection(sectionName);
@@ -69,19 +69,47 @@ void TextSystemHandler::addPlant() {
         systemMenue();
         return;
     }
-    std::cout << "Enter plant name: ";
-    std::string plantName;
-    std::cin >> plantName;
-    std::cout << "Enter plant price: ";
-    double plantPrice;
+    std::cout << "1. Add Plant" << std::endl;
+    std::cout << "2. Add Pot" << std::endl;
+    std::cout << "3. Add Seed Packet" << std::endl;
+    std::cout << "4. Add Decoration" << std::endl;
+    std::cout << "Select item type to add (1-4): ";
+    int itemType;
     try {
-        std::cin >> plantPrice;
-    }  catch(const std::exception& e) {
-        plantPrice = 0.0; // default price
+        std::cin >> itemType;
+    } catch(const std::exception& e) {
+        itemType = 1; // default to Plant
     }
-    Plant* newPlant = new Plant(new GreenHousePlant());
-    section->expand(newPlant);
-    std::cout << "Plant '" << plantName << "' added to section '" << sectionName << "'." << std::endl;
+    Item* newItem = nullptr;
+    std::cout << "Enter item name: ";
+    std::string itemName;
+    std::cin >> itemName;
+    std::cout << "Enter item price: ";
+    double itemPrice;
+    try {
+        std::cin >> itemPrice;
+    } catch(const std::exception& e) {
+        itemPrice = 0.0; // default price
+    }
+    switch (itemType)
+    {
+    case 1:
+        newItem = new Plant(itemName, itemPrice);
+        break;
+    case 2:
+        newItem = new PotAdapter(itemName, itemPrice);
+        break;
+    case 3:
+        newItem = new SeedPacketAdapter(itemName, itemPrice);
+        break;
+    case 4:
+        newItem = new DecorationAdapter(itemName, itemPrice);
+        break;
+    default:
+        break;
+    }
+    section->expand(newItem);
+    std::cout << "Item '" << itemName << "' added to section '" << sectionName << "'." << std::endl;
     systemMenue();
 }
 

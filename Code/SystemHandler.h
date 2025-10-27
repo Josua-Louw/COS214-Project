@@ -5,6 +5,9 @@
 #include "Section.h"
 #include "NurseryHub.h"
 #include "Plant.h"
+#include "PotAdapter.h"
+#include "SeedPacketAdapter.h"
+#include "DecorationAdapter.h"
 #include "PlantCaretaker.h"
 #include "SalesManager.h"
 
