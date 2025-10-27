@@ -4,10 +4,17 @@
 #include "GreenHousePlant.h"
 #include "Customer.h"
 #include "Command.h"
+#include "Manager.h"
 
 #include <algorithm>
 #include <stdexcept>
 #include <vector>
+
+
+NurseryHub::NurseryHub() {
+	auto* mgr = new Manager("manager-1", this);
+	staff.push_back(mgr);
+}
 
 template <typename T>
 static bool ptrPresent(const std::vector<T*>& vec, const T* p) {//helper to check if a raw pointer p is already in a std::vector

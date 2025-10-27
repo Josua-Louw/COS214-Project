@@ -31,14 +31,6 @@ public:
     virtual void receiveCommand(Command* command) = 0;
 
     /**
-     * @brief Handles a command request, checking availability and command type.
-     * @param command Pointer to the Command to handle.
-     * @return True if the command is handled, false if delegated or ignored.
-     */
-    virtual bool handleRequest(Command* command) = 0;
-
-
-    /**
      * @brief Gets the next staff in the chain for testing purposes.
      * @return Pointer to the next Staff member.
      */

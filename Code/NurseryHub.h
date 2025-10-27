@@ -34,6 +34,7 @@ private:
 	std::vector<Customer*> customers;///< Customers interacting through the mediator.
 
 public:
+	NurseryHub();
 	/**
 	 * @brief Assign a command to an appropriate staff member.
 	 * @param cmd Command to route/dispatch.
