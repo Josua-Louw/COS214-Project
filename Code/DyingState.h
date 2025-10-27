@@ -1,8 +1,12 @@
 #ifndef DYINGSTATE_H
 #define DYINGSTATE_H
 
+#include <thread>
+#include <chrono>
+
 #include "PlantState.h"
 #include "GreenHousePlant.h"
+#include "DeadState.h"
 
 /**
  * @file DyingState.h
