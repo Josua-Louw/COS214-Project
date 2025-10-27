@@ -1,6 +1,8 @@
 #include "GreenHousePlant.h"
 #include "CareStrategy.h"
 
+#include <iostream>
+
 // Returns the name of the plant.
 std::string GreenHousePlant::getName() const {
 	return this->name;
@@ -38,25 +40,14 @@ Command* GreenHousePlant::feed(int time) {
 	return cmd;
 }
 
-//Strategy helpers
-void GreenHousePlant::adjustHydration(int d) {
-	hydration += d;
+void GreenHousePlant::watering(int time) {
+	std::this_thread::sleep_for(std::chrono::seconds(time));
+	std::cout << "Finished Watering\n";
 }
 
-void GreenHousePlant::adjustNutrition(int d) {
-	nutrition += d;
-}
-
-void GreenHousePlant::setTimeForNextCare(int t) {
-	timeForNextCare = t;
-}
-
-int  GreenHousePlant::getHydration() const{
-	return hydration;
-}
-
-int  GreenHousePlant::getNutrition() const{
-	return nutrition;
+void GreenHousePlant::fertilizing(int time) {
+	std::this_thread::sleep_for(std::chrono::seconds(time));
+	std::cout << "Finished Fertilizing\n";
 }
 
 void GreenHousePlant::setSuccess(bool success) {

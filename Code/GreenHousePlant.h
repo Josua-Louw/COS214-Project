@@ -11,7 +11,8 @@
 #include <string>
 #include <atomic>
 #include <vector>
-
+#include <thread>
+#include <chrono>
 
 /**
  * @file Plant.h
@@ -52,11 +53,6 @@ private:
      * @details Stores the monetary value of the plant as a double.
      */
     double price = 0.0;
-
-    //we can replace or extend these metrics later when we also do the state and timers
-    int hydration = 0;
-    int nutrition = 0;
-    int timeForNextCare = 0;
 
     std::atomic<bool> careBusy{false};
     std::atomic<bool> careSuccessful{false};
@@ -113,15 +109,10 @@ public:
     void setStrategy(CareStrategy* s) { strategy = s; }
     std::vector<Command*> applyCurrentCare();           // optional helper used by water()/feed()
 
-    //Lightweight hooks for strategies (safe for later State/timer work)
-    void adjustHydration(int delta);
-    void adjustNutrition(int delta);
-    void setTimeForNextCare(int t);
+    void watering(int time);
+    void fertilizing(int time);
 
     void setMediator(NurseryMediator* m) { mediator_ = m; }
-
-    int  getHydration() const;
-    int  getNutrition() const;
 
     bool getSuccess() const;
     bool getBusy() const;
