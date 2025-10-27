@@ -589,3 +589,30 @@ TEST_CASE("Adapter Pattern Test Cases") {
         CHECK(da2.getType() == PLANT_TYPE::DECORATION);
     }
 }
+
+//TEST BRIDGE - testing plant class and plant implementor
+
+#include "Plant.h"
+
+TEST_CASE("Plant and plantimplementor tests") {
+    SUBCASE("Plant from original creation") {
+        Plant plant("Daisy", 20);
+        CHECK(plant.getName() == "Daisy");
+        CHECK(plant.getPrice() == 20);
+        CHECK(plant.getType() == PLANT_TYPE::GREENHOUSE_PLANT);
+        plant.convertToOrderType();
+        CHECK(plant.getType() == PLANT_TYPE::ORDER_PLANT);
+    }
+    SUBCASE("Plant with Order plant implementor") {
+        Plant plant(new PlantType(20, "Daisy"));
+        CHECK(plant.getName() == "Daisy");
+        CHECK(plant.getPrice() == 20);
+        CHECK(plant.getType() == PLANT_TYPE::ORDER_PLANT);
+    }
+    SUBCASE("No implementor") {
+        Plant plant;
+        CHECK(plant.getName() == "Unnamed Plant");
+        CHECK(plant.getPrice() == 0);
+        CHECK(plant.getType() == PLANT_TYPE::GREENHOUSE_PLANT);
+    }
+}
