@@ -13,8 +13,8 @@ PlantImplementor* GreenHousePlant::clone() {
 	return nullptr;
 }
 
-std::string GreenHousePlant::getType() const {
-	return "GreenHousePlant";
+PLANT_TYPE GreenHousePlant::getType() const {
+	return PLANT_TYPE::GREENHOUSE_PLANT;
 }
 
 GreenHousePlant::~GreenHousePlant() = default;
