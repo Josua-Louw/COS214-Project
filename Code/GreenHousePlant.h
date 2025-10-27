@@ -10,6 +10,7 @@
 #include "Command.h"
 #include <string>
 #include <atomic>
+#include <vector>
 
 
 /**
@@ -110,7 +111,7 @@ public:
     virtual ~GreenHousePlant();
 
     void setStrategy(CareStrategy* s) { strategy = s; }
-    void applyCurrentCare();           // optional helper used by water()/feed()
+    std::vector<Command*> applyCurrentCare();           // optional helper used by water()/feed()
 
     //Lightweight hooks for strategies (safe for later State/timer work)
     void adjustHydration(int delta);
@@ -124,6 +125,8 @@ public:
 
     bool getSuccess() const;
     bool getBusy() const;
+    void setSuccess(bool success);
+    void setBusy(bool busy);
     void markCareStarted();              //sets busy=true, success=false
     void markCareFinished(bool success); //sets success, busy=false
 

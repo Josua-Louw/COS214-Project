@@ -59,6 +59,14 @@ int  GreenHousePlant::getNutrition() const{
 	return nutrition;
 }
 
+void GreenHousePlant::setSuccess(bool success) {
+	careSuccessful.store(success, std::memory_order_release);
+}
+
+void GreenHousePlant::setBusy(bool busy) {
+	careBusy.store(busy, std::memory_order_release);
+}
+
 bool GreenHousePlant::getSuccess() const{
 	return careSuccessful.load();
 }

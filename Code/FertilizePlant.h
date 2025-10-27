@@ -12,13 +12,14 @@
  */
 class FertilizePlant : public Command {
 private:
+    int time;
     GreenHousePlant* plant; /**< The greenhouse plant to be fertilized. */
 public:
     /**
      * @brief Constructs a FertilizePlant command for a specific greenhouse plant.
      * @param plant Pointer to the GreenHousePlant to be fertilized.
      */
-    FertilizePlant(GreenHousePlant* plant) : plant(plant) {}
+    FertilizePlant(GreenHousePlant* plant, int time) : plant(plant), time(time) {}
     
     /**
      * @brief Executes the fertilization task.
