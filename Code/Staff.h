@@ -62,6 +62,23 @@ public:
             delete cmd; // Clean up commands
         }
     }
+    /**
+     * @brief Adds a staff member to the beginning of the chain.
+     * @param staff Pointer to the Staff member to add.
+     * @note 'this' will be at the end of the chain.
+     */
+
+    void addStaffMemeber(Staff* staff) {
+        if (staff == nullptr) {
+            return;
+        }
+        if (!staff->nextStaff) {
+            staff->nextStaff = this;
+        }
+        else {
+            addStaffMemeber(staff->nextStaff);
+        }
+    }
 };
 
 #endif // STAFF_H
