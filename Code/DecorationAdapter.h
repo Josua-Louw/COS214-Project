@@ -32,6 +32,16 @@ public:
      * @brief Destructor for DecorationAdapter.
      */
     ~DecorationAdapter();
+    
+    double getPrice() const;
+    void expand(GreenHouse* gh) override;
+    double sell(Item* item) override;
+    GreenHouse* getSubsection(const std::string& sectionName) override;
+    Iterator<Item*>* createIterator() override;
+    Item* findItem(const std::string& itemName) override;
+    void printSummary() const override;
+    size_t getTotalItemCount() const;
+    void printSummaryHelper(int indentLevel) const;
 };
 
 #endif // DECORATIONADAPTER_H

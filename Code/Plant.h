@@ -3,6 +3,8 @@
 
 #include "Item.h"
 #include "PlantImplementor.h"
+#include "GreenHousePlant.h"
+#include "OrderPlant.h"
 
 /**
  * @file Plant.h
@@ -24,27 +26,34 @@ private:
      * @details Stores a pointer to a PlantImplementor object that defines the specific implementation details for this plant.
      */
     PlantImplementor* implementor;
+
 public:
     Plant();
+    Plant(PlantImplementor* impl);
+    Plant(const std::string& name, double price);
+
     /**
      * @brief Converts the plant to an order type.
      * @details Defines the interface for converting the plant to an order type, with implementation details provided by derived classes based on the plant’s type.
      * @return void
      */
     void convertToOrderType();
+
     /**
      * @brief Gets the price of the plant.
      * @details Defines the interface for retrieving the price of the plant, with implementation details provided
      * by derived classes based on the plant’s type.
      * @return double The price of the plant.
      */
-    double getPrice();
+    double getPrice() const;
+
     /**
      * @brief Gets the implementor type of the plant.
      * @details Defines the interface for retrieving the implementor type of the plant, with implementation details provided
      * by derived classes based on the plant’s type.
      * @return std::string The implementor type of the plant.
      */
+
     std::string getImplementorType();
     /**
      * @brief Gets the name of the plant.
@@ -53,6 +62,15 @@ public:
      */
     std::string getName() const override;
     ~Plant();
+
+    void expand(GreenHouse* gh) override;
+    double sell(Item* item) override;
+    GreenHouse* getSubsection(const std::string& sectionName) override;
+    Iterator<Item*>* createIterator() override;
+    Item* findItem(const std::string& itemName) override;
+    void printSummary() const override;
+    size_t getTotalItemCount() const;
+    void printSummaryHelper(int indentLevel) const;
 };
 
 #endif // PLANT_H

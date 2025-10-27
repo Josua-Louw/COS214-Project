@@ -1,4 +1,5 @@
 #include "RegularCareStrategy.h"
+#include "GreenHousePlant.h"
 
 /**
  * @file RegularCareStrategy.cpp
@@ -11,12 +12,11 @@
  * @brief Applies the standard care routine for a plant.
  *
  * @note Includes balanced watering, nutrient checks and all other overall maintenance.
- *
- * @todo Implement the actual logic for applying regular care actions.
  */
-void RegularCareStrategy::applyCare() {
-	// TODO - implement RegularCareStrategy::applyCare
-	throw "Not yet implemented";
+void RegularCareStrategy::applyCare(GreenHousePlant& plant) {
+    plant.adjustHydration(+3);
+    plant.adjustNutrition(+2);
+    plant.setTimeForNextCare(8); //(vir nou n placeholder)replace met timers of ticks later saam Darius
 }
 
 /**
@@ -24,7 +24,6 @@ void RegularCareStrategy::applyCare() {
  *
  * @return The name of the care strategy ("Regular Care Strategy").
  */
-void RegularCareStrategy::getStrategyName() {
-	// TODO - implement RegularCareStrategy::getStrategyName
-	throw "Not yet implemented";
+std::string RegularCareStrategy::getStrategyName() const {
+	return "RegularCare";
 }

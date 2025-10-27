@@ -25,6 +25,9 @@ public:
      * @return The name of the item as a string.
      */
     virtual std::string getName() const = 0;
+
+    virtual double getPrice() const = 0;
+
     /**
      * @brief Virtual destructor to ensure proper cleanup in derived classes.
      */

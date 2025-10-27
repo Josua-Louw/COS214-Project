@@ -2,10 +2,12 @@
 #define NURSERYMEDIATOR_H
 
 #include <string>
-#include "Command.h"
-#include "Plant.h"
-#include "Staff.h"
-#include "Customer.h"
+
+class Command;
+class GreenHousePlant;
+class Plant;
+class Staff;
+class Customer;
 
 /**
  * @file NurseryMediator.h
@@ -26,6 +28,7 @@
 class NurseryMediator {
 
 public:
+	virtual ~NurseryMediator() = default;
 	/**
 	 * @brief Broadcast or route an event reported by a colleague.
 	 * @param sender Originator of the event (generic pointer from the caller).
