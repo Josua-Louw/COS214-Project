@@ -2,11 +2,11 @@
 #include "ItemIterator.h"
 
 void Item::expand(GreenHouse* gh) {
-    //N.A
+    //N.A only for composites
 }
 
 double Item::sell(Item* item) {
-    return 0.0;
+    return getPrice();
 }
 
 GreenHouse* Item::getSubsection(const std::string&) {
@@ -18,11 +18,11 @@ Iterator<Item*>* Item::createIterator() {
 }
 
 Item* Item::findItem(const std::string& itemName) {
-    return nullptr;
+    return itemName == getName() ? this : nullptr;
 }
 
 void Item::printSummary() const {
-    //N.A
+    std::cout << "Item Summary: " << getName() << ", Price: " << getPrice() << std::endl;
 }
 
 size_t Item::getTotalItemCount() const {
@@ -30,5 +30,5 @@ size_t Item::getTotalItemCount() const {
 }
 
 void Item::printSummaryHelper(int indentLevel) const {
-
+    //N.A. Only for composites
 }
