@@ -1,4 +1,6 @@
 #include "AddPot.h"
+#include <iostream>
+#include <string>
 
 /**
  * @file AddPot.cpp
@@ -18,8 +20,15 @@
   * @return Pointer to the updated order.
   */
 Order* AddPot::buildPart(Order* order, std::string itemName) {
-	// TODO - implement AddPot::buildPart
-	throw "Not yet implemented";
+  if (!greenHouse || !order){
+    return order;
+  }
+  Item* found = greenHouse->findItem(itemName);
+  if (found && checkType(found)) {
+    order->addItem(found);
+    std::cout << "Added pot: " << itemName << " to order.\n";
+  }
+  return order;
 }
 
 /**
@@ -30,7 +39,6 @@ Order* AddPot::buildPart(Order* order, std::string itemName) {
  * 
  * @return true if the plant is a pot, false otherwise.
  */
-bool AddPot::checkType(Plant* plant) {
-	// TODO - implement AddPot::checkType
-	throw "Not yet implemented";
+bool AddPot::checkType(Item* item) {
+  return (item && item->getType() == PLANT_TYPE::POT);
 }

@@ -1,4 +1,6 @@
 #include "AddDecoration.h"
+#include <iostream>
+#include <string>
 
 /**
  * @file AddDecoration.cpp
@@ -18,19 +20,24 @@
   * @return Pointer to the updated order.
   */
 Order* AddDecoration::buildPart(Order* order, std::string itemName) {
-	// TODO - implement AddDecoration::buildPart
-	throw "Not yet implemented";
+  if (!greenHouse || !order)
+    return order;
+    Item* found = greenHouse->findItem(itemName);
+    if (found && checkType(found)) {
+      order->addItem(found);
+      std::cout << "Added decoration: " << itemName << " to order.\n";
+    }
+    return order;
 }
 
 /**
  * @brief Checks if the given plant is of decorative type.
  * The method verifies if the plant matches the criteria for being classified as a decorative plant.
  * 
- * @param plant Pointer to the plant to be checked.
+ * @param item Pointer to the plant to be checked.
  * 
  * @return true if the plant is decorative, false otherwise.
  */
-bool AddDecoration::checkType(Plant* plant) {
-	// TODO - implement AddDecoration::checkType
-	throw "Not yet implemented";
+bool AddDecoration::checkType(Item* item) {
+  return (item && item->getType() == PLANT_TYPE::DECORATION);
 }

@@ -16,13 +16,13 @@
  * @implements checkType
  */
 
-class AddDecoration : OrderBuilder {
+class AddDecoration : public OrderBuilder {
 
 
 protected:
 	Order* buildPart(Order* order, std::string itemName);
 
-	bool checkType(Plant* plant);
+	bool checkType(Item* item);
 };
 
 #endif

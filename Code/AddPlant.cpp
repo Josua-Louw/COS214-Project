@@ -1,4 +1,6 @@
 #include "AddPlant.h"
+#include <iostream>
+#include <string>
 
 /**
  * @file AddPlant.cpp
@@ -18,8 +20,14 @@
   * @return Pointer to the updated order.
   */
 Order* AddPlant::buildPart(Order* order, std::string itemName) {
-	// TODO - implement AddPlant::buildPart
-	throw "Not yet implemented";
+  if (!greenHouse || !order)
+    return order;
+    Item* found = greenHouse->findItem(itemName);
+    if (found && checkType(found)) {
+      order->addItem(found);
+      std::cout << "Added plant: " << itemName << " to order.\n";
+    }
+    return order;
 }
 
 /**
@@ -30,7 +38,6 @@ Order* AddPlant::buildPart(Order* order, std::string itemName) {
  * 
  * @return true if the plant is a normal plant, false otherwise.
  */
-bool AddPlant::checkType(Plant* plant) {
-	// TODO - implement AddPlant::checkType
-	throw "Not yet implemented";
+bool AddPlant::checkType(Item* item) {
+  return (item && item->getType() == PLANT_TYPE::GREENHOUSE_PLANT);
 }
