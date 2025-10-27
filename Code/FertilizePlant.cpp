@@ -14,6 +14,10 @@ std::string FertilizePlant::getType() {
     return "FertilizePlant";
 }
 
+GreenHousePlant * FertilizePlant::getPlant() {
+    return plant;
+}
+
 /**
  * @brief Executes the fertilization task, updating the plant’s state.
  * 

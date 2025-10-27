@@ -6,6 +6,7 @@
 #include "Command.h"
 
 #include <algorithm>
+#include <stdexcept>
 #include <vector>
 
 template <typename T>
@@ -28,16 +29,9 @@ static bool ptrPresent(const std::vector<T*>& vec, const T* p) {//helper to chec
  */
 void NurseryHub::assign(Command* cmd) {
 	if (!cmd) {
-		return;
+		throw std::invalid_argument("Command cannot be null");
 	}
-	//Try Chain-of-Responsibility entry points first
-	for (Staff* s : staff) {
-		if (s && s->handleRequest(cmd)) return;
-	}
-	//Fallback(just hand it to the first available staff)
-	for (Staff* s : staff) {
-		if (s) { s->receiveCommand(cmd); return;}
-	}
+	staff.front()->receiveCommand(cmd);
 }
 
 /**
@@ -68,6 +62,7 @@ void NurseryHub::registerPlant(Plant* p) {
  */
 void NurseryHub::registerStaff(Staff* s) {
 	if (s && !ptrPresent(staff, s)) {
+		staff.front()->addStaffMember(s);
 		staff.push_back(s);
 	}
 }
