@@ -99,16 +99,17 @@ void TextSystemHandler::registerStaffMember() {
     } catch(const std::exception& e) {
         roleChoice = 1; // default role
     }
-    Person* newStaff = nullptr;
+    Staff* newStaff = nullptr;
     if (roleChoice == 1) {
         newStaff = new PlantCaretaker(staffID, nurseryHub);
+        nurseryHub->registerStaff(newStaff);
     } else if (roleChoice == 2) {
         newStaff = new SalesManager(staffID, nurseryHub);
+        nurseryHub->registerStaff(newStaff);
     } else {
         std::cout << "Invalid role choice. Returning to menu." << std::endl;
-        systemMenue();
-        return;
     }
+    systemMenue();
 }
 
 void TextSystemHandler::processCustomerOrder() {
@@ -120,7 +121,7 @@ void TextSystemHandler::processCustomerOrder() {
     Customer* customer = new Customer(customerID, nurseryHub);
 
     customer->buy();
-    
+
     std::cout << "Customer order processed for customer ID '" << customerID << "'." << std::endl;
     systemMenue();
 }
