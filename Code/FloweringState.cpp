@@ -8,6 +8,7 @@ void FloweringState::transitionToNext() {
 		std::uniform_int_distribution<> dist(1, 4);
 		int randomNumber = dist(gen);
 			std::this_thread::sleep_for(std::chrono::seconds(20));
+			plant_->applyCurrentCare();
 			if (plant_->getSuccess()) {
 				if (randomNumber == 1) {
 					plant_->setState(new SenescenceState(plant_));
@@ -24,7 +25,7 @@ void FloweringState::transitionToNext() {
 					plant_->setState(new MatureState(plant_));
 				}
 			} else {
-				plant_->setState(new DyingState(plant_));
+				plant_->setState(new DyingState(plant_,new FloweringState(plant_)));
 			}
 		}).detach();
 }

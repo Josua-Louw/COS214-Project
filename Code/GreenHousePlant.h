@@ -125,6 +125,7 @@ public:
     void markCareFinished(bool success); //sets success, busy=false
 
     void setState(PlantState* newState);
+
 };
 
 #endif // GREENHOUSEPLANT_H
