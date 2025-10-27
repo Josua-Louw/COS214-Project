@@ -2,10 +2,12 @@
 #define CUSTOMER_H
 
 #include "Person.h"
-#include "OrderBuilder.h"
 #include "NurseryMediator.h"
+#include <string>
 
-class Customer : Person {
+class OrderBuilder;
+
+class Customer : public Person {
 
 private:
 	OrderBuilder* orderBuilder;
@@ -13,6 +15,8 @@ private:
 
 public:
 	void buy();
+
+	Customer(std::string id);
 };
 
 #endif

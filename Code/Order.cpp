@@ -6,9 +6,24 @@
 /**
  * @file Order.cpp
  * @brief Implementation of the Order class.
- * 
- * @todo Implement the getTotalCost and addPlant methods for managing plants in an order.
  */
+
+Order::Order() = default;
+
+Order::~Order() {
+  for (size_t i = 0; i < items.size(); i++) {
+    delete items[i];
+  }
+  items.clear();
+}
+
+Customer* Order::getCustomer() const { 
+  return customer; 
+}
+
+void Order::setCustomer(Customer* c) { 
+  customer = c; 
+}
 
  /**
   * @brief Calculates the total cost of all plants in the order.
@@ -35,6 +50,10 @@ void Order::addItem(Item* item) {
 	if (item){
     items.push_back(item);
   }
+}
+
+size_t Order::getItemCount() const { 
+  return items.size(); 
 }
 
 void Order::printOrder() const {

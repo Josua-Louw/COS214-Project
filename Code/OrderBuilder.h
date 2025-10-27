@@ -2,7 +2,8 @@
 #define ORDERBUILDER_H
 
 #include "GreenHouse.h"
-#include "Order.h"
+
+class Order;
 
 /**
  * @file OrderBuilder.h
@@ -24,11 +25,14 @@ class OrderBuilder {
 protected:
 	GreenHouse* greenHouse;
 
+	virtual bool checkType(Item* item) = 0;
+
 public:
+	OrderBuilder(GreenHouse* gh) : greenHouse(gh) {} 
+
 	virtual Order* buildPart(Order* order, std::string itemName) = 0;
 
-protected:
-	virtual bool checkType(Plant* plant) = 0;
+	virtual ~OrderBuilder() = default;
 };
 
 #endif
