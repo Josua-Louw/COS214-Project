@@ -2,6 +2,7 @@
 #define ADDDECORATION_H
 
 #include "OrderBuilder.h"
+#include "GreenHouse.h"
 
 /**
  * @file AddDecoration.h
@@ -19,7 +20,9 @@
 class AddDecoration : public OrderBuilder {
 
 
-protected:
+public:
+	AddDecoration(GreenHouse* gh);
+
 	Order* buildPart(Order* order, std::string itemName);
 
 	bool checkType(Item* item);

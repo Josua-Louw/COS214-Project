@@ -18,8 +18,9 @@
 
 class AddPlant : public OrderBuilder {
 
+public:
+	AddPlant(GreenHouse* gh); 
 
-protected:
 	Order* buildPart(Order* order, std::string itemName);
 
 	bool checkType(Item* item);

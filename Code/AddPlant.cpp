@@ -1,4 +1,7 @@
 #include "AddPlant.h"
+#include "Order.h"
+#include "Item.h"
+
 #include <iostream>
 #include <string>
 
@@ -8,6 +11,11 @@
  * 
  * @todo Implement the buildPart and checkType methods for adding plants to an order.
  */
+
+AddPlant::AddPlant(GreenHouse* gh) 
+        : OrderBuilder(gh) {
+
+}
 
  /**
   * @brief Builds the part of the order by adding plants based on the item name.
@@ -20,14 +28,23 @@
   * @return Pointer to the updated order.
   */
 Order* AddPlant::buildPart(Order* order, std::string itemName) {
-  if (!greenHouse || !order)
+  if (!greenHouse || !order){
     return order;
-    Item* found = greenHouse->findItem(itemName);
-    if (found && checkType(found)) {
-      order->addItem(found);
-      std::cout << "Added plant: " << itemName << " to order.\n";
-    }
+  }
+  Item* found = nullptr;
+  if (greenHouse){
+    found = greenHouse->findItem(itemName);
+  }
+  if (!found){
     return order;
+  }
+  if (found && checkType(found)) {
+    order->addItem(found);
+    std::cout << "Added plant: " << itemName << " to order.\n";
+  } else {
+    std::cout << "Warning: '" << itemName << "' not found in greenhouse.\n";
+  }
+  return order;
 }
 
 /**

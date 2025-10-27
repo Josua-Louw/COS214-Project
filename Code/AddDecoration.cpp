@@ -1,4 +1,7 @@
 #include "AddDecoration.h"
+#include "Order.h"
+#include "Item.h"
+
 #include <iostream>
 #include <string>
 
@@ -9,6 +12,11 @@
  * @todo Implement the buildPart and checkType methods for adding decorative plants to an order.
  */
 
+AddDecoration::AddDecoration(GreenHouse* gh) 
+              : OrderBuilder(gh) {
+
+}
+            
  /**
   * @brief Builds the part of the order by adding decorative plants based on the item name.
   * The method searches for decorative plants in the greenhouse and adds them to the order.
@@ -20,14 +28,23 @@
   * @return Pointer to the updated order.
   */
 Order* AddDecoration::buildPart(Order* order, std::string itemName) {
-  if (!greenHouse || !order)
+  if (!greenHouse || !order){
     return order;
-    Item* found = greenHouse->findItem(itemName);
-    if (found && checkType(found)) {
-      order->addItem(found);
-      std::cout << "Added decoration: " << itemName << " to order.\n";
-    }
+  }
+  Item* found = nullptr;
+  if (greenHouse){
+    found = greenHouse->findItem(itemName);
+  }
+  if (!found){
     return order;
+  }
+  if (found && checkType(found)) {
+    order->addItem(found);
+    std::cout << "Added decoration: " << itemName << " to order.\n";
+  } else {
+    std::cout << "Warning: '" << itemName << "' not found in greenhouse.\n";
+  }
+  return order;
 }
 
 /**
