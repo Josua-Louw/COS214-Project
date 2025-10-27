@@ -20,6 +20,11 @@ private:
 public:
     /**
      * @brief Constructor for SeedPacketAdapter.
+     * @details Initializes with a new SeedPacket instance.
+     */
+    SeedPacketAdapter(std::string name, double price) : seedPacket(new SeedPacket(price, name)) {}
+    /**
+     * @brief Constructor for SeedPacketAdapter.
      * @param sp Pointer to the SeedPacket object to be adapted.
      */
     SeedPacketAdapter(SeedPacket* sp) : seedPacket(sp) {}
@@ -33,15 +38,8 @@ public:
      */
     ~SeedPacketAdapter();
 
-    double getPrice() const;
-    void expand(GreenHouse* gh) override;
-    double sell(Item* item) override;
-    GreenHouse* getSubsection(const std::string& sectionName) override;
-    Iterator<Item*>* createIterator() override;
-    Item* findItem(const std::string& itemName) override;
-    void printSummary() const override;
-    size_t getTotalItemCount() const;
-    void printSummaryHelper(int indentLevel) const;
+    double getPrice() const override;
+    PLANT_TYPE getType() const override;
 };
 
 #endif // SEED_PACKET_ADAPTER_H

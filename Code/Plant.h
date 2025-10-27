@@ -4,7 +4,7 @@
 #include "Item.h"
 #include "PlantImplementor.h"
 #include "GreenHousePlant.h"
-#include "OrderPlant.h"
+#include "PlantType.h"
 
 /**
  * @file Plant.h
@@ -51,10 +51,10 @@ public:
      * @brief Gets the implementor type of the plant.
      * @details Defines the interface for retrieving the implementor type of the plant, with implementation details provided
      * by derived classes based on the plant’s type.
-     * @return std::string The implementor type of the plant.
+     * @return PLANT_TYPE The implementor type of the plant.
      */
 
-    std::string getImplementorType();
+    PLANT_TYPE getType() const;
     /**
      * @brief Gets the name of the plant.
      * @details Overrides the getName method from the Item class to provide the name of the plant.
@@ -62,16 +62,6 @@ public:
      */
     std::string getName() const override;
     ~Plant();
-    PLANT_TYPE getType() const override;
-
-    void expand(GreenHouse* gh) override;
-    double sell(Item* item) override;
-    GreenHouse* getSubsection(const std::string& sectionName) override;
-    Iterator<Item*>* createIterator() override;
-    Item* findItem(const std::string& itemName) override;
-    void printSummary() const override;
-    size_t getTotalItemCount() const;
-    void printSummaryHelper(int indentLevel) const;
 };
 
 #endif // PLANT_H

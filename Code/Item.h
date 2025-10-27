@@ -2,6 +2,10 @@
 #define ITEM_H
 
 #include "GreenHouse.h"
+#include <iostream>
+
+//forward declaration
+enum class PLANT_TYPE;
 
 //forward declaration
 enum class PLANT_TYPE;
