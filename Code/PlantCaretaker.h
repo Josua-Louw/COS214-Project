@@ -6,6 +6,7 @@
 #include "NurseryMediator.h"
 
 #include <string>
+#include <thread>
 
 /**
  * @class PlantCaretaker
@@ -29,13 +30,6 @@ public:
      * @param command Pointer to the Command to execute.
      */
     void receiveCommand(Command* command) override;
-
-    /**
-     * @brief Handles a command request, checking availability and command type.
-     * @param command Pointer to the Command to handle.
-     * @return True if the command is handled, false if delegated or ignored.
-     */
-    bool handleRequest(Command* command) override;
 };
 
 #endif // PLANT_CARETAKER_H

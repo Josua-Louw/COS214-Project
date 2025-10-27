@@ -2,9 +2,8 @@
 #define COMMAND_H
 #include <string>
 #include <atomic>
-#include <vector>
-#include <thread>
-#include <chrono>
+
+class GreenHousePlant;
 
 /**
  * @class Command

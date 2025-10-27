@@ -35,16 +35,9 @@ public:
     void receiveCommand(Command* command) override;
 
     /**
-     * @brief Handles a command request, queuing it if no staff are available.
-     * @param command Pointer to the Command to handle.
-     * @return True if the command is queued, false if ignored.
-     */
-    bool handleRequest(Command* command) override;
-
-    /**
      * @brief Redistributes pending commands to available staff via NurseryHub.
      */
-    void redistributeCommands();
+    void redistributeCommands(Command* command) const;
 
 };
 

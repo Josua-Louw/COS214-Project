@@ -19,9 +19,11 @@ public:
      * @brief Constructs a WaterPlant command for a specific plant.
      * @param plant Pointer to the GreenHousePlant to be watered.
      */
-    WaterPlant(GreenHousePlant* plant, int time) : plant(plant), time(time){
+    WaterPlant(GreenHousePlant* plant, int time) : plant(plant), time(time){}
 
-    }
+    std::string getType();
+
+    GreenHousePlant* getPlant();
 
     /**
      * @brief Executes the watering task, updating the plant's state.
