@@ -2,12 +2,24 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <memory>
 #include "Section.h"
 #include "ItemIterator.h"
 #include "Plant.h"
+#include "PlantImplementor.h"
 #include "PotAdapter.h"
 #include "SeedPacketAdapter.h"
 #include "DecorationAdapter.h"
+#include "OrderBuilder.h"
+#include "Person.h"
+#include "Customer.h"
+#include "Order.h"
+#include "AddDecoration.h"
+#include "AddPlant.h"
+#include "AddPot.h"
+#include "AddSeed.h"
+
+using namespace std;
 
 int main() {
     std::cout << "=== GREENHOUSE LOCAL TEST ===\n\n";
@@ -28,17 +40,17 @@ int main() {
         root.addItem(p);                
     }
 
-    PotAdapter* pot1 = new PotAdapter(new Pot());
-    PotAdapter* pot2 = new PotAdapter(new Pot());
+    PotAdapter* pot1 = new PotAdapter(new Pot(10.00, "Blue pot"));
+    PotAdapter* pot2 = new PotAdapter(new Pot(15.00, "Silver pot"));
     root.addItem(pot1);
     root.addItem(pot2);
 
-    SeedPacketAdapter* seed1 = new SeedPacketAdapter(new SeedPacket());
-    SeedPacketAdapter* seed2 = new SeedPacketAdapter(new SeedPacket());
+    SeedPacketAdapter* seed1 = new SeedPacketAdapter(new SeedPacket(6.99, "Cucumber seeds"));
+    SeedPacketAdapter* seed2 = new SeedPacketAdapter(new SeedPacket(9.99, "Sunflower seeds"));
     root.addItem(seed1);
     root.addItem(seed2);
 
-    DecorationAdapter* deco1 = new DecorationAdapter(new Decoration());
+    DecorationAdapter* deco1 = new DecorationAdapter(new Decoration(14.99, "Birthday card"));
     root.addItem(deco1);
 
     // Now print summaries (root and some known subsections)
@@ -86,8 +98,8 @@ int main() {
         decorSub->printSummary();
     }
 
-    // Demonstrate findItem() (iterator-based) — look for one of the seed adapters (they use getName())
-    std::string target = "Rose Seeds"; // adjust to the actual getName() your SeedPacketAdapter returns
+    // Demonstrate findItem() FAILURE (iterator-based) — look for one of the seed adapters (they use getName())
+    std::string target = "Rose seeds"; // adjust to the actual getName() your SeedPacketAdapter returns
     Item* found = root.findItem(target);
     if (found) {
         std::cout << "\nFound item: " << found->getName() << "\n";
@@ -98,6 +110,18 @@ int main() {
         std::cout << "\nItem '" << target << "' not found.\n";
     }
 
+    // Demonstrate findItem() SUCCESS (iterator-based) — look for one of the seed adapters (they use getName())
+    std::string target2 = "Cucumber seeds"; // adjust to the actual getName() your SeedPacketAdapter returns
+    Item* found2 = root.findItem(target2);
+    if (found2) {
+        std::cout << "\nFound item: " << found2->getName() << "\n";
+        // Now sell the found item via root.sell(found) — Section::sell deletes the item and returns price
+        double price2 = root.sell(found2);
+        std::cout << "Sold '" << target2 << "' for R" << price2 << " (root.sell).\n";
+    } else {
+        std::cout << "\nItem '" << target2 << "' not found.\n";
+    }
+
     // Show root summary after sell
     std::cout << "\n-- Root summary after selling --\n";
     root.printSummary();
@@ -105,31 +129,38 @@ int main() {
     cout << "\n=== BUILDER & ORDER TESTS ===" << endl;
 
     // Create a customer
-    shared_ptr<Customer> customer = make_shared<Customer>("Frikkie Malan", "frikkie@example.com");
+    Customer cust("Frikkie01");
 
     // Use the Builder pattern to create an order
-    OrderBuilder builder;
-    builder.setCustomer(customer)
-           .addItem(rose)
-           .addItem(aloe)
-           .addItem(echeveria);
+    AddPlant plantBuilder(&root);
+    AddDecoration decoBuilder(&root);
+    AddPot potBuilder(&root);
+    AddSeed seedBuilder(&root);
+    Order order;
+    order.setCustomer(&cust);
 
-    shared_ptr<Order> order = builder.build();
+    plantBuilder.buildPart(&order, "Golden Rose");
+    plantBuilder.buildPart(&order, "Aloe");
+    plantBuilder.buildPart(&order, "Echeveria");
+    decoBuilder.buildPart(&order, "Red ribbon");
+    potBuilder.buildPart(&order, "Clay pot");
+    seedBuilder.buildPart(&order, "Tomato seeds");
 
     // Print order summary
-    order->printSummary();
+    order.printOrder();
 
     // Show order details
-    cout << "\nCustomer: " << order->getCustomer()->getName() << endl;
-    cout << "Total items in order: " << order->getItemCount() << endl;
-    cout << "Total price: R" << order->getTotalPrice() << endl;
+    cout << "\nCustomer: " << order.getCustomer()->getId() << endl;
+    cout << "Total items in order: " << order.getItemCount() << endl;
+    cout << "Total price: R" << order.getTotalCost() << endl;
 
     cout << "\n=== ORDER MODIFICATION TEST ===" << endl;
-    cout << "Adding a new item (Peace Lily) to the order..." << endl;
-    order->addItem(lily);
+    cout << "Adding a new item (Peace lily) to the order..." << endl;
+    Plant* peaceLily = new Plant("Peace lily", 49.99);
+    order.addItem(peaceLily);
 
-    order->printSummary();
-    cout << "Updated total price: R" << order->getTotalPrice() << endl;
+    order.printOrder();
+    cout << "Updated total price: R" << order.getTotalCost() << endl;
 
     cout << "\nAll tests completed successfully." << endl;
 

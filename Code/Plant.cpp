@@ -39,12 +39,6 @@ PLANT_TYPE Plant::getType() const
     return implementor->getType();
 }
 
-PLANT_TYPE Plant::getType() const {
-    if (implementor)
-        return implementor->getType();
-    return PLANT_TYPE::GREENHOUSE_PLANT; //safe default (in case)
-}
-
 std::string Plant::getName() const
 {
     if (implementor) return implementor->getName();
