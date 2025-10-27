@@ -21,6 +21,11 @@ private:
 public:
     /**
      * @brief Constructor for PotAdapter.
+     * @details Initializes with a new Pot instance.
+     */
+    PotAdapter(std::string name, double price) : pot(new Pot(price, name)) {}
+    /**
+     * @brief Constructor for PotAdapter.
      * @param p Pointer to the Pot object to be adapted.
      */
     PotAdapter(Pot* p) : pot(p) {}
@@ -34,15 +39,9 @@ public:
      */
     ~PotAdapter();
 
-    double getPrice() const;
-    void expand(GreenHouse* gh) override;
-    double sell(Item* item) override;
-    GreenHouse* getSubsection(const std::string& sectionName) override;
-    Iterator<Item*>* createIterator() override;
-    Item* findItem(const std::string& itemName) override;
-    void printSummary() const override;
-    size_t getTotalItemCount() const;
-    void printSummaryHelper(int indentLevel) const;
+    double getPrice() const override;
+
+    PLANT_TYPE getType() const override;
 };
 
 #endif // POTADAPTER_H
