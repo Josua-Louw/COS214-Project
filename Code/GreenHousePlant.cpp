@@ -25,7 +25,7 @@ std::vector<Command*> GreenHousePlant::applyCurrentCare() {
 	if (strategy != nullptr) {
 		return strategy->applyCare(*this);
 	} else {
-		return {nullptr};
+		return {};
 	}
 }
 

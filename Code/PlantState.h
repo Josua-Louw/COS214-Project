@@ -7,7 +7,7 @@
  * @details This file contains the declaration of the PlantState class, which serves as the base class for all states in the plant lifecycle state machine. It defines the interface for handling care actions and state transitions.
  */
 
-#include "GreenHousePlant.h"
+class GreenHousePlant;
 
 /**
  * @class PlantState

@@ -38,6 +38,6 @@ public:
     /**
      * @brief Virtual destructor for proper cleanup of derived classes.
      */
-    virtual ~Command();
+    virtual ~Command() = default;
 };
 #endif // COMMAND_H
