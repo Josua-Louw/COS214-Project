@@ -14,6 +14,6 @@
  */
 void WaterPlant::execute() {
     if (plant) {
-        plant->water(); // Calls Plant's water method, which uses CareStrategy and updates PlantState
+        plant->watering(time); // Calls Plant's water method, which uses CareStrategy and updates PlantState
     }
 }

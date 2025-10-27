@@ -17,6 +17,6 @@
  */
 void FertilizePlant::execute() {
     if (plant) {
-        plant->feed(); // Calls GreenHousePlant’s feed method, using CareStrategy and PlantState
+        plant->fertilizing(time); // Calls GreenHousePlant’s feed method, using CareStrategy and PlantState
     }
 }
