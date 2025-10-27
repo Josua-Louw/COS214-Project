@@ -1,7 +1,10 @@
 #ifndef REGULARCARESTRATEGY_H
 #define REGULARCARESTRATEGY_H
 
+#include <vector>
+
 #include "CareStrategy.h"
+#include "Command.h"
 
 /**
  * @file RegularCareStrategy.h
@@ -24,7 +27,7 @@ public:
 	 *
 	 * @note Represents a balanced and consistent care approach.
 	 */
-	void applyCare(GreenHousePlant& plant) override;
+	 std::vector<Command*> applyCare(GreenHousePlant &plant) override;
 
 	/**
 	 * @brief Returns the identifying name of this strategy ("Regular Care Strategy").

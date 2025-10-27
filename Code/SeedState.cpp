@@ -19,6 +19,7 @@ void SeedState::transitionToNext() {
 			}
 			plant_->setState(new SeedlingState(plant_));
 		} else {
+
 			plant_->setState(new DyingState(plant_,new SeedState(plant_)));
 		}
 	}).detach();

@@ -19,14 +19,24 @@ PLANT_TYPE GreenHousePlant::getType() const {
 
 GreenHousePlant::~GreenHousePlant() = default;
 
-void GreenHousePlant::applyCurrentCare() {
-	if (strategy) {
-		strategy->applyCare(*this);
+std::vector<Command*> GreenHousePlant::applyCurrentCare() {
+	if (strategy != nullptr) {
+		return strategy->applyCare(*this);
+	} else {
+		return {nullptr};
 	}
 }
 
-void GreenHousePlant::water() { applyCurrentCare(); }
-void GreenHousePlant::feed()  { applyCurrentCare(); }
+Command* GreenHousePlant::water(int time) {
+	Command* cmd = new WaterPlant(this, time);
+	if (mediator_) mediator_->assign(cmd);
+	return cmd;
+}
+Command* GreenHousePlant::feed(int time) {
+	Command* cmd = new FertilizePlant(this,time);
+	if (mediator_) mediator_->assign(cmd);
+	return cmd;
+}
 
 //Strategy helpers
 void GreenHousePlant::adjustHydration(int d) {

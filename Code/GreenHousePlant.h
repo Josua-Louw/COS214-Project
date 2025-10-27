@@ -5,6 +5,9 @@
 #include "PlantState.h"
 #include "PlantImplementor.h"
 #include "NurseryMediator.h"
+#include "WaterPlant.h"
+#include "FertilizePlant.h"
+#include "Command.h"
 #include <string>
 #include <atomic>
 
@@ -63,14 +66,14 @@ public:
      * @details Defines the interface for watering the plant, with implementation details provided by derived classes based on the plant’s type and state.
      * @return void
      */
-    void water();
+    Command* water(int time);
 
     /**
      * @brief Feeds the plant.
      * @details Defines the interface for feeding the plant (e.g., applying fertilizer), with implementation details provided by derived classes based on the plant’s type and state.
      * @return void
      */
-    void feed();
+    Command* feed(int time);
 
     /**
      * @brief Gets the price of the plant.

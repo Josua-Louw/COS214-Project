@@ -13,10 +13,10 @@
  *
  * @note Includes balanced watering, nutrient checks and all other overall maintenance.
  */
-void RegularCareStrategy::applyCare(GreenHousePlant& plant) {
-    plant.adjustHydration(+3);
-    plant.adjustNutrition(+2);
-    plant.setTimeForNextCare(8); //(vir nou n placeholder)replace met timers of ticks later saam Darius
+std::vector<Command*> RegularCareStrategy::applyCare(GreenHousePlant& plant) {
+	plant.setSuccess(false);
+	plant.setBusy(false);
+	return { plant.water(2), plant.feed(2) };
 }
 
 /**
