@@ -25,13 +25,25 @@ public:
      * @return The name of the item as a string.
      */
     virtual std::string getName() const = 0;
-
+    /**
+     * @brief Gets the price of the item.
+     * @return The price of the item as a double.
+     */
     virtual double getPrice() const = 0;
 
     /**
      * @brief Virtual destructor to ensure proper cleanup in derived classes.
      */
     virtual ~Item() = default;
+
+    void expand(GreenHouse* gh) override;
+    double sell(Item* item) override;
+    GreenHouse* getSubsection(const std::string& sectionName) override;
+    Iterator<Item*>* createIterator() override;
+    Item* findItem(const std::string& itemName) override;
+    void printSummary() const override;
+    size_t getTotalItemCount() const;
+    void printSummaryHelper(int indentLevel) const;
 };
 
 #endif // ITEM_H

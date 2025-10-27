@@ -20,6 +20,11 @@ private:
 public:
     /**
      * @brief Constructor for DecorationAdapter.
+     * @details Initializes with a new Decoration instance.
+     */
+    DecorationAdapter(std::string name, double price) : decoration(new Decoration(price, name)) {}
+    /**
+     * @brief Constructor for DecorationAdapter.
      * @param d Pointer to the Decoration object to be adapted.
      */
     DecorationAdapter(Decoration* d) : decoration(d) {}
@@ -34,14 +39,6 @@ public:
     ~DecorationAdapter();
     
     double getPrice() const;
-    void expand(GreenHouse* gh) override;
-    double sell(Item* item) override;
-    GreenHouse* getSubsection(const std::string& sectionName) override;
-    Iterator<Item*>* createIterator() override;
-    Item* findItem(const std::string& itemName) override;
-    void printSummary() const override;
-    size_t getTotalItemCount() const;
-    void printSummaryHelper(int indentLevel) const;
 };
 
 #endif // DECORATIONADAPTER_H
