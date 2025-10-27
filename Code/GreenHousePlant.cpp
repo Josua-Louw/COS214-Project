@@ -48,3 +48,17 @@ int  GreenHousePlant::getHydration() const{
 int  GreenHousePlant::getNutrition() const{
 	return nutrition;
 }
+
+bool GreenHousePlant::getSuccess() const{
+	return careSuccessful.load();
+}
+
+bool GreenHousePlant::getBusy() const{
+	return careBusy.load();
+}
+
+void GreenHousePlant::setState(PlantState * newState) {
+	delete state;
+	state = newState;
+}
+

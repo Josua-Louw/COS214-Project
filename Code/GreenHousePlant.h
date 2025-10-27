@@ -53,6 +53,9 @@ private:
     int nutrition = 0;
     int timeForNextCare = 0;
 
+    std::atomic<bool> careBusy{false};
+    std::atomic<bool> careSuccessful{false};
+
 public:
     /**
      * @brief Waters the plant.
@@ -114,6 +117,11 @@ public:
 
     int  getHydration() const;
     int  getNutrition() const;
+
+    bool getSuccess() const;
+    bool getBusy() const;
+
+    void setState(PlantState* newState);
 };
 
 #endif // GREENHOUSEPLANT_H

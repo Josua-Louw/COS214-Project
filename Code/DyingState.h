@@ -2,6 +2,7 @@
 #define DYINGSTATE_H
 
 #include "PlantState.h"
+#include "GreenHousePlant.h"
 
 /**
  * @file DyingState.h
@@ -34,6 +35,8 @@ public:
      * @see DeadState, SeedState, SeedlingState, JuvenileState, MatureState, FloweringState
      */
     void transitionToNext();
+
+    DyingState(GreenHousePlant* plant) : PlantState(plant) {};
 };
 
 #endif // DYINGSTATE_H
