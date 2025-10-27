@@ -75,6 +75,13 @@ public:
             addStaffMemeber(staff->nextStaff);
         }
     }
+
+    /**
+     * @brief Clears the task list, deleting stored commands.
+     */
+    void clearTaskList() {
+        taskList.clear();
+    }
 };
 
 #endif // STAFF_H

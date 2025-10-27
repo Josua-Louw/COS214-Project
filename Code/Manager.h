@@ -46,6 +46,14 @@ public:
      */
     void redistributeCommands();
 
+    /**
+     * @brief Gets the size of pending commands for testing purposes.
+     * @return The number of pending commands.
+     */
+    size_t getPendingCommandsSize() const {
+        return pendingCommands.size();
+    }
+
 };
 
 #endif // MANAGER_H
