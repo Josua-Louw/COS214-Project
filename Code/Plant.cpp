@@ -29,6 +29,12 @@ std::string Plant::getImplementorType()
     return "Implementor"; //generic
 }
 
+PLANT_TYPE Plant::getType() const {
+    if (implementor)
+        return implementor->getType();
+    return PLANT_TYPE::GREENHOUSE_PLANT; //safe default (in case)
+}
+
 std::string Plant::getName() const
 {
     if (implementor) return implementor->getName();

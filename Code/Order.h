@@ -17,12 +17,14 @@
 class Order {
 
 private:
-	std::vector<Plant*> plants;
+	std::vector<Item*> items;
 
 public:
-	double getTotalCost();
+	double getTotalCost() const;
 
-	void addPlant(Plant* plant);
+	void addItem(Item* item);
+
+	void printOrder() const;
 };
 
 #endif

@@ -62,6 +62,7 @@ public:
      */
     std::string getName() const override;
     ~Plant();
+    PLANT_TYPE getType() const override;
 
     void expand(GreenHouse* gh) override;
     double sell(Item* item) override;
