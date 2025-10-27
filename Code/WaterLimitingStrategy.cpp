@@ -14,10 +14,10 @@
  *
  * @note This method implements the behavior of the water-limiting care strategy.
  */
-void WaterLimitingStrategy::applyCare(GreenHousePlant& plant) {
-	plant.adjustHydration(+1);
-	plant.adjustNutrition(+2);
-	plant.setTimeForNextCare(10); //(vir nou n placeholder)replace met timers of ticks later saam Darius
+std::vector<Command*> WaterLimitingStrategy::applyCare(GreenHousePlant& plant) {
+    plant.setSuccess(false);
+    plant.setBusy(false);
+    return { plant.water(1), plant.feed(2) };
 }
 
 /**
