@@ -6,6 +6,8 @@
 #include "PlantImplementor.h"
 #include <string>
 
+class NurseryMediator;
+
 /**
  * @file Plant.h
  * @brief Defines the Plant class, the class for representing plants in the GreenHouse.
@@ -20,6 +22,7 @@
  */
 class GreenHousePlant : public PlantImplementor {
 private:
+    NurseryMediator* mediator_ = nullptr;
     /**
      * @brief Pointer to the care strategy associated with this plant.
      * @details Stores a pointer to a CareStrategy object that defines the specific care actions (e.g., watering, fertilizing) required for this plant.
@@ -43,7 +46,7 @@ private:
      * @brief Price of the plant.
      * @details Stores the monetary value of the plant as a double.
      */
-    double price;
+    double price = 0.0;
 
     //we can replace or extend these metrics later when we also do the state and timers
     int hydration = 0;
@@ -70,21 +73,21 @@ public:
      * @details Returns the monetary value of the plant, determined by its type and characteristics, as implemented by derived classes.
      * @return The price of the plant as a double.
      */
-    double getPrice() const;
+    double getPrice() const override;
 
     /**
      * @brief Creates a clone of the plant.
      * @details Produces a new instance of the plant with the same properties, as implemented by derived classes, supporting the prototype design pattern.
      * @return A pointer to the newly created clone of the plant.
      */
-    PlantImplementor* clone();
+    PlantImplementor* clone() override;
 
     /**
      * @brief Gets the name of the plant.
      * @details Returns the name of the plant stored in the private member variable.
      * @return The name of the plant as a string.
      */
-    std::string getName() const;
+    std::string getName() const override;
 
     /**
      * @brief Gets the type of the plant.
@@ -106,6 +109,8 @@ public:
     void adjustHydration(int delta);
     void adjustNutrition(int delta);
     void setTimeForNextCare(int t);
+
+    void setMediator(NurseryMediator* m) { mediator_ = m; }
 
     int  getHydration() const;
     int  getNutrition() const;
