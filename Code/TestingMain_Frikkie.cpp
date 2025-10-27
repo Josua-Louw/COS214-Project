@@ -51,7 +51,6 @@ int main() {
     Section* seedsSub  = dynamic_cast<Section*>(root.getSubsection("Seeds"));
     Section* decorSub  = dynamic_cast<Section*>(root.getSubsection("Decorations"));
 
-
     if (plantsSub) {
         std::cout << "\n[Plants subsection summary]\n";
         plantsSub->printSummary();
@@ -102,6 +101,38 @@ int main() {
     // Show root summary after sell
     std::cout << "\n-- Root summary after selling --\n";
     root.printSummary();
+
+    cout << "\n=== BUILDER & ORDER TESTS ===" << endl;
+
+    // Create a customer
+    shared_ptr<Customer> customer = make_shared<Customer>("Frikkie Malan", "frikkie@example.com");
+
+    // Use the Builder pattern to create an order
+    OrderBuilder builder;
+    builder.setCustomer(customer)
+           .addItem(rose)
+           .addItem(aloe)
+           .addItem(echeveria);
+
+    shared_ptr<Order> order = builder.build();
+
+    // Print order summary
+    order->printSummary();
+
+    // Show order details
+    cout << "\nCustomer: " << order->getCustomer()->getName() << endl;
+    cout << "Total items in order: " << order->getItemCount() << endl;
+    cout << "Total price: R" << order->getTotalPrice() << endl;
+
+    cout << "\n=== ORDER MODIFICATION TEST ===" << endl;
+    cout << "Adding a new item (Peace Lily) to the order..." << endl;
+    order->addItem(lily);
+
+    order->printSummary();
+    cout << "Updated total price: R" << order->getTotalPrice() << endl;
+
+    cout << "\nAll tests completed successfully." << endl;
+
     std::cout << "\n=== TEST MAIN COMPLETE ===\n";
     return 0;
 }
