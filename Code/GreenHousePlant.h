@@ -54,6 +54,7 @@ private:
     int timeForNextCare = 0;
 
 public:
+    GreenHousePlant(const std::string& name = "", double price = 0.0) : name(name), price(price) {}
     /**
      * @brief Waters the plant.
      * @details Defines the interface for watering the plant, with implementation details provided by derived classes based on the plant’s type and state.

@@ -553,3 +553,66 @@ TEST_CASE("Complete Decorator Chain Test Case") {
     delete pt;
     delete ptClone;
 }
+
+//ADAPTER TESTS
+
+#include "SeedPacketAdapter.h"
+#include "PotAdapter.h"
+#include "DecorationAdapter.h"
+
+TEST_CASE("Adapter Pattern Test Cases") {
+    SUBCASE("SeedPacketAdapter Test") {
+        SeedPacketAdapter spa("Rose Seeds", 10.0);
+        CHECK(spa.getPrice() == 10.0);
+        CHECK(spa.getName() == "Rose Seeds");
+        SeedPacketAdapter spa2(new SeedPacket(15.0, "Tulip Seeds"));
+        CHECK(spa2.getPrice() == 15.0);
+        CHECK(spa2.getName() == "Tulip Seeds");
+        CHECK(spa2.getType() == PLANT_TYPE::SEED_PACKET);
+    }
+    SUBCASE("PotAdapter Test") {
+        PotAdapter pa("Ceramic Pot", 15.0);
+        CHECK(pa.getPrice() == 15.0);
+        CHECK(pa.getName() == "Ceramic Pot");
+        PotAdapter pa2(new Pot(20.0, "Plastic Pot"));
+        CHECK(pa2.getPrice() == 20.0);
+        CHECK(pa2.getName() == "Plastic Pot");
+        CHECK(pa2.getType() == PLANT_TYPE::POT);
+    }
+    SUBCASE("DecorationAdapter Test") {
+        DecorationAdapter da("Glitter", 5.0);
+        CHECK(da.getPrice() == 5.0);
+        CHECK(da.getName() == "Glitter");
+        DecorationAdapter da2(new Decoration(7.5, "Ribbons"));
+        CHECK(da2.getPrice() == 7.5);
+        CHECK(da2.getName() == "Ribbons");
+        CHECK(da2.getType() == PLANT_TYPE::DECORATION);
+    }
+}
+
+//TEST BRIDGE - testing plant class and plant implementor
+
+#include "Plant.h"
+
+TEST_CASE("Plant and plantimplementor tests") {
+    SUBCASE("Plant from original creation") {
+        Plant plant("Daisy", 20);
+        CHECK(plant.getName() == "Daisy");
+        CHECK(plant.getPrice() == 20);
+        CHECK(plant.getType() == PLANT_TYPE::GREENHOUSE_PLANT);
+        plant.convertToOrderType();
+        CHECK(plant.getType() == PLANT_TYPE::ORDER_PLANT);
+    }
+    SUBCASE("Plant with Order plant implementor") {
+        Plant plant(new PlantType(20, "Daisy"));
+        CHECK(plant.getName() == "Daisy");
+        CHECK(plant.getPrice() == 20);
+        CHECK(plant.getType() == PLANT_TYPE::ORDER_PLANT);
+    }
+    SUBCASE("No implementor") {
+        Plant plant;
+        CHECK(plant.getName() == "Unnamed Plant");
+        CHECK(plant.getPrice() == 0);
+        CHECK(plant.getType() == PLANT_TYPE::GREENHOUSE_PLANT);
+    }
+}
