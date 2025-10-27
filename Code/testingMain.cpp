@@ -1,4 +1,4 @@
-#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN //Do not define this anywhere else
+#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "doctest.h"
 #include "Staff.h"
 #include "PlantCaretaker.h"
@@ -14,13 +14,9 @@
 #include "Order.h"
 #include <string>
 
-
 TEST_CASE("Chain of Responsibility Tests") {
     NurseryHub* hub = new NurseryHub();
-    // Create Plant for SellCommand
-    Plant* plant = new Plant("Rose", 10.0); // Use Plant(std::string, double) for SellCommand
-    // Create GreenHousePlant for WaterPlant/FertilizePlant
-    GreenHousePlant* greenhousePlant = new GreenHousePlant(); // Default constructor
+    GreenHousePlant* plant = new GreenHousePlant(); // Default constructor
     Order* order = new Order();
     PlantCaretaker* caretaker = new PlantCaretaker("PC1", hub);
     SalesManager* salesManager = new SalesManager("SM1", hub);
@@ -50,7 +46,7 @@ TEST_CASE("Chain of Responsibility Tests") {
     }
 
     SUBCASE("PlantCaretaker handles WaterPlant") {
-        Command* cmd = new WaterPlant(greenhousePlant);
+        Command* cmd = new WaterPlant(plant);
         caretaker->addStaffMemeber(salesManager);
         salesManager->addStaffMemeber(manager);
         bool handled = caretaker->handleRequest(cmd);
@@ -63,7 +59,7 @@ TEST_CASE("Chain of Responsibility Tests") {
     }
 
     SUBCASE("PlantCaretaker handles FertilizePlant") {
-        Command* cmd = new FertilizePlant(greenhousePlant);
+        Command* cmd = new FertilizePlant(plant);
         caretaker->addStaffMemeber(salesManager);
         salesManager->addStaffMemeber(manager);
         bool handled = caretaker->handleRequest(cmd);
@@ -101,7 +97,7 @@ TEST_CASE("Chain of Responsibility Tests") {
     }
 
     SUBCASE("SalesManager delegates WaterPlant to PlantCaretaker") {
-        Command* cmd = new WaterPlant(greenhousePlant);
+        Command* cmd = new WaterPlant(plant);
         salesManager->addStaffMemeber(caretaker);
         caretaker->addStaffMemeber(manager);
         bool handled = salesManager->handleRequest(cmd);
@@ -115,8 +111,7 @@ TEST_CASE("Chain of Responsibility Tests") {
     }
 
     SUBCASE("Chain delegates FertilizePlant to Manager for queuing") {
-        Command* cmd = new FertilizePlant(greenhousePlant);
-        // Start with SalesManager, which can't handle FertilizePlant
+        Command* cmd = new FertilizePlant(plant);
         salesManager->addStaffMemeber(manager);
         bool handled = salesManager->handleRequest(cmd);
         CHECK(handled == true);
@@ -127,14 +122,14 @@ TEST_CASE("Chain of Responsibility Tests") {
     }
 
     SUBCASE("Manager redistributes WaterPlant to PlantCaretaker") {
-        Command* cmd = new WaterPlant(greenhousePlant);
+        Command* cmd = new WaterPlant(plant);
         caretaker->clearTaskList();
         salesManager->clearTaskList();
         manager->receiveCommand(cmd);
         CHECK(manager->getTaskList().size() == 1);
         CHECK(manager->getPendingCommandsSize() == 1);
         manager->redistributeCommands();
-        CHECK(manager->getTaskList().size() == 1); // Still in taskList
+        CHECK(manager->getTaskList().size() == 1);
         CHECK(manager->getPendingCommandsSize() == 0);
         CHECK(caretaker->getTaskList().size() == 1);
         CHECK(caretaker->getNextStaff() == nullptr);
@@ -149,7 +144,7 @@ TEST_CASE("Chain of Responsibility Tests") {
         CHECK(manager->getTaskList().size() == 1);
         CHECK(manager->getPendingCommandsSize() == 1);
         manager->redistributeCommands();
-        CHECK(manager->getTaskList().size() == 1); // Still in taskList
+        CHECK(manager->getTaskList().size() == 1);
         CHECK(manager->getPendingCommandsSize() == 0);
         CHECK(salesManager->getTaskList().size() == 1);
         CHECK(salesManager->getNextStaff() == nullptr);
@@ -157,8 +152,8 @@ TEST_CASE("Chain of Responsibility Tests") {
     }
 
     SUBCASE("Manager redistributes with no available staff") {
-        Command* cmd = new WaterPlant(greenhousePlant);
-        caretaker->receiveCommand(new FertilizePlant(greenhousePlant));
+        Command* cmd = new WaterPlant(plant);
+        caretaker->receiveCommand(new FertilizePlant(plant));
         salesManager->receiveCommand(new SellCommand(plant, order));
         manager->receiveCommand(cmd);
         CHECK(manager->getTaskList().size() == 1);
@@ -166,13 +161,12 @@ TEST_CASE("Chain of Responsibility Tests") {
         manager->redistributeCommands();
         CHECK(manager->getTaskList().size() == 1);
         CHECK(manager->getPendingCommandsSize() == 0);
-        CHECK(caretaker->getTaskList().size() == 1); // Still has FertilizePlant
-        CHECK(salesManager->getTaskList().size() == 1); // Still has SellCommand
+        CHECK(caretaker->getTaskList().size() == 1);
+        CHECK(salesManager->getTaskList().size() == 1);
         delete cmd;
     }
 
     delete plant;
-    delete greenhousePlant;
     delete order;
     delete caretaker;
     delete salesManager;
