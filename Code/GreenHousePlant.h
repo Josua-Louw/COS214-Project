@@ -4,9 +4,10 @@
 #include "CareStrategy.h"
 #include "PlantState.h"
 #include "PlantImplementor.h"
+#include "NurseryMediator.h"
 #include <string>
+#include <atomic>
 
-class NurseryMediator;
 
 /**
  * @file Plant.h
@@ -120,6 +121,8 @@ public:
 
     bool getSuccess() const;
     bool getBusy() const;
+    void markCareStarted();              //sets busy=true, success=false
+    void markCareFinished(bool success); //sets success, busy=false
 
     void setState(PlantState* newState);
 };

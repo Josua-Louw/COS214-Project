@@ -1,6 +1,7 @@
 #include "NurseryHub.h"
 #include "Staff.h"
 #include "Plant.h"
+#include "GreenHousePlant.h"
 #include "Customer.h"
 #include "Command.h"
 
@@ -69,4 +70,30 @@ void NurseryHub::registerStaff(Staff* s) {
 	if (s && !ptrPresent(staff, s)) {
 		staff.push_back(s);
 	}
+}
+
+bool NurseryHub::isCareBusy(const GreenHousePlant* p) const {
+	if (p) {
+		return p->getBusy();
+	} else {
+		return false;
+	}
+}
+
+bool NurseryHub::wasLastCareSuccessful(const GreenHousePlant* p) const {
+	if (p) {
+		return p->getSuccess();
+	} else {
+		return false;
+	}
+}
+
+void NurseryHub::beginCare(GreenHousePlant* p) {
+	if (!p) return;
+	p->markCareStarted();
+}
+
+void NurseryHub::finishCare(GreenHousePlant* p, bool success) {
+	if (!p) return;
+	p->markCareFinished(success);
 }
