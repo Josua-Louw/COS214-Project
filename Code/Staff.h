@@ -35,19 +35,8 @@ public:
      * @return True if the command is handled, false if delegated or ignored.
      */
     virtual bool handleRequest(Command* command) = 0;
+  
 
-    /**
-     * @brief Handles a command request, checking availability and command type.
-     * @param command Pointer to the Command to handle.
-     * @return True if the command is handled, false if delegated or ignored.
-     */
-    virtual bool handleRequest(Command* command) = 0;
-    
-    /**
-     * @brief Sets the next staff in the chain for task delegation.
-     * @param next Pointer to the next Staff member.
-     */
-    void setNextStaff(Staff* next) { nextStaff = next; }
 
     /**
      * @brief Gets the task list for testing purposes.
@@ -55,18 +44,6 @@ public:
      */
     const std::vector<Command*>& getTaskList() const { return taskList; }
 
-    /**
-     * @brief Gets the next staff in the chain for testing purposes.
-     * @return Pointer to the next Staff member.
-     */
-    Staff* getNextStaff() const { return nextStaff; }
-
-    /**
-     * @brief Gets the task list for testing purposes.
-     * @return Const reference to the task list.
-     */
-    const std::vector<Command*>& getTaskList() const { return taskList; }
-    
     /**
      * @brief Gets the next staff in the chain for testing purposes.
      * @return Pointer to the next Staff member.
@@ -80,6 +57,30 @@ public:
         for (Command* cmd : taskList) {
             delete cmd; // Clean up commands
         }
+    }
+    /**
+     * @brief Adds a staff member to the beginning of the chain.
+     * @param staff Pointer to the Staff member to add.
+     * @note 'this' will be at the end of the chain.
+     */
+
+    void addStaffMemeber(Staff* staff) {
+        if (staff == nullptr) {
+            return;
+        }
+        if (!staff->nextStaff) {
+            staff->nextStaff = this;
+        }
+        else {
+            addStaffMemeber(staff->nextStaff);
+        }
+    }
+
+    /**
+     * @brief Clears the task list, deleting stored commands.
+     */
+    void clearTaskList() {
+        taskList.clear();
     }
 };
 
