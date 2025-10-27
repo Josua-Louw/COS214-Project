@@ -15,3 +15,7 @@ DecorationAdapter::~DecorationAdapter() {
         delete decoration;
     }
 }
+
+PLANT_TYPE DecorationAdapter::getType() const {
+    return decoration->getType();
+}

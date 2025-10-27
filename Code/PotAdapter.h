@@ -39,7 +39,9 @@ public:
      */
     ~PotAdapter();
 
-    double getPrice() const;
+    double getPrice() const override;
+
+    PLANT_TYPE getType() const override;
 };
 
 #endif // POTADAPTER_H

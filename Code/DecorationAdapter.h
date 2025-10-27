@@ -38,7 +38,8 @@ public:
      */
     ~DecorationAdapter();
     
-    double getPrice() const;
+    double getPrice() const override;
+    PLANT_TYPE getType() const override;
 };
 
 #endif // DECORATIONADAPTER_H

@@ -15,3 +15,7 @@ SeedPacketAdapter::~SeedPacketAdapter() {
         delete seedPacket;
     }
 }
+
+PLANT_TYPE SeedPacketAdapter::getType() const {
+    return seedPacket->getType();
+}

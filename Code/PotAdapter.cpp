@@ -15,3 +15,7 @@ PotAdapter::~PotAdapter() {
         delete pot;
     }
 }
+
+PLANT_TYPE PotAdapter::getType() const {
+    return pot->getType();
+}

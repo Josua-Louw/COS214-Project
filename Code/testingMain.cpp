@@ -568,6 +568,7 @@ TEST_CASE("Adapter Pattern Test Cases") {
         SeedPacketAdapter spa2(new SeedPacket(15.0, "Tulip Seeds"));
         CHECK(spa2.getPrice() == 15.0);
         CHECK(spa2.getName() == "Tulip Seeds");
+        CHECK(spa2.getType() == PLANT_TYPE::SEED_PACKET);
     }
     SUBCASE("PotAdapter Test") {
         PotAdapter pa("Ceramic Pot", 15.0);
@@ -576,6 +577,7 @@ TEST_CASE("Adapter Pattern Test Cases") {
         PotAdapter pa2(new Pot(20.0, "Plastic Pot"));
         CHECK(pa2.getPrice() == 20.0);
         CHECK(pa2.getName() == "Plastic Pot");
+        CHECK(pa2.getType() == PLANT_TYPE::POT);
     }
     SUBCASE("DecorationAdapter Test") {
         DecorationAdapter da("Glitter", 5.0);
@@ -584,5 +586,6 @@ TEST_CASE("Adapter Pattern Test Cases") {
         DecorationAdapter da2(new Decoration(7.5, "Ribbons"));
         CHECK(da2.getPrice() == 7.5);
         CHECK(da2.getName() == "Ribbons");
+        CHECK(da2.getType() == PLANT_TYPE::DECORATION);
     }
 }

@@ -38,7 +38,8 @@ public:
      */
     ~SeedPacketAdapter();
 
-    double getPrice() const;
+    double getPrice() const override;
+    PLANT_TYPE getType() const override;
 };
 
 #endif // SEED_PACKET_ADAPTER_H

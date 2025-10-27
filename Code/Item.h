@@ -3,6 +3,9 @@
 
 #include "GreenHouse.h"
 
+//forward declaration
+enum class PLANT_TYPE;
+
 /**
  * @file Item.h
  * @brief This file contains the definition of the Item class.
@@ -30,6 +33,12 @@ public:
      * @return The price of the item as a double.
      */
     virtual double getPrice() const = 0;
+  
+    /**
+     * @brief Get the type of the item.
+     * @return The type of the item as a PLANT_TYPE enum.
+     */
+    virtual PLANT_TYPE getType() const = 0;
 
     /**
      * @brief Virtual destructor to ensure proper cleanup in derived classes.
