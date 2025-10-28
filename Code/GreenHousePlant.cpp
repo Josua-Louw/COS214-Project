@@ -1,6 +1,5 @@
 #include "GreenHousePlant.h"
 #include "CareStrategy.h"
-#include "Timing.h"
 
 #include <iostream>
 
@@ -41,23 +40,13 @@ Command* GreenHousePlant::feed(int time) {
 	return cmd;
 }
 
-// void GreenHousePlant::watering(int time) {
-// 	std::this_thread::sleep_for(std::chrono::seconds(time));
-// 	std::cout << "Finished Watering\n";
-// }
-//
-// void GreenHousePlant::fertilizing(int time) {
-// 	std::this_thread::sleep_for(std::chrono::seconds(time));
-// 	std::cout << "Finished Fertilizing\n";
-// }
-
 void GreenHousePlant::watering(int time) {
-	timing::sleep_for(std::chrono::seconds(time));
+	std::this_thread::sleep_for(std::chrono::seconds(time));
 	std::cout << "Finished Watering\n";
 }
 
 void GreenHousePlant::fertilizing(int time) {
-	timing::sleep_for(std::chrono::seconds(time));
+	std::this_thread::sleep_for(std::chrono::seconds(time));
 	std::cout << "Finished Fertilizing\n";
 }
 

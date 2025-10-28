@@ -3,8 +3,6 @@
 #include "DyingState.h"
 #include "SeedlingState.h"
 
-#include "Timing.h"
-
 SeedState::SeedState(GreenHousePlant * plant) : PlantState(plant){
 	SeedState::transitionToNext();
 }
@@ -12,14 +10,14 @@ SeedState::SeedState(GreenHousePlant * plant) : PlantState(plant){
 void SeedState::transitionToNext() {
 	std::cout << "Test1" << std::endl;
 	std::thread([this]() {
-		timing::sleep_for(std::chrono::seconds(20));
+		std::this_thread::sleep_for(std::chrono::seconds(20));
 		std::vector<Command*> commands = plant_->applyCurrentCare();
 		if (plant_->getSuccess()) {
 			std::cout << "Test1" << std::endl;
 			plant_->setState(new SeedlingState(plant_));
 		} else if (plant_->getBusy()) {
 			while (!plant_->getSuccess()) {
-				timing::sleep_for(std::chrono::milliseconds(100));
+				std::this_thread::sleep_for(std::chrono::milliseconds(100));
 			}
 			std::cout << "Test1" << std::endl;
 			plant_->setState(new SeedlingState(plant_));
