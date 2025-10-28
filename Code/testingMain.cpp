@@ -45,3 +45,6 @@ int testingMain() {
 
     return 0;
 };
+TEST_CASE("TEST") {
+    testingMain();
+}
