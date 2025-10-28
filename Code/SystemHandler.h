@@ -10,6 +10,11 @@
 #include "DecorationAdapter.h"
 #include "PlantCaretaker.h"
 #include "SalesManager.h"
+#include "Customer.h"
+#include "AddPlant.h"
+#include "AddDecoration.h"
+#include "AddPot.h"
+#include "AddSeed.h"
 
 class SystemHandler {
 protected:
@@ -19,14 +24,13 @@ public:
     SystemHandler() {
         nurseryHub = new NurseryHub();
         greenHouse = new Section("GreenHouse", 5);
-        systemMenue();
     };
     virtual ~SystemHandler() {
         delete nurseryHub;
         delete greenHouse;
     };
     virtual void systemMenue() = 0;
-    virtual void addSection() = 0;
+   // virtual void addSection() = 0;
     virtual void addPlant() = 0;
     virtual void registerStaffMember() = 0;
     virtual void processCustomerOrder() = 0;

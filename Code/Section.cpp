@@ -37,7 +37,14 @@ Section::~Section() {
 */ 
 void Section::expand(GreenHouse* greenHouse) {
 	if (greenHouse != nullptr){
-		section.push_back(greenHouse);
+        if (dynamic_cast<Item*>(greenHouse))
+        {
+            addItem(dynamic_cast<Item*>(greenHouse));
+        } 
+        else
+        {
+            section.push_back(greenHouse);
+        }
 	}
 }
 

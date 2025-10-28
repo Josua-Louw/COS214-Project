@@ -10,7 +10,7 @@ public:
     ~TextSystemHandler() override = default;
 
     void systemMenue() override;
-    void addSection() override;
+    //void addSection() override;
     void addPlant() override;
     void registerStaffMember() override;
     void processCustomerOrder() override;

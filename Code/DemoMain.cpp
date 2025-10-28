@@ -3,6 +3,7 @@
 
 int main() {
     SystemHandler* systemHandler = new TextSystemHandler();
+    systemHandler->systemMenue();
     delete systemHandler;
     return 0;
 }
