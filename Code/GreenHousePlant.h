@@ -14,8 +14,7 @@
 #include <thread>
 #include <chrono>
 
-#include "SeedState.h"
-
+// Forward declaration only - include SeedState.h in the .cpp file
 class SeedState;
 
 
@@ -64,13 +63,9 @@ private:
     std::atomic<bool> careSuccessful{false};
 
 public:
-    explicit GreenHousePlant(const std::string& name = "", double price = 0.0, NurseryMediator* mediator = nullptr, CareStrategy* care = nullptr) : name(name), price(price), mediator_(mediator), strategy(care) {
-        this->setState(new SeedState(this));
-    }
+    explicit GreenHousePlant(const std::string& name = "", double price = 0.0, NurseryMediator* mediator = nullptr, CareStrategy* care = nullptr);
 
-    ~GreenHousePlant() override {
-        delete state;
-    }
+    ~GreenHousePlant() override;
     /**
      * @brief Waters the plant.
      * @details Defines the interface for watering the plant, with implementation details provided by derived classes based on the plant’s type and state.

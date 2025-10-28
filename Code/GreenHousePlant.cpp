@@ -1,7 +1,19 @@
 #include "GreenHousePlant.h"
 #include "CareStrategy.h"
+#include "SeedState.h"
 
 #include <iostream>
+
+// Constructor
+GreenHousePlant::GreenHousePlant(const std::string& name, double price, NurseryMediator* mediator, CareStrategy* care)
+    : name(name), price(price), mediator_(mediator), strategy(care) {
+    this->setState(new SeedState(this));
+}
+
+// Destructor
+GreenHousePlant::~GreenHousePlant() {
+    delete state;
+}
 
 // Returns the name of the plant.
 std::string GreenHousePlant::getName() const {
