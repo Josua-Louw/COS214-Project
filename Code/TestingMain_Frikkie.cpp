@@ -144,7 +144,9 @@ int main() {
     plantBuilder.buildPart(&order, "Echeveria");
     decoBuilder.buildPart(&order, "Red ribbon");
     potBuilder.buildPart(&order, "Clay pot");
+    potBuilder.buildPart(&order, "Silver pot");
     seedBuilder.buildPart(&order, "Tomato seeds");
+    seedBuilder.buildPart(&order, "Sunflower seeds");
 
     // Print order summary
     order.printOrder();
