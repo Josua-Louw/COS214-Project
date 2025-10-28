@@ -25,6 +25,7 @@ void PlantCaretaker::receiveCommand(Command * command) {
 
         if (command->getAbortStatus()) {
             nurseryHub->finishCare(command->getPlant(), false);
+            delete command;
             return;
         }
 
@@ -34,6 +35,8 @@ void PlantCaretaker::receiveCommand(Command * command) {
             command->execute();
             nurseryHub->finishCare(command->getPlant(), true);
             staffBusy = false;
+            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+            delete command;
         }).detach();
     } else {
         if (nextStaff)

@@ -34,18 +34,17 @@ void DyingState::transitionToNext() {
         };
 
         if (plant_->getSuccess()) {
-            for (auto command : commands) delete command;
             goPrevious();
         } else if (plant_->getBusy()) {
             while (!plant_->getSuccess()) {
                 // timing::sleep_for(std::chrono::milliseconds(100));
                 timing::sleep_for(std::chrono::milliseconds(100));
             }
-            for (auto command : commands) delete command;
             goPrevious();
         } else {
             for (auto command : commands) {
-                command->setAbortStatus(true);
+                if (command)
+                    command->setAbortStatus(true);
             }
             plant_->setState(new DeadState(plant_));
         }

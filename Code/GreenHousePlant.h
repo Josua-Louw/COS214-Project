@@ -14,6 +14,10 @@
 #include <thread>
 #include <chrono>
 
+#include "SeedState.h"
+
+
+
 /**
  * @file Plant.h
  * @brief Defines the Plant class, the class for representing plants in the GreenHouse.
@@ -58,7 +62,13 @@ private:
     std::atomic<bool> careSuccessful{false};
 
 public:
-    GreenHousePlant(const std::string& name = "", double price = 0.0) : name(name), price(price) {}
+    explicit GreenHousePlant(const std::string& name = "", double price = 0.0, NurseryMediator* mediator = nullptr, CareStrategy* care = nullptr, PlantState* state = nullptr) : name(name), price(price), mediator_(mediator), strategy(care), state(state) {
+
+    }
+
+    ~GreenHousePlant() override {
+        delete state;
+    }
     /**
      * @brief Waters the plant.
      * @details Defines the interface for watering the plant, with implementation details provided by derived classes based on the plant’s type and state.

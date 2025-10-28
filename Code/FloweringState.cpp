@@ -11,7 +11,6 @@ void FloweringState::transitionToNext() {
 		timing::sleep_for(std::chrono::seconds(20));
 		std::vector<Command*> commands = plant_->applyCurrentCare();
 			if (plant_->getSuccess()) {
-				for (auto command : commands) delete command;
 				if (randomNumber == 1) {
 					plant_->setState(new SenescenceState(plant_));
 				} else {
@@ -21,7 +20,6 @@ void FloweringState::transitionToNext() {
 				while (!plant_->getSuccess()) {
 					timing::sleep_for(std::chrono::milliseconds(100));
 				}
-				for (auto command : commands) delete command;
 				if (randomNumber == 1) {
 					plant_->setState(new SenescenceState(plant_));
 				} else {
@@ -29,7 +27,8 @@ void FloweringState::transitionToNext() {
 				}
 			} else {
 				for (auto command : commands) {
-					command->setAbortStatus(true);
+					if (command)
+						command->setAbortStatus(true);
 				}
 				plant_->setState(new DyingState(plant_, DyingState::PrevKind::Flowering));
 			}
