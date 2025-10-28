@@ -21,7 +21,15 @@
 
 using namespace std;
 
-int main() {
+int test();
+
+#include "doctest.h";
+
+TEST_CASE("FrikkieTest"){
+    test();
+}
+
+int test() {
     std::cout << "=== GREENHOUSE LOCAL TEST ===\n\n";
     Section root("Main Greenhouse", 10);
     Section* treesSection = new Section("Trees", 5);
@@ -167,5 +175,7 @@ int main() {
     cout << "\nAll tests completed successfully." << endl;
 
     std::cout << "\n=== TEST MAIN COMPLETE ===\n";
+
+    delete peaceLily;
     return 0;
 }
