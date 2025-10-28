@@ -29,17 +29,38 @@
 int testingMain() {
     std::cout << "Test1" << std::endl;
     NurseryMediator* hub = new NurseryHub();
-    Staff* careTaker = new PlantCaretaker("care1",hub);
-    hub->registerStaff(careTaker);
-    CareStrategy* strat = new RegularCareStrategy();
-    auto* plant = new GreenHousePlant("plant1", 18, hub, strat);
+    Staff* careTaker1 = new PlantCaretaker("care1",hub);
+    Staff* careTaker2 = new PlantCaretaker("care2",hub);
+    Staff* careTaker3 = new PlantCaretaker("care3",hub);
+    hub->registerStaff(careTaker1);
+    hub->registerStaff(careTaker2);
+    hub->registerStaff(careTaker3);
+    CareStrategy* strat1 = new RegularCareStrategy();
+    CareStrategy* strat2 = new FertilizerBoostStrategy();
+    auto* plant1 = new GreenHousePlant("plant1", 18, hub, strat1);
+    auto* plant2 = new GreenHousePlant("plant2", 18, hub, strat2);
+    auto* plant3 = new GreenHousePlant("plant3", 18, hub, strat1);
+    auto* plant4 = new GreenHousePlant("plant4", 18, hub, strat1);
+    auto* plant5 = new GreenHousePlant("plant5", 18, hub, strat2);
+    auto* plant6 = new GreenHousePlant("plant6", 18, hub, strat2);
+    auto* plant7 = new GreenHousePlant("plant7", 18, hub, strat2);
 
-    std::this_thread::sleep_for(std::chrono::seconds(10));
+
+    std::this_thread::sleep_for(std::chrono::minutes(5));
 
     delete hub;
-    delete strat;
-    delete careTaker;
-    delete plant;
+    delete strat1;
+    delete strat2;
+    delete careTaker1;
+    delete careTaker2;
+    delete careTaker3;
+    delete plant1;
+    delete plant2;
+    delete plant3;
+    delete plant4;
+    delete plant5;
+    delete plant6;
+    delete plant7;
 
 
 

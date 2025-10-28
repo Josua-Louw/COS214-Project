@@ -5,7 +5,7 @@
 #include "WaterPlant.h"
 #include "FertilizePlant.h"
 #include "NurseryMediator.h"
-
+#include <iostream>
 /**
  * @file PlantCaretaker.cpp
  * @brief Implementation of the PlantCaretaker class.
@@ -14,32 +14,44 @@
  */
 
 void PlantCaretaker::receiveCommand(Command * command) {
-    if (!staffBusy) {
-        if (command == nullptr)
-            throw std::invalid_argument("Command cannot be null");
+    std::unique_lock<std::mutex> lock(staffMutex);
 
-        if (command->getType() == "SellCommand") {
-            if (nextStaff) nextStaff->receiveCommand(command);
-            return;
-        }
-
-        if (command->getAbortStatus()) {
-            nurseryHub->finishCare(command->getPlant(), false);
-            delete command;
-            return;
-        }
-
-        std::thread([this, command]() {
-            staffBusy = true;
-            nurseryHub->beginCare(command->getPlant());
-            command->execute();
-            nurseryHub->finishCare(command->getPlant(), true);
-            staffBusy = false;
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));
-            delete command;
-        }).detach();
-    } else {
+    if (staffBusy) {
         if (nextStaff)
             nextStaff->receiveCommand(command);
+        return;
     }
+
+    if (!command)
+        throw std::invalid_argument("Command cannot be null");
+
+    if (command->getType() == "SellCommand") {
+        if (nextStaff) nextStaff->receiveCommand(command);
+        return;
+    }
+
+    if (command->getAbortStatus()) {
+        nurseryHub->finishCare(command->getPlant(), false);
+        delete command;
+        std::cout << "Abort " << command->getPlant()->getName() << std::endl;
+        return;
+    }
+
+    staffBusy = true;
+    lock.unlock();
+
+    std::thread([this, command]() {
+        std::cout << "Start operation " << command->getPlant()->getName() << std::endl;
+        nurseryHub->beginCare(command->getPlant());
+        command->execute();
+        nurseryHub->finishCare(command->getPlant(), true);
+
+        {
+            std::lock_guard<std::mutex> lock(staffMutex);
+            staffBusy = false;
+        }
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        delete command;
+    }).detach();
 }

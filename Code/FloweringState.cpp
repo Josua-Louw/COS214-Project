@@ -1,24 +1,30 @@
 #include "FloweringState.h"
+#include <iostream>
 
 // Implement the logic to transition the plant to the next state
 void FloweringState::transitionToNext() {
 	std::thread([this]() {
+		std::cout << "\033[1;32mFlowering start\033[0m" << std::endl;
 		std::random_device rd;
 		std::mt19937 gen(rd());
-		std::uniform_int_distribution<> dist(1, 4);
+		std::uniform_int_distribution<> dist(1, 3);
 		int randomNumber = dist(gen);
-		std::this_thread::sleep_for(std::chrono::seconds(20));
 		std::vector<Command*> commands = plant_->applyCurrentCare();
+		std::this_thread::sleep_for(std::chrono::seconds(10));
+
 			if (plant_->getSuccess()) {
+				std::cout << "Flowering succeed" << std::endl;
 				if (randomNumber == 1) {
 					plant_->setState(new SenescenceState(plant_));
 				} else {
 					plant_->setState(new MatureState(plant_));
 				}
 			} else if (plant_->getBusy()) {
+				std::cout << "Flowering pending succeed" << std::endl;
 				while (!plant_->getSuccess()) {
 					std::this_thread::sleep_for(std::chrono::milliseconds(100));
 				}
+				std::cout << "Flowering succeed" << std::endl;
 				if (randomNumber == 1) {
 					plant_->setState(new SenescenceState(plant_));
 				} else {
@@ -29,6 +35,7 @@ void FloweringState::transitionToNext() {
 					if (command)
 						command->setAbortStatus(true);
 				}
+				std::cout << "Flowering fail" << std::endl;
 				plant_->setState(new DyingState(plant_, DyingState::PrevKind::Flowering));
 			}
 		}).detach();

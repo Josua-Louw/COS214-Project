@@ -7,6 +7,7 @@
 
 #include <string>
 #include <thread>
+#include <mutex>
 
 /**
  * @class PlantCaretaker
@@ -17,6 +18,7 @@
 class PlantCaretaker : public Staff {
 private:
     NurseryMediator* nurseryHub; /**< Mediator for notifications (FR7). */
+    std::mutex staffMutex;
 public:
     /**
      * @brief Constructs a PlantCaretaker with an ID and NurseryHub.

@@ -38,7 +38,8 @@ void NurseryHub::assign(Command* cmd) {
 	if (!cmd) {
 		throw std::invalid_argument("Command cannot be null");
 	}
-	staff.front()->receiveCommand(cmd);
+
+	staff.back()->receiveCommand(cmd);
 }
 
 /**
@@ -75,26 +76,33 @@ void NurseryHub::registerStaff(Staff* s) {
 
 bool NurseryHub::isCareBusy(const GreenHousePlant* p) const {
 	if (p) {
+
 		return p->getBusy();
+
 	} else {
+
 		return false;
 	}
 }
 
 bool NurseryHub::wasLastCareSuccessful(const GreenHousePlant* p) const {
 	if (p) {
+
 		return p->getSuccess();
 	} else {
+
 		return false;
 	}
 }
 
 void NurseryHub::beginCare(GreenHousePlant* p) {
+
 	if (!p) return;
 	p->markCareStarted();
 }
 
 void NurseryHub::finishCare(GreenHousePlant* p, bool success) {
+
 	if (!p) return;
 	p->markCareFinished(success);
 }

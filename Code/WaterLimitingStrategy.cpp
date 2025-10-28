@@ -17,7 +17,10 @@
 std::vector<Command*> WaterLimitingStrategy::applyCare(GreenHousePlant& plant) {
     plant.setSuccess(false);
     plant.setBusy(false);
-    return { plant.water(1), plant.feed(2) };
+    Command* returnWater = plant.water(1);
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    Command* returnFeed = plant.feed(2);
+    return { returnWater, returnFeed};
 }
 
 /**

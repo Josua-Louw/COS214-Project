@@ -19,7 +19,7 @@
  */
 void Manager::receiveCommand(Command* command) {
     std::thread([this, command]() {
-        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+        std::this_thread::sleep_for(std::chrono::seconds(1));
         redistributeCommands(command);
     }).detach();
 }
