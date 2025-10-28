@@ -40,6 +40,7 @@ public:
     
     double getPrice() const override;
     PLANT_TYPE getType() const override;
+    OrderPlant* getOrderPlant() const override;
 };
 
 #endif // DECORATIONADAPTER_H

@@ -45,6 +45,12 @@ public:
     virtual PLANT_TYPE getType() const = 0;
 
     /**
+     * @brief Get the OrderPlant of the item.
+     * @return Pointer to the implementation of the item of type OrderPlant.
+     */
+    virtual class OrderPlant* getOrderPlant() const = 0;
+
+    /**
      * @brief Virtual destructor to ensure proper cleanup in derived classes.
      */
     virtual ~Item() = default;
