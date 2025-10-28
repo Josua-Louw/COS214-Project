@@ -20,7 +20,7 @@ void DyingState::transitionToNext() {
         // timing::sleep_for(std::chrono::seconds(20));
         timing::sleep_for(std::chrono::seconds(20));
 
-        plant_->applyCurrentCare();
+        std::vector<Command*> commands = plant_->applyCurrentCare();
 
         auto goPrevious = [this]() {
             switch (prevKind) {
@@ -29,20 +29,24 @@ void DyingState::transitionToNext() {
                 case PrevKind::Juvenile:    plant_->setState(new JuvenileState(plant_)); break;
                 case PrevKind::Mature:      plant_->setState(new MatureState(plant_)); break;
                 case PrevKind::Flowering:   plant_->setState(new FloweringState(plant_)); break;
-                case PrevKind::Dead:  plant_->setState(new SenescenceState(plant_)); break;
                 default:                    plant_->setState(new DeadState(plant_)); break;
             }
         };
 
         if (plant_->getSuccess()) {
+            for (auto command : commands) delete command;
             goPrevious();
         } else if (plant_->getBusy()) {
             while (!plant_->getSuccess()) {
                 // timing::sleep_for(std::chrono::milliseconds(100));
                 timing::sleep_for(std::chrono::milliseconds(100));
             }
+            for (auto command : commands) delete command;
             goPrevious();
         } else {
+            for (auto command : commands) {
+                command->setAbortStatus(true);
+            }
             plant_->setState(new DeadState(plant_));
         }
     }).detach();

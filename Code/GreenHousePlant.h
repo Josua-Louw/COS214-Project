@@ -105,7 +105,7 @@ public:
      * @brief Virtual destructor to ensure proper cleanup in derived classes.
      * @details Provides a virtual destructor to allow safe deletion of derived class objects through a Plant pointer.
      */
-    virtual ~GreenHousePlant();
+    ~GreenHousePlant() override;
 
     void setStrategy(CareStrategy* s) { strategy = s; }
     std::vector<Command*> applyCurrentCare();           // optional helper used by water()/feed()

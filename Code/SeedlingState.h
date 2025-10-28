@@ -3,6 +3,7 @@
 
 #include <thread>
 #include <chrono>
+#include <vector>
 
 #include "PlantState.h"
 #include "DyingState.h"

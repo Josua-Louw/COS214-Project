@@ -30,6 +30,7 @@ void SalesManager::receiveCommand(Command * command) {
 
         if (command->getAbortStatus()) {
             // nurseryHub->finishCare(command->getPlant(), false);
+            delete command;
             return;
         }
 
