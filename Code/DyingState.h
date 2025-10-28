@@ -22,7 +22,8 @@ public:
         Seedling,
         Juvenile,
         Mature,
-        Flowering
+        Flowering,
+        Dead
     };
 
 private:
