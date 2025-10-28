@@ -34,7 +34,7 @@ int testingMain() {
     CareStrategy* strat = new RegularCareStrategy();
     auto* plant = new GreenHousePlant("plant1", 18, hub, strat);
 
-    std::this_thread::sleep_for(std::chrono::seconds(60));
+    std::this_thread::sleep_for(std::chrono::seconds(10));
 
     delete hub;
     delete strat;

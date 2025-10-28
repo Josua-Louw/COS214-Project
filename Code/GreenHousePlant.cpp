@@ -77,7 +77,8 @@ void GreenHousePlant::markCareFinished(bool success) {
 }
 
 void GreenHousePlant::setState(PlantState * newState) {
-	delete state;
+	if (!state)
+		delete state;
 	state = newState;
 }
 

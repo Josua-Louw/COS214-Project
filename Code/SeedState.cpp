@@ -4,6 +4,7 @@
 #include "SeedlingState.h"
 
 SeedState::SeedState(GreenHousePlant * plant) : PlantState(plant){
+	std::cout << "Jou moer" << std::endl;
 	SeedState::transitionToNext();
 }
 

@@ -16,6 +16,8 @@
 
 #include "SeedState.h"
 
+class SeedState;
+
 
 
 /**
@@ -62,8 +64,8 @@ private:
     std::atomic<bool> careSuccessful{false};
 
 public:
-    explicit GreenHousePlant(const std::string& name = "", double price = 0.0, NurseryMediator* mediator = nullptr, CareStrategy* care = nullptr, PlantState* state = nullptr) : name(name), price(price), mediator_(mediator), strategy(care), state(state) {
-
+    explicit GreenHousePlant(const std::string& name = "", double price = 0.0, NurseryMediator* mediator = nullptr, CareStrategy* care = nullptr) : name(name), price(price), mediator_(mediator), strategy(care) {
+        this->setState(new SeedState(this));
     }
 
     ~GreenHousePlant() override {

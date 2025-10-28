@@ -34,7 +34,7 @@ public:
 	 */
 	void transitionToNext() override;
 
-	explicit SeedState(GreenHousePlant* plant);
+	SeedState(GreenHousePlant* plant);
 };
 
 #endif
