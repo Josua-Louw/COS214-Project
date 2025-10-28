@@ -15,7 +15,7 @@ void SeedlingState::transitionToNext() {
             }
             plant_->setState(new JuvenileState(plant_));
         } else {
-            plant_->setState(new DyingState(plant_,new SeedlingState(plant_)));
+            plant_->setState(new DyingState(plant_, DyingState::PrevKind::Seedling));
         }
     }).detach();
 }

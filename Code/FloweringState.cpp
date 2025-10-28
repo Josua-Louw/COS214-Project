@@ -26,7 +26,7 @@ void FloweringState::transitionToNext() {
 					plant_->setState(new MatureState(plant_));
 				}
 			} else {
-				plant_->setState(new DyingState(plant_,new FloweringState(plant_)));
+				plant_->setState(new DyingState(plant_, DyingState::PrevKind::Flowering));
 			}
 		}).detach();
 }
