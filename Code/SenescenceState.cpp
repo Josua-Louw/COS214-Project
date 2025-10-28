@@ -5,7 +5,7 @@
 void SenescenceState::transitionToNext() {
 	std::thread([this]() {
 		timing::sleep_for(std::chrono::seconds(20));
-		plant_->setState(new DyingState(plant_, DyingState::PrevKind::Senescence));
+		plant_->setState(new DyingState(plant_, DyingState::PrevKind::Dead));
 	}).detach();
 }
 

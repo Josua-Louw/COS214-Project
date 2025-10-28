@@ -19,7 +19,7 @@ PlantImplementor* SeedPacket::clone() {
 // Get the type of plant the seeds are of
 PLANT_TYPE SeedPacket::getType() const {
 	return PLANT_TYPE::SEED_PACKET;
-
+}
 
 void SeedPacket::decorate(OrderPlant* orderPlant) {
 	//N.A.

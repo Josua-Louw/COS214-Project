@@ -23,7 +23,7 @@ public:
         Juvenile,
         Mature,
         Flowering,
-        Senescence
+        Dead
     };
 
 private:

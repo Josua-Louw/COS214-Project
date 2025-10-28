@@ -29,7 +29,7 @@ void DyingState::transitionToNext() {
                 case PrevKind::Juvenile:    plant_->setState(new JuvenileState(plant_)); break;
                 case PrevKind::Mature:      plant_->setState(new MatureState(plant_)); break;
                 case PrevKind::Flowering:   plant_->setState(new FloweringState(plant_)); break;
-                case PrevKind::Senescence:  plant_->setState(new SenescenceState(plant_)); break;
+                case PrevKind::Dead:  plant_->setState(new SenescenceState(plant_)); break;
                 default:                    plant_->setState(new DeadState(plant_)); break;
             }
         };
