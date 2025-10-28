@@ -1,4 +1,10 @@
 #include "AddPot.h"
+#include "AddPlant.h"
+#include "Order.h"
+#include "Item.h"
+
+#include <iostream>
+#include <string>
 
 /**
  * @file AddPot.cpp
@@ -6,6 +12,11 @@
  * 
  * @todo Implement the buildPart and checkType methods for adding potted plants to an order.
  */
+
+AddPot::AddPot(GreenHouse* gh) 
+      : OrderBuilder(gh) {
+
+}
 
  /**
   * @brief Builds the part of the order by adding potted plants based on the item name.
@@ -18,8 +29,23 @@
   * @return Pointer to the updated order.
   */
 Order* AddPot::buildPart(Order* order, std::string itemName) {
-	// TODO - implement AddPot::buildPart
-	throw "Not yet implemented";
+  if (!greenHouse || !order){
+    return order;
+  }
+  Item* found = nullptr;
+  if (greenHouse){
+    found = greenHouse->findItem(itemName);
+  }
+  if (!found){
+    return order;
+  }
+  if (found && checkType(found)) {
+    order->addItem(found);
+    std::cout << "Added pot: " << itemName << " to order.\n";
+  } else {
+    std::cout << "Warning: '" << itemName << "' not found in greenhouse.\n";
+  }
+  return order;
 }
 
 /**
@@ -30,7 +56,6 @@ Order* AddPot::buildPart(Order* order, std::string itemName) {
  * 
  * @return true if the plant is a pot, false otherwise.
  */
-bool AddPot::checkType(Plant* plant) {
-	// TODO - implement AddPot::checkType
-	throw "Not yet implemented";
+bool AddPot::checkType(Item* item) {
+  return (item && item->getType() == PLANT_TYPE::POT);
 }

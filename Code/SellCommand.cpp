@@ -14,7 +14,7 @@
  */
 void SellCommand::execute() {
     if (plant && order) {
-        order->addPlant(plant); // Add plant to the order (FR8, FR10)
+        order->addItem(plant); // Add plant to the order (FR8, FR10)
         GreenHouse* plantAsGreenhouse = plant; // Plant publicly inherits from GreenHouse
         plantAsGreenhouse->sell(plant); // Remove plant from inventory and get price (FR1)
     }
