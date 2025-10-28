@@ -50,9 +50,8 @@ void NurseryHub::assign(Command* cmd) {
  *
  * @todo Route the event to interested colleagues (Staff, Customers).
  */
-void NurseryHub::notify(void* sender, std::string event, std::string data) {
-	// TODO - implement NurseryHub::notify
-	throw "Not yet implemented";
+void NurseryHub::notify(void*, std::string, std::string) {
+	//TODO: route/broadcast later
 }
 
 /**
