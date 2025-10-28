@@ -41,7 +41,7 @@ public:
 	 * @param orderPlant Pointer to the plant to be decorated.
 	 * @return void.
 	 */
-
+	void decorate(OrderPlant* orderPlant) override {};
 };
 
 #endif
