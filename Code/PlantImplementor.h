@@ -24,12 +24,38 @@ enum class PLANT_TYPE {
   */
 class PlantImplementor {
 public:
+    /**
+     * @brief Default constructor.
+     */
     PlantImplementor() = default;
+    /**
+     * @brief Copy constructor.
+     * @param other The PlantImplementor object to copy from.
+     */
     PlantImplementor(const PlantImplementor&) = default;
+    /**
+     * @brief Virtual destructor to ensure proper cleanup in derived classes.
+     */
     virtual ~PlantImplementor() = default;
+    /**
+     * @brief Clones the plant implementor.
+     * @return A pointer to a new PlantImplementor object that is a copy of the current object.
+     */
     virtual PlantImplementor* clone() = 0;
+    /**
+     * @brief Gets the price of the plant implementor.
+     * @return The price of the plant implementor as a double.
+     */
     virtual double getPrice() const = 0;
+    /**
+     * @brief Gets the name of the plant implementor.
+     * @return The name of the plant implementor as a string.
+     */
     virtual std::string getName() const = 0;
+    /**
+     * @brief Gets the type of the plant implementor.
+     * @return The type of the plant implementor as a PLANT_TYPE enum.
+     */
     virtual PLANT_TYPE getType() const = 0;
 };
 

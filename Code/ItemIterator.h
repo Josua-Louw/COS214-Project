@@ -26,14 +26,28 @@ private:
     size_t currentIndex;      
 
 public:
+    /**
+     * @brief Constructs an ItemIterator with a list of Item pointers.
+     * @param itemList Vector of Item pointers to iterate over.
+     */
     ItemIterator(const std::vector<Item*>& itemList);
-
+    /**
+     * @brief Resets the iterator to the first item.
+     */
     void first();
-
+    /**
+     * @brief Advances the iterator to the next item.
+     */
     void next();
-
+    /**
+     * @brief Checks if the iterator has reached the end of the collection.
+     * @return true if all items have been iterated over, false otherwise.
+     */
     bool isDone() const;
-    
+    /**
+     * @brief Gets the current item in the iteration.
+     * @return Pointer to the current Item.
+     */
     Item* currentItem() const;
 };
 
