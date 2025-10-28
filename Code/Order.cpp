@@ -48,7 +48,7 @@ double total = 0.0;
  */
 void Order::addItem(Item* item) {
 	if (item){
-    items.push_back(item);
+    items.push_back(item->getOrderPlant());
   }
 }
 

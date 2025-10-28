@@ -53,3 +53,18 @@ Plant::~Plant()
     }
 }
 
+OrderPlant* Plant::getOrderPlant() const {
+    if (implementor)
+    {
+        if (getType() == PLANT_TYPE::GREENHOUSE_PLANT)
+        {
+            // Convert GreenHousePlant to PlantType for OrderPlant
+            std::string name = implementor->getName();
+            double price = implementor->getPrice();
+            PlantType tempPlantType(price, name);
+            return dynamic_cast<OrderPlant*>(tempPlantType.clone());
+        }
+        return dynamic_cast<OrderPlant*>(implementor->clone());
+    }
+    return nullptr;
+}
