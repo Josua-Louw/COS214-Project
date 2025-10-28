@@ -9,8 +9,9 @@ void FloweringState::transitionToNext() {
 		std::uniform_int_distribution<> dist(1, 4);
 		int randomNumber = dist(gen);
 		timing::sleep_for(std::chrono::seconds(20));
-			plant_->applyCurrentCare();
+		std::vector<Command*> commands = plant_->applyCurrentCare();
 			if (plant_->getSuccess()) {
+				for (auto command : commands) delete command;
 				if (randomNumber == 1) {
 					plant_->setState(new SenescenceState(plant_));
 				} else {

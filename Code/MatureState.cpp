@@ -5,9 +5,10 @@
 void MatureState::transitionToNext() {
     std::thread([this]() {
         timing::sleep_for(std::chrono::seconds(20));
-        plant_->applyCurrentCare();
+        std::vector<Command*> commands = plant_->applyCurrentCare();
 
        if (plant_->getSuccess()) {
+           for (auto command : commands) delete command;
            plant_->setState(new FloweringState(plant_));
        } else if (plant_->getBusy()) {
            while (!plant_->getSuccess()) {
