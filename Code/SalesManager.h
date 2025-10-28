@@ -26,13 +26,6 @@ public:
      * @param command Pointer to the Command (e.g., SellCommand) to execute.
      */
     void receiveCommand(Command* command) override;
-
-    /**
-     * @brief Handles a command request, checking availability and command type.
-     * @param command Pointer to the Command to handle.
-     * @return True if the command is handled, false if delegated or ignored.
-     */
-    bool handleRequest(Command* command) override;
 };
 
 #endif // SALES_MANAGER_H

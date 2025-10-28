@@ -7,6 +7,8 @@
  * @details This file contains the declaration of the PlantState class, which serves as the base class for all states in the plant lifecycle state machine. It defines the interface for handling care actions and state transitions.
  */
 
+class GreenHousePlant;
+
 /**
  * @class PlantState
  * @brief Abstract base class representing a state in a plant's lifecycle.
@@ -15,14 +17,9 @@
  * @see SeedState, SeedlingState, JuvenileState, MatureState, FloweringState, SenescenceState, DyingState, DeadState
  */
 class PlantState {
+protected:
+    GreenHousePlant* plant_ = nullptr;
 public:
-    /**
-     * @brief Handles care actions specific to the current state.
-     * @details Defines the interface for performing care actions (e.g., watering, fertilizing) appropriate to the plant’s current lifecycle state. Derived classes implement this method to provide state-specific care logic.
-     * @note This is a pure virtual method, requiring implementation in derived classes.
-     * @return void
-     */
-    virtual void handleCare() = 0;
 
     /**
      * @brief Transitions the plant to the next state in its lifecycle.
@@ -38,6 +35,8 @@ public:
      * @details Provides a virtual destructor to allow safe deletion of derived class objects through a PlantState pointer.
      */
     virtual ~PlantState() = default;
+
+    explicit PlantState(GreenHousePlant* plant) : plant_(plant) {};
 };
 
 #endif // PLANTSTATE_H

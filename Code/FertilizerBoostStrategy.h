@@ -1,7 +1,10 @@
 #ifndef FERTILIZERBOOSTSTRATEGY_H
 #define FERTILIZERBOOSTSTRATEGY_H
 
+#include <vector>
+
 #include "CareStrategy.h"
+#include "Command.h"
 
 /**
  * @file FertilizerBoostStrategy.h
@@ -23,7 +26,7 @@ public:
 	 *
 	 * @note This method defines how the plant receives fertilizer to promote healthy growth.
 	 */
-	void applyCare(GreenHousePlant& plant) override;
+	std::vector<Command*> applyCare(GreenHousePlant& plant) override;
 
 	/**
 	 * @brief Returns the name of this strategy ("Fertilizer Boost Strategy").

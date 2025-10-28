@@ -34,6 +34,7 @@ private:
 	std::vector<Customer*> customers;///< Customers interacting through the mediator.
 
 public:
+	NurseryHub();
 	/**
 	 * @brief Assign a command to an appropriate staff member.
 	 * @param cmd Command to route/dispatch.
@@ -59,6 +60,11 @@ public:
 	 * @brief Register a staff member with the mediator so it can receive assignments.
 	 */
 	void registerStaff(Staff* s) override;
+
+	bool isCareBusy(const GreenHousePlant* p) const override;
+	bool wasLastCareSuccessful(const GreenHousePlant* p) const override;
+	void beginCare(GreenHousePlant* p) override;
+	void finishCare(GreenHousePlant* p, bool success) override;
 };
 
 #endif

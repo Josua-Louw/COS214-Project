@@ -1,5 +1,8 @@
 #include "GreenHousePlant.h"
 #include "CareStrategy.h"
+#include "Timing.h"
+
+#include <iostream>
 
 // Returns the name of the plant.
 std::string GreenHousePlant::getName() const {
@@ -19,32 +22,73 @@ PLANT_TYPE GreenHousePlant::getType() const {
 
 GreenHousePlant::~GreenHousePlant() = default;
 
-void GreenHousePlant::applyCurrentCare() {
-	if (strategy) {
-		strategy->applyCare(*this);
+std::vector<Command*> GreenHousePlant::applyCurrentCare() {
+	if (strategy != nullptr) {
+		return strategy->applyCare(*this);
+	} else {
+		return {};
 	}
 }
 
-void GreenHousePlant::water() { applyCurrentCare(); }
-void GreenHousePlant::feed()  { applyCurrentCare(); }
-
-//Strategy helpers
-void GreenHousePlant::adjustHydration(int d) {
-	hydration += d;
+Command* GreenHousePlant::water(int time) {
+	Command* cmd = new WaterPlant(this, time);
+	if (mediator_) mediator_->assign(cmd);
+	return cmd;
+}
+Command* GreenHousePlant::feed(int time) {
+	Command* cmd = new FertilizePlant(this,time);
+	if (mediator_) mediator_->assign(cmd);
+	return cmd;
 }
 
-void GreenHousePlant::adjustNutrition(int d) {
-	nutrition += d;
+// void GreenHousePlant::watering(int time) {
+// 	std::this_thread::sleep_for(std::chrono::seconds(time));
+// 	std::cout << "Finished Watering\n";
+// }
+//
+// void GreenHousePlant::fertilizing(int time) {
+// 	std::this_thread::sleep_for(std::chrono::seconds(time));
+// 	std::cout << "Finished Fertilizing\n";
+// }
+
+void GreenHousePlant::watering(int time) {
+	timing::sleep_for(std::chrono::seconds(time));
+	std::cout << "Finished Watering\n";
 }
 
-void GreenHousePlant::setTimeForNextCare(int t) {
-	timeForNextCare = t;
+void GreenHousePlant::fertilizing(int time) {
+	timing::sleep_for(std::chrono::seconds(time));
+	std::cout << "Finished Fertilizing\n";
 }
 
-int  GreenHousePlant::getHydration() const{
-	return hydration;
+void GreenHousePlant::setSuccess(bool success) {
+	careSuccessful.store(success, std::memory_order_release);
 }
 
-int  GreenHousePlant::getNutrition() const{
-	return nutrition;
+void GreenHousePlant::setBusy(bool busy) {
+	careBusy.store(busy, std::memory_order_release);
 }
+
+bool GreenHousePlant::getSuccess() const{
+	return careSuccessful.load();
+}
+
+bool GreenHousePlant::getBusy() const{
+	return careBusy.load();
+}
+
+void GreenHousePlant::markCareStarted() {
+	careSuccessful.store(false, std::memory_order_relaxed);
+	careBusy.store(true, std::memory_order_release);
+}
+
+void GreenHousePlant::markCareFinished(bool success) {
+	careSuccessful.store(success, std::memory_order_relaxed);
+	careBusy.store(false, std::memory_order_release);
+}
+
+void GreenHousePlant::setState(PlantState * newState) {
+	delete state;
+	state = newState;
+}
+

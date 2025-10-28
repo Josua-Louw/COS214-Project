@@ -7,6 +7,14 @@
  * Executes the watering task for a specific plant, integrating with the Strategy Pattern (CareStrategy) and State Pattern (PlantState) to update the plant's state. Assigned to PlantCaretaker via NurseryHub (Mediator).
  */
 
+GreenHousePlant * WaterPlant::getPlant() {
+    return plant;
+}
+
+std::string WaterPlant::getType() {
+    return "WaterPlant";
+}
+
 /**
  * @brief Executes the watering task, updating the plant's state.
  * 
@@ -14,6 +22,6 @@
  */
 void WaterPlant::execute() {
     if (plant) {
-        plant->water(); // Calls Plant's water method, which uses CareStrategy and updates PlantState
+        plant->watering(time); // Calls Plant's water method, which uses CareStrategy and updates PlantState
     }
 }

@@ -4,9 +4,15 @@
 #include "CareStrategy.h"
 #include "PlantState.h"
 #include "PlantImplementor.h"
+#include "NurseryMediator.h"
+#include "WaterPlant.h"
+#include "FertilizePlant.h"
+#include "Command.h"
 #include <string>
-
-class NurseryMediator;
+#include <atomic>
+#include <vector>
+#include <thread>
+#include <chrono>
 
 /**
  * @file Plant.h
@@ -48,10 +54,8 @@ private:
      */
     double price = 0.0;
 
-    //we can replace or extend these metrics later when we also do the state and timers
-    int hydration = 0;
-    int nutrition = 0;
-    int timeForNextCare = 0;
+    std::atomic<bool> careBusy{false};
+    std::atomic<bool> careSuccessful{false};
 
 public:
     GreenHousePlant(const std::string& name = "", double price = 0.0) : name(name), price(price) {}
@@ -60,14 +64,14 @@ public:
      * @details Defines the interface for watering the plant, with implementation details provided by derived classes based on the plant’s type and state.
      * @return void
      */
-    void water();
+    Command* water(int time);
 
     /**
      * @brief Feeds the plant.
      * @details Defines the interface for feeding the plant (e.g., applying fertilizer), with implementation details provided by derived classes based on the plant’s type and state.
      * @return void
      */
-    void feed();
+    Command* feed(int time);
 
     /**
      * @brief Gets the price of the plant.
@@ -104,17 +108,22 @@ public:
     virtual ~GreenHousePlant();
 
     void setStrategy(CareStrategy* s) { strategy = s; }
-    void applyCurrentCare();           // optional helper used by water()/feed()
+    std::vector<Command*> applyCurrentCare();           // optional helper used by water()/feed()
 
-    //Lightweight hooks for strategies (safe for later State/timer work)
-    void adjustHydration(int delta);
-    void adjustNutrition(int delta);
-    void setTimeForNextCare(int t);
+    void watering(int time);
+    void fertilizing(int time);
 
     void setMediator(NurseryMediator* m) { mediator_ = m; }
 
-    int  getHydration() const;
-    int  getNutrition() const;
+    bool getSuccess() const;
+    bool getBusy() const;
+    void setSuccess(bool success);
+    void setBusy(bool busy);
+    void markCareStarted();              //sets busy=true, success=false
+    void markCareFinished(bool success); //sets success, busy=false
+
+    void setState(PlantState* newState);
+
 };
 
 #endif // GREENHOUSEPLANT_H

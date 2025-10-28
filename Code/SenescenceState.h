@@ -1,7 +1,11 @@
 #ifndef SENESCENCESTATE_H
 #define SENESCENCESTATE_H
 
+#include <thread>
+#include <chrono>
+
 #include "PlantState.h"
+#include "DyingState.h"
 
 /**
  * @file SenescenceState.h
@@ -18,13 +22,6 @@
  */
 class SenescenceState : public PlantState {
 public:
-    /**
-     * @brief Handles care actions for a plant in the senescence state.
-     * @details In this state, care actions (e.g., watering, fertilizing) have no effect, as the plant is at the end of its lifecycle. This method is stubbed and performs no operations.
-     * @note This method is intentionally empty due to the plant's lifecycle stage.
-     * @return void
-     */
-    void handleCare();
 
     /**
      * @brief Transitions the plant to the next state in its lifecycle.
@@ -33,7 +30,9 @@ public:
      * @return void
      * @see DyingState
      */
-    void transitionToNext();
+    void transitionToNext() override;
+
+    explicit SenescenceState(GreenHousePlant* plant);
 };
 
 #endif

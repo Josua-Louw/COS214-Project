@@ -1,7 +1,12 @@
 #ifndef MATURESTATE_H
 #define MATURESTATE_H
 
+#include <thread>
+#include <chrono>
+
 #include "PlantState.h"
+#include "FloweringState.h"
+#include "DyingState.h"
 
 /**
  * @file MatureState.h
@@ -18,13 +23,6 @@
  */
 class MatureState : public PlantState {
 public:
-    /**
-     * @brief Handles care actions for a plant in the mature state.
-     * @details Performs care actions, such as watering and fertilizing, which are critical for maintaining the plant’s health and enabling it to advance to the flowering state.
-     * @note Proper care is essential to ensure the plant remains healthy and can transition to the FloweringState; insufficient care may lead to the DyingState.
-     * @return void
-     */
-    void handleCare();
 
     /**
      * @brief Transitions the plant to the next state in its lifecycle.
@@ -33,7 +31,9 @@ public:
      * @return void
      * @see FloweringState, DyingState
      */
-    void transitionToNext();
+    void transitionToNext() override;
+
+    explicit MatureState(GreenHousePlant* plant);
 };
 
 #endif // MATURESTATE_H

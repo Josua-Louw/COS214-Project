@@ -64,6 +64,12 @@ public:
 	 * @param s Staff member available for assignments/notifications.
 	 */
 	virtual void registerStaff(Staff* s) = 0;
+
+	//GreenHousePlant functions
+	virtual bool isCareBusy(const GreenHousePlant* p) const = 0;
+	virtual bool wasLastCareSuccessful(const GreenHousePlant* p) const = 0;
+	virtual void beginCare(GreenHousePlant* p) = 0;               //caretaker grabbed job
+	virtual void finishCare(GreenHousePlant* p, bool success) =0;//timer for command completed
 };
 
 #endif

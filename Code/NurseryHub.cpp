@@ -1,11 +1,20 @@
 #include "NurseryHub.h"
 #include "Staff.h"
 #include "Plant.h"
+#include "GreenHousePlant.h"
 #include "Customer.h"
 #include "Command.h"
+#include "Manager.h"
 
 #include <algorithm>
+#include <stdexcept>
 #include <vector>
+
+
+NurseryHub::NurseryHub() {
+	auto* mgr = new Manager("manager-1", this);
+	staff.push_back(mgr);
+}
 
 template <typename T>
 static bool ptrPresent(const std::vector<T*>& vec, const T* p) {//helper to check if a raw pointer p is already in a std::vector
@@ -27,16 +36,9 @@ static bool ptrPresent(const std::vector<T*>& vec, const T* p) {//helper to chec
  */
 void NurseryHub::assign(Command* cmd) {
 	if (!cmd) {
-		return;
+		throw std::invalid_argument("Command cannot be null");
 	}
-	//Try Chain-of-Responsibility entry points first
-	for (Staff* s : staff) {
-		if (s && s->handleRequest(cmd)) return;
-	}
-	//Fallback(just hand it to the first available staff)
-	for (Staff* s : staff) {
-		if (s) { s->receiveCommand(cmd); return;}
-	}
+	staff.front()->receiveCommand(cmd);
 }
 
 /**
@@ -48,9 +50,8 @@ void NurseryHub::assign(Command* cmd) {
  *
  * @todo Route the event to interested colleagues (Staff, Customers).
  */
-void NurseryHub::notify(void* sender, std::string event, std::string data) {
-	// TODO - implement NurseryHub::notify
-	throw "Not yet implemented";
+void NurseryHub::notify(void*, std::string, std::string) {
+	//TODO: route/broadcast later
 }
 
 /**
@@ -67,6 +68,33 @@ void NurseryHub::registerPlant(Plant* p) {
  */
 void NurseryHub::registerStaff(Staff* s) {
 	if (s && !ptrPresent(staff, s)) {
+		staff.front()->addStaffMember(s);
 		staff.push_back(s);
 	}
+}
+
+bool NurseryHub::isCareBusy(const GreenHousePlant* p) const {
+	if (p) {
+		return p->getBusy();
+	} else {
+		return false;
+	}
+}
+
+bool NurseryHub::wasLastCareSuccessful(const GreenHousePlant* p) const {
+	if (p) {
+		return p->getSuccess();
+	} else {
+		return false;
+	}
+}
+
+void NurseryHub::beginCare(GreenHousePlant* p) {
+	if (!p) return;
+	p->markCareStarted();
+}
+
+void NurseryHub::finishCare(GreenHousePlant* p, bool success) {
+	if (!p) return;
+	p->markCareFinished(success);
 }

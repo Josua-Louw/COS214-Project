@@ -5,6 +5,7 @@
 #include "Command.h"
 #include <vector>
 #include <string>
+#include <atomic>
 
 /**
  * @class Staff
@@ -15,7 +16,7 @@
 class Staff : public Person {
 protected:
     Staff* nextStaff; /**< Pointer to the next staff in the chain (FR6). */
-    std::vector<Command*> taskList; /**< List of commands assigned to the staff (FR5). */
+    std::atomic<bool> staffBusy{false};
 public:
     /**
      * @brief Constructs a Staff member with an ID.
@@ -30,25 +31,6 @@ public:
     virtual void receiveCommand(Command* command) = 0;
 
     /**
-     * @brief Handles a command request, checking availability and command type.
-     * @param command Pointer to the Command to handle.
-     * @return True if the command is handled, false if delegated or ignored.
-     */
-    virtual bool handleRequest(Command* command) = 0;
-    
-    /**
-     * @brief Sets the next staff in the chain for task delegation.
-     * @param next Pointer to the next Staff member.
-     */
-    void setNextStaff(Staff* next) { nextStaff = next; }
-
-    /**
-     * @brief Gets the task list for testing purposes.
-     * @return Const reference to the task list.
-     */
-    const std::vector<Command*>& getTaskList() const { return taskList; }
-
-    /**
      * @brief Gets the next staff in the chain for testing purposes.
      * @return Pointer to the next Staff member.
      */
@@ -57,10 +39,18 @@ public:
     /**
      * @brief Virtual destructor for proper cleanup of derived classes.
      */
-    virtual ~Staff() {
-        for (Command* cmd : taskList) {
-            delete cmd; // Clean up commands
+    virtual ~Staff() override = default;
+    /**
+     * @brief Adds a staff member to the beginning of the chain.
+     * @param staff Pointer to the Staff member to add.
+     * @note 'this' will be at the end of the chain.
+     */
+
+    void addStaffMember(Staff* staff) {
+        if (staff == nullptr) {
+            return;
         }
+        staff->nextStaff = this;
     }
 };
 

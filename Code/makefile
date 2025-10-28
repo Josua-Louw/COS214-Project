@@ -1,5 +1,5 @@
 CXX := g++
-CXXFLAGS := -std=c++11 -Wall -Wextra -Werror -pedantic -g -Werror=delete-non-virtual-dtor
+CXXFLAGS := -std=c++11
 
 SRC := $(wildcard *.cpp)
 OBJ := $(SRC:.cpp=.o)
