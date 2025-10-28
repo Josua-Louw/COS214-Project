@@ -23,6 +23,9 @@ public:
 	*/
 	double getPrice() const override;
 
+	std::string getName() const override {
+		return name;
+	}
 	/**
 	* @brief Create a clone of the seeds.
 	* @return A pointer to the newly created clone of the seeds.

@@ -14,6 +14,7 @@ class Customer;
  * @brief Class representing an order in a greenhouse management system.
  * This class manages a collection of plants included in the order and provides functionality
  * to calculate the total cost of the order.
+ * @warning Only use this class as a pointer because there is no copy constructor or assignment operator defined.
  */
 
 class Order {
@@ -21,7 +22,7 @@ class Order {
 private:
 	std::vector<OrderPlant*> items;
 	Customer* customer = nullptr;
-
+	PlantType* activePlant = nullptr;
 public:
 	Order();
 
