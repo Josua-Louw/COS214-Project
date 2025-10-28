@@ -21,8 +21,6 @@ public:
 	* @brief Gets the price of the seeds.
 	* @return The price of the seeds as a double.
 	*/
-
-	std::string getName() const;
 	double getPrice() const override;
 
 	/**

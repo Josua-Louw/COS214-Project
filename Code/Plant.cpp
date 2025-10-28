@@ -12,9 +12,19 @@ Plant::Plant(PlantImplementor* impl)
 
 }
 
+Plant::Plant(const std::string& name, double price) 
+{
+    implementor = new GreenHousePlant(name, price);
+}
+
 void Plant::convertToOrderType()
 {
-
+    if (implementor) {
+        std::string name = implementor->getName();
+        double price = implementor->getPrice();
+        delete implementor;
+        implementor = new PlantType(price, name);
+    }
 }
 
 double Plant::getPrice() const
@@ -23,10 +33,10 @@ double Plant::getPrice() const
     return 0.0;
 }
 
-std::string Plant::getImplementorType()
+PLANT_TYPE Plant::getType() const
 {
-    if (!implementor) return "None";
-    return "Implementor"; //generic
+    if (!implementor) return PLANT_TYPE::GREENHOUSE_PLANT;
+    return implementor->getType();
 }
 
 std::string Plant::getName() const
@@ -41,39 +51,5 @@ Plant::~Plant()
         delete implementor;
         implementor = nullptr;
     }
-}
-
-void Plant::expand(GreenHouse* gh) {
-    (void)gh;
-}
-
-double Plant::sell(Item* item) {
-    (void)item;
-    return getPrice();
-}
-
-GreenHouse* Plant::getSubsection(const std::string&) {
-   return nullptr;
-}
-
-Iterator<Item*>* Plant::createIterator() {
-   return new ItemIterator(std::vector<Item*>{});
-}
-
-Item* Plant::findItem(const std::string& itemName) {
-    if (getName() == itemName) return const_cast<Plant*>(this);
-    return nullptr;
-}
-
-void Plant::printSummary() const {
-    std::cout << "Plant: " << getName() << " (R" << getPrice() << ")" << std::endl;
-}
-
-size_t Plant::getTotalItemCount() const {
-    return 0;
-}
-
-void Plant::printSummaryHelper(int indentLevel) const {
-
 }
 
