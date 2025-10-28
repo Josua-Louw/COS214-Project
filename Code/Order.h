@@ -19,7 +19,7 @@ class Customer;
 class Order {
 
 private:
-	std::vector<Item*> items;
+	std::vector<OrderPlant*> items;
 	Customer* customer = nullptr;
 
 public:
