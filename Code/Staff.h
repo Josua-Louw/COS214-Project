@@ -35,13 +35,6 @@ public:
      * @return True if the command is handled, false if delegated or ignored.
      */
     virtual bool handleRequest(Command* command) = 0;
-
-    /**
-     * @brief Handles a command request, checking availability and command type.
-     * @param command Pointer to the Command to handle.
-     * @return True if the command is handled, false if delegated or ignored.
-     */
-    virtual bool handleRequest(Command* command) = 0;
     
     /**
      * @brief Sets the next staff in the chain for task delegation.
@@ -55,18 +48,6 @@ public:
      */
     const std::vector<Command*>& getTaskList() const { return taskList; }
 
-    /**
-     * @brief Gets the next staff in the chain for testing purposes.
-     * @return Pointer to the next Staff member.
-     */
-    Staff* getNextStaff() const { return nextStaff; }
-
-    /**
-     * @brief Gets the task list for testing purposes.
-     * @return Const reference to the task list.
-     */
-    const std::vector<Command*>& getTaskList() const { return taskList; }
-    
     /**
      * @brief Gets the next staff in the chain for testing purposes.
      * @return Pointer to the next Staff member.

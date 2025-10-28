@@ -2,6 +2,7 @@
 #define ADDDECORATION_H
 
 #include "OrderBuilder.h"
+#include "GreenHouse.h"
 
 /**
  * @file AddDecoration.h
@@ -16,13 +17,15 @@
  * @implements checkType
  */
 
-class AddDecoration : OrderBuilder {
+class AddDecoration : public OrderBuilder {
 
 
-protected:
+public:
+	AddDecoration(GreenHouse* gh);
+
 	Order* buildPart(Order* order, std::string itemName);
 
-	bool checkType(Plant* plant);
+	bool checkType(Item* item);
 };
 
 #endif

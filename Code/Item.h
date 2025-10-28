@@ -7,6 +7,9 @@
 //forward declaration
 enum class PLANT_TYPE;
 
+//forward declaration
+enum class PLANT_TYPE;
+
 /**
  * @file Item.h
  * @brief This file contains the definition of the Item class.
@@ -24,7 +27,7 @@ enum class PLANT_TYPE;
 
 class Item : public GreenHouse {
 public:
-    /**
+/**
      * @brief Gets the name of the item.
      * @return The name of the item as a string.
      */
