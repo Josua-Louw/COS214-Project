@@ -3,6 +3,7 @@
 #include "FertilizePlant.h"
 #include "SellCommand.h"
 #include "NurseryHub.h"
+#include "Timing.h"
 
 /**
  * @file Manager.cpp
@@ -19,8 +20,8 @@
  */
 void Manager::receiveCommand(Command* command) {
     std::thread([this, command]() {
-                std::this_thread::sleep_for(std::chrono::milliseconds(500));
-                redistributeCommands(command);
+        timing::sleep_for(std::chrono::milliseconds(500));
+        redistributeCommands(command);
     }).detach();
 }
 
