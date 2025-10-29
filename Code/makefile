@@ -1,6 +1,8 @@
 CXX := g++
-CXXFLAGS := -std=c++11 -Wall -Wextra -Werror -pedantic -g -Werror=delete-non-virtual-dtor
+CXXFLAGS := -std=c++17 -Wall -Wextra -Werror -pedantic -g -Werror=delete-non-virtual-dtor \
+            $(shell pkg-config --cflags gtkmm-4.0)
 
+LDLIBS   := $(shell pkg-config --libs gtkmm-4.0)
 # Choose main file: testingMain or DemoMain (default: testingMain)
 MAIN_FILE ?= DemoMain
 
@@ -26,7 +28,7 @@ COVERAGE_LOG := coverage.txt
 all: $(EXEC)
 
 $(EXEC): $(OBJ)
-	$(CXX) $(CXXFLAGS) -o $@ $^
+	$(CXX) $^ $(LDLIBS) -o $@
 
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@

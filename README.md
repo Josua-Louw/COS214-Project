@@ -18,3 +18,5 @@ Project for COS214 by the Five guys group
 - Set `CXXFLAGS := -std=c++11 -Wall -Wextra -pedantic -g -Werror=delete-non-virtual-dtor` in the makefile
 - Set `MAIN_FILE ?= DemoMain`
 - Run the following in the /Code directory: `make run`
+## Install gtkmm
+- Run: `sudo apt-get install libgtkmm-4.0-dev` in the linux terminal
