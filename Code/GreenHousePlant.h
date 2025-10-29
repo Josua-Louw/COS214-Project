@@ -124,9 +124,14 @@ public:
     void fertilizing(int time);
 
     void setMediator(NurseryMediator* m) { mediator_ = m; }
-
-    bool getSuccess() const;
-    bool getBusy() const;
+    void setWaterSuccess(bool success);
+    void setFertilizingSuccess(bool success);
+    void setWaterBusy(bool busy);
+    void setFertilizingBusy(bool busy);
+    bool getWaterSuccess() const;
+    bool getFertilizingSuccess() const;
+    bool getWaterBusy() const;
+    bool getFertilizingBusy() const;
     bool getIsAlive() const;
     void markCareStarted(std::string type);              //sets busy=true, success=false
     void markCareFinished(bool success, std::string type); //sets success, busy=false

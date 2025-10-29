@@ -72,12 +72,28 @@ void GreenHousePlant::setFertilizingSuccess(bool success) {
 	fertilizingSuccessful.store(success, std::memory_order_relaxed);
 }
 
-bool GreenHousePlant::getSuccess() const{
-	return careSuccessful.load();
+void GreenHousePlant::setFertilizingBusy(bool busy) {
+	fertilizingCareBusy.store(busy, std::memory_order_relaxed);
 }
 
-bool GreenHousePlant::getBusy() const{
-	return careBusy.load();
+void GreenHousePlant::setWaterBusy(bool busy) {
+	waterCareBusy.store(busy, std::memory_order_relaxed);
+}
+
+bool GreenHousePlant::getWaterSuccess() const{
+	return waterSuccessful.load();
+}
+
+bool GreenHousePlant::getFertilizingSuccess() const{
+	return fertilizingSuccessful.load();
+}
+
+bool GreenHousePlant::getWaterBusy() const{
+	return waterCareBusy.load();
+}
+
+bool GreenHousePlant::getFertilizingBusy() const{
+	return fertilizingCareBusy.load();
 }
 
 bool GreenHousePlant::getIsAlive() const{

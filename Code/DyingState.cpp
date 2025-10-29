@@ -41,11 +41,11 @@ void DyingState::transitionToNext() {
             }
         };
 
-        if (plant_->getSuccess()) {
+        if (plant_->getWaterSuccess() && plant_->getFertilizingSuccess()) {
             std::cout << "Dying succeed " << plant_->getName() << std::endl;
             goPrevious();
-        } else if (plant_->getBusy()) {
-            while (!plant_->getSuccess()) {
+        } else if (plant_->getWaterBusy() || plant_->getFertilizingBusy()) {
+            while (!plant_->getWaterSuccess() || !plant_->getFertilizingSuccess()) {
                 // timing::sleep_for(std::chrono::milliseconds(100));
                 std::this_thread::sleep_for(std::chrono::milliseconds(100));
             }

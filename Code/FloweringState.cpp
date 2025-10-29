@@ -18,15 +18,15 @@ void FloweringState::transitionToNext() {
 		}
 		std::this_thread::sleep_for(std::chrono::seconds(10));
 
-			if (plant_->getSuccess()) {
+			if (plant_->getWaterSuccess() && plant_->getFertilizingSuccess()) {
 				std::cout << "Flowering succeed " << plant_->getName() << std::endl;
 				if (randomNumber == 1) {
 					plant_->setState(new SenescenceState(plant_));
 				} else {
 					plant_->setState(new MatureState(plant_));
 				}
-			} else if (plant_->getBusy()) {
-				while (!plant_->getSuccess()) {
+			} else if (plant_->getWaterBusy() || plant_->getFertilizingBusy()) {
+				while (!plant_->getWaterSuccess() || !plant_->getFertilizingSuccess()) {
 					std::this_thread::sleep_for(std::chrono::milliseconds(100));
 				}
 				std::cout << "Flowering succeed " << plant_->getName() << std::endl;
