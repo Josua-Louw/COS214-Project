@@ -20,7 +20,6 @@ void SeedlingState::transitionToNext() {
         if (plant_->getWaterSuccess() && plant_->getFertilizingSuccess()) {
             std::cout << "Seedling success " << plant_->getName() << std::endl;
             plant_->setState(new JuvenileState(plant_));
-            std::cout << "Test Seedling Success" << std::endl;
             return;
         } else if (plant_->getWaterBusy() || plant_->getFertilizingBusy()) {
             while (!plant_->getWaterSuccess() || !plant_->getFertilizingSuccess()) {
@@ -28,7 +27,6 @@ void SeedlingState::transitionToNext() {
             }
             std::cout << "Seedling success " << plant_->getName() << std::endl;
             plant_->setState(new JuvenileState(plant_));
-            std::cout << "Test" << std::endl;
             return;
         } else {
             for (auto command : commands) {
@@ -37,7 +35,6 @@ void SeedlingState::transitionToNext() {
             }
             std::cout << "Seedling fail " << plant_->getName() << std::endl;
             plant_->setState(new DyingState(plant_, "Seedling"));
-            std::cout << "Test" << std::endl;
             return;
         }
     }).detach();

@@ -13,6 +13,7 @@ void JuvenileState::transitionToNext() {
         std::vector<CommandPtr> commands = plant_->applyCurrentCare();
         if (commands.empty()) {
             plant_->setState(new DeadState(plant_));
+            return;
         }
         std::this_thread::sleep_for(std::chrono::seconds(10));
 
@@ -20,12 +21,14 @@ void JuvenileState::transitionToNext() {
         if (plant_->getWaterSuccess() && plant_->getFertilizingSuccess()) {
             std::cout << "Juvenile success " << plant_->getName() << std::endl;
             plant_->setState(new MatureState(plant_));
+            return;
         } else if (plant_->getWaterBusy() || plant_->getFertilizingBusy()) {
             while (!plant_->getWaterSuccess() || !plant_->getFertilizingSuccess()) {
                 std::this_thread::sleep_for(std::chrono::milliseconds(100));
             }
             std::cout << "Juvenile success " << plant_->getName() << std::endl;
             plant_->setState(new MatureState(plant_));
+            return;
         } else {
             for (auto command : commands) {
                 if (command)
@@ -33,6 +36,7 @@ void JuvenileState::transitionToNext() {
             }
             std::cout << "Juvenile fail " << plant_->getName() << std::endl;
             plant_->setState(new DyingState(plant_, "Juvenile"));
+            return;
         }
     }).detach();
 }
