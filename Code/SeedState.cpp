@@ -4,7 +4,6 @@
 #include "SeedlingState.h"
 
 SeedState::SeedState(GreenHousePlant * plant) : PlantState(plant){
-	std::cout << "Jou moer" << std::endl;
 	SeedState::transitionToNext();
 }
 
@@ -19,7 +18,6 @@ void SeedState::transitionToNext() {
 			std::cout << "Seed success " << plant_->getName() << std::endl;
 			plant_->setState(new SeedlingState(plant_));
 		} else if (plant_->getBusy()) {
-			std::cout << "Seed pending success " << plant_->getName() << std::endl;
 			while (!plant_->getSuccess()) {
 				std::this_thread::sleep_for(std::chrono::milliseconds(100));
 			}

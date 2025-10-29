@@ -54,12 +54,12 @@ Command* GreenHousePlant::feed(int time) {
 
 void GreenHousePlant::watering(int time) {
 	std::this_thread::sleep_for(std::chrono::seconds(time));
-	std::cout << "Finished Watering\n";
+	std::cout << "Finished Watering " << this->getName() << std::endl;
 }
 
 void GreenHousePlant::fertilizing(int time) {
 	std::this_thread::sleep_for(std::chrono::seconds(time));
-	std::cout << "Finished Fertilizing\n";
+	std::cout << "Finished Fertilizing " << this->getName() << std::endl;
 }
 
 void GreenHousePlant::setSuccess(bool success) {

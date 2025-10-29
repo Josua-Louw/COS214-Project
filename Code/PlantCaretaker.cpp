@@ -32,8 +32,8 @@ void PlantCaretaker::receiveCommand(Command * command) {
 
     if (command->getAbortStatus()) {
         nurseryHub->finishCare(command->getPlant(), false);
-        delete command;
         std::cout << "Abort " << command->getPlant()->getName() << std::endl;
+        delete command;
         return;
     }
 

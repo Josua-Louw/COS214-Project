@@ -15,7 +15,7 @@ DyingState::DyingState(GreenHousePlant* plant, PrevKind previousKind)
 
 void DyingState::transitionToNext() {
     std::thread([this]() {
-        std::cout << "\033[1;32mDying start\033[0m" << std::endl;
+        std::cout << "\033[1;32mDying start\033[0m " << plant_->getName() << std::endl;
         std::vector<Command*> commands = plant_->applyCurrentCare();
         std::this_thread::sleep_for(std::chrono::seconds(10));
 
@@ -33,22 +33,21 @@ void DyingState::transitionToNext() {
         };
 
         if (plant_->getSuccess()) {
-            std::cout << "Dying succeed" << std::endl;
+            std::cout << "Dying succeed " << plant_->getName() << std::endl;
             goPrevious();
         } else if (plant_->getBusy()) {
-            std::cout << "Dying pending succeed" << std::endl;
             while (!plant_->getSuccess()) {
                 // timing::sleep_for(std::chrono::milliseconds(100));
                 std::this_thread::sleep_for(std::chrono::milliseconds(100));
             }
-            std::cout << "Dying succeed" << std::endl;
+            std::cout << "Dying succeed " << plant_->getName() << std::endl;
             goPrevious();
         } else {
             for (auto command : commands) {
                 if (command)
                     command->setAbortStatus(true);
             }
-            std::cout << "Dying fail" << std::endl;
+            std::cout << "Dying fail " << plant_->getName() << std::endl;
             plant_->setState(new DeadState(plant_));
         }
     }).detach();
