@@ -78,6 +78,10 @@ bool GreenHousePlant::getBusy() const{
 	return careBusy.load();
 }
 
+bool GreenHousePlant::getIsAlive() const{
+	return isAlive.load();
+}
+
 void GreenHousePlant::markCareStarted() {
 	careSuccessful.store(false, std::memory_order_relaxed);
 	careBusy.store(true, std::memory_order_release);
@@ -92,5 +96,9 @@ void GreenHousePlant::setState(PlantState * newState) {
 	if (!state)
 		delete state;
 	state = newState;
+}
+
+void GreenHousePlant::killPlant(GreenHousePlant* plant) {
+	isAlive.store(false);
 }
 
