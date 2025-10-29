@@ -22,9 +22,9 @@ std::vector<CommandPtr> WaterLimitingStrategy::applyCare(GreenHousePlant& plant)
     plant.setFertilizingSuccess(false);
     plant.setWaterBusy(false);
     plant.setFertilizingBusy(false);
-    CommandPtr returnWater = plant.water(1);
+    CommandPtr returnWater = plant.water(2);
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    CommandPtr returnFeed = plant.feed(2);
+    CommandPtr returnFeed = plant.feed(4);
     return { returnWater, returnFeed};
 }
 

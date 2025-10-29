@@ -14,7 +14,7 @@ using CommandPtr = std::shared_ptr<Command>;
 
 NurseryHub::NurseryHub() {
 	auto* mgr = new Manager("manager-1", this);
-	staff.push_back(mgr);
+	staff = mgr;
 }
 
 template <typename T>
@@ -40,7 +40,7 @@ void NurseryHub::assign(CommandPtr cmd) {
 		throw std::invalid_argument("Command cannot be null");
 	}
 
-	staff.back()->receiveCommand(cmd);
+	staff->receiveCommand(cmd);
 }
 
 /**
@@ -69,9 +69,9 @@ void NurseryHub::registerPlant(Plant* p) {
  * @brief Register a staff member with the mediator.
  */
 void NurseryHub::registerStaff(Staff* s) {
-	if (s && !ptrPresent(staff, s)) {
-		staff.front()->addStaffMember(s);
-		staff.push_back(s);
+	if (s && staff) {
+		s->addStaffMember(staff);
+		staff = s;
 	}
 }
 

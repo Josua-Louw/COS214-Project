@@ -31,20 +31,25 @@ int testingMain() {
     Staff* careTaker1 = new PlantCaretaker("care1",hub);
     Staff* careTaker2 = new PlantCaretaker("care2",hub);
     Staff* careTaker3 = new PlantCaretaker("care3",hub);
-    Staff* careTaker4 = new PlantCaretaker("care4",hub);
+
     hub->registerStaff(careTaker1);
     hub->registerStaff(careTaker2);
+    hub->registerStaff(careTaker3);
     CareStrategy* strat1 = new RegularCareStrategy();
     CareStrategy* strat2 = new FertilizerBoostStrategy();
     auto* plant1 = new GreenHousePlant("plant1", 18, hub, strat1);
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
     auto* plant2 = new GreenHousePlant("plant2", 18, hub, strat2);
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
     auto* plant3 = new GreenHousePlant("plant3", 18, hub, strat1);
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
     auto* plant4 = new GreenHousePlant("plant4", 18, hub, strat1);
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
     auto* plant5 = new GreenHousePlant("plant5", 18, hub, strat2);
 
 
 
-    std::this_thread::sleep_for(std::chrono::minutes(4));
+    std::this_thread::sleep_for(std::chrono::minutes(3));
 
     delete hub;
     delete strat1;

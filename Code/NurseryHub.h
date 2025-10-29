@@ -32,7 +32,7 @@ class NurseryHub : public NurseryMediator {
 
 private:
 	std::vector<Plant*> plants;      ///< Plants registered with the mediator.
-	std::vector<Staff*> staff;       ///< Staff members available for assignments.
+	Staff* staff;       ///< Staff members available for assignments.
 	std::vector<Customer*> customers;///< Customers interacting through the mediator.
 
 public:

@@ -65,3 +65,9 @@ void PlantCaretaker::receiveCommand(CommandPtr command) {
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }).detach();
 }
+
+void PlantCaretaker::printChain() {
+    std::cout << this->getId() << ", ";
+    if (nextStaff)
+    nextStaff->printChain();
+}

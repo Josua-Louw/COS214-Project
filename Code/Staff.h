@@ -15,7 +15,7 @@ using CommandPtr = std::shared_ptr<Command>;
  * Represents staff members who handle tasks like plant care and customer interactions. The Chain of Responsibility Pattern (FR6) distributes commands to available staff via nextStaff, removing assigned staff from the chain. The Command Pattern (FR5) stores tasks in taskList for execution. Staff interacts with NurseryHub (Mediator, FR7) for task coordination.
  */
 class Staff : public Person {
-protected:
+public:
     Staff* nextStaff; /**< Pointer to the next staff in the chain (FR6). */
     std::atomic<bool> staffBusy{false};
 public:
@@ -51,8 +51,10 @@ public:
         if (staff == nullptr) {
             return;
         }
-        staff->nextStaff = this;
+        this->nextStaff = staff;
     }
+
+    virtual void printChain() = 0;
 };
 
 #endif // STAFF_H

@@ -35,6 +35,7 @@ public:
      * @param command Pointer to the Command to execute.
      */
     void receiveCommand(CommandPtr command) override;
+    void printChain() override;
 };
 
 #endif // PLANT_CARETAKER_H
