@@ -70,6 +70,9 @@ public:
     explicit GreenHousePlant(const std::string& name = "", double price = 0.0, NurseryMediator* mediator = nullptr, CareStrategy* care = nullptr);
 
     ~GreenHousePlant() override;
+
+    GreenHousePlant(const GreenHousePlant&) = delete;
+    GreenHousePlant& operator=(const GreenHousePlant&) = delete;
     /**
      * @brief Waters the plant.
      * @details Defines the interface for watering the plant, with implementation details provided by derived classes based on the plant’s type and state.
