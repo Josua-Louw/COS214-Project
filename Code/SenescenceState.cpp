@@ -15,5 +15,9 @@ void SenescenceState::transitionToNext() {
 }
 
 SenescenceState::SenescenceState(GreenHousePlant * plant) : PlantState(plant) {
+	plant_->setWaterSuccess(false);
+	plant_->setFertilizingSuccess(false);
+	plant_->setWaterBusy(false);
+	plant_->setFertilizingBusy(false);
 	SenescenceState::transitionToNext();
 }

@@ -15,8 +15,13 @@
  * @note This method implements the behavior of the water-limiting care strategy.
  */
 std::vector<CommandPtr> WaterLimitingStrategy::applyCare(GreenHousePlant& plant) {
-    plant.setSuccess(false);
-    plant.setBusy(false);
+    if (!plant.getIsAlive()) {
+        return {};
+    }
+    plant.setWaterSuccess(false);
+    plant.setFertilizingSuccess(false);
+    plant.setWaterBusy(false);
+    plant.setFertilizingBusy(false);
     CommandPtr returnWater = plant.water(1);
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
     CommandPtr returnFeed = plant.feed(2);

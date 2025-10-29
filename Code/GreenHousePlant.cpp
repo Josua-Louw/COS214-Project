@@ -64,12 +64,12 @@ void GreenHousePlant::fertilizing(int time) {
 	std::cout << "Finished Fertilizing " << this->getName() << std::endl;
 }
 
-void GreenHousePlant::setSuccess(bool success) {
-	careSuccessful.store(success, std::memory_order_release);
+void GreenHousePlant::setWaterSuccess(bool success) {
+	waterSuccessful.store(success, std::memory_order_relaxed);
 }
 
-void GreenHousePlant::setBusy(bool busy) {
-	careBusy.store(busy, std::memory_order_release);
+void GreenHousePlant::setFertilizingSuccess(bool success) {
+	fertilizingSuccessful.store(success, std::memory_order_relaxed);
 }
 
 bool GreenHousePlant::getSuccess() const{
@@ -84,14 +84,24 @@ bool GreenHousePlant::getIsAlive() const{
 	return isAlive.load();
 }
 
-void GreenHousePlant::markCareStarted() {
-	careSuccessful.store(false, std::memory_order_relaxed);
-	careBusy.store(true, std::memory_order_release);
+void GreenHousePlant::markCareStarted(std::string type) {
+	if (type == "FertilizePlant") {
+		fertilizingSuccessful.store(false, std::memory_order_relaxed);
+		fertilizingCareBusy.store(true, std::memory_order_relaxed);
+	} else {
+		waterSuccessful.store(false, std::memory_order_relaxed);
+		waterCareBusy.store(true, std::memory_order_relaxed);
+	}
 }
 
-void GreenHousePlant::markCareFinished(bool success) {
-	careSuccessful.store(success, std::memory_order_relaxed);
-	careBusy.store(false, std::memory_order_release);
+void GreenHousePlant::markCareFinished(bool success, std::string type) {
+	if (type == "FertilizePlant") {
+		fertilizingSuccessful.store(success, std::memory_order_relaxed);
+		fertilizingCareBusy.store(false, std::memory_order_relaxed);
+	} else {
+		waterSuccessful.store(success, std::memory_order_relaxed);
+		waterCareBusy.store(false, std::memory_order_relaxed);
+	}
 }
 
 void GreenHousePlant::setState(PlantState * newState) {

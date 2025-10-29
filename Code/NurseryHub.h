@@ -63,10 +63,10 @@ public:
 	 */
 	void registerStaff(Staff* s) override;
 
-	bool isCareBusy(const GreenHousePlant* p) const override;
-	bool wasLastCareSuccessful(const GreenHousePlant* p) const override;
-	void beginCare(GreenHousePlant* p) override;
-	void finishCare(GreenHousePlant* p, bool success) override;
+	// bool isCareBusy(const GreenHousePlant* p) const override;
+	// bool wasLastCareSuccessful(const GreenHousePlant* p) const override;
+	void beginCare(GreenHousePlant* p, std::string type) override;
+	void finishCare(GreenHousePlant* p, std::string type, bool success) override;
 };
 
 #endif

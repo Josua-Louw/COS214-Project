@@ -30,6 +30,8 @@ int testingMain() {
     NurseryMediator* hub = new NurseryHub();
     Staff* careTaker1 = new PlantCaretaker("care1",hub);
     Staff* careTaker2 = new PlantCaretaker("care2",hub);
+    Staff* careTaker3 = new PlantCaretaker("care3",hub);
+    Staff* careTaker4 = new PlantCaretaker("care4",hub);
     hub->registerStaff(careTaker1);
     hub->registerStaff(careTaker2);
     CareStrategy* strat1 = new RegularCareStrategy();
@@ -42,13 +44,15 @@ int testingMain() {
 
 
 
-    std::this_thread::sleep_for(std::chrono::minutes(2));
+    std::this_thread::sleep_for(std::chrono::minutes(4));
 
     delete hub;
     delete strat1;
     delete strat2;
     delete careTaker1;
     delete careTaker2;
+    delete careTaker3;
+    delete careTaker4;
 
     delete plant1;
     delete plant2;

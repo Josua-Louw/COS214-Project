@@ -4,6 +4,10 @@
 #include "SeedlingState.h"
 
 SeedState::SeedState(GreenHousePlant * plant) : PlantState(plant){
+	plant_->setWaterSuccess(false);
+	plant_->setFertilizingSuccess(false);
+	plant_->setWaterBusy(false);
+	plant_->setFertilizingBusy(false);
 	SeedState::transitionToNext();
 }
 
@@ -18,12 +22,11 @@ void SeedState::transitionToNext() {
 			plant_->setState(new DeadState(plant_));
 		}
 		std::this_thread::sleep_for(std::chrono::seconds(10));
-
-		if (plant_->getSuccess()) {
+		if (plant_->getWaterSuccess() && plant_->getFertilizingSuccess()) {
 			std::cout << "Seed success " << plant_->getName() << std::endl;
 			plant_->setState(new SeedlingState(plant_));
-		} else if (plant_->getBusy()) {
-			while (!plant_->getSuccess()) {
+		} else if (plant_->getWaterBusy() || plant_->getFertilizingBusy()) {
+			while (!plant_->getWaterSuccess() || !plant_->getFertilizingSuccess()) {
 				std::this_thread::sleep_for(std::chrono::milliseconds(100));
 			}
 			std::cout << "Seed success " << plant_->getName() << std::endl;

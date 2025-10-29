@@ -16,11 +16,11 @@ void SeedlingState::transitionToNext() {
         }
         std::this_thread::sleep_for(std::chrono::seconds(10));
 
-        if (plant_->getSuccess()) {
+        if (plant_->getWaterSuccess() && plant_->getFertilizingSuccess()) {
             std::cout << "Seedling success " << plant_->getName() << std::endl;
             plant_->setState(new JuvenileState(plant_));
-        } else if (plant_->getBusy()) {
-            while (!plant_->getSuccess()) {
+        } else if (plant_->getWaterBusy() || plant_->getFertilizingBusy()) {
+            while (!plant_->getWaterBusy() || !plant_->getFertilizingSuccess()) {
                 std::this_thread::sleep_for(std::chrono::milliseconds(100));
             }
             std::cout << "Seedling success " << plant_->getName() << std::endl;
@@ -37,5 +37,9 @@ void SeedlingState::transitionToNext() {
 }
 
 SeedlingState::SeedlingState(GreenHousePlant * plant) : PlantState(plant) {
+    plant_->setWaterSuccess(false);
+    plant_->setFertilizingSuccess(false);
+    plant_->setWaterBusy(false);
+    plant_->setFertilizingBusy(false);
     SeedlingState::transitionToNext();
 }

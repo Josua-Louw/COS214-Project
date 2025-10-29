@@ -75,35 +75,35 @@ void NurseryHub::registerStaff(Staff* s) {
 	}
 }
 
-bool NurseryHub::isCareBusy(const GreenHousePlant* p) const {
-	if (p) {
+// bool NurseryHub::isCareBusy(const GreenHousePlant* p) const {
+// 	if (p) {
+//
+// 		return p->getBusy();
+//
+// 	} else {
+//
+// 		return false;
+// 	}
+// }
+//
+// bool NurseryHub::wasLastCareSuccessful(const GreenHousePlant* p) const {
+// 	if (p) {
+//
+// 		return p->getSuccess();
+// 	} else {
+//
+// 		return false;
+// 	}
+// }
 
-		return p->getBusy();
+void NurseryHub::beginCare(GreenHousePlant* p, std::string type) {
 
-	} else {
-
-		return false;
-	}
+	if (!p || !p->getIsAlive()) return;
+	p->markCareStarted(type);
 }
 
-bool NurseryHub::wasLastCareSuccessful(const GreenHousePlant* p) const {
-	if (p) {
+void NurseryHub::finishCare(GreenHousePlant* p, std::string type, bool success) {
 
-		return p->getSuccess();
-	} else {
-
-		return false;
-	}
-}
-
-void NurseryHub::beginCare(GreenHousePlant* p) {
-
-	if (!p) return;
-	p->markCareStarted();
-}
-
-void NurseryHub::finishCare(GreenHousePlant* p, bool success) {
-
-	if (!p) return;
-	p->markCareFinished(success);
+	if (!p || !p->getIsAlive()) return;
+	p->markCareFinished(success, type);
 }

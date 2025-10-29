@@ -1,5 +1,6 @@
 #include "PlantCaretaker.h"
 
+#include <condition_variable>
 #include <stdexcept>
 
 #include "WaterPlant.h"
@@ -18,28 +19,12 @@ using CommandPtr = std::shared_ptr<Command>;
 void PlantCaretaker::receiveCommand(CommandPtr command) {
     std::unique_lock<std::mutex> lock(staffMutex);
 
-    if (!command || !command->getPlant()) {
-        throw std::invalid_argument("Command or Plant cannot be null");
-    }
-
-    if (!command->getPlant()->getIsAlive()) {
-        return;
-    }
+    if (!command || !command->getPlant()) return;
+    if (!command->getPlant()->getIsAlive()) return;
 
     if (staffBusy) {
         if (nextStaff)
             nextStaff->receiveCommand(command);
-        return;
-    }
-
-    if (command->getType() == "SellCommand") {
-        if (nextStaff) nextStaff->receiveCommand(command);
-        return;
-    }
-
-    if (command->getAbortStatus()) {
-        nurseryHub->finishCare(command->getPlant(), false);
-        std::cout << "Abort " << command->getPlant()->getName() << std::endl;
         return;
     }
 
@@ -49,18 +34,34 @@ void PlantCaretaker::receiveCommand(CommandPtr command) {
     std::thread([this, command]() {
         auto plant = command->getPlant();
         if (!plant || !plant->getIsAlive()) return;
-        nurseryHub->beginCare(plant);
 
-        if (!plant->getIsAlive()) return;
+        std::mutex execMutex;
+        std::condition_variable cv;
+        bool done = false;
 
-        command->execute();
-        nurseryHub->finishCare(plant, true);
+        std::thread execThread([&]() {
+            nurseryHub->beginCare(plant, command->getType());
+            command->execute();
+            {
+                std::lock_guard<std::mutex> lock(execMutex);
+                done = true;
+            }
+            cv.notify_one();
+        });
+
+        // Wait for execute() to complete before finishing care
+        {
+            std::unique_lock<std::mutex> lock(execMutex);
+            cv.wait(lock, [&] { return done; });
+        }
+
+        execThread.join();
+        nurseryHub->finishCare(plant, command->getType() ,true);
 
         {
             std::lock_guard<std::mutex> lock(staffMutex);
             staffBusy = false;
         }
-
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }).detach();
 }

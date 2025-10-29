@@ -67,10 +67,10 @@ public:
 	virtual void registerStaff(Staff* s) = 0;
 
 	//GreenHousePlant functions
-	virtual bool isCareBusy(const GreenHousePlant* p) const = 0;
-	virtual bool wasLastCareSuccessful(const GreenHousePlant* p) const = 0;
-	virtual void beginCare(GreenHousePlant* p) = 0;               //caretaker grabbed job
-	virtual void finishCare(GreenHousePlant* p, bool success) =0;//timer for command completed
+	// virtual bool isCareBusy(const GreenHousePlant* p) const = 0;
+	// virtual bool wasLastCareSuccessful(const GreenHousePlant* p) const = 0;
+	virtual void beginCare(GreenHousePlant* p, std::string type) = 0;               //caretaker grabbed job
+	virtual void finishCare(GreenHousePlant* p, std::string type, bool success) =0;//timer for command completed
 };
 
 #endif

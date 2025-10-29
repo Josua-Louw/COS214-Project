@@ -8,8 +8,11 @@
 
 // If you added the timing shim, include it and replace sleeps accordingly.
 
-DyingState::DyingState(GreenHousePlant* plant, PrevKind previousKind)
-: PlantState(plant), prevKind(previousKind) {
+DyingState::DyingState(GreenHousePlant* plant, PrevKind previousKind) : PlantState(plant), prevKind(previousKind) {
+    plant_->setWaterSuccess(false);
+    plant_->setFertilizingSuccess(false);
+    plant_->setWaterBusy(false);
+    plant_->setFertilizingBusy(false);
     DyingState::transitionToNext();
 }
 

@@ -7,7 +7,7 @@ void FloweringState::transitionToNext() {
 		return;
 	}
 	std::thread([this]() {
-		std::cout << "\033[1;32mFlowering start\033[0m" << std::endl;
+		std::cout << "\033[1;32mFlowering start\033[0m " << plant_->getName() << std::endl;
 		std::random_device rd;
 		std::mt19937 gen(rd());
 		std::uniform_int_distribution<> dist(1, 2);
@@ -47,5 +47,9 @@ void FloweringState::transitionToNext() {
 }
 
 FloweringState::FloweringState(GreenHousePlant * plant) : PlantState(plant) {
+	plant_->setWaterSuccess(false);
+	plant_->setFertilizingSuccess(false);
+	plant_->setWaterBusy(false);
+	plant_->setFertilizingBusy(false);
 	FloweringState::transitionToNext();
 }

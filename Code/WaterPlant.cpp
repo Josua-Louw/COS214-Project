@@ -21,7 +21,8 @@ std::string WaterPlant::getType() {
  * Calls the plant's water method, which applies the appropriate care strategy and triggers state transitions if needed. Supports FR3 (Strategy) and FR4 (State) by ensuring watering aligns with the plant's care requirements.
  */
 void WaterPlant::execute() {
-    if (plant) {
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    if (plant && plant->getIsAlive() && !this->getAbortStatus()) {
         plant->watering(time); // Calls Plant's water method, which uses CareStrategy and updates PlantState
     }
 }

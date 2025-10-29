@@ -24,7 +24,8 @@ GreenHousePlant * FertilizePlant::getPlant() {
  * Calls the plant’s feed method, which applies the fertilization strategy (e.g., FertilizerBoostStrategy) and triggers state transitions (e.g., JuvenileState::handleCare). Supports FR3 and FR4.
  */
 void FertilizePlant::execute() {
-    if (plant) {
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    if (plant && plant->getIsAlive() && !this->getAbortStatus()) {
         plant->fertilizing(time); // Calls GreenHousePlant’s feed method, using CareStrategy and PlantState
     }
 }
