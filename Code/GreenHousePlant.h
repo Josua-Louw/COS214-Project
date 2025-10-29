@@ -131,7 +131,7 @@ public:
 
     void setState(PlantState* newState);
 
-    void killPlant(GreenHousePlant* plant);
+    void killPlant();
 
 };
 

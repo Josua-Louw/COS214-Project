@@ -98,7 +98,7 @@ void GreenHousePlant::setState(PlantState * newState) {
 	state = newState;
 }
 
-void GreenHousePlant::killPlant(GreenHousePlant* plant) {
+void GreenHousePlant::killPlant() {
 	isAlive.store(false);
 }
 
