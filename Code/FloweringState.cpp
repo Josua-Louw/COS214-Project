@@ -41,7 +41,7 @@ void FloweringState::transitionToNext() {
 						command->setAbortStatus(true);
 				}
 				std::cout << "Flowering fail " << plant_->getName() << std::endl;
-				plant_->setState(new DyingState(plant_, DyingState::PrevKind::Flowering));
+				plant_->setState(new DyingState(plant_, "Flowering"));
 			}
 		}).detach();
 }

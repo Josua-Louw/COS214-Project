@@ -57,7 +57,7 @@ int testingMain() {
     delete careTaker1;
     delete careTaker2;
     delete careTaker3;
-    delete careTaker4;
+
 
     delete plant1;
     delete plant2;

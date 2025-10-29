@@ -29,6 +29,8 @@ public:
      * @param command Pointer to the Command (e.g., SellCommand) to execute.
      */
     void receiveCommand(CommandPtr command) override;
+
+    void printChain() override;
 };
 
 #endif // SALES_MANAGER_H

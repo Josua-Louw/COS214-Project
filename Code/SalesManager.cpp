@@ -42,3 +42,8 @@ void SalesManager::receiveCommand(CommandPtr command) {
             nextStaff->receiveCommand(command);
     }
 }
+
+void SalesManager::printChain() {
+    std::cout << this->getId() << ", ";
+    nextStaff->printChain();
+}

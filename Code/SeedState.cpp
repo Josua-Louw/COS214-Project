@@ -37,7 +37,7 @@ void SeedState::transitionToNext() {
 					command->setAbortStatus(true);
 			}
 			std::cout << "Seed fail " << plant_->getName() << std::endl;
-			plant_->setState(new DyingState(plant_, DyingState::PrevKind::Seed));
+			plant_->setState(new DyingState(plant_, "Seed"));
 		}
 	}).detach();
 }

@@ -30,7 +30,7 @@ void MatureState::transitionToNext() {
                 command->setAbortStatus(true);
            }
            std::cout << "Mature fail " << plant_->getName() << std::endl;
-           plant_->setState(new DyingState(plant_, DyingState::PrevKind::Mature));
+           plant_->setState(new DyingState(plant_, "Mature"));
        }
    }).detach();
 }

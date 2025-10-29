@@ -30,3 +30,9 @@ void Manager::redistributeCommands(CommandPtr command) const {
     nurseryHub->assign(std::move(command));
 }
 
+void Manager::printChain() {
+    std::cout << this->getId() << std::endl;
+    if (nextStaff)
+        nextStaff->printChain();
+}
+

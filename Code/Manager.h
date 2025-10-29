@@ -40,6 +40,8 @@ public:
      */
     void redistributeCommands(CommandPtr command) const;
 
+    void printChain() override;
+
 };
 
 #endif // MANAGER_H

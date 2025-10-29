@@ -32,7 +32,7 @@ void JuvenileState::transitionToNext() {
                     command->setAbortStatus(true);
             }
             std::cout << "Juvenile fail " << plant_->getName() << std::endl;
-            plant_->setState(new DyingState(plant_, DyingState::PrevKind::Juvenile));
+            plant_->setState(new DyingState(plant_, "Juvenile"));
         }
     }).detach();
 }
