@@ -3,7 +3,9 @@
 #include "SeedState.h"
 
 #include <iostream>
+#include <memory>
 
+using CommandPtr = std::shared_ptr<Command>;
 // Constructor
 GreenHousePlant::GreenHousePlant(const std::string& name, double price, NurseryMediator* mediator, CareStrategy* care)
     : name(name), price(price), mediator_(mediator), strategy(care) {
@@ -40,14 +42,14 @@ std::vector<Command*> GreenHousePlant::applyCurrentCare() {
 	}
 }
 
-Command* GreenHousePlant::water(int time) {
-	Command* cmd = new WaterPlant(this, time);
+CommandPtr GreenHousePlant::water(int time) {
+	auto cmd = std::make_shared<WaterPlant>(this, time);
 	if (mediator_) mediator_->assign(cmd);
 	return cmd;
 }
 
-Command* GreenHousePlant::feed(int time) {
-	Command* cmd = new FertilizePlant(this,time);
+CommandPtr GreenHousePlant::feed(int time) {
+	auto cmd = std::make_shared<FertilizePlant>(this,time);
 	if (mediator_) mediator_->assign(cmd);
 	return cmd;
 }

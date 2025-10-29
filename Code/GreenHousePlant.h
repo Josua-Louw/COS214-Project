@@ -13,9 +13,11 @@
 #include <vector>
 #include <thread>
 #include <chrono>
+#include <memory>
 
 // Forward declaration only - include SeedState.h in the .cpp file
 class SeedState;
+using CommandPtr = std::shared_ptr<Command>;
 
 
 
@@ -71,14 +73,14 @@ public:
      * @details Defines the interface for watering the plant, with implementation details provided by derived classes based on the plant’s type and state.
      * @return void
      */
-    Command* water(int time);
+    CommandPtr water(int time);
 
     /**
      * @brief Feeds the plant.
      * @details Defines the interface for feeding the plant (e.g., applying fertilizer), with implementation details provided by derived classes based on the plant’s type and state.
      * @return void
      */
-    Command* feed(int time);
+    CommandPtr feed(int time);
 
     /**
      * @brief Gets the price of the plant.
