@@ -14,6 +14,9 @@ DyingState::DyingState(GreenHousePlant* plant, PrevKind previousKind)
 }
 
 void DyingState::transitionToNext() {
+    if (!plant_ || plant_->getIsAlive() == false) {
+        return;
+    }
     std::thread([this]() {
         std::cout << "\033[1;32mDying start\033[0m " << plant_->getName() << std::endl;
         std::vector<CommandPtr> commands = plant_->applyCurrentCare();

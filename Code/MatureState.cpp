@@ -3,6 +3,9 @@
 
 // Implement the logic to transition the plant to the next state
 void MatureState::transitionToNext() {
+    if (!plant_ || plant_->getIsAlive() == false) {
+        return;
+    }
     std::thread([this]() {
         std::cout << "\033[1;32mMature start\033[0m " << plant_->getName() << std::endl;
         std::vector<CommandPtr> commands = plant_->applyCurrentCare();

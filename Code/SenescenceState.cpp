@@ -3,6 +3,9 @@
 
 // Implement the logic to transition the plant to the next state
 void SenescenceState::transitionToNext() {
+	if (!plant_ || plant_->getIsAlive() == false) {
+		return;
+	}
 	std::thread([this]() {
 		std::cout << "\033[1;32mSenescence start\033[0m " << plant_->getName() << std::endl;
 		std::this_thread::sleep_for(std::chrono::seconds(10));

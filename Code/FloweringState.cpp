@@ -3,6 +3,9 @@
 
 // Implement the logic to transition the plant to the next state
 void FloweringState::transitionToNext() {
+	if (!plant_ || plant_->getIsAlive() == false) {
+		return;
+	}
 	std::thread([this]() {
 		std::cout << "\033[1;32mFlowering start\033[0m" << std::endl;
 		std::random_device rd;
