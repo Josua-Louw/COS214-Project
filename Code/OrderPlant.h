@@ -48,7 +48,7 @@ public:
      * @brief Gets the name of the plant.
      * @return The name of the plant as a string.
      */
-    std::string getName() const;
+    virtual std::string getName() const = 0;
     /*
      * @brief Gets the type of the plant.
      * @return The type of the plant as a string.
