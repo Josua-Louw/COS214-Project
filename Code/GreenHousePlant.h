@@ -116,7 +116,7 @@ public:
     */
 
     void setStrategy(CareStrategy* s) { strategy = s; }
-    std::vector<Command*> applyCurrentCare();           // optional helper used by water()/feed()
+    std::vector<CommandPtr> applyCurrentCare();           // optional helper used by water()/feed()
 
     void watering(int time);
     void fertilizing(int time);

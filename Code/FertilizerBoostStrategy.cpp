@@ -14,12 +14,12 @@
  * @note This method is part of the Strategy pattern and defines
  * how this specific care approach benefits the plant.
  */
-std::vector<Command*> FertilizerBoostStrategy::applyCare(GreenHousePlant& plant) {
+std::vector<CommandPtr> FertilizerBoostStrategy::applyCare(GreenHousePlant& plant) {
     plant.setSuccess(false);
     plant.setBusy(false);
-    Command* returnWater = plant.water(2);
+    CommandPtr returnWater = plant.water(2);
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    Command* returnFeed = plant.feed(4);
+    CommandPtr returnFeed = plant.feed(4);
     return { returnWater, returnFeed};
 }
 

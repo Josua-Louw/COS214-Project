@@ -1,9 +1,11 @@
 #include "Manager.h"
+
+#include <utility>
 #include "WaterPlant.h"
 #include "FertilizePlant.h"
 #include "SellCommand.h"
 #include "NurseryHub.h"
-
+using CommandPtr = std::shared_ptr<Command>;
 /**
  * @file Manager.cpp
  * @brief Implementation of the Manager class.
@@ -17,14 +19,14 @@
  * 
  * Queues the command in pendingCommands and notifies NurseryHub. Supports FR5 (Command) and FR6 (Chain of Responsibility).
  */
-void Manager::receiveCommand(Command* command) {
+void Manager::receiveCommand(CommandPtr command) {
     std::thread([this, command]() {
         std::this_thread::sleep_for(std::chrono::seconds(1));
         redistributeCommands(command);
     }).detach();
 }
 
-void Manager::redistributeCommands(Command * command) const {
-    nurseryHub->assign(command);
+void Manager::redistributeCommands(CommandPtr command) const {
+    nurseryHub->assign(std::move(command));
 }
 

@@ -2,13 +2,14 @@
 #define NURSERYMEDIATOR_H
 
 #include <string>
+#include <memory>
 
 class Command;
 class GreenHousePlant;
 class Plant;
 class Staff;
 class Customer;
-
+using CommandPtr = std::shared_ptr<Command>;
 /**
  * @file NurseryMediator.h
  * @brief Abstract mediator interface for coordinating communication in the nursery.
@@ -51,7 +52,7 @@ public:
 	 * @brief Assign a command via the mediator to an appropriate colleague.
 	 * @param cmd Command to be routed/assigned.
 	 */
-	virtual void assign(Command* cmd) = 0;
+	virtual void assign(CommandPtr cmd) = 0;
 
 	/**
 	 * @brief Register a plant with the mediator.

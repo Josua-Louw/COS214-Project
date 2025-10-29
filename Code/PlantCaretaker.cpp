@@ -12,8 +12,8 @@
  *
  * Handles plant care tasks by processing WaterPlant and FertilizePlant commands, supporting the Command Pattern (FR5). Participates in the Chain of Responsibility Pattern (FR6) by handling or delegating tasks via nextStaff. Interacts with Plant (FR3 Strategy, FR4 State) and NurseryHub (Mediator, FR7).
  */
-
-void PlantCaretaker::receiveCommand(Command * command) {
+using CommandPtr = std::shared_ptr<Command>;
+void PlantCaretaker::receiveCommand(CommandPtr command) {
     std::unique_lock<std::mutex> lock(staffMutex);
 
     if (staffBusy) {
@@ -33,7 +33,6 @@ void PlantCaretaker::receiveCommand(Command * command) {
     if (command->getAbortStatus()) {
         nurseryHub->finishCare(command->getPlant(), false);
         std::cout << "Abort " << command->getPlant()->getName() << std::endl;
-        delete command;
         return;
     }
 
@@ -52,6 +51,5 @@ void PlantCaretaker::receiveCommand(Command * command) {
         }
 
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
-        delete command;
     }).detach();
 }

@@ -10,6 +10,7 @@
 #include <stdexcept>
 #include <vector>
 
+using CommandPtr = std::shared_ptr<Command>;
 
 NurseryHub::NurseryHub() {
 	auto* mgr = new Manager("manager-1", this);
@@ -34,7 +35,7 @@ static bool ptrPresent(const std::vector<T*>& vec, const T* p) {//helper to chec
  * @note Part of the Mediator pattern—centralizes assignment logic
  * instead of letting colleagues reference each other directly.
  */
-void NurseryHub::assign(Command* cmd) {
+void NurseryHub::assign(CommandPtr cmd) {
 	if (!cmd) {
 		throw std::invalid_argument("Command cannot be null");
 	}

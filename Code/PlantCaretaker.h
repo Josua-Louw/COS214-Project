@@ -8,6 +8,9 @@
 #include <string>
 #include <thread>
 #include <mutex>
+#include <memory>
+
+using CommandPtr = std::shared_ptr<Command>;
 
 /**
  * @class PlantCaretaker
@@ -31,7 +34,7 @@ public:
      * @brief Receives and executes a care command (e.g., WaterPlant, FertilizePlant).
      * @param command Pointer to the Command to execute.
      */
-    void receiveCommand(Command* command) override;
+    void receiveCommand(CommandPtr command) override;
 };
 
 #endif // PLANT_CARETAKER_H

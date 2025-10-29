@@ -5,7 +5,8 @@
 
 #include "CareStrategy.h"
 #include "Command.h"
-
+#include <memory>
+using CommandPtr = std::shared_ptr<Command>;
 /**
  * @file RegularCareStrategy.h
  * @brief Declaration of the concrete RegularCareStrategy class.
@@ -27,7 +28,7 @@ public:
 	 *
 	 * @note Represents a balanced and consistent care approach.
 	 */
-	 std::vector<Command*> applyCare(GreenHousePlant &plant) override;
+	 std::vector<CommandPtr> applyCare(GreenHousePlant &plant) override;
 
 	/**
 	 * @brief Returns the identifying name of this strategy ("Regular Care Strategy").

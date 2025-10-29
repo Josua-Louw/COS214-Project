@@ -6,7 +6,8 @@
 #include <vector>
 #include <string>
 #include <atomic>
-
+#include <memory>
+using CommandPtr = std::shared_ptr<Command>;
 /**
  * @class Staff
  * @brief Abstract base class for staff in the Plant Nursery Simulator, implementing Chain of Responsibility and Command Patterns.
@@ -28,7 +29,7 @@ public:
      * @brief Receives and stores a command in taskList for execution.
      * @param command Pointer to the Command to be executed.
      */
-    virtual void receiveCommand(Command* command) = 0;
+    virtual void receiveCommand(CommandPtr command) = 0;
 
     /**
      * @brief Gets the next staff in the chain for testing purposes.

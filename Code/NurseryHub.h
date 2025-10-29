@@ -4,12 +4,14 @@
 #include <vector>
 #include <string>
 #include "NurseryMediator.h"
-
+#include <memory>
 class Command;
 class GreenHousePlant;
 class Plant;
 class Staff;
 class Customer;
+
+using CommandPtr = std::shared_ptr<Command>;
 
 /**
  * @file NurseryHub.h
@@ -39,7 +41,7 @@ public:
 	 * @brief Assign a command to an appropriate staff member.
 	 * @param cmd Command to route/dispatch.
 	 */
-	void assign(Command* cmd) override;
+	void assign(CommandPtr cmd) override;
 
 	/**
 	 * @brief Handle/broadcast an event from a colleague.

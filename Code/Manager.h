@@ -6,6 +6,7 @@
 #include "NurseryHub.h"
 #include <queue>
 #include <string>
+#include <memory>
 
 /**
  * @class Manager
@@ -32,12 +33,12 @@ public:
      * @brief Receives and stores a command in pendingCommands for later assignment.
      * @param command Pointer to the Command to be executed.
      */
-    void receiveCommand(Command* command) override;
+    void receiveCommand(CommandPtr command) override;
 
     /**
      * @brief Redistributes pending commands to available staff via NurseryHub.
      */
-    void redistributeCommands(Command* command) const;
+    void redistributeCommands(CommandPtr command) const;
 
 };
 

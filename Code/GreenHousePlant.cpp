@@ -34,7 +34,7 @@ PLANT_TYPE GreenHousePlant::getType() const {
 }
 
 
-std::vector<Command*> GreenHousePlant::applyCurrentCare() {
+std::vector<CommandPtr> GreenHousePlant::applyCurrentCare() {
 	if (strategy != nullptr) {
 		return strategy->applyCare(*this);
 	} else {
