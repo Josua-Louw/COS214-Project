@@ -19,7 +19,7 @@
 
 class Manager : public Staff {
 private:
-    NurseryHub* nurseryHub; /**< Pointer to the NurseryHub mediator for task coordination (FR7). */
+    NurseryHub* nurseryHub = nullptr;
     std::queue<Command*> pendingCommands; /**< Queue of commands waiting for staff availability (FR6). */
 public:
     /**

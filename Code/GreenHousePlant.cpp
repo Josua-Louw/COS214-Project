@@ -121,7 +121,7 @@ void GreenHousePlant::markCareFinished(bool success, std::string type) {
 }
 
 void GreenHousePlant::setState(PlantState * newState) {
-	if (!state)
+	if (state)
 		delete state;
 	state = newState;
 }

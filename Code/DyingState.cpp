@@ -26,7 +26,6 @@ void DyingState::transitionToNext() {
         std::cout << "\033[1;32mDying start\033[0m " << plant_->getName() << std::endl;
         std::vector<CommandPtr> commands = plant_->applyCurrentCare();
         if (commands.empty()) {
-            std::cout << "Test Dead" << std::endl;
             plant_->setState(new DeadState(plant_));
             return;
         }
@@ -51,7 +50,6 @@ void DyingState::transitionToNext() {
             } else {
                 plant_->setState(new DeadState(plant_));
             }
-            std::cout << "Test Succeed" << std::endl;
             return;
         } else if (plant_->getWaterBusy() || plant_->getFertilizingBusy()) {
             while (!plant_->getWaterSuccess() || !plant_->getFertilizingSuccess()) {
@@ -74,7 +72,6 @@ void DyingState::transitionToNext() {
             } else {
                 plant_->setState(new DeadState(plant_));
             }
-            std::cout << "Test Busy" << std::endl;
             return;
         } else {
             for (auto command : commands) {
@@ -83,7 +80,6 @@ void DyingState::transitionToNext() {
             }
             std::cout << "Dying fail " << plant_->getName() << std::endl;
             plant_->setState(new DeadState(plant_));
-            std::cout << "Test Dead" << std::endl;
             return;
         }
     }).detach();

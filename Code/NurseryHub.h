@@ -32,8 +32,10 @@ class NurseryHub : public NurseryMediator {
 
 private:
 	std::vector<Plant*> plants;      ///< Plants registered with the mediator.
-	Staff* staff;       ///< Staff members available for assignments.
+	Staff* manager = nullptr;
+	Staff* staff = nullptr;       ///< Staff members available for assignments.
 	std::vector<Customer*> customers;///< Customers interacting through the mediator.
+
 
 public:
 	NurseryHub();
@@ -41,6 +43,10 @@ public:
 	 * @brief Assign a command to an appropriate staff member.
 	 * @param cmd Command to route/dispatch.
 	 */
+	~NurseryHub() override;
+
+	void createMgr();
+
 	void assign(CommandPtr cmd) override;
 
 	/**

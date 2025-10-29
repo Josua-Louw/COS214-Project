@@ -12,9 +12,21 @@
 
 using CommandPtr = std::shared_ptr<Command>;
 
-NurseryHub::NurseryHub() {
-	auto* mgr = new Manager("manager-1", this);
-	staff = mgr;
+NurseryHub::NurseryHub() : manager(nullptr), staff(nullptr) {
+	NurseryHub::createMgr();
+}
+
+void NurseryHub::createMgr() {
+	auto* mgr = new Manager("manager-1",this);
+	manager = mgr;
+	staff = manager;
+}
+
+NurseryHub::~NurseryHub() {
+	if (manager)
+		delete manager;
+	manager = nullptr;
+	staff = nullptr;
 }
 
 template <typename T>

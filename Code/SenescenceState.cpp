@@ -11,6 +11,7 @@ void SenescenceState::transitionToNext() {
 		std::this_thread::sleep_for(std::chrono::seconds(10));
 		std::cout << "Senescence fail " << plant_->getName() << std::endl;
 		plant_->setState(new DeadState(plant_));
+		return;
 	}).detach();
 }
 

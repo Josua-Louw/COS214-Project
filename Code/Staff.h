@@ -7,6 +7,7 @@
 #include <string>
 #include <atomic>
 #include <memory>
+#include "NurseryHub.h"
 using CommandPtr = std::shared_ptr<Command>;
 /**
  * @class Staff
