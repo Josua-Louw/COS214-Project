@@ -4,10 +4,13 @@
 #include <thread>
 #include <chrono>
 #include <vector>
+#include <memory>
 
 #include "PlantState.h"
 #include "DyingState.h"
 #include "JuvenileState.h"
+
+using CommandPtr = std::shared_ptr<Command>;
 
 /**
  * @file SeedlingState.h

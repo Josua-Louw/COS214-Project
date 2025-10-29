@@ -3,10 +3,13 @@
 
 #include <thread>
 #include <chrono>
+#include <memory>
 
 #include "PlantState.h"
 #include "MatureState.h"
 #include "DyingState.h"
+
+using CommandPtr = std::shared_ptr<Command>;
 
 /**
  * @file JuvenileState.h

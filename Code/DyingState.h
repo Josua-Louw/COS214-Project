@@ -3,9 +3,12 @@
 
 #include <thread>
 #include <chrono>
+#include <memory>
 #include "PlantState.h"
 #include "GreenHousePlant.h"
 #include "DeadState.h"
+
+using CommandPtr = std::shared_ptr<Command>;
 
 class SeedState;
 class SeedlingState;
@@ -22,8 +25,7 @@ public:
         Seedling,
         Juvenile,
         Mature,
-        Flowering,
-        Dead
+        Flowering
     };
 
 private:

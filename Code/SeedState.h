@@ -8,6 +8,8 @@
 #include "PlantState.h"
 #include "GreenHousePlant.h"
 #include "PlantImplementor.h"
+#include <memory>
+using CommandPtr = std::shared_ptr<Command>;
 
 /**
  * @file SeedState.h

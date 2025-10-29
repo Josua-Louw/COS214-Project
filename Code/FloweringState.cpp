@@ -9,7 +9,10 @@ void FloweringState::transitionToNext() {
 		std::mt19937 gen(rd());
 		std::uniform_int_distribution<> dist(1, 2);
 		int randomNumber = dist(gen);
-		std::vector<Command*> commands = plant_->applyCurrentCare();
+		std::vector<CommandPtr> commands = plant_->applyCurrentCare();
+		if (commands.empty()) {
+			plant_->setState(new DeadState(plant_));
+		}
 		std::this_thread::sleep_for(std::chrono::seconds(10));
 
 			if (plant_->getSuccess()) {

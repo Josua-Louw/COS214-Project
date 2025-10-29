@@ -14,6 +14,9 @@
  * @note Includes balanced watering, nutrient checks and all other overall maintenance.
  */
 std::vector<CommandPtr> RegularCareStrategy::applyCare(GreenHousePlant& plant) {
+	if (!plant.getIsAlive()) {
+		return {};
+	}
 	plant.setSuccess(false);
 	plant.setBusy(false);
 	CommandPtr returnWater = plant.water(2);

@@ -13,17 +13,24 @@
  * Handles plant care tasks by processing WaterPlant and FertilizePlant commands, supporting the Command Pattern (FR5). Participates in the Chain of Responsibility Pattern (FR6) by handling or delegating tasks via nextStaff. Interacts with Plant (FR3 Strategy, FR4 State) and NurseryHub (Mediator, FR7).
  */
 using CommandPtr = std::shared_ptr<Command>;
+
+
 void PlantCaretaker::receiveCommand(CommandPtr command) {
     std::unique_lock<std::mutex> lock(staffMutex);
+
+    if (!command || !command->getPlant()) {
+        throw std::invalid_argument("Command or Plant cannot be null");
+    }
+
+    if (!command->getPlant()->getIsAlive()) {
+        return;
+    }
 
     if (staffBusy) {
         if (nextStaff)
             nextStaff->receiveCommand(command);
         return;
     }
-
-    if (!command)
-        throw std::invalid_argument("Command cannot be null");
 
     if (command->getType() == "SellCommand") {
         if (nextStaff) nextStaff->receiveCommand(command);
@@ -40,10 +47,14 @@ void PlantCaretaker::receiveCommand(CommandPtr command) {
     lock.unlock();
 
     std::thread([this, command]() {
-        std::cout << "Start operation " << command->getPlant()->getName() << std::endl;
-        nurseryHub->beginCare(command->getPlant());
+        auto plant = command->getPlant();
+        if (!plant || !plant->getIsAlive()) return;
+        nurseryHub->beginCare(plant);
+
+        if (!plant->getIsAlive()) return;
+
         command->execute();
-        nurseryHub->finishCare(command->getPlant(), true);
+        nurseryHub->finishCare(plant, true);
 
         {
             std::lock_guard<std::mutex> lock(staffMutex);

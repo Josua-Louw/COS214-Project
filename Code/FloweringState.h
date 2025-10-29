@@ -4,11 +4,14 @@
 #include <thread>
 #include <chrono>
 #include <random>
+#include <memory>
 
 #include "PlantState.h"
 #include "DyingState.h"
 #include "MatureState.h"
 #include "SenescenceState.h"
+
+using CommandPtr = std::shared_ptr<Command>;
 
 /**
  * @file FloweringState.h
