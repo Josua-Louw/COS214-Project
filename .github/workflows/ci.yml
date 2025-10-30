@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [ main, developer ]
 
+env:
+  PROJECT_DIR: "Code" 
+
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
@@ -26,23 +29,22 @@ jobs:
 
       # Build the project
       - name: Build project
-        run: make all
+        run: make -C $PROJECT_DIR all
 
-      # Run unit tests
+      # Run unit tests (uses doctest inside your main)
       - name: Run unit tests
-        run: make run
+        run: make -C $PROJECT_DIR run
 
-      # Run Valgrind (only if tests pass)
+      # Run Valgrind (optional memory check)
       - name: Run Valgrind (memory check)
         if: success()
         run: |
-          make valgrind || echo "Valgrind found issues (non-fatal)"
+          make -C $PROJECT_DIR valgrind || echo "Valgrind found issues (non-fatal)"
 
-      # Generate coverage (only on developer/main)
+      # Generate coverage report (only on developer/main)
       - name: Generate coverage report
         if: github.ref == 'refs/heads/developer' || github.ref == 'refs/heads/main'
-        run: |
-          make coverage
+        run: make -C $PROJECT_DIR coverage
 
       # Upload coverage as artifact
       - name: Upload coverage report as artifact
@@ -51,11 +53,6 @@ jobs:
         with:
           name: coverage-report-${{ github.run_number }}
           path: |
-            coverage.txt
-            output.html
+            ${{ env.PROJECT_DIR }}/coverage.txt
+            ${{ env.PROJECT_DIR }}/output.html
           retention-days: 7
-
-      # Remove this if you want Valgrind warnings to fail CI
-      # - name: Fail on Valgrind issues
-      #   if: failure()
-      #   run: exit 1
