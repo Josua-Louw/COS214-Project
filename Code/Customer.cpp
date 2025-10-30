@@ -45,7 +45,7 @@ void Customer::buy() {
 		if (builder) {
 			//find item's of builder's type from mediator
 			//TODO: implement requestItemList in mediator
-			std::vector<std::string> itemNames = nurseryHub->requestItemList(builder);
+			std::vector<std::string> itemNames = nurseryHub->getPlantNamesByType(builder);
 			if (itemNames.empty()) {
 				continue;
 			}
