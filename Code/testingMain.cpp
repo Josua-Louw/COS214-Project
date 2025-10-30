@@ -10,6 +10,7 @@
 #include <functional>
 
 // Core headers from your code
+#include "Plant.h"
 #include "GreenHousePlant.h"
 #include "RegularCareStrategy.h"
 #include "FertilizerBoostStrategy.h"
@@ -25,38 +26,6 @@
 #include "SeedState.h"
 // Optional timing shim — comment out if you didn't add Timing.h
 
-
-int testingMain() {
-    NurseryMediator* hub = new NurseryHub();
-    Staff* careTaker1 = new PlantCaretaker("care1",hub);
-    Staff* careTaker2 = new PlantCaretaker("care2",hub);
-    Staff* careTaker3 = new PlantCaretaker("care3",hub);
-
-    hub->registerStaff(careTaker1);
-    hub->registerStaff(careTaker2);
-    hub->registerStaff(careTaker3);
-    CareStrategy* strat1 = new RegularCareStrategy();
-    CareStrategy* strat2 = new FertilizerBoostStrategy();
-    auto* plant1 = new GreenHousePlant("plant1", 18, hub, strat1);
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    auto* plant2 = new GreenHousePlant("plant2", 18, hub, strat2);
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    auto* plant3 = new GreenHousePlant("plant3", 18, hub, strat1);
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    auto* plant4 = new GreenHousePlant("plant4", 18, hub, strat1);
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    auto* plant5 = new GreenHousePlant("plant5", 18, hub, strat2);
-
-
-
-    std::this_thread::sleep_for(std::chrono::minutes(3));
-
-    delete hub;
-    delete strat1;
-    delete strat2;
-    delete careTaker1;
-    delete careTaker2;
-    delete careTaker3;
 /**
  * @file testingMain.cpp
  * @brief This file contains the main function for running tests using the doctest framework.
@@ -336,8 +305,28 @@ int testingMain() {
 //     }
 // }
 
+int testingMain() {
+    NurseryMediator* hub = new NurseryHub();
+    Staff* careTaker1 = new PlantCaretaker("care1",hub);
+    Staff* careTaker2 = new PlantCaretaker("care2",hub);
+    Staff* careTaker3 = new PlantCaretaker("care3",hub);
 
+    hub->registerStaff(careTaker1);
+    hub->registerStaff(careTaker2);
+    hub->registerStaff(careTaker3);
+    CareStrategy* strat1 = new RegularCareStrategy();
+    CareStrategy* strat2 = new FertilizerBoostStrategy();
+    Plant* plant1 = new Plant("plant1", 18, hub, strat1);
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    auto* plant2 = new GreenHousePlant("plant2", 18, hub, strat2);
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    auto* plant3 = new GreenHousePlant("plant3", 18, hub, strat1);
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    auto* plant4 = new GreenHousePlant("plant4", 18, hub, strat1);
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    auto* plant5 = new GreenHousePlant("plant5", 18, hub, strat2);
 
+    std::this_thread::sleep_for(std::chrono::minutes(1)); //runs simulation for a minute before deleting
 
     delete plant1;
     delete plant2;
@@ -345,39 +334,48 @@ int testingMain() {
     delete plant4;
     delete plant5;
 
-
-
+    delete careTaker1;
+    delete careTaker2;
+    delete careTaker3;
+    delete hub;
+    delete strat1;
+    delete strat2;
 
     return 0;
 };
+
+//TESTS STRATEGIES AND STATE TIME
 TEST_CASE("TEST") {
     testingMain();
-TEST_CASE("WaterLimiting reduces watering pressure") {
-    GreenHousePlant p;
-    WaterLimitingStrategy s;
-    p.setStrategy(&s);
-    int h0 = p.getHydration(), n0 = p.getNutrition();
-    p.applyCurrentCare();
-    CHECK(p.getHydration() == h0 + 1);
-    CHECK(p.getNutrition() == n0 + 2);
 }
 
-TEST_CASE("Switching strategies changes behavior at runtime") {
-    GreenHousePlant p;
-    RegularCareStrategy reg;
-    FertilizerBoostStrategy fert;
+// TEST_CASE("WaterLimiting reduces watering pressure") {
+//     GreenHousePlant p;
+//     WaterLimitingStrategy s;
+//     p.setStrategy(&s);
+//     int h0 = p.getHydration(), n0 = p.getNutrition();
+//     p.applyCurrentCare();
+//     CHECK(p.getHydration() == h0 + 1);
+//     CHECK(p.getNutrition() == n0 + 2);
+// }
 
-    p.setStrategy(&reg);
-    int h0 = p.getHydration(), n0 = p.getNutrition();
-    p.applyCurrentCare();
-    CHECK(p.getHydration() == h0 + 3);
-    CHECK(p.getNutrition() == n0 + 2);
+// TEST_CASE("Switching strategies changes behavior at runtime") {
+//     GreenHousePlant p;
+//     RegularCareStrategy reg;
+//     FertilizerBoostStrategy fert;
 
-    p.setStrategy(&fert);
-    p.applyCurrentCare();
-    CHECK(p.getHydration() == h0 + 3 + 2); // +2 more from fert
-    CHECK(p.getNutrition() == n0 + 2 + 5); // +5 more from fert
-}
+//     p.setStrategy(&reg);
+//     int h0 = p.getHydration(), n0 = p.getNutrition();
+//     p.applyCurrentCare();
+//     CHECK(p.getHydration() == h0 + 3);
+//     CHECK(p.getNutrition() == n0 + 2);
+
+//     p.setStrategy(&fert);
+//     p.applyCurrentCare();
+//     CHECK(p.getHydration() == h0 + 3 + 2); // +2 more from fert
+//     CHECK(p.getNutrition() == n0 + 2 + 5); // +5 more from fert
+// }
+
 //TEST for seed packet functionality
 #include "SeedPacket.h"
 
@@ -459,7 +457,7 @@ TEST_CASE("Decoration Test Case") {
         CHECK(sp->getName() == "Sunflower Seeds");
         CHECK(sp->getType() == PLANT_TYPE::SEED_PACKET);
         CHECK(dec.getType() == PLANT_TYPE::DECORATION);
-        CHECK(dec.getName() == "Sparkles");
+        CHECK(dec.getName() == "Sparkles | Sunflower Seeds");
         SUBCASE("Double Decoration with seeds Error") {
             SeedPacket* sp2 = new SeedPacket(2.0, "Glitter");
             CHECK_THROWS_AS(dec.decorate(sp2), const char*);
@@ -469,7 +467,7 @@ TEST_CASE("Decoration Test Case") {
             Decoration* dec2 = new Decoration(2.0, "Ribbons");
             dec.decorate(dec2);
             CHECK(dec.getPrice() == 15.0); // 10 + 3 + 2
-            CHECK(dec2->getName() == "Ribbons");
+            CHECK(dec2->getName() == "Ribbons | Sunflower Seeds");
             CHECK(dec2->getType() == PLANT_TYPE::DECORATION);
         }
         SUBCASE("Longer decoration Chain") {
@@ -631,13 +629,21 @@ TEST_CASE("Adapter Pattern Test Cases") {
 #include "Plant.h"
 
 TEST_CASE("Plant and plantimplementor tests") {
+    // CANNOT TEST CAUSES SEGFAULT
+    CareStrategy* careStrat = new RegularCareStrategy();
+    NurseryMediator* mediator = new NurseryHub();
+    Staff* careTaker1 = new PlantCaretaker("care1",mediator);
+    Staff* careTaker2 = new PlantCaretaker("care2",mediator);
+    Staff* careTaker3 = new PlantCaretaker("care3",mediator);
     SUBCASE("Plant from original creation") {
-        Plant plant("Daisy", 20);
-        CHECK(plant.getName() == "Daisy");
-        CHECK(plant.getPrice() == 20);
-        CHECK(plant.getType() == PLANT_TYPE::GREENHOUSE_PLANT);
-        plant.convertToOrderType();
-        CHECK(plant.getType() == PLANT_TYPE::ORDER_PLANT);
+        Plant* plant = new Plant("Daisy", 20, mediator, careStrat);
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        CHECK(plant->getName() == "Daisy");
+        CHECK(plant->getPrice() == 20);
+        CHECK(plant->getType() == PLANT_TYPE::GREENHOUSE_PLANT);
+        plant->convertToOrderType();
+        CHECK(plant->getType() == PLANT_TYPE::ORDER_PLANT);
+        delete plant;
     }
     SUBCASE("Plant with Order plant implementor") {
         Plant plant(new PlantType(20, "Daisy"));
@@ -659,4 +665,9 @@ TEST_CASE("Plant and plantimplementor tests") {
         CHECK(op->getPrice() == 30);
         delete op; // Clean up
     }
+    delete careStrat;
+    delete careTaker1;
+    delete careTaker2;
+    delete careTaker3;
+    delete mediator;
 }

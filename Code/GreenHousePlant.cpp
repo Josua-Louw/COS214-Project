@@ -1,11 +1,12 @@
 #include "GreenHousePlant.h"
 #include "CareStrategy.h"
 #include "SeedState.h"
+#include "DeadState.h"
 
 #include <iostream>
 #include <memory>
 
-using CommandPtr = std::shared_ptr<Command>;
+//using CommandPtr = std::shared_ptr<Command>;
 // Constructor
 GreenHousePlant::GreenHousePlant(const std::string& name, double price, NurseryMediator* mediator, CareStrategy* care)
     : name(name), price(price), mediator_(mediator), strategy(care) {
@@ -14,6 +15,13 @@ GreenHousePlant::GreenHousePlant(const std::string& name, double price, NurseryM
 
 // Destructor
 GreenHousePlant::~GreenHousePlant() {
+
+	setState(new DeadState(this)); 
+	// for(auto& cmd : ongoingCareCommands) {
+	// 	if (cmd)
+	// 		cmd->setAbortStatus(true);
+	// }
+	std::this_thread::sleep_for(std::chrono::milliseconds(100)); //make sure the state thread ends and completes the change before deleting
     delete state;
 }
 

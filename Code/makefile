@@ -1,8 +1,8 @@
 CXX := g++
-CXXFLAGS := -std=c++11
+CXXFLAGS := -std=c++11 -Wall -Wextra -Werror -pedantic -g -Werror=delete-non-virtual-dtor --coverage
 
 # Choose main file: testingMain or DemoMain (default: testingMain)
-MAIN_FILE ?= DemoMain
+MAIN_FILE ?= testingMain
 
 # Get all .cpp files, then exclude the main file we're NOT using
 ALL_CPP := $(wildcard *.cpp)
@@ -40,10 +40,7 @@ valgrind: $(EXEC)
 gdb: $(EXEC)
 	gdb ./$(EXEC)
 
-coverage: $(OBJ)
-	# Rebuild everything with coverage instrumentation so .gcno files are produced
-	$(MAKE) clean
-	$(MAKE) CXXFLAGS="$(CXXFLAGS) --coverage" all
+coverage: $(EXEC)
 	./$(EXEC) > $(COVERAGE_OUT) 2>&1 || true
 	# Run gcov (produce human-readable coverage report). Use the source basename(s).
 	gcov -f -m -r -j ${filesInCoverageReport} > $(COVERAGE_LOG) || true
