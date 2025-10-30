@@ -9,7 +9,7 @@ void SenescenceState::transitionToNext() {
 	std::thread([this]() {
 		std::cout << "\033[1;32mSenescence start\033[0m " << plant_->getName() << std::endl;
 		std::this_thread::sleep_for(std::chrono::seconds(10));
-		if (!plant_->getIsActive()) {
+		if (!plant_ || !plant_->getIsActive()) {
 			return;
 		}
 		std::cout << "Senescence fail " << plant_->getName() << std::endl;

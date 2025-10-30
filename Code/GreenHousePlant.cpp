@@ -15,8 +15,7 @@ GreenHousePlant::GreenHousePlant(const std::string& name, double price, NurseryM
 
 // Destructor
 GreenHousePlant::~GreenHousePlant() {
-
-	setState(new DeadState(this)); 
+	this->deactivatePlant();
 	// for(auto& cmd : ongoingCareCommands) {
 	// 	if (cmd)
 	// 		cmd->setAbortStatus(true);
@@ -148,10 +147,12 @@ void GreenHousePlant::deactivatePlant() {
 		}
 		currentCommand.clear();
 	}
+	std::cout << "\033[1;31mdeactivated!\033[0m " << this->getName() << std::endl;
 }
 
 void GreenHousePlant::reactivatePlant() {
 	isActive.store(true, std::memory_order_relaxed);
+	std::cout << "\033[1;31mreactivated!\033[0m " << this->getName() << std::endl;
 	state->transitionToNext();
 }
 

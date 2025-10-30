@@ -20,7 +20,7 @@ void PlantCaretaker::receiveCommand(CommandPtr command) {
     std::unique_lock<std::mutex> lock(staffMutex);
 
     if (!command || !command->getPlant()) return;
-    if (!command->getPlant()->getIsActive()) return;
+    if (!command->getPlant() || !command->getPlant()->getIsActive()) return;
 
     if (staffBusy) {
         if (nextStaff)
@@ -40,7 +40,7 @@ void PlantCaretaker::receiveCommand(CommandPtr command) {
         bool done = false;
 
         std::thread execThread([&]() {
-            if (!plant->getIsActive()) {
+            if (!plant || !plant->getIsActive()) {
             return;
             }
             nurseryHub->beginCare(plant, command->getType());

@@ -9,27 +9,32 @@ void JuvenileState::transitionToNext() {
         return;
     }
     std::thread([this]() {
+        if (!plant_ || plant_->getIsActive() == false) {
+        return;
+    }
         std::cout << "\033[1;32mJuvenile start\033[0m " << plant_->getName() << std::endl;
         std::vector<CommandPtr> commands = plant_->applyCurrentCare();
         if (commands.empty()) {
-            if (!plant_->getIsActive()) {
+            if (!plant_ || !plant_->getIsActive()) {
                 return;
             }
             plant_->setState(new DeadState(plant_));
             return;
         }
         std::this_thread::sleep_for(std::chrono::seconds(10));
-
+        if (!plant_ || plant_->getIsActive() == false) {
+                return;
+            }
 
         if (plant_->getWaterSuccess() && plant_->getFertilizingSuccess()) {
-            if (!plant_->getIsActive()) {
+            if (!plant_ || !plant_->getIsActive()) {
                 return;
             }
             std::cout << "Juvenile success " << plant_->getName() << std::endl;
             plant_->setState(new MatureState(plant_));
             return;
         } else if (plant_->getWaterBusy() || plant_->getFertilizingBusy()) {
-            if (!plant_->getIsActive()) {
+            if (!plant_ || !plant_->getIsActive()) {
                 return;
             }
             while (!plant_->getWaterSuccess() || !plant_->getFertilizingSuccess()) {
@@ -43,7 +48,7 @@ void JuvenileState::transitionToNext() {
                 if (command)
                     command->setAbortStatus(true);
             }
-            if (!plant_->getIsActive()) {
+            if (!plant_ || !plant_->getIsActive()) {
                 return;
             }
             std::cout << "Juvenile fail " << plant_->getName() << std::endl;
