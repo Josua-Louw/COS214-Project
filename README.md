@@ -10,6 +10,11 @@ Project for COS214 by the Five guys group
 
 ## Compile Tests
 - Set `CXXFLAGS := -std=c++11 -Wall -Wextra -pedantic -g -Werror=delete-non-virtual-dtor` in the makefile
+- Set `MAIN_FILE ?= testingMain`
 - Run the following in the /Code directory: `make run`
 - To run valgrind: `make valgrind`
 - To run coverage: `make coverage`
+## Compile Demo Main
+- Set `CXXFLAGS := -std=c++11 -Wall -Wextra -pedantic -g -Werror=delete-non-virtual-dtor` in the makefile
+- Set `MAIN_FILE ?= DemoMain`
+- Run the following in the /Code directory: `make run`

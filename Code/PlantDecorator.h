@@ -31,6 +31,8 @@ public:
 	*/
 	double getPrice() const override;
 
+	std::string getName() const override;
+
 	/**
 	* @brief Add decoration to the given plant.
 	* @param orderPlant Pointer to the plant to be decorated.
