@@ -2,7 +2,7 @@ CXX := g++
 CXXFLAGS := -std=c++11 -Wall -Wextra -Werror -pedantic -g -Werror=delete-non-virtual-dtor
 
 # Choose main file: testingMain or DemoMain (default: testingMain)
-MAIN_FILE ?= DemoMain
+MAIN_FILE ?= testingMain
 
 # Get all .cpp files, then exclude the main file we're NOT using
 ALL_CPP := $(wildcard *.cpp)
