@@ -15,7 +15,7 @@
  *
  * @note Implements the Strategy design pattern.
  */
-class WaterLimitingStrategy : CareStrategy {
+class WaterLimitingStrategy : public CareStrategy {
 
 
 public:
@@ -24,12 +24,12 @@ public:
 	 *
 	 * @note Used for plants that thrive under controlled water conditions.
 	 */
-	void applyCare();
+	void applyCare(GreenHousePlant& plant) override;
 
 	/**
 	 * @brief Returns the identifying name of this strategy ("Water Limiting Strategy").
 	 */
-	void getStrategyName();
+	std::string getStrategyName() const override;
 };
 
 #endif

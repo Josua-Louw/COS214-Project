@@ -2,17 +2,32 @@
 #define CUSTOMER_H
 
 #include "Person.h"
-#include "OrderBuilder.h"
 #include "NurseryMediator.h"
+#include "Order.h"
+#include <vector>
 
-class Customer : Person {
+class OrderBuilder;
+
+class Customer : public Person {
 
 private:
-	OrderBuilder* orderBuilder;
+	std::vector<OrderBuilder*> orderBuilders;
 	NurseryMediator* nurseryHub;
+
+	//TEMPORARY - for testing
+	std::vector<std::string> itemNames;
 
 public:
 	void buy();
+
+	Customer(std::string id, NurseryMediator* mediator, std::vector<OrderBuilder*> builders)
+		: Person(id), nurseryHub(mediator), orderBuilders(builders) {};
+
+	//TEMPORARY CONSTRUCTOR FOR TESTING JUST TO ADD STRING VECTOR OF ITEMS TO ORDER
+	Customer(std::string id, NurseryMediator* mediator, std::vector<OrderBuilder*> builders, std::vector<std::string> itemNames)
+		: Person(id), nurseryHub(mediator), orderBuilders(builders), itemNames(itemNames) {};
+	
+	virtual ~Customer();
 };
 
 #endif

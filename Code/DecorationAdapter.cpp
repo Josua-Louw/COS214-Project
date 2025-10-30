@@ -1,7 +1,12 @@
 #include "DecorationAdapter.h"
+#include "ItemIterator.h"
 
 std::string DecorationAdapter::getName() const {
     return decoration->getName();
+}
+
+double DecorationAdapter::getPrice() const {
+    return decoration->getPrice();
 }
 
 DecorationAdapter::~DecorationAdapter() {
@@ -9,4 +14,12 @@ DecorationAdapter::~DecorationAdapter() {
     {
         delete decoration;
     }
+}
+
+PLANT_TYPE DecorationAdapter::getType() const {
+    return decoration->getType();
+}
+
+OrderPlant* DecorationAdapter::getOrderPlant() const {
+    return dynamic_cast<OrderPlant*>(decoration->clone());
 }

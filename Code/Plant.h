@@ -3,6 +3,8 @@
 
 #include "Item.h"
 #include "PlantImplementor.h"
+#include "GreenHousePlant.h"
+#include "PlantType.h"
 
 /**
  * @file Plant.h
@@ -24,34 +26,48 @@ private:
      * @details Stores a pointer to a PlantImplementor object that defines the specific implementation details for this plant.
      */
     PlantImplementor* implementor;
+
 public:
     Plant();
+    Plant(PlantImplementor* impl);
+    Plant(const std::string& name, double price);
+
     /**
      * @brief Converts the plant to an order type.
      * @details Defines the interface for converting the plant to an order type, with implementation details provided by derived classes based on the plant’s type.
      * @return void
      */
     void convertToOrderType();
+
     /**
      * @brief Gets the price of the plant.
      * @details Defines the interface for retrieving the price of the plant, with implementation details provided
      * by derived classes based on the plant’s type.
      * @return double The price of the plant.
      */
-    double getPrice();
+    double getPrice() const;
+
     /**
      * @brief Gets the implementor type of the plant.
      * @details Defines the interface for retrieving the implementor type of the plant, with implementation details provided
      * by derived classes based on the plant’s type.
-     * @return std::string The implementor type of the plant.
+     * @return PLANT_TYPE The implementor type of the plant.
      */
-    std::string getImplementorType();
+
+    PLANT_TYPE getType() const;
     /**
      * @brief Gets the name of the plant.
      * @details Overrides the getName method from the Item class to provide the name of the plant.
      * @return std::string The name of the plant.
      */
     std::string getName() const override;
+
+    OrderPlant* getOrderPlant() const override;
+
+    /**
+     * @brief Destructor for the Plant class.
+     * @details Cleans up resources associated with the Plant object.
+     */
     ~Plant();
 };
 

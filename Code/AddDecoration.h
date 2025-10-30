@@ -2,6 +2,7 @@
 #define ADDDECORATION_H
 
 #include "OrderBuilder.h"
+#include "GreenHouse.h"
 
 /**
  * @file AddDecoration.h
@@ -16,13 +17,30 @@
  * @implements checkType
  */
 
-class AddDecoration : OrderBuilder {
+class AddDecoration : public OrderBuilder {
 
 
-protected:
+public:
+	/**
+	 * @brief Constructor for AddDecoration.
+	 * @param gh Pointer to the GreenHouse instance.
+	 */
+	AddDecoration(GreenHouse* gh);
+
+	/**
+	 * @brief Builds the part of the order by adding decorative plants based on the item name.
+	 * @param order Pointer to the current order.
+	 * @param itemName Name of the decorative plant item to be added.
+	 * @return Pointer to the updated order.
+	 */
 	Order* buildPart(Order* order, std::string itemName);
 
-	bool checkType(Plant* plant);
+	/**
+	 * @brief Checks if the given plant is of decorative type.
+	 * @param item Pointer to the plant to be checked.
+	 * @return true if the plant is decorative, false otherwise.
+	 */
+	bool checkType(Item* item);
 };
 
 #endif

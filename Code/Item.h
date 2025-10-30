@@ -2,6 +2,13 @@
 #define ITEM_H
 
 #include "GreenHouse.h"
+#include <iostream>
+
+//forward declaration
+enum class PLANT_TYPE;
+
+//forward declaration
+enum class PLANT_TYPE;
 
 /**
  * @file Item.h
@@ -20,15 +27,42 @@
 
 class Item : public GreenHouse {
 public:
-    /**
+/**
      * @brief Gets the name of the item.
      * @return The name of the item as a string.
      */
     virtual std::string getName() const = 0;
     /**
+     * @brief Gets the price of the item.
+     * @return The price of the item as a double.
+     */
+    virtual double getPrice() const = 0;
+  
+    /**
+     * @brief Get the type of the item.
+     * @return The type of the item as a PLANT_TYPE enum.
+     */
+    virtual PLANT_TYPE getType() const = 0;
+
+    /**
+     * @brief Get the OrderPlant of the item.
+     * @return Pointer to the implementation of the item of type OrderPlant.
+     */
+    virtual class OrderPlant* getOrderPlant() const = 0;
+
+    /**
      * @brief Virtual destructor to ensure proper cleanup in derived classes.
      */
     virtual ~Item() = default;
+
+    void expand(GreenHouse* gh) override;
+    double sell(Item* item) override;
+    GreenHouse* getSubsection(const std::string& sectionName) override;
+    Iterator<Item*>* createIterator() override;
+    Item* findItem(const std::string& itemName) override;
+    void printSummary() const override;
+    size_t getTotalItemCount() const;
+    void printSummaryHelper(int indentLevel) const;
 };
 
 #endif // ITEM_H

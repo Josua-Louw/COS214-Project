@@ -6,6 +6,8 @@
 #include "PlantImplementor.h"
 #include <string>
 
+class NurseryMediator;
+
 /**
  * @file Plant.h
  * @brief Defines the Plant class, the class for representing plants in the GreenHouse.
@@ -20,18 +22,19 @@
  */
 class GreenHousePlant : public PlantImplementor {
 private:
+    NurseryMediator* mediator_ = nullptr;
     /**
      * @brief Pointer to the care strategy associated with this plant.
      * @details Stores a pointer to a CareStrategy object that defines the specific care actions (e.g., watering, fertilizing) required for this plant.
      */
-    CareStrategy* strategy;
+    CareStrategy* strategy = nullptr;
 
     /**
      * @brief Pointer to the state the plant is currently in its lifecycle.
      * @details Stores a pointer to a PlantState object that represents the current lifecycle state of the plant (e.g., seed, seedling, mature).
      * @see PlantState
      */
-    PlantState* state;
+    PlantState* state = nullptr;
 
     /**
      * @brief Name of the plant.
@@ -43,9 +46,15 @@ private:
      * @brief Price of the plant.
      * @details Stores the monetary value of the plant as a double.
      */
-    double price;
+    double price = 0.0;
+
+    //we can replace or extend these metrics later when we also do the state and timers
+    int hydration = 0;
+    int nutrition = 0;
+    int timeForNextCare = 0;
 
 public:
+    GreenHousePlant(const std::string& name = "", double price = 0.0) : name(name), price(price) {}
     /**
      * @brief Waters the plant.
      * @details Defines the interface for watering the plant, with implementation details provided by derived classes based on the plant’s type and state.
@@ -65,34 +74,47 @@ public:
      * @details Returns the monetary value of the plant, determined by its type and characteristics, as implemented by derived classes.
      * @return The price of the plant as a double.
      */
-    double getPrice() const;
+    double getPrice() const override;
 
     /**
      * @brief Creates a clone of the plant.
      * @details Produces a new instance of the plant with the same properties, as implemented by derived classes, supporting the prototype design pattern.
      * @return A pointer to the newly created clone of the plant.
      */
-    PlantImplementor* clone();
+    PlantImplementor* clone() override;
 
     /**
      * @brief Gets the name of the plant.
      * @details Returns the name of the plant stored in the private member variable.
      * @return The name of the plant as a string.
      */
-    std::string getName() const;
+    std::string getName() const override;
 
     /**
      * @brief Gets the type of the plant.
      * @details Returns a string identifying the specific type of the plant (e.g., species or category), as implemented by derived classes.
      * @return The type of the plant as a string.
      */
-    std::string getType() const;
+    PLANT_TYPE getType() const override;
 
     /**
      * @brief Virtual destructor to ensure proper cleanup in derived classes.
      * @details Provides a virtual destructor to allow safe deletion of derived class objects through a Plant pointer.
      */
     virtual ~GreenHousePlant();
+
+    void setStrategy(CareStrategy* s) { strategy = s; }
+    void applyCurrentCare();           // optional helper used by water()/feed()
+
+    //Lightweight hooks for strategies (safe for later State/timer work)
+    void adjustHydration(int delta);
+    void adjustNutrition(int delta);
+    void setTimeForNextCare(int t);
+
+    void setMediator(NurseryMediator* m) { mediator_ = m; }
+
+    int  getHydration() const;
+    int  getNutrition() const;
 };
 
-#endif // PLANT_H
+#endif // GREENHOUSEPLANT_H

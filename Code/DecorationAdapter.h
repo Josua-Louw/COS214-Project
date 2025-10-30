@@ -20,6 +20,11 @@ private:
 public:
     /**
      * @brief Constructor for DecorationAdapter.
+     * @details Initializes with a new Decoration instance.
+     */
+    DecorationAdapter(std::string name, double price) : decoration(new Decoration(price, name)) {}
+    /**
+     * @brief Constructor for DecorationAdapter.
      * @param d Pointer to the Decoration object to be adapted.
      */
     DecorationAdapter(Decoration* d) : decoration(d) {}
@@ -32,6 +37,10 @@ public:
      * @brief Destructor for DecorationAdapter.
      */
     ~DecorationAdapter();
+    
+    double getPrice() const override;
+    PLANT_TYPE getType() const override;
+    OrderPlant* getOrderPlant() const override;
 };
 
 #endif // DECORATIONADAPTER_H

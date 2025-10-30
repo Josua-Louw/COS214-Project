@@ -20,6 +20,11 @@ private:
 public:
     /**
      * @brief Constructor for SeedPacketAdapter.
+     * @details Initializes with a new SeedPacket instance.
+     */
+    SeedPacketAdapter(std::string name, double price) : seedPacket(new SeedPacket(price, name)) {}
+    /**
+     * @brief Constructor for SeedPacketAdapter.
      * @param sp Pointer to the SeedPacket object to be adapted.
      */
     SeedPacketAdapter(SeedPacket* sp) : seedPacket(sp) {}
@@ -32,6 +37,10 @@ public:
      * @brief Destructor for SeedPacketAdapter.
      */
     ~SeedPacketAdapter();
+
+    double getPrice() const override;
+    PLANT_TYPE getType() const override;
+    OrderPlant* getOrderPlant() const override;
 };
 
 #endif // SEED_PACKET_ADAPTER_H

@@ -17,7 +17,13 @@
 class PotAdapter : public Item {
 private:
     Pot* pot;
+
 public:
+    /**
+     * @brief Constructor for PotAdapter.
+     * @details Initializes with a new Pot instance.
+     */
+    PotAdapter(std::string name, double price) : pot(new Pot(price, name)) {}
     /**
      * @brief Constructor for PotAdapter.
      * @param p Pointer to the Pot object to be adapted.
@@ -32,6 +38,12 @@ public:
      * @brief Destructor for PotAdapter.
      */
     ~PotAdapter();
+
+    double getPrice() const override;
+
+    PLANT_TYPE getType() const override;
+
+    OrderPlant* getOrderPlant() const override;
 };
 
 #endif // POTADAPTER_H

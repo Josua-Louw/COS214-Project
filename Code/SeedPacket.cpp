@@ -1,19 +1,18 @@
 #include "SeedPacket.h"
 
 // Get the price of the seeds
-double SeedPacket::getPrice() {
-	// TODO - implement SeedPacket::getPrice
-	throw "Not yet implemented";
+double SeedPacket::getPrice() const {
+	return cost;
 }
+
+SeedPacket::SeedPacket(const SeedPacket& other) : OrderPlant(other) {}
 
 // Clone the seeds
 PlantImplementor* SeedPacket::clone() {
-	// TODO - implement SeedPacket::clone
-	throw "Not yet implemented";
+	return new SeedPacket(*this);
 }
 
 // Get the type of plant the seeds are of
-std::string SeedPacket::getType() {
-	// TODO - implement SeedPacket::getType
-	throw "Not yet implemented";
+PLANT_TYPE SeedPacket::getType() const {
+	return PLANT_TYPE::SEED_PACKET;
 }

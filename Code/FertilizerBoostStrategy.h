@@ -23,12 +23,12 @@ public:
 	 *
 	 * @note This method defines how the plant receives fertilizer to promote healthy growth.
 	 */
-	void applyCare();
+	void applyCare(GreenHousePlant& plant) override;
 
 	/**
 	 * @brief Returns the name of this strategy ("Fertilizer Boost Strategy").
 	 */
-	void getStrategyName();
+	std::string getStrategyName() const override;
 };
 
 #endif

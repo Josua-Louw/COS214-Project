@@ -1,7 +1,12 @@
 #include "SeedPacketAdapter.h"
+#include "ItemIterator.h"
 
 std::string SeedPacketAdapter::getName() const {
     return seedPacket->getName();
+}
+
+double SeedPacketAdapter::getPrice() const {
+    return seedPacket->getPrice();
 }
 
 SeedPacketAdapter::~SeedPacketAdapter() {
@@ -9,4 +14,12 @@ SeedPacketAdapter::~SeedPacketAdapter() {
     {
         delete seedPacket;
     }
-}   
+}
+
+PLANT_TYPE SeedPacketAdapter::getType() const {
+    return seedPacket->getType();
+}
+
+OrderPlant* SeedPacketAdapter::getOrderPlant() const {
+    return dynamic_cast<OrderPlant*>(seedPacket->clone());
+}

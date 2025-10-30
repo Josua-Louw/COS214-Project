@@ -12,22 +12,25 @@
   * @class PlantType
   * @brief Represents the type of a plant.
   * Inherits from PlantDecorator.
-  * Provides method to get the type of the plant.
+  * Provides method to get the type of the plant and clone the plant type.
   */
 
 class PlantType : public PlantDecorator {
 public:
+	PlantType() : PlantDecorator() {}
+	PlantType(double cost, const std::string& name) : PlantDecorator(cost, name) {}
+	PlantType(const PlantType& other) : PlantDecorator(other) {}
+
 	/**
-	 * @brief Constructor for PlantType.
-	 * @param plant Pointer to the OrderPlant object to be decorated.
+	 * @brief Gets the type of the plant.
+	 * @return The type of the plant as a PLANT_TYPE enum value.
 	 */
-	PlantType(OrderPlant* plant);
-	~PlantType();
+	PLANT_TYPE getType() const override;
 	/**
-	 * @brief Get the type of the plant.
-	 * @return The type of the plant as a string.
+	 * @brief Creates a clone of the PlantType.
+	 * @return A pointer to the cloned PlantType.
 	 */
-	std::string getType() const override;
+	PlantImplementor* clone() override;
 };
 
 #endif
