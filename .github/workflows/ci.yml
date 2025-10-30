@@ -27,13 +27,13 @@ jobs:
             lcov \
             gcovr
 
-      # Build the project
-      - name: Build project
-        run: make -C $PROJECT_DIR all
+      # Build the project (for doctest)
+      - name: Build project (testingMain)
+        run: make -C $PROJECT_DIR MAIN_FILE=testingMain all
 
-      # Run unit tests (uses doctest inside your main)
-      - name: Run unit tests
-        run: make -C $PROJECT_DIR run
+      # Run doctests
+      - name: Run doctests
+        run: make -C $PROJECT_DIR MAIN_FILE=testingMain run 
 
       # Run Valgrind (optional memory check)
       - name: Run Valgrind (memory check)
