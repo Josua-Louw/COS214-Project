@@ -110,12 +110,12 @@ void NurseryHub::registerStaff(Staff* s) {
 
 void NurseryHub::beginCare(GreenHousePlant* p, std::string type) {
 
-	if (!p || !p->getIsAlive()) return;
+	if (!p || !p->getIsActive()) return;
 	p->markCareStarted(type);
 }
 
 void NurseryHub::finishCare(GreenHousePlant* p, std::string type, bool success) {
 
-	if (!p || !p->getIsAlive()) return;
+	if (!p || !p->getIsActive()) return;
 	p->markCareFinished(success, type);
 }

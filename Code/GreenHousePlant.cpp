@@ -53,12 +53,14 @@ std::vector<CommandPtr> GreenHousePlant::applyCurrentCare() {
 CommandPtr GreenHousePlant::water(int time) {
 	auto cmd = std::make_shared<WaterPlant>(this, time);
 	if (mediator_) mediator_->assign(cmd);
+	currentCommand.push_back(cmd);
 	return cmd;
 }
 
 CommandPtr GreenHousePlant::feed(int time) {
 	auto cmd = std::make_shared<FertilizePlant>(this,time);
 	if (mediator_) mediator_->assign(cmd);
+	currentCommand.push_back(cmd);
 	return cmd;
 }
 
@@ -104,8 +106,8 @@ bool GreenHousePlant::getFertilizingBusy() const{
 	return fertilizingCareBusy.load();
 }
 
-bool GreenHousePlant::getIsAlive() const{
-	return isAlive.load();
+bool GreenHousePlant::getIsActive() const{
+	return isActive.load();
 }
 
 void GreenHousePlant::markCareStarted(std::string type) {
@@ -134,7 +136,22 @@ void GreenHousePlant::setState(PlantState * newState) {
 	state = newState;
 }
 
-void GreenHousePlant::killPlant() {
-	isAlive.store(false);
+void GreenHousePlant::deactivatePlant() {
+	isActive.store(false, std::memory_order_relaxed);
+	if (!currentCommand.empty()) {
+		for (auto cmd : currentCommand) {
+			if (cmd != nullptr) {
+				if (cmd->getAbortStatus()) {
+					cmd->setAbortStatus(true);
+				}
+			}
+		}
+		currentCommand.clear();
+	}
+}
+
+void GreenHousePlant::reactivatePlant() {
+	isActive.store(true, std::memory_order_relaxed);
+	state->transitionToNext();
 }
 

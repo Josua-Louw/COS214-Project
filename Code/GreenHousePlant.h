@@ -65,7 +65,9 @@ private:
     std::atomic<bool> fertilizingCareBusy{false};
     std::atomic<bool> waterSuccessful{false};
     std::atomic<bool> fertilizingSuccessful{false};
-    std::atomic<bool> isAlive{true};
+    std::atomic<bool> isActive{true};
+
+    std::vector<CommandPtr> currentCommand = {};
 public:
     explicit GreenHousePlant(const std::string& name = "", double price = 0.0, NurseryMediator* mediator = nullptr, CareStrategy* care = nullptr);
 
@@ -132,13 +134,14 @@ public:
     bool getFertilizingSuccess() const;
     bool getWaterBusy() const;
     bool getFertilizingBusy() const;
-    bool getIsAlive() const;
+    bool getIsActive() const;
     void markCareStarted(std::string type);              //sets busy=true, success=false
     void markCareFinished(bool success, std::string type); //sets success, busy=false
 
     void setState(PlantState* newState);
 
-    void killPlant();
+    void deactivatePlant();
+    void reactivatePlant();
 
 };
 

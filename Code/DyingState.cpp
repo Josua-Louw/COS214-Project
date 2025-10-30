@@ -19,13 +19,16 @@ DyingState::DyingState(GreenHousePlant* plant, std::string previousKind) : Plant
 }
 
 void DyingState::transitionToNext() {
-    if (!plant_ || plant_->getIsAlive() == false) {
+    if (!plant_ || plant_->getIsActive() == false) {
         return;
     }
     std::thread([this]() {
         std::cout << "\033[1;32mDying start\033[0m " << plant_->getName() << std::endl;
         std::vector<CommandPtr> commands = plant_->applyCurrentCare();
         if (commands.empty()) {
+            if (!plant_->getIsActive()) {
+            return;
+        }
             plant_->setState(new DeadState(plant_));
             return;
         }
@@ -34,6 +37,9 @@ void DyingState::transitionToNext() {
 
 
         if (plant_->getWaterSuccess() && plant_->getFertilizingSuccess()) {
+            if (!plant_->getIsActive()) {
+            return;
+            }
             std::cout << "Dying succeed " << plant_->getName() << std::endl;
             if (prevKind == "Seed") {
                 plant_->setState(new SeedState(plant_));
@@ -52,6 +58,9 @@ void DyingState::transitionToNext() {
             }
             return;
         } else if (plant_->getWaterBusy() || plant_->getFertilizingBusy()) {
+            if (!plant_->getIsActive()) {
+            return;
+        }
             while (!plant_->getWaterSuccess() || !plant_->getFertilizingSuccess()) {
                 // timing::sleep_for(std::chrono::milliseconds(100));
                 std::this_thread::sleep_for(std::chrono::milliseconds(100));
@@ -78,6 +87,9 @@ void DyingState::transitionToNext() {
                 if (command)
                     command->setAbortStatus(true);
             }
+            if (!plant_->getIsActive()) {
+            return;
+        }
             std::cout << "Dying fail " << plant_->getName() << std::endl;
             plant_->setState(new DeadState(plant_));
             return;
