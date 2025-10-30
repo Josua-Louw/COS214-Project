@@ -438,7 +438,7 @@ TEST_CASE("Decoration Test Case") {
         CHECK(sp->getName() == "Sunflower Seeds");
         CHECK(sp->getType() == PLANT_TYPE::SEED_PACKET);
         CHECK(dec.getType() == PLANT_TYPE::DECORATION);
-        CHECK(dec.getName() == "Sparkles");
+        CHECK(dec.getName() == "Sparkles | Sunflower Seeds");
         SUBCASE("Double Decoration with seeds Error") {
             SeedPacket* sp2 = new SeedPacket(2.0, "Glitter");
             CHECK_THROWS_AS(dec.decorate(sp2), const char*);
@@ -448,7 +448,7 @@ TEST_CASE("Decoration Test Case") {
             Decoration* dec2 = new Decoration(2.0, "Ribbons");
             dec.decorate(dec2);
             CHECK(dec.getPrice() == 15.0); // 10 + 3 + 2
-            CHECK(dec2->getName() == "Ribbons");
+            CHECK(dec2->getName() == "Ribbons | Sunflower Seeds");
             CHECK(dec2->getType() == PLANT_TYPE::DECORATION);
         }
         SUBCASE("Longer decoration Chain") {
