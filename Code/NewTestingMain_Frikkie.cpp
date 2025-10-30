@@ -1,4 +1,3 @@
-#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "doctest.h"
 #include "Section.h"
 #include "ItemIterator.h"
@@ -29,16 +28,6 @@
 // The main function is provided by the doctest framework when DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN is defined.
 // No additional code is needed here.
 // This file serves as the entry point for running all tests defined in other test files.
-
-int foo() {
-    return 42; // A simple function to demonstrate testing
-}
-
-TEST_CASE("Sample Test Case") {
-    CHECK(foo() == 42);
-    CHECK(1 + 1 == 2);
-    CHECK(2 * 2 == 4);
-}
 
 static Section* buildGreenHouse() {      //HELPER
    Section* root = new Section("Main Greenhouse", 10);
@@ -113,7 +102,7 @@ TEST_CASE("Section pattern and item creation") {
 TEST_CASE("Builder pattern and order creation") {
     Section* root = buildGreenHouse();
     Order order;
-    Customer cust("Frikkie01");
+    Customer cust("Frikkie01", nullptr, {});
     order.setCustomer(&cust);
     REQUIRE(order.getCustomer() != nullptr);
     CHECK(order.getCustomer()->getId() != "0");
@@ -137,11 +126,11 @@ TEST_CASE("Builder pattern and order creation") {
     potBuilder.buildPart(&order, "Blue pot");
     seedBuilder.buildPart(&order, "Tomato seeds");
     seedBuilder.buildPart(&order, "Cucumber seeds");
-    CHECK(order.getItemCount() == 4);
+    CHECK(order.getItemCount() == 1); //That which was found is decorated into one package in the order
     Plant* peaceLily = new Plant("Peace lily", 49.99);
     CHECK(peaceLily != nullptr);
     order.addItem(peaceLily);
-    CHECK(order.getItemCount() == 5);   
+    CHECK(order.getItemCount() == 2); //When adding a new plant a new package is made in the order   
     CHECK(order.getTotalCost() > 0);
     REQUIRE_NOTHROW(order.printOrder());
     delete peaceLily;
