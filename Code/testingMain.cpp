@@ -26,6 +26,7 @@
 #include "SeedState.h"
 #include "Plant.h"
 #include "PlantImplementor.h"
+#include "OrderBuilder.h"
 
 // Optional timing shim — comment out if you didn't add Timing.h
 
@@ -37,85 +38,86 @@ class DummyImpl final : public PlantImplementor {
 public:
     DummyImpl(std::string n, double p, PLANT_TYPE t)
         : name_(std::move(n)), price_(p), type_(t) {}
-
     PlantImplementor* clone() override { return new DummyImpl(*this); }
     double getPrice() const override { return price_; }
     std::string getName() const override { return name_; }
     PLANT_TYPE getType() const override { return type_; }
 };
 
-TEST_CASE("NurseryHub::getPlantNamesByType filters greenhouse plants") {
+//minimal test OrderBuilder that filters by a target PLANT_TYPE
+class TypeFilterBuilder : public OrderBuilder {
+    PLANT_TYPE target_;
+public:
+    explicit TypeFilterBuilder(PLANT_TYPE t) : OrderBuilder(nullptr), target_(t) {}
+    // Not used in these tests
+    Order* buildPart(Order* order, std::string) override { return order; }
+    bool checkType(Item* item) override {
+        return item && item->getType() == target_;
+    }
+};
+
+TEST_CASE("getPlantNamesByType with builder: only matching GREENHOUSE_PLANT names returned") {
     auto* hub = new NurseryHub();
 
-    // Wrap dummy implementors (no mediator or state machine involved)
-    Plant* p1 = new Plant(new DummyImpl("aloe",   10.0, PLANT_TYPE::GREENHOUSE_PLANT));
-    Plant* p2 = new Plant(new DummyImpl("bonsai", 25.0, PLANT_TYPE::GREENHOUSE_PLANT));
-    Plant* p3 = new Plant(new DummyImpl("cactus", 15.5, PLANT_TYPE::GREENHOUSE_PLANT));
-    Plant* pot = new Plant(new DummyImpl("clay pot", 40.0, PLANT_TYPE::POT)); // different type
+    Plant* p1  = new Plant(new DummyImpl("aloe",   10.0, PLANT_TYPE::GREENHOUSE_PLANT));
+    Plant* p2  = new Plant(new DummyImpl("bonsai", 25.0, PLANT_TYPE::GREENHOUSE_PLANT));
+    Plant* p3  = new Plant(new DummyImpl("cactus", 15.5, PLANT_TYPE::GREENHOUSE_PLANT));
+    Plant* pot = new Plant(new DummyImpl("clay pot", 40.0, PLANT_TYPE::POT));
 
     hub->registerPlant(p1);
     hub->registerPlant(p2);
     hub->registerPlant(p3);
     hub->registerPlant(pot);
 
-    auto names = hub->getPlantNamesByType(PLANT_TYPE::GREENHOUSE_PLANT);
-    std::sort(names.begin(), names.end());
+    TypeFilterBuilder greenhouseBuilder(PLANT_TYPE::GREENHOUSE_PLANT);
+    auto names = hub->getPlantNamesByType(&greenhouseBuilder);
 
+    std::sort(names.begin(), names.end());
     REQUIRE(names.size() == 3);
     CHECK(names[0] == "aloe");
     CHECK(names[1] == "bonsai");
     CHECK(names[2] == "cactus");
 
-    auto none = hub->getPlantNamesByType(PLANT_TYPE::DECORATION);
-    CHECK(none.empty());
+    //sanity: pot-only filter should return just the pot
+    TypeFilterBuilder potBuilder(PLANT_TYPE::POT);
+    auto pots = hub->getPlantNamesByType(&potBuilder);
+    REQUIRE(pots.size() == 1);
+    CHECK(pots[0] == "clay pot");
 
     delete p1; delete p2; delete p3; delete pot;
     delete hub;
 }
 
-TEST_CASE("NurseryHub::getPlantNamesByType on empty hub returns empty") {
+TEST_CASE("getPlantNamesByType with builder: empty hub returns empty") {
     auto* hub = new NurseryHub();
-    auto names = hub->getPlantNamesByType(PLANT_TYPE::GREENHOUSE_PLANT);
+    TypeFilterBuilder greenhouseBuilder(PLANT_TYPE::GREENHOUSE_PLANT);
+    auto names = hub->getPlantNamesByType(&greenhouseBuilder);
     CHECK(names.empty());
     delete hub;
 }
 
-TEST_CASE("NurseryHub::getPlantNamesByType filters mixed types") {
+TEST_CASE("getPlantNamesByType with builder: mixed types filter correctly") {
     auto* hub = new NurseryHub();
 
-    // Local stub to avoid lifecycle side-effects
-    class DummyImpl final : public PlantImplementor {
-        std::string n; double p; PLANT_TYPE t;
-    public:
-        DummyImpl(std::string name, double price, PLANT_TYPE type)
-            : n(std::move(name)), p(price), t(type) {}
-        PlantImplementor* clone() override { return new DummyImpl(*this); }
-        double getPrice() const override { return p; }
-        std::string getName() const override { return n; }
-        PLANT_TYPE getType() const override { return t; }
-    };
-
-    Plant* a = new Plant(new DummyImpl("aloe",   10.0, PLANT_TYPE::GREENHOUSE_PLANT));
-    Plant* b = new Plant(new DummyImpl("bonsai", 25.0, PLANT_TYPE::GREENHOUSE_PLANT));
-    Plant* pot = new Plant(new DummyImpl("clay pot", 40.0, PLANT_TYPE::POT));
-    Plant* deco = new Plant(new DummyImpl("fairy lights", 55.0, PLANT_TYPE::DECORATION));
+    Plant* a    = new Plant(new DummyImpl("aloe",          10.0, PLANT_TYPE::GREENHOUSE_PLANT));
+    Plant* b    = new Plant(new DummyImpl("bonsai",        25.0, PLANT_TYPE::GREENHOUSE_PLANT));
+    Plant* pot  = new Plant(new DummyImpl("clay pot",      40.0, PLANT_TYPE::POT));
+    Plant* deco = new Plant(new DummyImpl("fairy lights",  55.0, PLANT_TYPE::DECORATION));
 
     hub->registerPlant(a);
     hub->registerPlant(b);
     hub->registerPlant(pot);
     hub->registerPlant(deco);
 
-    auto names = hub->getPlantNamesByType(PLANT_TYPE::GREENHOUSE_PLANT);
+    TypeFilterBuilder greenhouseBuilder(PLANT_TYPE::GREENHOUSE_PLANT);
+    auto names = hub->getPlantNamesByType(&greenhouseBuilder);
     std::sort(names.begin(), names.end());
     REQUIRE(names.size() == 2);
     CHECK(names[0] == "aloe");
     CHECK(names[1] == "bonsai");
 
-    auto pots = hub->getPlantNamesByType(PLANT_TYPE::POT);
-    REQUIRE(pots.size() == 1);
-    CHECK(pots[0] == "clay pot");
-
-    auto decos = hub->getPlantNamesByType(PLANT_TYPE::DECORATION);
+    TypeFilterBuilder decoBuilder(PLANT_TYPE::DECORATION);
+    auto decos = hub->getPlantNamesByType(&decoBuilder);
     REQUIRE(decos.size() == 1);
     CHECK(decos[0] == "fairy lights");
 
@@ -124,50 +126,50 @@ TEST_CASE("NurseryHub::getPlantNamesByType filters mixed types") {
 }
 
 
-int testingMain() {
-    NurseryMediator* hub = new NurseryHub();
-    Staff* careTaker1 = new PlantCaretaker("care1",hub);
-    Staff* careTaker2 = new PlantCaretaker("care2",hub);
-    Staff* careTaker3 = new PlantCaretaker("care3",hub);
-
-    hub->registerStaff(careTaker1);
-    hub->registerStaff(careTaker2);
-    hub->registerStaff(careTaker3);
-    CareStrategy* strat1 = new RegularCareStrategy();
-    CareStrategy* strat2 = new FertilizerBoostStrategy();
-    auto* plant1 = new GreenHousePlant("plant1", 18, hub, strat1);
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    auto* plant2 = new GreenHousePlant("plant2", 18, hub, strat2);
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    auto* plant3 = new GreenHousePlant("plant3", 18, hub, strat1);
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    auto* plant4 = new GreenHousePlant("plant4", 18, hub, strat1);
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    auto* plant5 = new GreenHousePlant("plant5", 18, hub, strat2);
-
-
-
-    std::this_thread::sleep_for(std::chrono::minutes(3));
-
-    delete hub;
-    delete strat1;
-    delete strat2;
-    delete careTaker1;
-    delete careTaker2;
-    delete careTaker3;
-
-
-    delete plant1;
-    delete plant2;
-    delete plant3;
-    delete plant4;
-    delete plant5;
-
-
-
-
-    return 0;
-};
-TEST_CASE("TEST") {
-    testingMain();
-}
+// int testingMain() {
+//     NurseryMediator* hub = new NurseryHub();
+//     Staff* careTaker1 = new PlantCaretaker("care1",hub);
+//     Staff* careTaker2 = new PlantCaretaker("care2",hub);
+//     Staff* careTaker3 = new PlantCaretaker("care3",hub);
+//
+//     hub->registerStaff(careTaker1);
+//     hub->registerStaff(careTaker2);
+//     hub->registerStaff(careTaker3);
+//     CareStrategy* strat1 = new RegularCareStrategy();
+//     CareStrategy* strat2 = new FertilizerBoostStrategy();
+//     auto* plant1 = new GreenHousePlant("plant1", 18, hub, strat1);
+//     std::this_thread::sleep_for(std::chrono::milliseconds(100));
+//     auto* plant2 = new GreenHousePlant("plant2", 18, hub, strat2);
+//     std::this_thread::sleep_for(std::chrono::milliseconds(100));
+//     auto* plant3 = new GreenHousePlant("plant3", 18, hub, strat1);
+//     std::this_thread::sleep_for(std::chrono::milliseconds(100));
+//     auto* plant4 = new GreenHousePlant("plant4", 18, hub, strat1);
+//     std::this_thread::sleep_for(std::chrono::milliseconds(100));
+//     auto* plant5 = new GreenHousePlant("plant5", 18, hub, strat2);
+//
+//
+//
+//     std::this_thread::sleep_for(std::chrono::minutes(3));
+//
+//     delete hub;
+//     delete strat1;
+//     delete strat2;
+//     delete careTaker1;
+//     delete careTaker2;
+//     delete careTaker3;
+//
+//
+//     delete plant1;
+//     delete plant2;
+//     delete plant3;
+//     delete plant4;
+//     delete plant5;
+//
+//
+//
+//
+//     return 0;
+// };
+// TEST_CASE("TEST") {
+//     testingMain();
+// }
