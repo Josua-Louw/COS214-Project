@@ -35,6 +35,20 @@ using CommandPtr = std::shared_ptr<Command>;
  */
 class GreenHousePlant : public PlantImplementor {
 private:
+    /**
+ * @brief Name of the plant.
+ * @details Stores the name of the plant as a string, used for identification.
+ */
+    std::string name;
+
+    /**
+     * @brief Price of the plant.
+     * @details Stores the monetary value of the plant as a double.
+     */
+    double price = 0.0;
+
+
+
     NurseryMediator* mediator_ = nullptr;
     /**
      * @brief Pointer to the care strategy associated with this plant.
@@ -49,17 +63,9 @@ private:
      */
     PlantState* state = nullptr;
 
-    /**
-     * @brief Name of the plant.
-     * @details Stores the name of the plant as a string, used for identification.
-     */
-    std::string name;
 
-    /**
-     * @brief Price of the plant.
-     * @details Stores the monetary value of the plant as a double.
-     */
-    double price = 0.0;
+
+
 
     std::atomic<bool> waterCareBusy{false};
     std::atomic<bool> fertilizingCareBusy{false};
