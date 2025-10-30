@@ -19,3 +19,7 @@ DecorationAdapter::~DecorationAdapter() {
 PLANT_TYPE DecorationAdapter::getType() const {
     return decoration->getType();
 }
+
+OrderPlant* DecorationAdapter::getOrderPlant() const {
+    return dynamic_cast<OrderPlant*>(decoration->clone());
+}

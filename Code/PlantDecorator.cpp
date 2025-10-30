@@ -8,6 +8,14 @@ double PlantDecorator::getPrice() const {
 	return cost;
 }
 
+std::string PlantDecorator::getName() const {
+	if (component != nullptr)
+	{
+		return name + " | " + component->getName();
+	}
+	return name;
+}
+
 void PlantDecorator::decorate(OrderPlant* orderPlant) {
 	if (orderPlant == nullptr)
 	{

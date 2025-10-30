@@ -1,7 +1,20 @@
 CXX := g++
 CXXFLAGS := -std=c++11
 
-SRC := $(wildcard *.cpp)
+# Choose main file: testingMain or DemoMain (default: testingMain)
+MAIN_FILE ?= DemoMain
+
+# Get all .cpp files, then exclude the main file we're NOT using
+ALL_CPP := $(wildcard *.cpp)
+ifeq ($(MAIN_FILE),testingMain)
+    EXCLUDE := DemoMain.cpp
+else ifeq ($(MAIN_FILE),DemoMain)
+    EXCLUDE := testingMain.cpp
+else
+    $(error Invalid MAIN_FILE. Use 'testingMain' or 'DemoMain')
+endif
+
+SRC := $(filter-out $(EXCLUDE),$(ALL_CPP))
 OBJ := $(SRC:.cpp=.o)
 filesInCoverageReport = testingMain
 EXEC := main
