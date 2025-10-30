@@ -10,6 +10,7 @@ class GreenHousePlant;
 class Plant;
 class Staff;
 class Customer;
+enum class PLANT_TYPE;
 
 using CommandPtr = std::shared_ptr<Command>;
 
@@ -73,6 +74,8 @@ public:
 	// bool wasLastCareSuccessful(const GreenHousePlant* p) const override;
 	void beginCare(GreenHousePlant* p, std::string type) override;
 	void finishCare(GreenHousePlant* p, std::string type, bool success) override;
+
+	std::vector<std::string> getPlantNamesByType(PLANT_TYPE type) const;
 };
 
 #endif

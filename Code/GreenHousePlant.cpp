@@ -32,7 +32,6 @@ PlantImplementor* GreenHousePlant::clone() {
 	copy->setWaterSuccess(false);
 	copy->setFertilizingSuccess(false);
 
-	std::cout << "Jippppeeeeee" << std::endl;
 	return copy;
 }
 
