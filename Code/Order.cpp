@@ -48,7 +48,19 @@ double total = 0.0;
  */
 void Order::addItem(Item* item) {
 	if (item){
-    items.push_back(item);
+    if (activePlant && item->getType() != PLANT_TYPE::GREENHOUSE_PLANT)
+    {
+      activePlant->decorate(item->getOrderPlant());
+    }
+    else if (item->getType() == PLANT_TYPE::GREENHOUSE_PLANT)
+    {
+      activePlant = dynamic_cast<PlantType*>(item->getOrderPlant());
+      items.push_back(activePlant);
+    }
+    else
+    {
+      items.push_back(item->getOrderPlant());
+    }
   }
 }
 

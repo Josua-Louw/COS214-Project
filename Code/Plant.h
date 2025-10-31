@@ -61,6 +61,13 @@ public:
      * @return std::string The name of the plant.
      */
     std::string getName() const override;
+
+    OrderPlant* getOrderPlant() const override;
+
+    /**
+     * @brief Destructor for the Plant class.
+     * @details Cleans up resources associated with the Plant object.
+     */
     ~Plant();
 };
 

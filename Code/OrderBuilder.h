@@ -27,10 +27,25 @@ protected:
 	GreenHouse* greenHouse;
 
 public:
+	/**
+	 * @brief Constructor for OrderBuilder.
+	 * @param gh Pointer to the GreenHouse instance.
+	 */
 	OrderBuilder(GreenHouse* gh) : greenHouse(gh) {} 
-
+	/**
+	 * @brief Builds the part of the order based on the item name.
+	 * The method searches for plants in the greenhouse and adds them to the order
+	 * if they match the criteria defined in checkType.
+	 * 
+	 * @param order Pointer to the current order.
+	 * @param itemName Name of the item to be added.
+	 * 
+	 * @return Pointer to the updated order.
+	 */
 	virtual Order* buildPart(Order* order, std::string itemName) = 0;
-
+	/**
+	 * @brief Virtual destructor for proper cleanup of derived classes.
+	 */
 	virtual ~OrderBuilder() = default;
 
 	virtual bool checkType(Item* item) = 0;

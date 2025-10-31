@@ -19,3 +19,7 @@ SeedPacketAdapter::~SeedPacketAdapter() {
 PLANT_TYPE SeedPacketAdapter::getType() const {
     return seedPacket->getType();
 }
+
+OrderPlant* SeedPacketAdapter::getOrderPlant() const {
+    return dynamic_cast<OrderPlant*>(seedPacket->clone());
+}
