@@ -22,6 +22,7 @@ GreenHousePlant::~GreenHousePlant() {
 	// }
 	std::this_thread::sleep_for(std::chrono::milliseconds(100)); //make sure the state thread ends and completes the change before deleting
     delete state;
+	std::cout << "GreenHouse plant successfully deleted" << std::endl;
 }
 
 // Returns the name of the plant.
@@ -64,12 +65,24 @@ CommandPtr GreenHousePlant::feed(int time) {
 }
 
 void GreenHousePlant::watering(int time) {
-	std::this_thread::sleep_for(std::chrono::seconds(time));
+	for (int i = 0; i <= time * 50; ++i) {
+		std::this_thread::sleep_for(std::chrono::milliseconds(5));
+		if (!getIsActive()) {
+			std::cout << "watering failed" << std::endl;
+			return;
+		}
+	}
 	std::cout << "Finished Watering " << this->getName() << std::endl;
 }
 
 void GreenHousePlant::fertilizing(int time) {
-	std::this_thread::sleep_for(std::chrono::seconds(time));
+	for (int i = 0; i <= time * 50; ++i) {
+		std::this_thread::sleep_for(std::chrono::milliseconds(5));
+		if (!getIsActive()) {
+			std::cout << "fertilizing failed" << std::endl;
+			return;
+		}
+	}
 	std::cout << "Finished Fertilizing " << this->getName() << std::endl;
 }
 
@@ -140,7 +153,7 @@ void GreenHousePlant::deactivatePlant() {
 	if (!currentCommand.empty()) {
 		for (auto cmd : currentCommand) {
 			if (cmd != nullptr) {
-				if (cmd->getAbortStatus()) {
+				if (!cmd->getAbortStatus()) {
 					cmd->setAbortStatus(true);
 				}
 			}

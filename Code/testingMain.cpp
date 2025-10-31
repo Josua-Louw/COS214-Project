@@ -326,18 +326,12 @@ int testingMain() {
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
     auto* plant5 = new GreenHousePlant("plant5", 18, hub, strat2);
 
-    std::this_thread::sleep_for(std::chrono::seconds(30)); //runs simulation for a minute before deleting
+    std::this_thread::sleep_for(std::chrono::seconds(20)); //runs simulation for a minute before deleting
     plant3->deactivatePlant();
     delete plant2;
-    std::this_thread::sleep_for(std::chrono::seconds(30));
+    std::this_thread::sleep_for(std::chrono::seconds(10));
     plant3->reactivatePlant();
-    std::this_thread::sleep_for(std::chrono::minutes(1));
-
-
-    delete plant1;
-    delete plant3;
-    delete plant4;
-    delete plant5;
+    std::this_thread::sleep_for(std::chrono::seconds(20));
 
     delete careTaker1;
     delete careTaker2;
@@ -345,6 +339,11 @@ int testingMain() {
     delete hub;
     delete strat1;
     delete strat2;
+    std::cout << "Deleting Plants" << std::endl;
+    delete plant1;
+    delete plant3;
+    delete plant4;
+    delete plant5;
 
     std::this_thread::sleep_for(std::chrono::seconds(5));
 
