@@ -30,8 +30,8 @@ void JuvenileState::transitionToNext() {
         }
 
         // Wait 10 seconds, but exit early if plant dies
-        for (int i = 0; i < 100; ++i) {
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        for (int i = 0; i < 1000; ++i) {
+            std::this_thread::sleep_for(std::chrono::milliseconds(10));
             if (!localPlant || !localPlant->getIsActive()) {
                 return;
             }
@@ -52,7 +52,7 @@ void JuvenileState::transitionToNext() {
         if (localPlant->getWaterBusy() || localPlant->getFertilizingBusy()) {
             while (localPlant->getIsActive() &&
                    (!localPlant->getWaterSuccess() || !localPlant->getFertilizingSuccess())) {
-                std::this_thread::sleep_for(std::chrono::milliseconds(100));
+                std::this_thread::sleep_for(std::chrono::milliseconds(10));
             }
 
             if (!localPlant || !localPlant->getIsActive()) {

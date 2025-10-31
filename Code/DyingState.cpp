@@ -45,8 +45,8 @@ void DyingState::transitionToNext() {
         }
 
         // Wait 10 seconds with periodic active checks
-        for (int i = 0; i < 100; ++i) {
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        for (int i = 0; i < 1000; ++i) {
+            std::this_thread::sleep_for(std::chrono::milliseconds(10));
             if (!localPlant || !localPlant->getIsActive()) return;
         }
 
@@ -60,7 +60,7 @@ void DyingState::transitionToNext() {
 
         if (localPlant->getWaterBusy() || localPlant->getFertilizingBusy()) {
             while (!localPlant->getWaterSuccess() || !localPlant->getFertilizingSuccess()) {
-                std::this_thread::sleep_for(std::chrono::milliseconds(100));
+                std::this_thread::sleep_for(std::chrono::milliseconds(10));
                 if (!localPlant || !localPlant->getIsActive()) return;
             }
             std::cout << "Dying succeed " << localPlant->getName() << std::endl;
