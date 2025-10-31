@@ -1,6 +1,8 @@
 #ifndef PLANTSTATE_H
 #define PLANTSTATE_H
 
+#include <iostream>
+
 /**
  * @file PlantState.h
  * @brief Defines the PlantState class, the abstract base class for plant lifecycle states.
@@ -34,7 +36,7 @@ public:
      * @brief Virtual destructor to ensure proper cleanup in derived classes.
      * @details Provides a virtual destructor to allow safe deletion of derived class objects through a PlantState pointer.
      */
-    virtual ~PlantState() = default;
+    virtual ~PlantState() {std::cout << "deleting PlantState" << std::endl;};
 
     explicit PlantState(GreenHousePlant* plant) : plant_(plant) {};
 };

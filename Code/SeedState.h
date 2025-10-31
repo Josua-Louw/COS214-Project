@@ -37,6 +37,10 @@ public:
 	void transitionToNext() override;
 
 	SeedState(GreenHousePlant* plant);
+
+	~SeedState() {
+		std::cout << "deleting SeedState" << std::endl;
+	};
 };
 
 #endif

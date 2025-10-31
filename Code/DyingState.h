@@ -30,6 +30,10 @@ public:
     DyingState(GreenHousePlant* plant, std::string previousKind);
 
     void restorePreviousState(GreenHousePlant* plant);
+
+    ~DyingState() {
+        std::cout << "deleting DyingState" << std::endl;
+    };
 };
 
 #endif // DYINGSTATE_H
