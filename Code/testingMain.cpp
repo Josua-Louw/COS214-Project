@@ -333,19 +333,19 @@ int testingMain() {
     plant3->reactivatePlant();
     std::this_thread::sleep_for(std::chrono::seconds(20));
 
-    delete careTaker1;
-    delete careTaker2;
-    delete careTaker3;
-    delete hub;
-    delete strat1;
-    delete strat2;
     std::cout << "Deleting Plants" << std::endl;
     delete plant1;
     delete plant3;
     delete plant4;
     delete plant5;
+    delete strat1;
+    delete strat2;
+    delete careTaker1;
+    delete careTaker2;
+    delete careTaker3;
+    delete hub;
 
-    std::this_thread::sleep_for(std::chrono::seconds(5));
+    //std::this_thread::sleep_for(std::chrono::seconds(2));
 
     return 0;
 };
