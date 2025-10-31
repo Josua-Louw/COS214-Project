@@ -1,10 +1,9 @@
 CXX := g++
-CXXFLAGS := -std=c++17 -Wall -Wextra -Werror -pedantic -g -Werror=delete-non-virtual-dtor \
-            $(shell pkg-config --cflags gtkmm-4.0)
+CXXFLAGS := -std=c++11 -Wall -Wextra -pedantic -g -Werror=delete-non-virtual-dtor
 
 LDLIBS   := $(shell pkg-config --libs gtkmm-4.0)
 # Choose main file: testingMain or DemoMain (default: testingMain)
-MAIN_FILE ?= DemoMain
+MAIN_FILE ?= testingMain
 
 # Get all .cpp files, then exclude the main file we're NOT using
 ALL_CPP := $(wildcard *.cpp)
