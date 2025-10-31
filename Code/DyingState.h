@@ -28,6 +28,8 @@ public:
     void transitionToNext() override;
 
     DyingState(GreenHousePlant* plant, std::string previousKind);
+
+    void restorePreviousState(GreenHousePlant* plant);
 };
 
 #endif // DYINGSTATE_H

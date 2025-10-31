@@ -32,20 +32,23 @@ void PlantCaretaker::receiveCommand(CommandPtr command) {
     lock.unlock();
 
     std::thread([this, command]() {
-        auto plant = command->getPlant();
-        if (!plant || !plant->getIsActive()) return;
+        if (!command || !command->getPlant() || !command->getPlant()->getIsActive()) return;
 
         std::mutex execMutex;
         std::condition_variable cv;
         bool done = false;
 
         std::thread execThread([&]() {
-            if (!plant || !plant->getIsActive()) {
+            if (!command || !command->getPlant() || !command->getPlant()->getIsActive()) {
             return;
             }
-            nurseryHub->beginCare(plant, command->getType());
 
-            command->execute();
+            if (command && command.get()->getPlant() && command.get()->getPlant()->getIsActive()) {
+                nurseryHub->beginCare(command->getPlant(), command->getType());
+            }
+
+            if (command && command->getPlant() && command->getPlant()->getIsActive())
+                command->execute();
             {
                 std::lock_guard<std::mutex> lock(execMutex);
                 done = true;
@@ -60,7 +63,10 @@ void PlantCaretaker::receiveCommand(CommandPtr command) {
         }
 
         execThread.join();
-        nurseryHub->finishCare(plant, command->getType() ,true);
+        if (command && command->getPlant() && command->getPlant()->getIsActive()) {
+            nurseryHub->finishCare(command->getPlant(), command->getType() ,true);
+        }
+
 
         {
             std::lock_guard<std::mutex> lock(staffMutex);
