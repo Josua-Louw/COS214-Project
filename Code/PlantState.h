@@ -1,6 +1,7 @@
 #ifndef PLANTSTATE_H
 #define PLANTSTATE_H
 
+#include <atomic>
 #include <iostream>
 
 /**
@@ -20,6 +21,7 @@ class GreenHousePlant;
  */
 class PlantState {
 protected:
+    std::atomic<bool> plantAlive{true};
     GreenHousePlant* plant_ = nullptr;
 public:
 
@@ -39,6 +41,10 @@ public:
     virtual ~PlantState() {std::cout << "deleting PlantState" << std::endl;};
 
     explicit PlantState(GreenHousePlant* plant) : plant_(plant) {};
+
+    void setPlantAlive(bool plantExist);
+
+    bool isAlive() const;
 };
 
 #endif // PLANTSTATE_H

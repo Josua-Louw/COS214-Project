@@ -7,20 +7,22 @@
 #include "DeadState.h"
 
 void SeedlingState::transitionToNext() {
-    if (!plant_ || !plant_->getIsActive()) {
+    if (!plant_ || !isAlive() || !plant_->getIsActive()) {
         return;
     }
 
     std::thread([this]() {
         GreenHousePlant* localPlant = plant_;
-        if (!localPlant || !localPlant->getIsActive()) {
+
+        if (!localPlant || !isAlive() || !localPlant->getIsActive()) {
             return;
         }
 
         std::cout << "\033[1;32mSeedling start\033[0m " << localPlant->getName() << std::endl;
 
         std::vector<CommandPtr> commands = localPlant->applyCurrentCare();
-        if (!localPlant || !localPlant->getIsActive()) {
+
+        if (!localPlant || !isAlive() || !localPlant->getIsActive()) {
             return;
         }
 
@@ -32,12 +34,12 @@ void SeedlingState::transitionToNext() {
         // Sleep for 10 seconds but abort early if the plant dies
         for (int i = 0; i < 10; ++i) {
             std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-            if (!localPlant || !localPlant->getIsActive()) {
+            if (!localPlant || !isAlive() || !localPlant->getIsActive()) {
                 return;
             }
         }
 
-        if (!localPlant || !localPlant->getIsActive()) {
+        if (!localPlant || !isAlive() || !localPlant->getIsActive()) {
             return;
         }
 
@@ -50,12 +52,12 @@ void SeedlingState::transitionToNext() {
 
         // Wait if still busy
         if (localPlant->getWaterBusy() || localPlant->getFertilizingBusy()) {
-            while (localPlant->getIsActive() &&
+            while (isAlive() && localPlant->getIsActive() &&
                    (!localPlant->getWaterSuccess() || !localPlant->getFertilizingSuccess())) {
                 std::this_thread::sleep_for(std::chrono::milliseconds(10));
             }
 
-            if (!localPlant || !localPlant->getIsActive()) {
+            if (!localPlant || !isAlive() || !localPlant->getIsActive()) {
                 return;
             }
 
@@ -70,7 +72,7 @@ void SeedlingState::transitionToNext() {
                 command->setAbortStatus(true);
         }
 
-        if (!localPlant || !localPlant->getIsActive()) {
+        if (!localPlant || !isAlive() || !localPlant->getIsActive()) {
             return;
         }
 
@@ -79,7 +81,10 @@ void SeedlingState::transitionToNext() {
     }).detach();
 }
 
-SeedlingState::SeedlingState(GreenHousePlant* plant) : PlantState(plant) {
+SeedlingState::SeedlingState(GreenHousePlant* plant)
+    : PlantState(plant) {
+    if (!plant_ || !isAlive()) return;
+
     plant_->setWaterSuccess(false);
     plant_->setFertilizingSuccess(false);
     plant_->setWaterBusy(false);

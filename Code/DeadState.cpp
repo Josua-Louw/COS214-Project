@@ -5,18 +5,21 @@
 #include <chrono>
 
 void DeadState::transitionToNext() {
-	if (!plant_) return;
+	if (!plant_ || !isAlive()) return;
 
 	std::thread([this]() {
 		GreenHousePlant* localPlant = plant_;
-		if (!localPlant) return;
+		if (!localPlant || !isAlive()) return;
 
 		std::cout << "\033[1;31mDead start\033[0m " << localPlant->getName() << std::endl;
 
-		// Small pause before final shutdown (optional, for consistency)
-		std::this_thread::sleep_for(std::chrono::milliseconds(200));
+		// Short pause for consistency with other states
+		for (int i = 0; i < 20; ++i) {
+			std::this_thread::sleep_for(std::chrono::milliseconds(10));
+			if (!isAlive() || !localPlant || !localPlant->getIsActive()) return;
+		}
 
-		if (localPlant->getIsActive()) {
+		if (isAlive() && localPlant->getIsActive()) {
 			localPlant->deactivatePlant();
 			std::cout << "\033[1;31mPlant deactivated:\033[0m "
 					  << localPlant->getName() << std::endl;
@@ -24,8 +27,9 @@ void DeadState::transitionToNext() {
 	}).detach();
 }
 
-DeadState::DeadState(GreenHousePlant* plant) : PlantState(plant) {
-	if (!plant_) return;
+DeadState::DeadState(GreenHousePlant* plant)
+	: PlantState(plant) {
+	if (!plant_ || !isAlive()) return;
 
 	plant_->setWaterSuccess(false);
 	plant_->setFertilizingSuccess(false);

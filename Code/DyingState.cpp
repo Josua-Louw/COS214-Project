@@ -14,7 +14,7 @@
 
 DyingState::DyingState(GreenHousePlant* plant, std::string previousKind)
     : PlantState(plant), prevKind(std::move(previousKind)) {
-    if (!plant_) return;
+    if (!plant_ || !isAlive()) return;
 
     plant_->setWaterSuccess(false);
     plant_->setFertilizingSuccess(false);
@@ -25,13 +25,13 @@ DyingState::DyingState(GreenHousePlant* plant, std::string previousKind)
 }
 
 void DyingState::transitionToNext() {
-    if (!plant_ || !plant_->getIsActive()) {
+    if (!plant_ || !isAlive() || !plant_->getIsActive()) {
         return;
     }
 
     std::thread([this]() {
         GreenHousePlant* localPlant = plant_;
-        if (!localPlant || !localPlant->getIsActive()) {
+        if (!localPlant || !isAlive() || !localPlant->getIsActive()) {
             return;
         }
 
@@ -39,40 +39,45 @@ void DyingState::transitionToNext() {
         std::vector<CommandPtr> commands = localPlant->applyCurrentCare();
 
         if (commands.empty()) {
-            if (!localPlant || !localPlant->getIsActive()) return;
+            if (!localPlant || !isAlive() || !localPlant->getIsActive()) return;
             localPlant->setState(new DeadState(localPlant));
             return;
         }
 
-        // Wait 10 seconds with periodic active checks
+        // Wait ~10 seconds, checking life frequently
         for (int i = 0; i < 1000; ++i) {
             std::this_thread::sleep_for(std::chrono::milliseconds(10));
-            if (!localPlant || !localPlant->getIsActive()) return;
+            if (!localPlant || !isAlive() || !localPlant->getIsActive()) return;
         }
 
-        if (!localPlant || !localPlant->getIsActive()) return;
+        if (!localPlant || !isAlive() || !localPlant->getIsActive()) return;
 
+        // Success path
         if (localPlant->getWaterSuccess() && localPlant->getFertilizingSuccess()) {
             std::cout << "Dying succeed " << localPlant->getName() << std::endl;
             restorePreviousState(localPlant);
             return;
         }
 
+        // Wait if busy
         if (localPlant->getWaterBusy() || localPlant->getFertilizingBusy()) {
-            while (!localPlant->getWaterSuccess() || !localPlant->getFertilizingSuccess()) {
+            while (isAlive() && localPlant->getIsActive() &&
+                   (!localPlant->getWaterSuccess() || !localPlant->getFertilizingSuccess())) {
                 std::this_thread::sleep_for(std::chrono::milliseconds(10));
-                if (!localPlant || !localPlant->getIsActive()) return;
             }
+            if (!localPlant || !isAlive() || !localPlant->getIsActive()) return;
+
             std::cout << "Dying succeed " << localPlant->getName() << std::endl;
             restorePreviousState(localPlant);
             return;
         }
 
+        // Failure path
         for (auto& command : commands) {
             if (command) command->setAbortStatus(true);
         }
 
-        if (!localPlant || !localPlant->getIsActive()) return;
+        if (!localPlant || !isAlive() || !localPlant->getIsActive()) return;
 
         std::cout << "Dying fail " << localPlant->getName() << std::endl;
         localPlant->setState(new DeadState(localPlant));
@@ -80,7 +85,7 @@ void DyingState::transitionToNext() {
 }
 
 void DyingState::restorePreviousState(GreenHousePlant* plant) {
-    if (!plant || !plant->getIsActive()) return;
+    if (!plant || !isAlive() || !plant->getIsActive()) return;
 
     if (prevKind == "Seed") {
         plant->setState(new SeedState(plant));

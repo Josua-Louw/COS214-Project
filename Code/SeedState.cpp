@@ -15,9 +15,9 @@ void SeedState::transitionToNext() {
     if (!plant_ || !plant_->getIsActive()) {
         return;
     }
+    GreenHousePlant* localPlant = plant_;  // capture once
+    std::thread([localPlant]() {
 
-    std::thread([this]() {
-        GreenHousePlant* localPlant = plant_;  // capture once
         if (!localPlant || !localPlant->getIsActive()) {
             return;
         }

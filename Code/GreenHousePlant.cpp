@@ -119,7 +119,7 @@ bool GreenHousePlant::getFertilizingBusy() const{
 }
 
 bool GreenHousePlant::getIsActive() const{
-	return isActive.load();
+	return isActive.load(std::memory_order_acquire);
 }
 
 void GreenHousePlant::markCareStarted(std::string type) {
@@ -149,7 +149,7 @@ void GreenHousePlant::setState(PlantState * newState) {
 }
 
 void GreenHousePlant::deactivatePlant() {
-	isActive.store(false, std::memory_order_relaxed);
+	isActive.store(false, std::memory_order_release);
 	if (!currentCommand.empty()) {
 		for (auto cmd : currentCommand) {
 			if (cmd != nullptr) {
@@ -164,7 +164,7 @@ void GreenHousePlant::deactivatePlant() {
 }
 
 void GreenHousePlant::reactivatePlant() {
-	isActive.store(true, std::memory_order_relaxed);
+	isActive.store(true, std::memory_order_release);
 	std::cout << "\033[1;31mreactivated!\033[0m " << this->getName() << std::endl;
 	state->transitionToNext();
 }
