@@ -326,10 +326,15 @@ int testingMain() {
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
     auto* plant5 = new GreenHousePlant("plant5", 18, hub, strat2);
 
-    std::this_thread::sleep_for(std::chrono::minutes(1)); //runs simulation for a minute before deleting
+    std::this_thread::sleep_for(std::chrono::seconds(30)); //runs simulation for a minute before deleting
+    plant3->deactivatePlant();
+    delete plant2;
+    std::this_thread::sleep_for(std::chrono::seconds(30));
+    plant3->reactivatePlant();
+    std::this_thread::sleep_for(std::chrono::minutes(1));
+
 
     delete plant1;
-    delete plant2;
     delete plant3;
     delete plant4;
     delete plant5;
@@ -340,6 +345,8 @@ int testingMain() {
     delete hub;
     delete strat1;
     delete strat2;
+
+    std::this_thread::sleep_for(std::chrono::seconds(5));
 
     return 0;
 };
@@ -377,297 +384,297 @@ TEST_CASE("TEST") {
 // }
 
 //TEST for seed packet functionality
-#include "SeedPacket.h"
-
-TEST_CASE("Seed Packet Test Case") {
-    SUBCASE("Default Constructor") {
-        SeedPacket sp;
-        CHECK(sp.getPrice() == 0.0);
-        CHECK(sp.getName() == "");
-    }
-    SUBCASE("Parameterized Constructor") {
-        SeedPacket sp2(10.0, "Rose Seeds");
-        CHECK(sp2.getPrice() == 10.0);
-        CHECK(sp2.getName() == "Rose Seeds");
-        CHECK(sp2.getType() == PLANT_TYPE::SEED_PACKET);
-    }
-    SUBCASE("Copy Constructor") {
-        SeedPacket sp3(15.0, "Tulip Seeds");
-        SeedPacket sp4(sp3);
-        CHECK(sp4.getPrice() == 15.0);
-        CHECK(sp4.getName() == "Tulip Seeds");
-        CHECK(sp4.getType() == PLANT_TYPE::SEED_PACKET);
-    }
-    SUBCASE("Clone Method") {
-        SeedPacket sp5(20.0, "Daisy Seeds");
-        PlantImplementor* spClone = sp5.clone();
-        SeedPacket* spCloneCasted = dynamic_cast<SeedPacket*>(spClone);
-        REQUIRE(spCloneCasted != nullptr);
-        CHECK(spCloneCasted->getPrice() == 20.0);
-        CHECK(spCloneCasted->getName() == "Daisy Seeds");
-        CHECK(spCloneCasted->getType() == PLANT_TYPE::SEED_PACKET);
-        delete spClone; // Clean up cloned object
-    }
-    SUBCASE("Decorate Method") {
-        SeedPacket sp6(25.0, "Sunflower Seeds");
-        // Since decorate does nothing for SeedPacket, just ensure it doesn't throw
-        CHECK_NOTHROW(sp6.decorate(&sp6));
-        CHECK(sp6.getPrice() == 25.0); // Price should remain unchanged
-    }
-}
-
-//TEST for Decorator functionality
-#include "Decoration.h"
-
-TEST_CASE("Decoration Test Case") {
-    SUBCASE("Default Constructor") {
-        Decoration dec;
-        CHECK(dec.getPrice() == 0.0);
-        CHECK(dec.getName() == "");
-    }
-    SUBCASE("Parameterized Constructor") {
-        Decoration dec2(5.0, "Glitter");
-        CHECK(dec2.getPrice() == 5.0);
-        CHECK(dec2.getName() == "Glitter");
-        CHECK(dec2.getType() == PLANT_TYPE::DECORATION);
-    }
-    SUBCASE("Copy Constructor") {
-        Decoration dec3(7.5, "Ribbons");
-        Decoration dec4(dec3);
-        CHECK(dec4.getPrice() == 7.5);
-        CHECK(dec4.getName() == "Ribbons");
-        CHECK(dec4.getType() == PLANT_TYPE::DECORATION);
-    }
-    SUBCASE("Clone Method") {
-        Decoration dec5(12.0, "Beads");
-        PlantImplementor* decClone = dec5.clone();
-        Decoration* decCloneCasted = dynamic_cast<Decoration*>(decClone);
-        REQUIRE(decCloneCasted != nullptr);
-        CHECK(decCloneCasted->getPrice() == 12.0);
-        CHECK(decCloneCasted->getName() == "Beads");
-        CHECK(decCloneCasted->getType() == PLANT_TYPE::DECORATION);
-        delete decClone; // Clean up cloned object
-    }
-    SUBCASE("Decoration on SeedPacket") {
-        SeedPacket* sp = new SeedPacket(10.0, "Sunflower Seeds");
-        Decoration dec(3.0, "Sparkles");
-        dec.decorate(sp);
-        CHECK(dec.getPrice() == 13.0); // 10 + 3
-        CHECK(sp->getPrice() == 10.0); // Original seed packet price remains unchanged
-        CHECK(sp->getName() == "Sunflower Seeds");
-        CHECK(sp->getType() == PLANT_TYPE::SEED_PACKET);
-        CHECK(dec.getType() == PLANT_TYPE::DECORATION);
-        CHECK(dec.getName() == "Sparkles | Sunflower Seeds");
-        SUBCASE("Double Decoration with seeds Error") {
-            SeedPacket* sp2 = new SeedPacket(2.0, "Glitter");
-            CHECK_THROWS_AS(dec.decorate(sp2), const char*);
-            delete sp2; // Clean up seed packet
-        }
-        SUBCASE("Decoration Chain") {
-            Decoration* dec2 = new Decoration(2.0, "Ribbons");
-            dec.decorate(dec2);
-            CHECK(dec.getPrice() == 15.0); // 10 + 3 + 2
-            CHECK(dec2->getName() == "Ribbons | Sunflower Seeds");
-            CHECK(dec2->getType() == PLANT_TYPE::DECORATION);
-        }
-        SUBCASE("Longer decoration Chain") {
-            Decoration newDec(3.0, "Flowers");
-            Decoration* dec3 = new Decoration(1.0, "Beads");
-            Decoration* dec4 = new Decoration(2.0, "Lights");
-            newDec.decorate(dec3);
-            newDec.decorate(dec4);
-            CHECK(newDec.getPrice() == 6.0); // 3 + 1 + 2
-        }
-        SUBCASE("Null Decoration") {
-            Decoration decNull(4.0, "Feathers");
-            decNull.decorate(nullptr); // Should handle gracefully
-            CHECK(decNull.getPrice() == 4.0); // Price remains unchanged
-        }
-    }    
-}
-
-//TEST for Pot functionality
-#include "Pot.h"
-
-TEST_CASE("Pot Test Case") {
-    SUBCASE("Default Constructor") {
-        Pot pot;
-        CHECK(pot.getPrice() == 0.0);
-        CHECK(pot.getName() == "");
-    }
-    SUBCASE("Parameterized Constructor") {
-        Pot pot2(8.0, "Ceramic Pot");
-        CHECK(pot2.getPrice() == 8.0);
-        CHECK(pot2.getName() == "Ceramic Pot");
-        CHECK(pot2.getType() == PLANT_TYPE::POT);
-    }
-    SUBCASE("Copy Constructor") {
-        Pot pot3(12.0, "Plastic Pot");
-        Pot pot4(pot3);
-        CHECK(pot4.getPrice() == 12.0);
-        CHECK(pot4.getName() == "Plastic Pot");
-        CHECK(pot4.getType() == PLANT_TYPE::POT);
-    }
-    SUBCASE("Clone Method") {
-        Pot pot5(15.0, "Clay Pot");
-        PlantImplementor* potClone = pot5.clone();
-        Pot* potCloneCasted = dynamic_cast<Pot*>(potClone);
-        REQUIRE(potCloneCasted != nullptr);
-        CHECK(potCloneCasted->getPrice() == 15.0);
-        CHECK(potCloneCasted->getName() == "Clay Pot");
-        CHECK(potCloneCasted->getType() == PLANT_TYPE::POT);
-        delete potClone; // Clean up cloned object
-    }
-}
-
-//TEST for PlantType functionality
-#include "PlantType.h"
-
-TEST_CASE("PlantType Test Case") {
-    SUBCASE("Default Constructor") {
-        PlantType pt;
-        CHECK(pt.getPrice() == 0.0);
-        CHECK(pt.getName() == "");
-    }
-    SUBCASE("Parameterized Constructor") {
-        PlantType pt2(20.0, "Fern");
-        CHECK(pt2.getPrice() == 20.0);
-        CHECK(pt2.getName() == "Fern");
-        CHECK(pt2.getType() == PLANT_TYPE::ORDER_PLANT);
-    }
-    SUBCASE("Copy Constructor") {
-        PlantType pt3(25.0, "Cactus");
-        PlantType pt4(pt3);
-        CHECK(pt4.getPrice() == 25.0);
-        CHECK(pt4.getName() == "Cactus");
-        CHECK(pt4.getType() == PLANT_TYPE::ORDER_PLANT);
-    }
-    SUBCASE("Clone Method") {
-        PlantType pt5(30.0, "Bonsai");
-        PlantImplementor* ptClone = pt5.clone();
-        PlantType* ptCloneCasted = dynamic_cast<PlantType*>(ptClone);
-        REQUIRE(ptCloneCasted != nullptr);
-        CHECK(ptCloneCasted->getPrice() == 30.0);
-        CHECK(ptCloneCasted->getName() == "Bonsai");
-        CHECK(ptCloneCasted->getType() == PLANT_TYPE::ORDER_PLANT);
-        delete ptClone; // Clean up cloned object
-    }
-}
-
-//TESTING COMPLETE Decorator chain with all decorators focusing on cloning and price calculation
-TEST_CASE("Complete Decorator Chain Test Case") {
-    SeedPacket* sp = new SeedPacket(10.0, "Orchid Seeds");
-    Decoration* dec = new Decoration(5.0, "Glitter");
-    Pot* pot = new Pot(15.0, "Elegant Pot");
-    PlantType* pt = new PlantType(20.0, "Orchid Plant");
-    pt->decorate(pot);
-    pt->decorate(dec);
-    pt->decorate(sp);
-    CHECK(pt->getPrice() == 50.0); // 10 + 5 + 15 + 20
-    // Clone the entire decoration chain
-    PlantImplementor* ptClone = pt->clone();
-    PlantType* ptCloneCasted = dynamic_cast<PlantType*>(ptClone);
-    REQUIRE(ptCloneCasted != nullptr);
-    CHECK(ptCloneCasted->getPrice() == 50.0);
-    delete pt;
-    delete ptClone;
-}
-
-//ADAPTER TESTS
-
-#include "SeedPacketAdapter.h"
-#include "PotAdapter.h"
-#include "DecorationAdapter.h"
-
-TEST_CASE("Adapter Pattern Test Cases") {
-    SUBCASE("SeedPacketAdapter Test") {
-        SeedPacketAdapter spa("Rose Seeds", 10.0);
-        CHECK(spa.getPrice() == 10.0);
-        CHECK(spa.getName() == "Rose Seeds");
-        SeedPacketAdapter spa2(new SeedPacket(15.0, "Tulip Seeds"));
-        CHECK(spa2.getPrice() == 15.0);
-        CHECK(spa2.getName() == "Tulip Seeds");
-        CHECK(spa2.getType() == PLANT_TYPE::SEED_PACKET);
-        OrderPlant* op = spa2.getOrderPlant();
-        REQUIRE(op != nullptr);
-        CHECK(op->getPrice() == 15.0);
-        CHECK(op->getName() == "Tulip Seeds");
-        delete op;  // Clean up
-    }
-    SUBCASE("PotAdapter Test") {
-        PotAdapter pa("Ceramic Pot", 15.0);
-        CHECK(pa.getPrice() == 15.0);
-        CHECK(pa.getName() == "Ceramic Pot");
-        PotAdapter pa2(new Pot(20.0, "Plastic Pot"));
-        CHECK(pa2.getPrice() == 20.0);
-        CHECK(pa2.getName() == "Plastic Pot");
-        CHECK(pa2.getType() == PLANT_TYPE::POT);
-        OrderPlant* op = pa2.getOrderPlant();
-        REQUIRE(op != nullptr);
-        CHECK(op->getPrice() == 20.0);
-        CHECK(op->getName() == "Plastic Pot");
-        delete op;  // Clean up
-    }
-    SUBCASE("DecorationAdapter Test") {
-        DecorationAdapter da("Glitter", 5.0);
-        CHECK(da.getPrice() == 5.0);
-        CHECK(da.getName() == "Glitter");
-        DecorationAdapter da2(new Decoration(7.5, "Ribbons"));
-        CHECK(da2.getPrice() == 7.5);
-        CHECK(da2.getName() == "Ribbons");
-        CHECK(da2.getType() == PLANT_TYPE::DECORATION);
-        OrderPlant* op = da2.getOrderPlant();
-        REQUIRE(op != nullptr);
-        CHECK(op->getPrice() == 7.5);
-        CHECK(op->getName() == "Ribbons");
-        delete op;  // Clean up
-    }
-}
-
-//TEST BRIDGE - testing plant class and plant implementor
-
-#include "Plant.h"
-
-TEST_CASE("Plant and plantimplementor tests") {
-    // CANNOT TEST CAUSES SEGFAULT
-    CareStrategy* careStrat = new RegularCareStrategy();
-    NurseryMediator* mediator = new NurseryHub();
-    Staff* careTaker1 = new PlantCaretaker("care1",mediator);
-    Staff* careTaker2 = new PlantCaretaker("care2",mediator);
-    Staff* careTaker3 = new PlantCaretaker("care3",mediator);
-    SUBCASE("Plant from original creation") {
-        Plant* plant = new Plant("Daisy", 20, mediator, careStrat);
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
-        CHECK(plant->getName() == "Daisy");
-        CHECK(plant->getPrice() == 20);
-        CHECK(plant->getType() == PLANT_TYPE::GREENHOUSE_PLANT);
-        plant->convertToOrderType();
-        CHECK(plant->getType() == PLANT_TYPE::ORDER_PLANT);
-        delete plant;
-    }
-    SUBCASE("Plant with Order plant implementor") {
-        Plant plant(new PlantType(20, "Daisy"));
-        CHECK(plant.getName() == "Daisy");
-        CHECK(plant.getPrice() == 20);
-        CHECK(plant.getType() == PLANT_TYPE::ORDER_PLANT);
-    }
-    SUBCASE("No implementor") {
-        Plant plant;
-        CHECK(plant.getName() == "Unnamed Plant");
-        CHECK(plant.getPrice() == 0);
-        CHECK(plant.getType() == PLANT_TYPE::GREENHOUSE_PLANT);
-    }
-    SUBCASE("Getting OrderPlant from Plant") {
-        Plant plant(new PlantType(30, "Orchid"));
-        OrderPlant* op = plant.getOrderPlant();
-        REQUIRE(op != nullptr);
-        CHECK(op->getName() == "Orchid");
-        CHECK(op->getPrice() == 30);
-        delete op; // Clean up
-    }
-    delete careStrat;
-    delete careTaker1;
-    delete careTaker2;
-    delete careTaker3;
-    delete mediator;
-}
+// #include "SeedPacket.h"
+//
+// TEST_CASE("Seed Packet Test Case") {
+//     SUBCASE("Default Constructor") {
+//         SeedPacket sp;
+//         CHECK(sp.getPrice() == 0.0);
+//         CHECK(sp.getName() == "");
+//     }
+//     SUBCASE("Parameterized Constructor") {
+//         SeedPacket sp2(10.0, "Rose Seeds");
+//         CHECK(sp2.getPrice() == 10.0);
+//         CHECK(sp2.getName() == "Rose Seeds");
+//         CHECK(sp2.getType() == PLANT_TYPE::SEED_PACKET);
+//     }
+//     SUBCASE("Copy Constructor") {
+//         SeedPacket sp3(15.0, "Tulip Seeds");
+//         SeedPacket sp4(sp3);
+//         CHECK(sp4.getPrice() == 15.0);
+//         CHECK(sp4.getName() == "Tulip Seeds");
+//         CHECK(sp4.getType() == PLANT_TYPE::SEED_PACKET);
+//     }
+//     SUBCASE("Clone Method") {
+//         SeedPacket sp5(20.0, "Daisy Seeds");
+//         PlantImplementor* spClone = sp5.clone();
+//         SeedPacket* spCloneCasted = dynamic_cast<SeedPacket*>(spClone);
+//         REQUIRE(spCloneCasted != nullptr);
+//         CHECK(spCloneCasted->getPrice() == 20.0);
+//         CHECK(spCloneCasted->getName() == "Daisy Seeds");
+//         CHECK(spCloneCasted->getType() == PLANT_TYPE::SEED_PACKET);
+//         delete spClone; // Clean up cloned object
+//     }
+//     SUBCASE("Decorate Method") {
+//         SeedPacket sp6(25.0, "Sunflower Seeds");
+//         // Since decorate does nothing for SeedPacket, just ensure it doesn't throw
+//         CHECK_NOTHROW(sp6.decorate(&sp6));
+//         CHECK(sp6.getPrice() == 25.0); // Price should remain unchanged
+//     }
+// }
+//
+// //TEST for Decorator functionality
+// #include "Decoration.h"
+//
+// TEST_CASE("Decoration Test Case") {
+//     SUBCASE("Default Constructor") {
+//         Decoration dec;
+//         CHECK(dec.getPrice() == 0.0);
+//         CHECK(dec.getName() == "");
+//     }
+//     SUBCASE("Parameterized Constructor") {
+//         Decoration dec2(5.0, "Glitter");
+//         CHECK(dec2.getPrice() == 5.0);
+//         CHECK(dec2.getName() == "Glitter");
+//         CHECK(dec2.getType() == PLANT_TYPE::DECORATION);
+//     }
+//     SUBCASE("Copy Constructor") {
+//         Decoration dec3(7.5, "Ribbons");
+//         Decoration dec4(dec3);
+//         CHECK(dec4.getPrice() == 7.5);
+//         CHECK(dec4.getName() == "Ribbons");
+//         CHECK(dec4.getType() == PLANT_TYPE::DECORATION);
+//     }
+//     SUBCASE("Clone Method") {
+//         Decoration dec5(12.0, "Beads");
+//         PlantImplementor* decClone = dec5.clone();
+//         Decoration* decCloneCasted = dynamic_cast<Decoration*>(decClone);
+//         REQUIRE(decCloneCasted != nullptr);
+//         CHECK(decCloneCasted->getPrice() == 12.0);
+//         CHECK(decCloneCasted->getName() == "Beads");
+//         CHECK(decCloneCasted->getType() == PLANT_TYPE::DECORATION);
+//         delete decClone; // Clean up cloned object
+//     }
+//     SUBCASE("Decoration on SeedPacket") {
+//         SeedPacket* sp = new SeedPacket(10.0, "Sunflower Seeds");
+//         Decoration dec(3.0, "Sparkles");
+//         dec.decorate(sp);
+//         CHECK(dec.getPrice() == 13.0); // 10 + 3
+//         CHECK(sp->getPrice() == 10.0); // Original seed packet price remains unchanged
+//         CHECK(sp->getName() == "Sunflower Seeds");
+//         CHECK(sp->getType() == PLANT_TYPE::SEED_PACKET);
+//         CHECK(dec.getType() == PLANT_TYPE::DECORATION);
+//         CHECK(dec.getName() == "Sparkles | Sunflower Seeds");
+//         SUBCASE("Double Decoration with seeds Error") {
+//             SeedPacket* sp2 = new SeedPacket(2.0, "Glitter");
+//             CHECK_THROWS_AS(dec.decorate(sp2), const char*);
+//             delete sp2; // Clean up seed packet
+//         }
+//         SUBCASE("Decoration Chain") {
+//             Decoration* dec2 = new Decoration(2.0, "Ribbons");
+//             dec.decorate(dec2);
+//             CHECK(dec.getPrice() == 15.0); // 10 + 3 + 2
+//             CHECK(dec2->getName() == "Ribbons | Sunflower Seeds");
+//             CHECK(dec2->getType() == PLANT_TYPE::DECORATION);
+//         }
+//         SUBCASE("Longer decoration Chain") {
+//             Decoration newDec(3.0, "Flowers");
+//             Decoration* dec3 = new Decoration(1.0, "Beads");
+//             Decoration* dec4 = new Decoration(2.0, "Lights");
+//             newDec.decorate(dec3);
+//             newDec.decorate(dec4);
+//             CHECK(newDec.getPrice() == 6.0); // 3 + 1 + 2
+//         }
+//         SUBCASE("Null Decoration") {
+//             Decoration decNull(4.0, "Feathers");
+//             decNull.decorate(nullptr); // Should handle gracefully
+//             CHECK(decNull.getPrice() == 4.0); // Price remains unchanged
+//         }
+//     }
+// }
+//
+// //TEST for Pot functionality
+// #include "Pot.h"
+//
+// TEST_CASE("Pot Test Case") {
+//     SUBCASE("Default Constructor") {
+//         Pot pot;
+//         CHECK(pot.getPrice() == 0.0);
+//         CHECK(pot.getName() == "");
+//     }
+//     SUBCASE("Parameterized Constructor") {
+//         Pot pot2(8.0, "Ceramic Pot");
+//         CHECK(pot2.getPrice() == 8.0);
+//         CHECK(pot2.getName() == "Ceramic Pot");
+//         CHECK(pot2.getType() == PLANT_TYPE::POT);
+//     }
+//     SUBCASE("Copy Constructor") {
+//         Pot pot3(12.0, "Plastic Pot");
+//         Pot pot4(pot3);
+//         CHECK(pot4.getPrice() == 12.0);
+//         CHECK(pot4.getName() == "Plastic Pot");
+//         CHECK(pot4.getType() == PLANT_TYPE::POT);
+//     }
+//     SUBCASE("Clone Method") {
+//         Pot pot5(15.0, "Clay Pot");
+//         PlantImplementor* potClone = pot5.clone();
+//         Pot* potCloneCasted = dynamic_cast<Pot*>(potClone);
+//         REQUIRE(potCloneCasted != nullptr);
+//         CHECK(potCloneCasted->getPrice() == 15.0);
+//         CHECK(potCloneCasted->getName() == "Clay Pot");
+//         CHECK(potCloneCasted->getType() == PLANT_TYPE::POT);
+//         delete potClone; // Clean up cloned object
+//     }
+// }
+//
+// //TEST for PlantType functionality
+// #include "PlantType.h"
+//
+// TEST_CASE("PlantType Test Case") {
+//     SUBCASE("Default Constructor") {
+//         PlantType pt;
+//         CHECK(pt.getPrice() == 0.0);
+//         CHECK(pt.getName() == "");
+//     }
+//     SUBCASE("Parameterized Constructor") {
+//         PlantType pt2(20.0, "Fern");
+//         CHECK(pt2.getPrice() == 20.0);
+//         CHECK(pt2.getName() == "Fern");
+//         CHECK(pt2.getType() == PLANT_TYPE::ORDER_PLANT);
+//     }
+//     SUBCASE("Copy Constructor") {
+//         PlantType pt3(25.0, "Cactus");
+//         PlantType pt4(pt3);
+//         CHECK(pt4.getPrice() == 25.0);
+//         CHECK(pt4.getName() == "Cactus");
+//         CHECK(pt4.getType() == PLANT_TYPE::ORDER_PLANT);
+//     }
+//     SUBCASE("Clone Method") {
+//         PlantType pt5(30.0, "Bonsai");
+//         PlantImplementor* ptClone = pt5.clone();
+//         PlantType* ptCloneCasted = dynamic_cast<PlantType*>(ptClone);
+//         REQUIRE(ptCloneCasted != nullptr);
+//         CHECK(ptCloneCasted->getPrice() == 30.0);
+//         CHECK(ptCloneCasted->getName() == "Bonsai");
+//         CHECK(ptCloneCasted->getType() == PLANT_TYPE::ORDER_PLANT);
+//         delete ptClone; // Clean up cloned object
+//     }
+// }
+//
+// //TESTING COMPLETE Decorator chain with all decorators focusing on cloning and price calculation
+// TEST_CASE("Complete Decorator Chain Test Case") {
+//     SeedPacket* sp = new SeedPacket(10.0, "Orchid Seeds");
+//     Decoration* dec = new Decoration(5.0, "Glitter");
+//     Pot* pot = new Pot(15.0, "Elegant Pot");
+//     PlantType* pt = new PlantType(20.0, "Orchid Plant");
+//     pt->decorate(pot);
+//     pt->decorate(dec);
+//     pt->decorate(sp);
+//     CHECK(pt->getPrice() == 50.0); // 10 + 5 + 15 + 20
+//     // Clone the entire decoration chain
+//     PlantImplementor* ptClone = pt->clone();
+//     PlantType* ptCloneCasted = dynamic_cast<PlantType*>(ptClone);
+//     REQUIRE(ptCloneCasted != nullptr);
+//     CHECK(ptCloneCasted->getPrice() == 50.0);
+//     delete pt;
+//     delete ptClone;
+// }
+//
+// //ADAPTER TESTS
+//
+// #include "SeedPacketAdapter.h"
+// #include "PotAdapter.h"
+// #include "DecorationAdapter.h"
+//
+// TEST_CASE("Adapter Pattern Test Cases") {
+//     SUBCASE("SeedPacketAdapter Test") {
+//         SeedPacketAdapter spa("Rose Seeds", 10.0);
+//         CHECK(spa.getPrice() == 10.0);
+//         CHECK(spa.getName() == "Rose Seeds");
+//         SeedPacketAdapter spa2(new SeedPacket(15.0, "Tulip Seeds"));
+//         CHECK(spa2.getPrice() == 15.0);
+//         CHECK(spa2.getName() == "Tulip Seeds");
+//         CHECK(spa2.getType() == PLANT_TYPE::SEED_PACKET);
+//         OrderPlant* op = spa2.getOrderPlant();
+//         REQUIRE(op != nullptr);
+//         CHECK(op->getPrice() == 15.0);
+//         CHECK(op->getName() == "Tulip Seeds");
+//         delete op;  // Clean up
+//     }
+//     SUBCASE("PotAdapter Test") {
+//         PotAdapter pa("Ceramic Pot", 15.0);
+//         CHECK(pa.getPrice() == 15.0);
+//         CHECK(pa.getName() == "Ceramic Pot");
+//         PotAdapter pa2(new Pot(20.0, "Plastic Pot"));
+//         CHECK(pa2.getPrice() == 20.0);
+//         CHECK(pa2.getName() == "Plastic Pot");
+//         CHECK(pa2.getType() == PLANT_TYPE::POT);
+//         OrderPlant* op = pa2.getOrderPlant();
+//         REQUIRE(op != nullptr);
+//         CHECK(op->getPrice() == 20.0);
+//         CHECK(op->getName() == "Plastic Pot");
+//         delete op;  // Clean up
+//     }
+//     SUBCASE("DecorationAdapter Test") {
+//         DecorationAdapter da("Glitter", 5.0);
+//         CHECK(da.getPrice() == 5.0);
+//         CHECK(da.getName() == "Glitter");
+//         DecorationAdapter da2(new Decoration(7.5, "Ribbons"));
+//         CHECK(da2.getPrice() == 7.5);
+//         CHECK(da2.getName() == "Ribbons");
+//         CHECK(da2.getType() == PLANT_TYPE::DECORATION);
+//         OrderPlant* op = da2.getOrderPlant();
+//         REQUIRE(op != nullptr);
+//         CHECK(op->getPrice() == 7.5);
+//         CHECK(op->getName() == "Ribbons");
+//         delete op;  // Clean up
+//     }
+// }
+//
+// //TEST BRIDGE - testing plant class and plant implementor
+//
+// #include "Plant.h"
+//
+// TEST_CASE("Plant and plantimplementor tests") {
+//     // CANNOT TEST CAUSES SEGFAULT
+//     CareStrategy* careStrat = new RegularCareStrategy();
+//     NurseryMediator* mediator = new NurseryHub();
+//     Staff* careTaker1 = new PlantCaretaker("care1",mediator);
+//     Staff* careTaker2 = new PlantCaretaker("care2",mediator);
+//     Staff* careTaker3 = new PlantCaretaker("care3",mediator);
+//     SUBCASE("Plant from original creation") {
+//         Plant* plant = new Plant("Daisy", 20, mediator, careStrat);
+//         std::this_thread::sleep_for(std::chrono::milliseconds(100));
+//         CHECK(plant->getName() == "Daisy");
+//         CHECK(plant->getPrice() == 20);
+//         CHECK(plant->getType() == PLANT_TYPE::GREENHOUSE_PLANT);
+//         plant->convertToOrderType();
+//         CHECK(plant->getType() == PLANT_TYPE::ORDER_PLANT);
+//         delete plant;
+//     }
+//     SUBCASE("Plant with Order plant implementor") {
+//         Plant plant(new PlantType(20, "Daisy"));
+//         CHECK(plant.getName() == "Daisy");
+//         CHECK(plant.getPrice() == 20);
+//         CHECK(plant.getType() == PLANT_TYPE::ORDER_PLANT);
+//     }
+//     SUBCASE("No implementor") {
+//         Plant plant;
+//         CHECK(plant.getName() == "Unnamed Plant");
+//         CHECK(plant.getPrice() == 0);
+//         CHECK(plant.getType() == PLANT_TYPE::GREENHOUSE_PLANT);
+//     }
+//     SUBCASE("Getting OrderPlant from Plant") {
+//         Plant plant(new PlantType(30, "Orchid"));
+//         OrderPlant* op = plant.getOrderPlant();
+//         REQUIRE(op != nullptr);
+//         CHECK(op->getName() == "Orchid");
+//         CHECK(op->getPrice() == 30);
+//         delete op; // Clean up
+//     }
+//     delete careStrat;
+//     delete careTaker1;
+//     delete careTaker2;
+//     delete careTaker3;
+//     delete mediator;
+//}

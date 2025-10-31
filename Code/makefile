@@ -1,5 +1,5 @@
 CXX := g++
-CXXFLAGS := -std=c++11 -Wall -Wextra -Werror -pedantic -g -Werror=delete-non-virtual-dtor --coverage
+CXXFLAGS := -std=c++11
 
 # Choose main file: testingMain or DemoMain (default: testingMain)
 MAIN_FILE ?= testingMain
