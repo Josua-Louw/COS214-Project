@@ -3,7 +3,7 @@ CXXFLAGS := -std=c++11 -Wall -Wextra -pedantic -g -Werror=delete-non-virtual-dto
 LDLIBS := $(shell pkg-config --libs gtkmm-3.0)
 
 # Choose main file: testingMain or DemoMain (default: testingMain)
-MAIN_FILE ?= testingMain
+MAIN_FILE ?= DemoMain
 
 # Get all .cpp files, then exclude the main file we're NOT using
 ALL_CPP := $(wildcard *.cpp)

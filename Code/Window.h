@@ -30,10 +30,10 @@ protected:
   GUISystemHandler* m_gui_system_handler;
   
   // Main layout
-  Gtk::Box m_main_box;
-  Gtk::Box m_header_box;
-  Gtk::Box m_content_box;
-  Gtk::Box m_footer_box;
+  Gtk::VBox m_main_box;
+  Gtk::HBox m_header_box;
+  Gtk::VBox m_content_box;
+  Gtk::HBox m_footer_box;
   
   // Header widgets
   Gtk::Label m_title_label;
@@ -44,7 +44,7 @@ protected:
   Gtk::Button m_greenhouse_btn;
   
   // Content area (will be dynamically updated)
-  Gtk::Box* m_current_content;
+  Gtk::Widget* m_current_content;
   
   // Footer
   Gtk::Label m_status_label;
