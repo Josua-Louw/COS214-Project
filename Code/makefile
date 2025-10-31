@@ -10,7 +10,7 @@ ALL_CPP := $(wildcard *.cpp)
 ifeq ($(MAIN_FILE),testingMain)
     EXCLUDE := DemoMain.cpp
 else ifeq ($(MAIN_FILE),DemoMain)
-    EXCLUDE := testingMain.cpp
+    EXCLUDE := testingMain.cpp NewTestingMain_Frikkie.cpp
 else
     $(error Invalid MAIN_FILE. Use 'testingMain' or 'DemoMain')
 endif

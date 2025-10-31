@@ -19,4 +19,4 @@ Project for COS214 by the Five guys group
 - Set `MAIN_FILE ?= DemoMain`
 - Run the following in the /Code directory: `make run`
 ## Install gtkmm
-- Run: `sudo apt-get install libgtkmm-4.0-dev` in the linux terminal
+- Run: `sudo apt-get install libgtkmm-3.0-dev` in the linux terminal
