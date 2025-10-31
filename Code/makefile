@@ -1,7 +1,7 @@
 CXX := g++
-CXXFLAGS := -std=c++11 -Wall -Wextra -pedantic -g -Werror=delete-non-virtual-dtor
+CXXFLAGS := -std=c++11 -Wall -Wextra -pedantic -g -Werror=delete-non-virtual-dtor $(shell pkg-config --cflags gtkmm-3.0)
+LDLIBS := $(shell pkg-config --libs gtkmm-3.0)
 
-LDLIBS   := $(shell pkg-config --libs gtkmm-4.0)
 # Choose main file: testingMain or DemoMain (default: testingMain)
 MAIN_FILE ?= testingMain
 
@@ -18,7 +18,7 @@ endif
 SRC := $(filter-out $(EXCLUDE),$(ALL_CPP))
 OBJ := $(SRC:.cpp=.o)
 filesInCoverageReport = testingMain
-EXEC := main
+EXEC := $(MAIN_FILE)
 VALGRIND_OUT := valgrind_output.txt
 VALGRIND_LOG := valgrind.txt
 COVERAGE_OUT := coverage_output.txt
@@ -27,7 +27,7 @@ COVERAGE_LOG := coverage.txt
 all: $(EXEC)
 
 $(EXEC): $(OBJ)
-	$(CXX) $^ $(LDLIBS) -o $@
+	$(CXX) $(CXXFLAGS) $^ -o $@ $(LDLIBS)
 
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
@@ -36,22 +36,19 @@ run: $(EXEC)
 	./$(EXEC)
 
 valgrind: $(EXEC)
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --keep-stacktraces=alloc-and-free --error-exitcode=1 --log-file=valgrind.txt ./$(EXEC) 2>&1 | tee $(VALGRIND_OUT)
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --keep-stacktraces=alloc-and-free --error-exitcode=1 --log-file=$(VALGRIND_LOG) ./$(EXEC) 2>&1 | tee $(VALGRIND_OUT)
 
 gdb: $(EXEC)
 	gdb ./$(EXEC)
 
 coverage: $(OBJ)
-	# Rebuild everything with coverage instrumentation so .gcno files are produced
 	$(MAKE) clean
 	$(MAKE) CXXFLAGS="$(CXXFLAGS) --coverage" all
 	./$(EXEC) > $(COVERAGE_OUT) 2>&1 || true
-	# Run gcov (produce human-readable coverage report). Use the source basename(s).
 	gcov -f -m -r -j ${filesInCoverageReport} > $(COVERAGE_LOG) || true
-	# Generate an HTML report (optional, requires gcovr installed)
 	-gcovr --exclude 'doctest.h' --html-details -o output.html || true
 
-.PHONY: coverage
+.PHONY: coverage clean
 
 clean:
-	rm *.o *.gcov *.gcda *.gcno *.gz *.html *.css $(COVERAGE_OUT) $(COVERAGE_LOG) $(VALGRIND_OUT) $(VALGRIND_LOG) $(EXEC) -f ${files}
+	rm -f *.o *.gcov *.gcda *.gcno *.gz *.html *.css $(COVERAGE_OUT) $(COVERAGE_LOG) $(VALGRIND_OUT) $(VALGRIND_LOG) $(EXEC)
