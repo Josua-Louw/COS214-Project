@@ -25,8 +25,14 @@ std::string GreenHousePlant::getName() const {
 double GreenHousePlant::getPrice() const { return price; }
 
 PlantImplementor* GreenHousePlant::clone() {
-	//implement later
-	return nullptr;
+	GreenHousePlant* copy = new GreenHousePlant(this->name, this->price, this->mediator_, this->strategy);
+
+	copy->setWaterBusy(false);
+	copy->setFertilizingBusy(false);
+	copy->setWaterSuccess(false);
+	copy->setFertilizingSuccess(false);
+
+	return copy;
 }
 
 PLANT_TYPE GreenHousePlant::getType() const {
@@ -121,9 +127,10 @@ void GreenHousePlant::markCareFinished(bool success, std::string type) {
 }
 
 void GreenHousePlant::setState(PlantState * newState) {
-	if (state)
-		delete state;
+	if (newState == state) return;
+	PlantState* old = state;
 	state = newState;
+	if (old) delete old;
 }
 
 void GreenHousePlant::killPlant() {

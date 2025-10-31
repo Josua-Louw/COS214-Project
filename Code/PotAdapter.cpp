@@ -19,3 +19,7 @@ PotAdapter::~PotAdapter() {
 PLANT_TYPE PotAdapter::getType() const {
     return pot->getType();
 }
+
+OrderPlant* PotAdapter::getOrderPlant() const {
+    return dynamic_cast<OrderPlant*>(pot->clone());
+}

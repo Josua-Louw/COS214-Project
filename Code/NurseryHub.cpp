@@ -5,10 +5,14 @@
 #include "Customer.h"
 #include "Command.h"
 #include "Manager.h"
+#include "ItemIterator.h"
+#include "PlantImplementor.h"
+#include "OrderBuilder.h"
 
 #include <algorithm>
 #include <stdexcept>
 #include <vector>
+#include <string>
 
 using CommandPtr = std::shared_ptr<Command>;
 
@@ -119,3 +123,48 @@ void NurseryHub::finishCare(GreenHousePlant* p, std::string type, bool success) 
 	if (!p || !p->getIsAlive()) return;
 	p->markCareFinished(success, type);
 }
+
+std::vector<std::string> NurseryHub::getPlantNamesByType(OrderBuilder* builder) const {
+	std::vector<std::string> names;
+	if (!builder) return names;
+	names.reserve(plants.size());
+
+	std::vector<Item*> items;
+	items.reserve(plants.size());
+	for (Plant* p : plants)
+		items.push_back(static_cast<Item*>(p));
+
+	ItemIterator it(items);
+	for (it.first(); !it.isDone(); it.next()) {
+		Item* item = it.currentItem();
+		if (!item) continue;
+
+		if (builder->checkType(item))
+			names.push_back(item->getName());
+	}
+	return names;
+}
+
+// std::vector<std::string> NurseryHub::getPlantNamesByType(PLANT_TYPE type) const {
+// 	std::vector<std::string> names;
+// 	names.reserve(plants.size());
+//
+// 	//Convert vector<Plant*> -> vector<Item*>
+// 	std::vector<Item*> items;
+// 	items.reserve(plants.size());
+// 	for (Plant* p : plants) {
+// 		items.push_back(static_cast<Item*>(p));
+// 	}
+//
+// 	ItemIterator it(items);
+// 	for (it.first(); !it.isDone(); it.next()) {
+// 		Item* item = it.currentItem();
+// 		if (!item) {//currentItem() could be nullptr
+// 			continue;
+// 		}
+// 		if (item->getType() == type) {
+// 			names.push_back(item->getName());
+// 		}
+// 	}
+// 	return names;
+// }
