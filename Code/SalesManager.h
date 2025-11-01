@@ -3,6 +3,9 @@
 
 #include "Staff.h"
 #include "NurseryMediator.h"
+#include <memory>
+
+using CommandPtr = std::shared_ptr<Command>;
 
 /**
  * @class SalesManager
@@ -25,14 +28,9 @@ public:
      * @brief Receives and executes a SellCommand, processing a customer order.
      * @param command Pointer to the Command (e.g., SellCommand) to execute.
      */
-    void receiveCommand(Command* command) override;
+    void receiveCommand(CommandPtr command) override;
 
-    /**
-     * @brief Handles a command request, checking availability and command type.
-     * @param command Pointer to the Command to handle.
-     * @return True if the command is handled, false if delegated or ignored.
-     */
-    bool handleRequest(Command* command) override;
+    void printChain() override;
 };
 
 #endif // SALES_MANAGER_H

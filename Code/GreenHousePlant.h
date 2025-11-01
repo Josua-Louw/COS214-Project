@@ -4,9 +4,22 @@
 #include "CareStrategy.h"
 #include "PlantState.h"
 #include "PlantImplementor.h"
+#include "NurseryMediator.h"
+#include "WaterPlant.h"
+#include "FertilizePlant.h"
+#include "Command.h"
 #include <string>
+#include <atomic>
+#include <vector>
+#include <thread>
+#include <chrono>
+#include <memory>
 
-class NurseryMediator;
+// Forward declaration only - include SeedState.h in the .cpp file
+class SeedState;
+using CommandPtr = std::shared_ptr<Command>;
+
+
 
 /**
  * @file Plant.h
@@ -22,6 +35,20 @@ class NurseryMediator;
  */
 class GreenHousePlant : public PlantImplementor {
 private:
+    /**
+ * @brief Name of the plant.
+ * @details Stores the name of the plant as a string, used for identification.
+ */
+    std::string name;
+
+    /**
+     * @brief Price of the plant.
+     * @details Stores the monetary value of the plant as a double.
+     */
+    double price = 0.0;
+
+
+
     NurseryMediator* mediator_ = nullptr;
     /**
      * @brief Pointer to the care strategy associated with this plant.
@@ -36,38 +63,34 @@ private:
      */
     PlantState* state = nullptr;
 
-    /**
-     * @brief Name of the plant.
-     * @details Stores the name of the plant as a string, used for identification.
-     */
-    std::string name;
 
-    /**
-     * @brief Price of the plant.
-     * @details Stores the monetary value of the plant as a double.
-     */
-    double price = 0.0;
 
-    //we can replace or extend these metrics later when we also do the state and timers
-    int hydration = 0;
-    int nutrition = 0;
-    int timeForNextCare = 0;
 
+
+    std::atomic<bool> waterCareBusy{false};
+    std::atomic<bool> fertilizingCareBusy{false};
+    std::atomic<bool> waterSuccessful{false};
+    std::atomic<bool> fertilizingSuccessful{false};
+    std::atomic<bool> isActive{true};
+
+    std::vector<CommandPtr> currentCommand = {};
 public:
-    GreenHousePlant(const std::string& name = "", double price = 0.0) : name(name), price(price) {}
+    explicit GreenHousePlant(const std::string& name = "", double price = 0.0, NurseryMediator* mediator = nullptr, CareStrategy* care = nullptr);
+
+    ~GreenHousePlant() override;
     /**
      * @brief Waters the plant.
      * @details Defines the interface for watering the plant, with implementation details provided by derived classes based on the plant’s type and state.
      * @return void
      */
-    void water();
+    CommandPtr water(int time);
 
     /**
      * @brief Feeds the plant.
      * @details Defines the interface for feeding the plant (e.g., applying fertilizer), with implementation details provided by derived classes based on the plant’s type and state.
      * @return void
      */
-    void feed();
+    CommandPtr feed(int time);
 
     /**
      * @brief Gets the price of the plant.
@@ -100,21 +123,32 @@ public:
     /**
      * @brief Virtual destructor to ensure proper cleanup in derived classes.
      * @details Provides a virtual destructor to allow safe deletion of derived class objects through a Plant pointer.
-     */
-    virtual ~GreenHousePlant();
+    */
 
     void setStrategy(CareStrategy* s) { strategy = s; }
-    void applyCurrentCare();           // optional helper used by water()/feed()
+    std::vector<CommandPtr> applyCurrentCare();           // optional helper used by water()/feed()
 
-    //Lightweight hooks for strategies (safe for later State/timer work)
-    void adjustHydration(int delta);
-    void adjustNutrition(int delta);
-    void setTimeForNextCare(int t);
+    void watering(int time);
+    void fertilizing(int time);
 
     void setMediator(NurseryMediator* m) { mediator_ = m; }
+    void setWaterSuccess(bool success);
+    void setFertilizingSuccess(bool success);
+    void setWaterBusy(bool busy);
+    void setFertilizingBusy(bool busy);
+    bool getWaterSuccess() const;
+    bool getFertilizingSuccess() const;
+    bool getWaterBusy() const;
+    bool getFertilizingBusy() const;
+    bool getIsActive() const;
+    void markCareStarted(std::string type);              //sets busy=true, success=false
+    void markCareFinished(bool success, std::string type); //sets success, busy=false
 
-    int  getHydration() const;
-    int  getNutrition() const;
+    void setState(PlantState* newState);
+
+    void deactivatePlant();
+    void reactivatePlant();
+
 };
 
 #endif // GREENHOUSEPLANT_H

@@ -4,12 +4,17 @@
 
 Plant::Plant()
      : implementor(nullptr) {
-    // default left intentionally null (caller can attach implementor later)
+    // default left intentionally null
 }
 
 Plant::Plant(PlantImplementor* impl) 
      : implementor(impl) {
 
+}
+
+Plant::Plant(const std::string& name, double price, NurseryMediator* mediator, CareStrategy* care) 
+{
+    implementor = new GreenHousePlant(name, price, mediator, care);
 }
 
 Plant::Plant(const std::string& name, double price) 

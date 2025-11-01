@@ -14,10 +14,19 @@
  * @note This method is part of the Strategy pattern and defines
  * how this specific care approach benefits the plant.
  */
-void FertilizerBoostStrategy::applyCare(GreenHousePlant& plant) {
-	plant.adjustHydration(+2);
-	plant.adjustNutrition(+5);
-	plant.setTimeForNextCare(12); //(vir nou n placeholder)replace met timers of ticks later saam Darius
+std::vector<CommandPtr> FertilizerBoostStrategy::applyCare(GreenHousePlant& plant) {
+
+    if (!plant.getIsActive()) {
+        return {};
+    }
+    plant.setWaterSuccess(false);
+    plant.setFertilizingSuccess(false);
+    plant.setWaterBusy(false);
+    plant.setFertilizingBusy(false);
+    CommandPtr returnWater = plant.water(4);
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    CommandPtr returnFeed = plant.feed(8);
+    return { returnWater, returnFeed};
 }
 
 /**

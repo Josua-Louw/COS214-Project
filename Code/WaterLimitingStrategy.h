@@ -1,8 +1,12 @@
 #ifndef WATERLIMITINGSTRATEGY_H
 #define WATERLIMITINGSTRATEGY_H
 
-#include "CareStrategy.h"
+#include <vector>
 
+#include "CareStrategy.h"
+#include "Command.h"
+#include <memory>
+using CommandPtr = std::shared_ptr<Command>;
 /**
  * @file WaterLimitingStrategy.h
  * @brief Declaration of the concrete WaterLimitingStrategy class.
@@ -24,7 +28,7 @@ public:
 	 *
 	 * @note Used for plants that thrive under controlled water conditions.
 	 */
-	void applyCare(GreenHousePlant& plant) override;
+	std::vector<CommandPtr> applyCare(GreenHousePlant &plant) override;
 
 	/**
 	 * @brief Returns the identifying name of this strategy ("Water Limiting Strategy").

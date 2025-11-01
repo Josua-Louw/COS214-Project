@@ -22,6 +22,8 @@ public:
      * @param order Pointer to the Order containing the plant.
      */
     SellCommand(Plant* plant, Order* order) : plant(plant), order(order) {}
+
+    std::string getType();
     
     /**
      * @brief Executes the sale, updating inventory and order status.

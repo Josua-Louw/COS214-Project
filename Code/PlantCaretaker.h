@@ -6,6 +6,11 @@
 #include "NurseryMediator.h"
 
 #include <string>
+#include <thread>
+#include <mutex>
+#include <memory>
+
+using CommandPtr = std::shared_ptr<Command>;
 
 /**
  * @class PlantCaretaker
@@ -16,6 +21,7 @@
 class PlantCaretaker : public Staff {
 private:
     NurseryMediator* nurseryHub; /**< Mediator for notifications (FR7). */
+    std::mutex staffMutex;
 public:
     /**
      * @brief Constructs a PlantCaretaker with an ID and NurseryHub.
@@ -28,14 +34,10 @@ public:
      * @brief Receives and executes a care command (e.g., WaterPlant, FertilizePlant).
      * @param command Pointer to the Command to execute.
      */
-    void receiveCommand(Command* command) override;
+    void receiveCommand(CommandPtr command) override;
+    void printChain() override;
 
-    /**
-     * @brief Handles a command request, checking availability and command type.
-     * @param command Pointer to the Command to handle.
-     * @return True if the command is handled, false if delegated or ignored.
-     */
-    bool handleRequest(Command* command) override;
+    void markFree();
 };
 
 #endif // PLANT_CARETAKER_H
