@@ -1,7 +1,15 @@
 #ifndef JUVENILESTATE_H
 #define JUVENILESTATE_H
 
+#include <thread>
+#include <chrono>
+#include <memory>
+
 #include "PlantState.h"
+#include "MatureState.h"
+#include "DyingState.h"
+
+using CommandPtr = std::shared_ptr<Command>;
 
 /**
  * @file JuvenileState.h
@@ -18,13 +26,6 @@
  */
 class JuvenileState : public PlantState {
 public:
-    /**
-     * @brief Handles care actions for a plant in the juvenile state.
-     * @details Performs care actions, such as watering and fertilizing, which are critical for supporting the plant’s growth and enabling it to advance to the mature state.
-     * @note Proper care is essential to ensure the plant develops properly and can transition to the MatureState; insufficient care may lead to the DyingState.
-     * @return void
-     */
-    void handleCare();
 
     /**
      * @brief Transitions the plant to the next state in its lifecycle.
@@ -33,7 +34,13 @@ public:
      * @return void
      * @see MatureState, DyingState
      */
-    void transitionToNext();
+    void transitionToNext() override;
+
+    explicit JuvenileState(GreenHousePlant* plant);
+
+    ~JuvenileState() {
+        std::cout << "deleting JuvenileState" << std::endl;
+    };
 };
 
 #endif // JUVENILESTATE_H

@@ -1,7 +1,9 @@
 #include "SalesManager.h"
-#include "SellCommand.h"
-#include "NurseryMediator.h"
 
+#include <stdexcept>
+
+#include "SellCommand.h"
+using CommandPtr = std::shared_ptr<Command>;
 /**
  * @file SalesManager.cpp
  * @brief Implementation of the SalesManager class.
@@ -15,32 +17,34 @@
  *
  * Executes the command if the SalesManager is available (taskList empty) and the command is a SellCommand, then removes itself from the chain and notifies NurseryHub. If busy or the command is not a SellCommand, delegates to the next staff member. Supports FR5 (Command) and FR6 (Chain of Responsibility).
  */
-void SalesManager::receiveCommand(Command* command) {
-    if (taskList.empty() && dynamic_cast<SellCommand*>(command)) {
-        taskList.push_back(command); // Store command
-        command->execute(); // Execute SellCommand
-        nextStaff = nullptr; // Remove from chain (FR6)
-        if (nurseryHub) {
-            nurseryHub->notify(this, "SALE_COMPLETED", "Order processed"); // Notify Mediator (FR7)
+void SalesManager::receiveCommand(CommandPtr command) {
+    if (!staffBusy) {
+        if (command == nullptr)
+            throw std::invalid_argument("Command cannot be null");
+
+        if (command->getType() != "SellCommand") {
+            if (nextStaff) nextStaff->receiveCommand(command);
+            return;
         }
-    } else if (nextStaff) {
-        nextStaff->receiveCommand(command); // Delegate to next staff
+
+        if (command->getAbortStatus()) {
+            // nurseryHub->finishCare(command->getPlant(), false);
+            return;
+        }
+
+            staffBusy = true;
+            // nurseryHub->beginCare(command->getPlant());
+            // command->execute();
+            // nurseryHub->finishCare(command->getPlant(), true);
+            staffBusy = false;
+    } else {
+        if (nextStaff)
+            nextStaff->receiveCommand(command);
     }
 }
 
-/**
- * @brief Handles a command request, checking availability and command type.
- * @param command Pointer to the Command to handle.
- * @return True if the command is handled, false if delegated or ignored.
- *
- * Implements the Chain of Responsibility Pattern (FR6) by checking if the SalesManager is available (taskList empty) and if the command is a SellCommand. If so, it processes the command; otherwise, it delegates to the next staff member.
- */
-bool SalesManager::handleRequest(Command* command) {
-    if (taskList.empty() && dynamic_cast<SellCommand*>(command)) {
-        receiveCommand(command);
-        return true;
-    } else if (nextStaff) {
-        return nextStaff->handleRequest(command);
-    }
-    return false;
+void SalesManager::printChain() {
+    std::cout << this->getId() << ", ";
+    nextStaff->printChain();
 }
+

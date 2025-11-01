@@ -1,47 +1,83 @@
 #include "PlantCaretaker.h"
+
+#include <condition_variable>
+#include <stdexcept>
+
 #include "WaterPlant.h"
 #include "FertilizePlant.h"
 #include "NurseryMediator.h"
-
+#include <iostream>
 /**
  * @file PlantCaretaker.cpp
  * @brief Implementation of the PlantCaretaker class.
  *
  * Handles plant care tasks by processing WaterPlant and FertilizePlant commands, supporting the Command Pattern (FR5). Participates in the Chain of Responsibility Pattern (FR6) by handling or delegating tasks via nextStaff. Interacts with Plant (FR3 Strategy, FR4 State) and NurseryHub (Mediator, FR7).
  */
+using CommandPtr = std::shared_ptr<Command>;
 
-/**
- * @brief Receives and executes a care command (e.g., WaterPlant, FertilizePlant).
- * @param command Pointer to the Command to execute.
- *
- * Executes the command if the PlantCaretaker is available (taskList empty) and the command is a WaterPlant or FertilizePlant command, then removes itself from the chain and notifies NurseryHub. If busy or the command is not relevant, delegates to the next staff member. Supports FR5 (Command) and FR6 (Chain of Responsibility).
- */
-void PlantCaretaker::receiveCommand(Command* command) {
-    if (taskList.empty() && (dynamic_cast<WaterPlant*>(command) || dynamic_cast<FertilizePlant*>(command))) {
-        taskList.push_back(command); // Store command
-        command->execute(); // Execute care command
-        nextStaff = nullptr; // Remove from chain (FR6)
-        if (nurseryHub) {
-            nurseryHub->notify(this, "CARE_COMPLETED", "Plant cared for"); // Notify Mediator (FR7)
-        }
-    } else if (nextStaff) {
-        nextStaff->receiveCommand(command); // Delegate to next staff
+
+void PlantCaretaker::receiveCommand(CommandPtr command) {
+    std::unique_lock<std::mutex> lock(staffMutex);
+
+    if (!command || !command->getPlant()) return;
+    if (!command->getPlant() || !command->getPlant()->getIsActive()) return;
+
+    if (staffBusy) {
+        if (nextStaff)
+            nextStaff->receiveCommand(command);
+        return;
     }
+
+    staffBusy = true;
+    lock.unlock();
+
+    std::thread([this, command]() {
+        if (!command || !command->getPlant() || !command->getPlant()->getIsActive()) return;
+
+        std::mutex execMutex;
+        std::condition_variable cv;
+        bool done = false;
+
+        std::thread execThread([&]() {
+            if (!command || !command->getPlant() || !command->getPlant()->getIsActive()) {
+            return;
+            }
+
+            if (command && command.get()->getPlant() && command.get()->getPlant()->getIsActive()) {
+                nurseryHub->beginCare(command->getPlant(), command->getType());
+            }
+
+            if (command && command->getPlant() && command->getPlant()->getIsActive())
+                command->execute();
+            {
+                std::lock_guard<std::mutex> lock(execMutex);
+                done = true;
+            }
+            cv.notify_one();
+        });
+
+        // Wait for execute() to complete before finishing care
+        {
+            std::unique_lock<std::mutex> lock(execMutex);
+            cv.wait(lock, [&] { return done; });
+        }
+
+        execThread.join();
+        if (command && command->getPlant() && command->getPlant()->getIsActive()) {
+            nurseryHub->finishCare(command->getPlant(), command->getType() ,true);
+        }
+
+
+        {
+            std::lock_guard<std::mutex> lock(staffMutex);
+            staffBusy = false;
+        }
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    }).detach();
 }
 
-/**
- * @brief Handles a command request, checking availability and command type.
- * @param command Pointer to the Command to handle.
- * @return True if the command is handled, false if delegated or ignored.
- *
- * Implements the Chain of Responsibility Pattern (FR6) by checking if the PlantCaretaker is available (taskList empty) and if the command is a WaterPlant or FertilizePlant command. If so, it processes the command; otherwise, it delegates to the next staff member.
- */
-bool PlantCaretaker::handleRequest(Command* command) {
-    if (taskList.empty() && (dynamic_cast<WaterPlant*>(command) || dynamic_cast<FertilizePlant*>(command))) {
-        receiveCommand(command);
-        return true;
-    } else if (nextStaff) {
-        return nextStaff->handleRequest(command);
-    }
-    return false;
+void PlantCaretaker::printChain() {
+    std::cout << this->getId() << ", ";
+    if (nextStaff)
+    nextStaff->printChain();
 }

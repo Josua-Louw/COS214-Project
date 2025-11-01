@@ -1,13 +1,89 @@
 #include "SeedState.h"
+#include "DyingState.h"
+#include "SeedlingState.h"
 
-// Implement care actions specific to the seed state
-void SeedState::handleCare() {
-	// TODO - implement SeedState::handleCare
-	throw "Not yet implemented";
+SeedState::SeedState(GreenHousePlant* plant)
+    : PlantState(plant) {
+    if (!plant_ || !isAlive()) return;
+
+    plant_->setWaterSuccess(false);
+    plant_->setFertilizingSuccess(false);
+    plant_->setWaterBusy(false);
+    plant_->setFertilizingBusy(false);
+    SeedState::transitionToNext();
 }
 
-// Implement the logic to transition the plant to the next state
 void SeedState::transitionToNext() {
-	// TODO - implement SeedState::transitionToNext
-	throw "Not yet implemented";
+    if (!plant_ || !isAlive() || !plant_->getIsActive()) {
+        return;
+    }
+
+    std::thread([this]() {
+        GreenHousePlant* localPlant = plant_;  // capture once safely
+
+        if (!localPlant || !isAlive() || !localPlant->getIsActive()) {
+            return;
+        }
+
+        std::cout << "\033[1;32mSeed start\033[0m " << localPlant->getName() << std::endl;
+
+        std::vector<CommandPtr> commands = localPlant->applyCurrentCare();
+
+        if (!localPlant || !isAlive() || !localPlant->getIsActive()) {
+            return;
+        }
+
+        if (commands.empty()) {
+            localPlant->setState(new DeadState(localPlant));
+            return;
+        }
+
+        // Simulate growth duration
+        for (int i = 0; i < 1000; ++i) {
+            std::this_thread::sleep_for(std::chrono::milliseconds(10));
+            if (!localPlant || !isAlive() || !localPlant->getIsActive()) {
+                return;
+            }
+        }
+
+        if (!localPlant || !isAlive() || !localPlant->getIsActive()) {
+            return;
+        }
+
+        // Success paths
+        if (localPlant->getWaterSuccess() && localPlant->getFertilizingSuccess()) {
+            std::cout << "Seed success " << localPlant->getName() << std::endl;
+            localPlant->setState(new SeedlingState(localPlant));
+            return;
+        }
+
+        // Wait for completion if busy
+        if (localPlant->getWaterBusy() || localPlant->getFertilizingBusy()) {
+            while (isAlive() && localPlant->getIsActive() &&
+                   (!localPlant->getWaterSuccess() || !localPlant->getFertilizingSuccess())) {
+                std::this_thread::sleep_for(std::chrono::milliseconds(10));
+            }
+
+            if (!localPlant || !isAlive() || !localPlant->getIsActive()) {
+                return;
+            }
+
+            std::cout << "Seed success " << localPlant->getName() << std::endl;
+            localPlant->setState(new SeedlingState(localPlant));
+            return;
+        }
+
+        // Failure path
+        for (auto& command : commands) {
+            if (command)
+                command->setAbortStatus(true);
+        }
+
+        if (!localPlant || !isAlive() || !localPlant->getIsActive()) {
+            return;
+        }
+
+        std::cout << "Seed fail " << localPlant->getName() << std::endl;
+        localPlant->setState(new DyingState(localPlant, "Seed"));
+    }).detach();
 }

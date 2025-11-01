@@ -5,7 +5,10 @@
 #include "Command.h"
 #include <vector>
 #include <string>
-
+#include <atomic>
+#include <memory>
+#include "NurseryHub.h"
+using CommandPtr = std::shared_ptr<Command>;
 /**
  * @class Staff
  * @brief Abstract base class for staff in the Plant Nursery Simulator, implementing Chain of Responsibility and Command Patterns.
@@ -13,9 +16,9 @@
  * Represents staff members who handle tasks like plant care and customer interactions. The Chain of Responsibility Pattern (FR6) distributes commands to available staff via nextStaff, removing assigned staff from the chain. The Command Pattern (FR5) stores tasks in taskList for execution. Staff interacts with NurseryHub (Mediator, FR7) for task coordination.
  */
 class Staff : public Person {
-protected:
+public:
     Staff* nextStaff; /**< Pointer to the next staff in the chain (FR6). */
-    std::vector<Command*> taskList; /**< List of commands assigned to the staff (FR5). */
+    std::atomic<bool> staffBusy{false};
 public:
     /**
      * @brief Constructs a Staff member with an ID.
@@ -27,26 +30,7 @@ public:
      * @brief Receives and stores a command in taskList for execution.
      * @param command Pointer to the Command to be executed.
      */
-    virtual void receiveCommand(Command* command) = 0;
-
-    /**
-     * @brief Handles a command request, checking availability and command type.
-     * @param command Pointer to the Command to handle.
-     * @return True if the command is handled, false if delegated or ignored.
-     */
-    virtual bool handleRequest(Command* command) = 0;
-    
-    /**
-     * @brief Sets the next staff in the chain for task delegation.
-     * @param next Pointer to the next Staff member.
-     */
-    void setNextStaff(Staff* next) { nextStaff = next; }
-
-    /**
-     * @brief Gets the task list for testing purposes.
-     * @return Const reference to the task list.
-     */
-    const std::vector<Command*>& getTaskList() const { return taskList; }
+    virtual void receiveCommand(CommandPtr command) = 0;
 
     /**
      * @brief Gets the next staff in the chain for testing purposes.
@@ -57,11 +41,21 @@ public:
     /**
      * @brief Virtual destructor for proper cleanup of derived classes.
      */
-    virtual ~Staff() {
-        for (Command* cmd : taskList) {
-            delete cmd; // Clean up commands
+    virtual ~Staff() override = default;
+    /**
+     * @brief Adds a staff member to the beginning of the chain.
+     * @param staff Pointer to the Staff member to add.
+     * @note 'this' will be at the end of the chain.
+     */
+
+    void addStaffMember(Staff* staff) {
+        if (staff == nullptr) {
+            return;
         }
+        this->nextStaff = staff;
     }
+
+    virtual void printChain() = 0;
 };
 
 #endif // STAFF_H

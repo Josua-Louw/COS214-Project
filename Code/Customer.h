@@ -38,6 +38,8 @@ private:
 	std::vector<OrderBuilder*> orderBuilders;
 	// Mediator for communication with the nursery system
 	NurseryMediator* nurseryHub;
+	std::vector<OrderBuilder*> orderBuilders;
+
 
 	//TEMPORARY - for testing
 	std::vector<std::string> itemNames;
