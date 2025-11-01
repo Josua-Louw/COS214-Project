@@ -1,5 +1,10 @@
 #include "Customer.h"
 #include "OrderBuilder.h"
+#include "NurseryHub.h"
+#include "GreenHouse.h"
+#include "SellCommand.h"
+#include <memory>
+#include <iostream>
 
 void Customer::buy() {
 	//Idea get list of available items from mediator according to the builder's type
@@ -17,6 +22,40 @@ void Customer::buy() {
 	order->printOrder();
 	delete order;
 }
+
+//I tried to update buy() but I am not sure how to implement this exactly so I am commenting out this version for now.
+// void Customer::buy() {
+// 	if (!nurseryHub) return;
+//
+// 	Order* order = new Order();
+// 	order->setCustomer(this);
+//
+// 	for (OrderBuilder* builder : orderBuilders) {
+// 		if (!builder) continue;
+// 		if (!itemNames.empty()) {
+// 			order = builder->buildPart(order, itemNames.front());
+// 			itemNames.erase(itemNames.begin());
+// 		}
+// 	}
+// 	//Now actually sell plants via commands using the composite root
+// 	auto* hub = dynamic_cast<NurseryHub*>(nurseryHub);
+// 	GreenHouse* root = hub ? hub->getInventoryRoot() : nullptr;
+//
+// 	if (root) {
+// 		for (const std::string& name : itemNames) {
+// 			Item* it = root->findItem(name);
+// 			if (!it) continue;
+// 			Plant* plant = dynamic_cast<Plant*>(it);
+// 			if (!plant) continue;
+//
+// 			auto cmd = std::make_shared<SellCommand>(plant, order, root);
+// 			nurseryHub->assign(cmd);
+// 		}
+// 	}
+//
+// 	order->printOrder();
+// 	delete order;
+// }
 
 Customer::~Customer() {
 	// Clean up order builders if necessary

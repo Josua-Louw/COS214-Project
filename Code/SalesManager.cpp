@@ -18,29 +18,21 @@ using CommandPtr = std::shared_ptr<Command>;
  * Executes the command if the SalesManager is available (taskList empty) and the command is a SellCommand, then removes itself from the chain and notifies NurseryHub. If busy or the command is not a SellCommand, delegates to the next staff member. Supports FR5 (Command) and FR6 (Chain of Responsibility).
  */
 void SalesManager::receiveCommand(CommandPtr command) {
-    if (!staffBusy) {
-        if (command == nullptr)
-            throw std::invalid_argument("Command cannot be null");
+    if (!command) throw std::invalid_argument("Command cannot be null");
 
-        if (command->getType() != "SellCommand") {
-            if (nextStaff) nextStaff->receiveCommand(command);
-            return;
-        }
-
-        if (command->getAbortStatus()) {
-            // nurseryHub->finishCare(command->getPlant(), false);
-            return;
-        }
-
-            staffBusy = true;
-            // nurseryHub->beginCare(command->getPlant());
-            // command->execute();
-            // nurseryHub->finishCare(command->getPlant(), true);
-            staffBusy = false;
-    } else {
-        if (nextStaff)
-            nextStaff->receiveCommand(command);
+    if (staffBusy) {
+        if (nextStaff) nextStaff->receiveCommand(command);
+        return;
     }
+
+    if (command->getType() != "SellCommand") {
+        if (nextStaff) nextStaff->receiveCommand(command);
+        return;
+    }
+
+    staffBusy = true;
+    command->execute();
+    staffBusy = false;
 }
 
 void SalesManager::printChain() {

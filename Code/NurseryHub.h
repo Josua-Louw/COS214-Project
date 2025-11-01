@@ -11,6 +11,7 @@ class Plant;
 class Staff;
 class Customer;
 class OrderBuilder;
+class GreenHouse;
 enum class PLANT_TYPE;
 
 using CommandPtr = std::shared_ptr<Command>;
@@ -38,7 +39,7 @@ private:
 	Staff* staff = nullptr;       ///< Staff members available for assignments.
 	std::vector<Customer*> customers;///< Customers interacting through the mediator.
 
-
+	GreenHouse* inventoryRoot = nullptr;
 public:
 	NurseryHub();
 	/**
@@ -77,6 +78,9 @@ public:
 	void finishCare(GreenHousePlant* p, std::string type, bool success) override;
 
 	std::vector<std::string> getPlantNamesByType(OrderBuilder* builder) const;
+
+	void setInventoryRoot(GreenHouse* r) { inventoryRoot = r; }
+	GreenHouse* getInventoryRoot() const { return inventoryRoot; }
 };
 
 #endif

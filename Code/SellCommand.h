@@ -15,13 +15,14 @@ class SellCommand : public Command {
 private:
     Plant* plant; /**< The plant to be sold. */
     Order* order; /**< The customer order containing the plant. */
+    GreenHouse* inventory;
 public:
     /**
      * @brief Constructs a SellCommand for a specific plant and order.
      * @param plant Pointer to the Plant to be sold.
      * @param order Pointer to the Order containing the plant.
      */
-    SellCommand(Plant* plant, Order* order) : plant(plant), order(order) {}
+    SellCommand(Plant* plant, Order* order, GreenHouse* inventoryRoot): plant(plant), order(order), inventory(inventoryRoot) {}
 
     std::string getType();
     
