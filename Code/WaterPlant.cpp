@@ -22,7 +22,7 @@ std::string WaterPlant::getType() {
  */
 void WaterPlant::execute() {
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    if (plant && plant->getIsAlive() && !this->getAbortStatus()) {
+    if (plant && plant->getIsActive() && !this->getAbortStatus()) {
         plant->watering(time); // Calls Plant's water method, which uses CareStrategy and updates PlantState
     }
 }

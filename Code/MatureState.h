@@ -37,6 +37,10 @@ public:
     void transitionToNext() override;
 
     explicit MatureState(GreenHousePlant* plant);
+
+    ~MatureState() {
+        std::cout << "deleting MatureState" << std::endl;
+    };
 };
 
 #endif // MATURESTATE_H

@@ -12,8 +12,9 @@
  */
 class WaterPlant : public Command {
 private:
-    int time;
     GreenHousePlant* plant; /**< The plant to be watered. */
+    int time;
+
 public:
     /**
      * @brief Constructs a WaterPlant command for a specific plant.
@@ -21,9 +22,9 @@ public:
      */
     WaterPlant(GreenHousePlant* plant, int time) : plant(plant), time(time){}
 
-    std::string getType();
+    std::string getType() override;
 
-    GreenHousePlant* getPlant();
+    GreenHousePlant* getPlant() override;
 
     /**
      * @brief Executes the watering task, updating the plant's state.

@@ -39,6 +39,10 @@ public:
     void transitionToNext() override;
 
     explicit FloweringState(GreenHousePlant* plant);
+
+    ~FloweringState() {
+        std::cout << "deleting FloweringState" << std::endl;
+    };
 };
 
 #endif // FLOWERINGSTATE_H

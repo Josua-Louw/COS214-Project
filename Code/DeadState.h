@@ -28,6 +28,10 @@ public:
     void transitionToNext() override;
 
     explicit DeadState(GreenHousePlant* plant);
+
+    ~DeadState() {
+        std::cout << "deleting DeadState" << std::endl;
+    };
 };
 
 #endif // DEADSTATE_H

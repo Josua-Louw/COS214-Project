@@ -31,7 +31,7 @@ public:
      *
      * @note This is a pure virtual function that must be overridden by subclasses.
      */
-    virtual std::vector<CommandPtr> applyCare(GreenHousePlant& plant) = 0;
+    virtual std::vector<CommandPtr> applyCare(GreenHousePlant &plant) = 0;
 
     /**
      * @brief Retrieves the name or description of the applied care strategy.

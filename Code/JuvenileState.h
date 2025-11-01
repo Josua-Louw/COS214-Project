@@ -37,6 +37,10 @@ public:
     void transitionToNext() override;
 
     explicit JuvenileState(GreenHousePlant* plant);
+
+    ~JuvenileState() {
+        std::cout << "deleting JuvenileState" << std::endl;
+    };
 };
 
 #endif // JUVENILESTATE_H

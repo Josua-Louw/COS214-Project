@@ -38,6 +38,10 @@ public:
     void transitionToNext() override;
 
     explicit SeedlingState(GreenHousePlant* plant);
+
+    ~SeedlingState() {
+        std::cout << "deleting SeedlingState" << std::endl;
+    };
 };
 
 #endif // SEEDLING_STATE_H

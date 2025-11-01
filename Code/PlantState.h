@@ -1,6 +1,9 @@
 #ifndef PLANTSTATE_H
 #define PLANTSTATE_H
 
+#include <atomic>
+#include <iostream>
+
 /**
  * @file PlantState.h
  * @brief Defines the PlantState class, the abstract base class for plant lifecycle states.
@@ -18,6 +21,7 @@ class GreenHousePlant;
  */
 class PlantState {
 protected:
+    std::atomic<bool> plantAlive{true};
     GreenHousePlant* plant_ = nullptr;
 public:
 
@@ -34,9 +38,13 @@ public:
      * @brief Virtual destructor to ensure proper cleanup in derived classes.
      * @details Provides a virtual destructor to allow safe deletion of derived class objects through a PlantState pointer.
      */
-    virtual ~PlantState() = default;
+    virtual ~PlantState() {std::cout << "deleting PlantState" << std::endl;};
 
     explicit PlantState(GreenHousePlant* plant) : plant_(plant) {};
+
+    void setPlantAlive(bool plantExist);
+
+    bool isAlive() const;
 };
 
 #endif // PLANTSTATE_H

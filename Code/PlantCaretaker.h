@@ -36,6 +36,8 @@ public:
      */
     void receiveCommand(CommandPtr command) override;
     void printChain() override;
+
+    void markFree();
 };
 
 #endif // PLANT_CARETAKER_H

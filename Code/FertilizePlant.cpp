@@ -25,7 +25,7 @@ GreenHousePlant * FertilizePlant::getPlant() {
  */
 void FertilizePlant::execute() {
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    if (plant && plant->getIsAlive() && !this->getAbortStatus()) {
+    if (plant && plant->getIsActive() && !this->getAbortStatus()) {
         plant->fertilizing(time); // Calls GreenHousePlant’s feed method, using CareStrategy and PlantState
     }
 }

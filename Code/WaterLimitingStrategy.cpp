@@ -15,7 +15,7 @@
  * @note This method implements the behavior of the water-limiting care strategy.
  */
 std::vector<CommandPtr> WaterLimitingStrategy::applyCare(GreenHousePlant& plant) {
-    if (!plant.getIsAlive()) {
+    if (!plant.getIsActive()) {
         return {};
     }
     plant.setWaterSuccess(false);

@@ -15,7 +15,8 @@
  * how this specific care approach benefits the plant.
  */
 std::vector<CommandPtr> FertilizerBoostStrategy::applyCare(GreenHousePlant& plant) {
-    if (!plant.getIsAlive()) {
+
+    if (!plant.getIsActive()) {
         return {};
     }
     plant.setWaterSuccess(false);
