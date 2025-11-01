@@ -37,25 +37,24 @@ void Customer::buy() {
 // 			itemNames.erase(itemNames.begin());
 // 		}
 // 	}
-// 	//Now actually sell plants via commands using the composite root
-// 	auto* hub = dynamic_cast<NurseryHub*>(nurseryHub);
-// 	GreenHouse* root = hub ? hub->getInventoryRoot() : nullptr;
 //
+// 	OrderBuilder* any = anyBuilder();
+// 	GreenHouse* root = any ? any->getGreenHouse() : nullptr;
 // 	if (root) {
 // 		for (const std::string& name : itemNames) {
-// 			Item* it = root->findItem(name);
-// 			if (!it) continue;
-// 			Plant* plant = dynamic_cast<Plant*>(it);
-// 			if (!plant) continue;
-//
-// 			auto cmd = std::make_shared<SellCommand>(plant, order, root);
-// 			nurseryHub->assign(cmd);
+// 			if (Item* it = root->findItem(name)) {
+// 				if (auto* plant = dynamic_cast<Plant*>(it)) {
+// 					auto cmd = std::make_shared<SellCommand>(plant, order);
+// 					nurseryHub->assign(cmd);
+// 				}
+// 			}
 // 		}
 // 	}
 //
 // 	order->printOrder();
 // 	delete order;
 // }
+
 
 Customer::~Customer() {
 	// Clean up order builders if necessary

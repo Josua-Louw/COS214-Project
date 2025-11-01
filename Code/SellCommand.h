@@ -22,7 +22,7 @@ public:
      * @param plant Pointer to the Plant to be sold.
      * @param order Pointer to the Order containing the plant.
      */
-    SellCommand(Plant* plant, Order* order, GreenHouse* inventoryRoot): plant(plant), order(order), inventory(inventoryRoot) {}
+    SellCommand(Plant* plant, Order* order, GreenHouse* inventoryRoot = nullptr): plant(plant), order(order), inventory(inventoryRoot) {}
 
     std::string getType();
     
