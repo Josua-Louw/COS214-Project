@@ -1,5 +1,5 @@
 CXX := g++
-CXXFLAGS := -std=c++11
+CXXFLAGS := -std=c++11 -Wall -Wextra -pedantic -g -Werror=delete-non-virtual-dtor --coverage
 
 # Choose main file: testingMain or DemoMain (default: testingMain)
 MAIN_FILE ?= testingMain
@@ -45,7 +45,7 @@ coverage: $(EXEC)
 	# Run gcov (produce human-readable coverage report). Use the source basename(s).
 	gcov -f -m -r -j ${filesInCoverageReport} > $(COVERAGE_LOG) || true
 	# Generate an HTML report (optional, requires gcovr installed)
-	-gcovr --exclude 'doctest.h' --html-details -o output.html || true
+	-gcovr --exclude 'doctest.h' --gcov-ignore-parse-errors negative_hits.warn --html-details -o output.html || true
 
 .PHONY: coverage
 
