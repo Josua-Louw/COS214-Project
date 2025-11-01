@@ -11,8 +11,9 @@ class OrderBuilder;
 class Customer : public Person {
 
 private:
-	std::vector<OrderBuilder*> orderBuilders;
 	NurseryMediator* nurseryHub;
+	std::vector<OrderBuilder*> orderBuilders;
+
 
 	//TEMPORARY - for testing
 	std::vector<std::string> itemNames;

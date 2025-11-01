@@ -18,13 +18,6 @@
  */
 class DeadState : public PlantState {
 public:
-    /**
-     * @brief Handles care actions for a plant in the dead state.
-     * @details This method is stubbed and performs no operations, as care actions (e.g., watering, fertilizing) have no effect on a dead plant.
-     * @note This method is intentionally empty due to the plant’s non-viable state.
-     * @return void
-     */
-    void handleCare();
 
     /**
      * @brief Transitions the plant to the next state in its lifecycle.
@@ -32,7 +25,13 @@ public:
      * @note This method is intentionally empty, as the dead state is terminal.
      * @return void
      */
-    void transitionToNext();
+    void transitionToNext() override;
+
+    explicit DeadState(GreenHousePlant* plant);
+
+    ~DeadState() {
+        std::cout << "deleting DeadState" << std::endl;
+    };
 };
 
 #endif // DEADSTATE_H

@@ -31,7 +31,7 @@ public:
     Plant();
     Plant(PlantImplementor* impl);
     Plant(const std::string& name, double price);
-
+    Plant(const std::string& name, double price, NurseryMediator* mediator, CareStrategy* care);
     /**
      * @brief Converts the plant to an order type.
      * @details Defines the interface for converting the plant to an order type, with implementation details provided by derived classes based on the plant’s type.

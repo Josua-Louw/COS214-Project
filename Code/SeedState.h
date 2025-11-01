@@ -1,7 +1,15 @@
 #ifndef SEEDSTATE_H
 #define SEEDSTATE_H
 
+#include <thread>
+#include <chrono>
+#include <iostream>
+
 #include "PlantState.h"
+#include "GreenHousePlant.h"
+#include "PlantImplementor.h"
+#include <memory>
+using CommandPtr = std::shared_ptr<Command>;
 
 /**
  * @file SeedState.h
@@ -18,13 +26,6 @@
  */
 class SeedState : public PlantState {
 public:
-	/**
-	 * @brief Handles care actions for a plant in the seed state.
-	 * @details Performs care actions, such as watering and fertilizing, which are essential for triggering germination and enabling the plant to advance to the seedling state.
-	 * @note Proper care is required for the seed to successfully transition to the SeedlingState; insufficient care may lead to the DyingState.
-	 * @return void
-	 */
-	void handleCare();
 
 	/**
 	 * @brief Transitions the plant to the next state in its lifecycle.
@@ -33,7 +34,13 @@ public:
 	 * @return void
 	 * @see SeedlingState, DyingState
 	 */
-	void transitionToNext();
+	void transitionToNext() override;
+
+	SeedState(GreenHousePlant* plant);
+
+	~SeedState() {
+		std::cout << "deleting SeedState" << std::endl;
+	};
 };
 
 #endif

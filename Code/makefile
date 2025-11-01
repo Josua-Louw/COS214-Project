@@ -1,5 +1,5 @@
 CXX := g++
-CXXFLAGS := -std=c++11 -Wall -Wextra -pedantic -g -Werror=delete-non-virtual-dtor
+CXXFLAGS := -std=c++11 -Wall -Wextra -pedantic -g -Werror=delete-non-virtual-dtor --coverage
 
 # Choose main file: testingMain or DemoMain (default: testingMain)
 MAIN_FILE ?= testingMain
@@ -40,15 +40,12 @@ valgrind: $(EXEC)
 gdb: $(EXEC)
 	gdb ./$(EXEC)
 
-coverage: $(OBJ)
-	# Rebuild everything with coverage instrumentation so .gcno files are produced
-	$(MAKE) clean
-	$(MAKE) CXXFLAGS="$(CXXFLAGS) --coverage" all
+coverage: $(EXEC)
 	./$(EXEC) > $(COVERAGE_OUT) 2>&1 || true
 	# Run gcov (produce human-readable coverage report). Use the source basename(s).
 	gcov -f -m -r -j ${filesInCoverageReport} > $(COVERAGE_LOG) || true
 	# Generate an HTML report (optional, requires gcovr installed)
-	-gcovr --exclude 'doctest.h' --html-details -o output.html || true
+	-gcovr --exclude 'doctest.h' --gcov-ignore-parse-errors negative_hits.warn --html-details -o output.html || true
 
 .PHONY: coverage
 
