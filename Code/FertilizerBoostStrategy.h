@@ -27,7 +27,7 @@ public:
 	 *
 	 * @note This method defines how the plant receives fertilizer to promote healthy growth.
 	 */
-	std::vector<CommandPtr> applyCare(GreenHousePlant& plant) override;
+	std::vector<CommandPtr> applyCare(GreenHousePlant &plant) override;
 
 	/**
 	 * @brief Returns the name of this strategy ("Fertilizer Boost Strategy").

@@ -1,86 +1,105 @@
 #include "DyingState.h"
-
-#include <utility>
 #include "SeedState.h"
 #include "SeedlingState.h"
 #include "JuvenileState.h"
 #include "MatureState.h"
 #include "FloweringState.h"
 #include "SenescenceState.h"
+#include "DeadState.h"
 
-// If you added the timing shim, include it and replace sleeps accordingly.
+#include <iostream>
+#include <thread>
+#include <chrono>
+#include <utility>
 
-DyingState::DyingState(GreenHousePlant* plant, std::string previousKind) : PlantState(plant), prevKind(std::move(previousKind)) {
+DyingState::DyingState(GreenHousePlant* plant, std::string previousKind)
+    : PlantState(plant), prevKind(std::move(previousKind)) {
+    if (!plant_ || !isAlive()) return;
+
     plant_->setWaterSuccess(false);
     plant_->setFertilizingSuccess(false);
     plant_->setWaterBusy(false);
     plant_->setFertilizingBusy(false);
+
     DyingState::transitionToNext();
 }
 
 void DyingState::transitionToNext() {
-    if (!plant_ || plant_->getIsAlive() == false) {
+    if (!plant_ || !isAlive() || !plant_->getIsActive()) {
         return;
     }
+
     std::thread([this]() {
-        std::cout << "\033[1;32mDying start\033[0m " << plant_->getName() << std::endl;
-        std::vector<CommandPtr> commands = plant_->applyCurrentCare();
+        GreenHousePlant* localPlant = plant_;
+        if (!localPlant || !isAlive() || !localPlant->getIsActive()) {
+            return;
+        }
+
+        std::cout << "\033[1;32mDying start\033[0m " << localPlant->getName() << std::endl;
+        std::vector<CommandPtr> commands = localPlant->applyCurrentCare();
+
         if (commands.empty()) {
-            plant_->setState(new DeadState(plant_));
+            if (!localPlant || !isAlive() || !localPlant->getIsActive()) return;
+            localPlant->setState(new DeadState(localPlant));
             return;
         }
-        std::this_thread::sleep_for(std::chrono::seconds(10));
 
+        // Wait ~10 seconds, checking life frequently
+        for (int i = 0; i < 1000; ++i) {
+            std::this_thread::sleep_for(std::chrono::milliseconds(10));
+            if (!localPlant || !isAlive() || !localPlant->getIsActive()) return;
+        }
 
+        if (!localPlant || !isAlive() || !localPlant->getIsActive()) return;
 
-        if (plant_->getWaterSuccess() && plant_->getFertilizingSuccess()) {
-            std::cout << "Dying succeed " << plant_->getName() << std::endl;
-            if (prevKind == "Seed") {
-                plant_->setState(new SeedState(plant_));
-            } else if (prevKind == "Seedling") {
-                plant_->setState(new SeedlingState(plant_));
-            } else if (prevKind == "Juvenile") {
-                plant_->setState(new JuvenileState(plant_));
-            } else if (prevKind == "Mature") {
-                plant_->setState(new MatureState(plant_));
-            } else if (prevKind == "Flowering") {
-                plant_->setState(new FloweringState(plant_));
-            } else if (prevKind == "Senescence") {
-                plant_->setState(new SenescenceState(plant_));
-            } else {
-                plant_->setState(new DeadState(plant_));
-            }
-            return;
-        } else if (plant_->getWaterBusy() || plant_->getFertilizingBusy()) {
-            while (!plant_->getWaterSuccess() || !plant_->getFertilizingSuccess()) {
-                // timing::sleep_for(std::chrono::milliseconds(100));
-                std::this_thread::sleep_for(std::chrono::milliseconds(100));
-            }
-            std::cout << "Dying succeed " << plant_->getName() << std::endl;
-            if (prevKind == "Seed") {
-                plant_->setState(new SeedState(plant_));
-            } else if (prevKind == "Seedling") {
-                plant_->setState(new SeedlingState(plant_));
-            } else if (prevKind == "Juvenile") {
-                plant_->setState(new JuvenileState(plant_));
-            } else if (prevKind == "Mature") {
-                plant_->setState(new MatureState(plant_));
-            } else if (prevKind == "Flowering") {
-                plant_->setState(new FloweringState(plant_));
-            } else if (prevKind == "Senescence") {
-                plant_->setState(new SenescenceState(plant_));
-            } else {
-                plant_->setState(new DeadState(plant_));
-            }
-            return;
-        } else {
-            for (auto command : commands) {
-                if (command)
-                    command->setAbortStatus(true);
-            }
-            std::cout << "Dying fail " << plant_->getName() << std::endl;
-            plant_->setState(new DeadState(plant_));
+        // Success path
+        if (localPlant->getWaterSuccess() && localPlant->getFertilizingSuccess()) {
+            std::cout << "Dying succeed " << localPlant->getName() << std::endl;
+            restorePreviousState(localPlant);
             return;
         }
+
+        // Wait if busy
+        if (localPlant->getWaterBusy() || localPlant->getFertilizingBusy()) {
+            while (isAlive() && localPlant->getIsActive() &&
+                   (!localPlant->getWaterSuccess() || !localPlant->getFertilizingSuccess())) {
+                std::this_thread::sleep_for(std::chrono::milliseconds(10));
+            }
+            if (!localPlant || !isAlive() || !localPlant->getIsActive()) return;
+
+            std::cout << "Dying succeed " << localPlant->getName() << std::endl;
+            restorePreviousState(localPlant);
+            return;
+        }
+
+        // Failure path
+        for (auto& command : commands) {
+            if (command) command->setAbortStatus(true);
+        }
+
+        if (!localPlant || !isAlive() || !localPlant->getIsActive()) return;
+
+        std::cout << "Dying fail " << localPlant->getName() << std::endl;
+        localPlant->setState(new DeadState(localPlant));
     }).detach();
+}
+
+void DyingState::restorePreviousState(GreenHousePlant* plant) {
+    if (!plant || !isAlive() || !plant->getIsActive()) return;
+
+    if (prevKind == "Seed") {
+        plant->setState(new SeedState(plant));
+    } else if (prevKind == "Seedling") {
+        plant->setState(new SeedlingState(plant));
+    } else if (prevKind == "Juvenile") {
+        plant->setState(new JuvenileState(plant));
+    } else if (prevKind == "Mature") {
+        plant->setState(new MatureState(plant));
+    } else if (prevKind == "Flowering") {
+        plant->setState(new FloweringState(plant));
+    } else if (prevKind == "Senescence") {
+        plant->setState(new SenescenceState(plant));
+    } else {
+        plant->setState(new DeadState(plant));
+    }
 }

@@ -28,7 +28,7 @@ public:
 	 *
 	 * @note Used for plants that thrive under controlled water conditions.
 	 */
-	std::vector<CommandPtr> applyCare(GreenHousePlant& plant) override;
+	std::vector<CommandPtr> applyCare(GreenHousePlant &plant) override;
 
 	/**
 	 * @brief Returns the identifying name of this strategy ("Water Limiting Strategy").

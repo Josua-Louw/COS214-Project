@@ -15,14 +15,14 @@ GreenHousePlant::GreenHousePlant(const std::string& name, double price, NurseryM
 
 // Destructor
 GreenHousePlant::~GreenHousePlant() {
-
-	setState(new DeadState(this)); 
+	this->deactivatePlant();
 	// for(auto& cmd : ongoingCareCommands) {
 	// 	if (cmd)
 	// 		cmd->setAbortStatus(true);
 	// }
 	std::this_thread::sleep_for(std::chrono::milliseconds(100)); //make sure the state thread ends and completes the change before deleting
     delete state;
+	std::cout << "GreenHouse plant successfully deleted" << std::endl;
 }
 
 // Returns the name of the plant.
@@ -53,22 +53,36 @@ std::vector<CommandPtr> GreenHousePlant::applyCurrentCare() {
 CommandPtr GreenHousePlant::water(int time) {
 	auto cmd = std::make_shared<WaterPlant>(this, time);
 	if (mediator_) mediator_->assign(cmd);
+	currentCommand.push_back(cmd);
 	return cmd;
 }
 
 CommandPtr GreenHousePlant::feed(int time) {
 	auto cmd = std::make_shared<FertilizePlant>(this,time);
 	if (mediator_) mediator_->assign(cmd);
+	currentCommand.push_back(cmd);
 	return cmd;
 }
 
 void GreenHousePlant::watering(int time) {
-	std::this_thread::sleep_for(std::chrono::seconds(time));
+	for (int i = 0; i <= time * 50; ++i) {
+		std::this_thread::sleep_for(std::chrono::milliseconds(5));
+		if (!getIsActive()) {
+			std::cout << "watering failed" << std::endl;
+			return;
+		}
+	}
 	std::cout << "Finished Watering " << this->getName() << std::endl;
 }
 
 void GreenHousePlant::fertilizing(int time) {
-	std::this_thread::sleep_for(std::chrono::seconds(time));
+	for (int i = 0; i <= time * 50; ++i) {
+		std::this_thread::sleep_for(std::chrono::milliseconds(5));
+		if (!getIsActive()) {
+			std::cout << "fertilizing failed" << std::endl;
+			return;
+		}
+	}
 	std::cout << "Finished Fertilizing " << this->getName() << std::endl;
 }
 
@@ -104,8 +118,8 @@ bool GreenHousePlant::getFertilizingBusy() const{
 	return fertilizingCareBusy.load();
 }
 
-bool GreenHousePlant::getIsAlive() const{
-	return isAlive.load();
+bool GreenHousePlant::getIsActive() const{
+	return isActive.load(std::memory_order_acquire);
 }
 
 void GreenHousePlant::markCareStarted(std::string type) {
@@ -134,7 +148,37 @@ void GreenHousePlant::setState(PlantState * newState) {
 	state = newState;
 }
 
-void GreenHousePlant::killPlant() {
-	isAlive.store(false);
+void GreenHousePlant::deactivatePlant() {
+	isActive.store(false, std::memory_order_release);
+	if (state)
+	{
+		state->setPlantAlive(false);
+	}
+	
+	if (!currentCommand.empty()) {
+		for (auto cmd : currentCommand) {
+			if (cmd != nullptr) {
+				if (!cmd->getAbortStatus()) {
+					cmd->setAbortStatus(true);
+				}
+			}
+		}
+		currentCommand.clear();
+	}
+	std::cout << "\033[1;31mdeactivated!\033[0m " << this->getName() << std::endl;
+}
+
+void GreenHousePlant::reactivatePlant() {
+	isActive.store(true, std::memory_order_release);
+	std::cout << "\033[1;31mreactivated!\033[0m " << this->getName() << std::endl;
+	if (state)
+	{
+		state->setPlantAlive(true);
+		state->transitionToNext();
+	}
+	else 
+	{
+		this->setState(new SeedState(this));
+	}
 }
 

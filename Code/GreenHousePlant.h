@@ -35,6 +35,20 @@ using CommandPtr = std::shared_ptr<Command>;
  */
 class GreenHousePlant : public PlantImplementor {
 private:
+    /**
+ * @brief Name of the plant.
+ * @details Stores the name of the plant as a string, used for identification.
+ */
+    std::string name;
+
+    /**
+     * @brief Price of the plant.
+     * @details Stores the monetary value of the plant as a double.
+     */
+    double price = 0.0;
+
+
+
     NurseryMediator* mediator_ = nullptr;
     /**
      * @brief Pointer to the care strategy associated with this plant.
@@ -49,23 +63,17 @@ private:
      */
     PlantState* state = nullptr;
 
-    /**
-     * @brief Name of the plant.
-     * @details Stores the name of the plant as a string, used for identification.
-     */
-    std::string name;
 
-    /**
-     * @brief Price of the plant.
-     * @details Stores the monetary value of the plant as a double.
-     */
-    double price = 0.0;
+
+
 
     std::atomic<bool> waterCareBusy{false};
     std::atomic<bool> fertilizingCareBusy{false};
     std::atomic<bool> waterSuccessful{false};
     std::atomic<bool> fertilizingSuccessful{false};
-    std::atomic<bool> isAlive{true};
+    std::atomic<bool> isActive{true};
+
+    std::vector<CommandPtr> currentCommand = {};
 public:
     explicit GreenHousePlant(const std::string& name = "", double price = 0.0, NurseryMediator* mediator = nullptr, CareStrategy* care = nullptr);
 
@@ -132,13 +140,14 @@ public:
     bool getFertilizingSuccess() const;
     bool getWaterBusy() const;
     bool getFertilizingBusy() const;
-    bool getIsAlive() const;
+    bool getIsActive() const;
     void markCareStarted(std::string type);              //sets busy=true, success=false
     void markCareFinished(bool success, std::string type); //sets success, busy=false
 
     void setState(PlantState* newState);
 
-    void killPlant();
+    void deactivatePlant();
+    void reactivatePlant();
 
 };
 

@@ -12,8 +12,9 @@ class GreenHousePlant;
  */
 class FertilizePlant : public Command {
 private:
-    int time;
     GreenHousePlant* plant; /**< The greenhouse plant to be fertilized. */
+    int time;
+
 public:
     /**
      * @brief Constructs a FertilizePlant command for a specific greenhouse plant.
@@ -21,7 +22,7 @@ public:
      */
     FertilizePlant(GreenHousePlant* plant, int time) : plant(plant), time(time) {}
 
-    std::string getType();
+    std::string getType() override;
 
     GreenHousePlant* getPlant() override;
     

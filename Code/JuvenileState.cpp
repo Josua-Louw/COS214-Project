@@ -2,46 +2,89 @@
 
 #include <iostream>
 #include <ostream>
+#include "DyingState.h"
+#include "MatureState.h"
+#include "DeadState.h"
 
-// Implement the logic to transition the plant to the next state
 void JuvenileState::transitionToNext() {
-    if (!plant_ || plant_->getIsAlive() == false) {
+    if (!plant_ || !isAlive() || !plant_->getIsActive()) {
         return;
     }
+
     std::thread([this]() {
-        std::cout << "\033[1;32mJuvenile start\033[0m " << plant_->getName() << std::endl;
-        std::vector<CommandPtr> commands = plant_->applyCurrentCare();
+        GreenHousePlant* localPlant = plant_;
+
+        if (!localPlant || !isAlive() || !localPlant->getIsActive()) {
+            return;
+        }
+
+        std::cout << "\033[1;32mJuvenile start\033[0m " << localPlant->getName() << std::endl;
+
+        std::vector<CommandPtr> commands = localPlant->applyCurrentCare();
+
+        if (!localPlant || !isAlive() || !localPlant->getIsActive()) {
+            return;
+        }
+
         if (commands.empty()) {
-            plant_->setState(new DeadState(plant_));
+            localPlant->setState(new DeadState(localPlant));
             return;
         }
-        std::this_thread::sleep_for(std::chrono::seconds(10));
 
+        // Wait 10 seconds, but exit early if plant dies
+        for (int i = 0; i < 1000; ++i) {
+            std::this_thread::sleep_for(std::chrono::milliseconds(10));
+            if (!localPlant || !isAlive() || !localPlant->getIsActive()) {
+                return;
+            }
+        }
 
-        if (plant_->getWaterSuccess() && plant_->getFertilizingSuccess()) {
-            std::cout << "Juvenile success " << plant_->getName() << std::endl;
-            plant_->setState(new MatureState(plant_));
-            return;
-        } else if (plant_->getWaterBusy() || plant_->getFertilizingBusy()) {
-            while (!plant_->getWaterSuccess() || !plant_->getFertilizingSuccess()) {
-                std::this_thread::sleep_for(std::chrono::milliseconds(100));
-            }
-            std::cout << "Juvenile success " << plant_->getName() << std::endl;
-            plant_->setState(new MatureState(plant_));
-            return;
-        } else {
-            for (auto command : commands) {
-                if (command)
-                    command->setAbortStatus(true);
-            }
-            std::cout << "Juvenile fail " << plant_->getName() << std::endl;
-            plant_->setState(new DyingState(plant_, "Juvenile"));
+        if (!localPlant || !isAlive() || !localPlant->getIsActive()) {
             return;
         }
+
+        // Success path
+        if (localPlant->getWaterSuccess() && localPlant->getFertilizingSuccess()) {
+            std::cout << "Juvenile success " << localPlant->getName() << std::endl;
+            localPlant->setState(new MatureState(localPlant));
+            return;
+        }
+
+        // Wait if still busy
+        if (localPlant->getWaterBusy() || localPlant->getFertilizingBusy()) {
+            while (isAlive() && localPlant->getIsActive() &&
+                   (!localPlant->getWaterSuccess() || !localPlant->getFertilizingSuccess())) {
+                std::this_thread::sleep_for(std::chrono::milliseconds(10));
+            }
+
+            if (!localPlant || !isAlive() || !localPlant->getIsActive()) {
+                return;
+            }
+
+            std::cout << "Juvenile success " << localPlant->getName() << std::endl;
+            localPlant->setState(new MatureState(localPlant));
+            return;
+        }
+
+        // Failure path
+        for (auto& command : commands) {
+            if (command)
+                command->setAbortStatus(true);
+        }
+
+        if (!localPlant || !isAlive() || !localPlant->getIsActive()) {
+            return;
+        }
+
+        std::cout << "Juvenile fail " << localPlant->getName() << std::endl;
+        localPlant->setState(new DyingState(localPlant, "Juvenile"));
     }).detach();
 }
 
-JuvenileState::JuvenileState(GreenHousePlant * plant) : PlantState(plant){
+JuvenileState::JuvenileState(GreenHousePlant* plant)
+    : PlantState(plant) {
+    if (!plant_ || !isAlive()) return;
+
     plant_->setWaterSuccess(false);
     plant_->setFertilizingSuccess(false);
     plant_->setWaterBusy(false);
