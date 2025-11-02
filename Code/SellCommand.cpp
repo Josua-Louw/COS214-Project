@@ -1,4 +1,7 @@
 #include "SellCommand.h"
+#include "Order.h"
+#include "Customer.h"
+#include "OrderBuilder.h"
 
 /**
  * @file SellCommand.cpp
@@ -17,14 +20,18 @@ std::string SellCommand::getType() {
  * Adds the plant to the order and removes it from the greenhouse inventory by calling sell on the plant (as a GreenHouse leaf). Updates the order's total cost, supporting customer transactions (FR5, FR8, FR10).
  */
 void SellCommand::execute() {
-    if (plant && order) {
-        order->addItem(plant); // Add plant to the order (FR8, FR10)
-        GreenHouse* plantAsGreenhouse = plant; // Plant publicly inherits from GreenHouse
-        plantAsGreenhouse->sell(plant); // Remove plant from inventory and get price (FR1)
+    if (!plant || !order) return;
+
+    //lazy resolve the composite root if not provided
+    if (!inventory) {
+        if (Customer* c = order->getCustomer()) {
+            if (OrderBuilder* b = c->anyBuilder()) {
+                inventory = b->getGreenHouse();
+            }
+        }
     }
+    if (!inventory) return;
+
+    order->addItem(plant);
+    inventory->sell(plant);
 }
-//Darius and I am not sure how to implement this.
-//we do not want this to have a timer ( just happens instant
-//Should the sell command go delete the pot or plant from the Greenhouse?
-//we want to cry
-//we are focusing on just the PlantCaretaker for now. We need a Herooooo!!!

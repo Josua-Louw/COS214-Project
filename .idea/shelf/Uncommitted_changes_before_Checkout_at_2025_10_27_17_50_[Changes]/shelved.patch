@@ -1,0 +1,20 @@
+Index: Code/Command.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#ifndef COMMAND_H\r\n#define COMMAND_H\r\n#include <string>\r\n#include <atomic>\r\n#include <vector>\r\n#include <thread>\r\n#include <chrono>\r\n\r\n/**\r\n * @class Command\r\n * @brief Abstract base class for the Command Pattern in the Plant Nursery Simulator.\r\n * \r\n * Encapsulates staff tasks (e.g., watering, fertilizing, selling) as command objects, allowing tasks to be stored, executed, and potentially undone. Commands are assigned to Staff via NurseryHub (Mediator) and stored in Staff's taskList. This pattern decouples task requests from their execution, enabling flexible task management.\r\n */\r\nclass Command {\r\nprotected:\r\n    std::atomic<bool> abort{false};\r\npublic:\r\n    bool getAbortStatus() {\r\n        return abort;\r\n    };\r\n\r\n    void setAbortStatus(bool abort) {\r\n        this->abort.store(abort, std::memory_order_release);\r\n    };\r\n    /**\r\n     * @brief Executes the command, performing the specific task.\r\n     * \r\n     * Pure virtual method implemented by concrete command classes (e.g., WaterPlant, SellCommand).\r\n     */\r\n    virtual void execute() = 0;\r\n    \r\n    /**\r\n     * @brief Virtual destructor for proper cleanup of derived classes.\r\n     */\r\n    virtual ~Command() {}\r\n};\r\n\r\n#endif // COMMAND_H
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Code/Command.h b/Code/Command.h
+--- a/Code/Command.h	(revision 0f2ab7749abd0425dc9084bc6bdf3b5b8720b85d)
++++ b/Code/Command.h	(date 1761568190413)
+@@ -2,9 +2,6 @@
+ #define COMMAND_H
+ #include <string>
+ #include <atomic>
+-#include <vector>
+-#include <thread>
+-#include <chrono>
+ 
+ /**
+  * @class Command
