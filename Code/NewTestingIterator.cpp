@@ -25,7 +25,7 @@ int main() {
     subSection2->addItem(new Plant("Rooi karee", 45.00));
 
     root->expand(subSection2);
-
+    root->printSummary();
     Iterator<Item*>* iterator = root->createIterator();
 
     std::cout << "---- Testing recursive item traversal ----" << std::endl;
