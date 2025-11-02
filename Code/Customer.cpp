@@ -46,11 +46,12 @@ void Customer::buy() {
 	//use some randomization to select items to add to the order
 	Order* order = new Order();
 	order->setCustomer(this);
-	for (OrderBuilder* builder : orderBuilders) {
+	for (OrderBuilder* builder : orderBuilders) { 
 		if (builder) {
 			//find item's of builder's type from mediator
 			std::vector<std::string> itemNames = nurseryHub->getPlantNamesByType(builder);
 			if (itemNames.empty()) {
+				std::cout << "No items available for this builder type." << std::endl;
 				continue;
 			}
 			//randomly select an item from the list

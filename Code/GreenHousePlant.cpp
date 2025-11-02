@@ -11,6 +11,7 @@
 GreenHousePlant::GreenHousePlant(const std::string& name, double price, NurseryMediator* mediator, CareStrategy* care)
     : name(name), price(price), mediator_(mediator), strategy(care) {
     this->setState(new SeedState(this));
+	std::cout << "GreenHouse plant successfully created: " << this->getName() << std::endl;
 }
 
 // Destructor

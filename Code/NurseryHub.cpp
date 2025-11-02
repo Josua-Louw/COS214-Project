@@ -146,7 +146,7 @@ std::vector<std::string> NurseryHub::getPlantNamesByType(OrderBuilder* builder) 
 	for (it->first(); !it->isDone(); it->next()) {
 		Item* item = it->currentItem();
 		if (!item) continue;
-
+		std::cout << "Checking item: " << item->getName() << std::endl;
 		if (builder->checkType(item))
 			names.push_back(item->getName());
 	}
@@ -155,7 +155,7 @@ std::vector<std::string> NurseryHub::getPlantNamesByType(OrderBuilder* builder) 
 }
 
 double NurseryHub::sell(Order* order) {
-	if (!order || !inventoryRoot) {
+	if (order == nullptr || inventoryRoot == nullptr) {
 		return 0.0;
 	}
 	return order->sellOrder(inventoryRoot);
