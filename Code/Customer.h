@@ -8,7 +8,6 @@
 #include "AddPot.h"
 #include "AddDecoration.h"
 #include "AddPlant.h"
-#include <vector>
 #include <cstdlib> // For rand() and srand()
 
 class OrderBuilder;
@@ -38,12 +37,6 @@ private:
 	std::vector<OrderBuilder*> orderBuilders;
 	// Mediator for communication with the nursery system
 	NurseryMediator* nurseryHub;
-	std::vector<OrderBuilder*> orderBuilders;
-
-
-	//TEMPORARY - for testing
-	std::vector<std::string> itemNames;
-
 public:
 	/**
 	 * @brief Initiates the buying process for the customer.
@@ -71,10 +64,7 @@ public:
 	 */
 	Customer(std::string id, NurseryMediator* mediator, std::vector<OrderBuilder*> builders)
 		: Person(id), nurseryHub(mediator), orderBuilders(builders) {};
-
-	//TEMPORARY CONSTRUCTOR FOR TESTING JUST TO ADD STRING VECTOR OF ITEMS TO ORDER
-	Customer(std::string id, NurseryMediator* mediator, std::vector<OrderBuilder*> builders, std::vector<std::string> itemNames)
-		: Person(id), nurseryHub(mediator), orderBuilders(builders), itemNames(itemNames) {};
+		
 	/**
 	 * @brief Destructor for the Customer class.
 	 * @details Cleans up dynamically allocated OrderBuilder instances.

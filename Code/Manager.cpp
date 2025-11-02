@@ -27,6 +27,10 @@ void Manager::receiveCommand(CommandPtr command) {
 }
 
 void Manager::redistributeCommands(CommandPtr command) const {
+    if (!nurseryHub || !command)
+    {
+        return;
+    }
     nurseryHub->assign(std::move(command));
 }
 

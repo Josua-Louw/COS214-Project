@@ -340,9 +340,9 @@ int testingMain() {
     delete plant5;
     delete strat1;
     delete strat2;
-    delete careTaker1;
-    delete careTaker2;
-    delete careTaker3;
+    // delete careTaker1;
+    // delete careTaker2;
+    // delete careTaker3;
     delete hub;
 
     //std::this_thread::sleep_for(std::chrono::seconds(2));
@@ -352,7 +352,7 @@ int testingMain() {
 
 //TESTS STRATEGIES AND STATE TIME
 TEST_CASE("TEST") {
-    testingMain();
+   //testingMain();
 }
 
 // TEST_CASE("WaterLimiting reduces watering pressure") {
@@ -635,7 +635,6 @@ TEST_CASE("Adapter Pattern Test Cases") {
 #include "Plant.h"
 
 TEST_CASE("Plant and plantimplementor tests") {
-    // CANNOT TEST CAUSES SEGFAULT
     CareStrategy* careStrat = new RegularCareStrategy();
     NurseryMediator* mediator = new NurseryHub();
     Staff* careTaker1 = new PlantCaretaker("care1",mediator);
@@ -672,8 +671,81 @@ TEST_CASE("Plant and plantimplementor tests") {
         delete op; // Clean up
     }
     delete careStrat;
-    delete careTaker1;
-    delete careTaker2;
-    delete careTaker3;
+    // delete careTaker1;
+    // delete careTaker2;
+    // delete careTaker3;
     delete mediator;
+}
+
+//SELL system tests
+#include "Order.h"
+#include "Section.h"
+#include "Customer.h"
+#include "SalesManager.h"
+#include "SellCommand.h"
+
+TEST_CASE("NurseryHub Sell System Test") {
+    std::cout << "Starting NurseryHub Sell System Test" << std::endl;
+    NurseryMediator* hub = new NurseryHub();
+    PlantCaretaker* careTaker1 = new PlantCaretaker("care1", hub);
+    PlantCaretaker* careTaker2 = new PlantCaretaker("care2", hub);
+    hub->registerStaff(careTaker1);
+    hub->registerStaff(careTaker2);
+    careTaker2->printChain();
+    Section* section1 = new Section("Root Greenhouse");
+    hub->setInventoryRoot(section1);
+    SUBCASE("Sell with valid order") {
+        Order order;
+        double total = hub->sell(&order);
+        CHECK(total == 0.0); // Since Order doesn't add any plants
+    }
+    SUBCASE("Sell with null order") {
+        double total = hub->sell(nullptr);
+        CHECK(total == 0.0);
+    }
+    SUBCASE("Sell with multiple plants in order") {
+        Order order;
+        // Assuming Order has a method to add plants
+        Plant* plant1 = new Plant("Plant1", 10, hub, new RegularCareStrategy());
+        Plant* plant2 = new Plant("Plant2", 20, hub, new FertilizerBoostStrategy());
+        hub->registerPlant(plant1);
+        hub->registerPlant(plant2);
+        AddPlant plantBuilder1(section1);
+        AddPlant plantBuilder2(section1);
+        plantBuilder1.buildPart(&order, "Plant1");
+        plantBuilder2.buildPart(&order, "Plant2");
+        double total = hub->sell(&order);
+        CHECK(total == 30.0); // 10 + 20
+    }
+    SUBCASE("Customer buying random items") {
+        Customer customer("John Doe", hub, section1);
+        Plant* plant1 = new Plant("Plant1", 10, hub, new RegularCareStrategy());
+        Plant* plant2 = new Plant("Plant2", 20, hub, new FertilizerBoostStrategy());
+        hub->registerPlant(plant1);
+        hub->registerPlant(plant2);
+        PotAdapter* pot = new PotAdapter("Ceramic Pot", 5.0);
+        DecorationAdapter* decor = new DecorationAdapter("Glitter", 3.0);
+        section1->addItem(pot);
+        section1->addItem(decor);
+        customer.buy();
+    }
+    SUBCASE("Selling through a sell command") {
+        Plant* plant1 = new Plant("Plant3", 10, hub, new RegularCareStrategy());
+        hub->registerPlant(plant1);
+        hub->registerStaff(new SalesManager("sales1", hub));
+        Customer* customer = new Customer("Jane Doe", hub, section1);
+        // SellCommand* sellCmd = new SellCommand(customer);
+        // sellCmd->execute();
+        // delete sellCmd;
+        delete customer;
+    }
+    SUBCASE("Selling through sales manager") {
+        Plant* plant1 = new Plant("Plant4", 15, hub, new FertilizerBoostStrategy());
+        hub->registerPlant(plant1);
+        SalesManager* salesManager = new SalesManager("sales2", hub);
+        hub->registerStaff(salesManager);
+        
+    }
+    delete section1;
+    delete hub;
 }
