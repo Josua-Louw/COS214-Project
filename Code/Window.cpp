@@ -7,70 +7,67 @@ Window::Window(GUISystemHandler* guiSystem)
       m_current_content(nullptr)
 {
     set_title("Greenhouse Management System");
-    set_default_size(800, 600);
+    set_default_size(900, 700);
+    set_border_width(10);
     
     // Create all widgets dynamically
-    m_main_box = new Gtk::VBox(false, 5);
+    m_main_box = new Gtk::VBox(false, 10);
     m_header_box = new Gtk::HBox(false, 5);
-    m_content_box = new Gtk::VBox(false, 10);
+    m_content_box = new Gtk::VBox(false, 15);
     m_footer_box = new Gtk::HBox(false, 5);
     
-    m_title_label = new Gtk::Label("Greenhouse Management System");
-    m_main_menu_btn = new Gtk::Button("Main Menu");
-    m_plant_mgmt_btn = new Gtk::Button("Plant Management");
-    m_staff_mgmt_btn = new Gtk::Button("Staff Management");
-    m_order_btn = new Gtk::Button("Order Processing");
-    m_greenhouse_btn = new Gtk::Button("Greenhouse View");
+    m_title_label = new Gtk::Label("🌿 Greenhouse Management System 🌿");
+    m_main_menu_btn = new Gtk::Button("🏠 Main Menu");
+    m_plant_mgmt_btn = new Gtk::Button("🌱 Plants");
+    m_staff_mgmt_btn = new Gtk::Button("👥 Staff");
+    m_order_btn = new Gtk::Button("🛒 Orders");
+    m_greenhouse_btn = new Gtk::Button("🏢 View");
     m_status_label = new Gtk::Label("Ready");
     
-    // Setup main layout
-    setupMainMenu();
+    // Make title label bigger and bold
+    m_title_label->set_markup("<span size='x-large' weight='bold'>🌿 Greenhouse Management System 🌿</span>");
+    
+    // Setup main layout structure (only once)
+    setupLayout();
+    
+    // Show initial content
+    showMainMenu();
 }
 
 Window::~Window() {
-    // Cleanup is handled by GTK's widget hierarchy
-    // Don't delete widgets that have been added to containers
+    // GTK manages widget cleanup through parent-child relationships
 }
 
-void Window::setupMainMenu() {
-    // Clear existing content
-    clearMainArea();
-
-    // Setup header
-    m_header_box->set_spacing(10);
-    m_header_box->pack_start(*m_title_label, Gtk::PACK_SHRINK);
+void Window::setupLayout() {
+    // Setup header with navigation buttons
+    m_header_box->set_spacing(5);
+    m_header_box->pack_start(*m_title_label, Gtk::PACK_EXPAND_WIDGET);
     m_header_box->pack_start(*m_main_menu_btn, Gtk::PACK_SHRINK);
     m_header_box->pack_start(*m_plant_mgmt_btn, Gtk::PACK_SHRINK);
     m_header_box->pack_start(*m_staff_mgmt_btn, Gtk::PACK_SHRINK);
     m_header_box->pack_start(*m_order_btn, Gtk::PACK_SHRINK);
     m_header_box->pack_start(*m_greenhouse_btn, Gtk::PACK_SHRINK);
 
+    // Add separator after header
+    Gtk::HSeparator* sep1 = Gtk::manage(new Gtk::HSeparator());
+    
     // Setup content area
-    m_content_box->set_spacing(10);
+    m_content_box->set_spacing(15);
 
-    // Setup footer
+    // Setup footer with status
+    Gtk::HSeparator* sep2 = Gtk::manage(new Gtk::HSeparator());
     m_footer_box->pack_start(*m_status_label, Gtk::PACK_SHRINK);
 
     // Assemble main layout
     m_main_box->pack_start(*m_header_box, Gtk::PACK_SHRINK);
+    m_main_box->pack_start(*sep1, Gtk::PACK_SHRINK);
     m_main_box->pack_start(*m_content_box, Gtk::PACK_EXPAND_WIDGET);
+    m_main_box->pack_start(*sep2, Gtk::PACK_SHRINK);
     m_main_box->pack_start(*m_footer_box, Gtk::PACK_SHRINK);
 
     add(*m_main_box);
 
-    // Create main menu content
-    Gtk::VBox* main_menu_box = Gtk::manage(new Gtk::VBox());
-    main_menu_box->set_spacing(10);
-
-    Gtk::Label* welcome_label = Gtk::manage(new Gtk::Label());
-    welcome_label->set_markup("<span size='large'>Welcome to Greenhouse Management System</span>\n\nPlease select an option from the menu above.");
-    welcome_label->set_padding(20, 20);
-    main_menu_box->pack_start(*welcome_label, Gtk::PACK_EXPAND_WIDGET);
-
-    m_content_box->pack_start(*main_menu_box, Gtk::PACK_EXPAND_WIDGET);
-    m_current_content = main_menu_box;
-
-    // Connect signals
+    // Connect navigation signals (only once)
     m_main_menu_btn->signal_clicked().connect(sigc::mem_fun(*this, &Window::on_main_menu_clicked));
     m_plant_mgmt_btn->signal_clicked().connect(sigc::mem_fun(*this, &Window::on_plant_management_clicked));
     m_staff_mgmt_btn->signal_clicked().connect(sigc::mem_fun(*this, &Window::on_staff_management_clicked));
@@ -78,267 +75,416 @@ void Window::setupMainMenu() {
     m_greenhouse_btn->signal_clicked().connect(sigc::mem_fun(*this, &Window::on_greenhouse_view_clicked));
 
     show_all_children();
-    updateStatus("System ready - Main menu displayed");
+}
+
+void Window::showMainMenu() {
+    clearMainArea();
+
+    Gtk::VBox* main_menu_box = Gtk::manage(new Gtk::VBox(false, 20));
+    main_menu_box->set_border_width(20);
+
+    Gtk::Label* welcome_label = Gtk::manage(new Gtk::Label());
+    welcome_label->set_markup(
+        "<span size='xx-large' weight='bold'>Welcome!</span>\n\n"
+        "<span size='large'>Select an option from the menu above to get started.</span>\n\n"
+        "• <b>Plants</b>: Add plants, pots, seeds, and decorations\n"
+        "• <b>Staff</b>: Register and manage staff members\n"
+        "• <b>Orders</b>: Process customer orders\n"
+        "• <b>View</b>: See greenhouse summary and inventory"
+    );
+    welcome_label->set_line_wrap(true);
+    
+    main_menu_box->pack_start(*welcome_label, Gtk::PACK_EXPAND_WIDGET);
+
+    m_content_box->pack_start(*main_menu_box, Gtk::PACK_EXPAND_WIDGET);
+    m_current_content = main_menu_box;
+
+    show_all_children();
+    updateStatus("Ready - Select an option from the menu");
 }
 
 void Window::setupPlantManagement() {
     clearMainArea();
 
-    Gtk::VBox* plant_box = Gtk::manage(new Gtk::VBox());
-    plant_box->set_spacing(10);
+    Gtk::VBox* plant_box = Gtk::manage(new Gtk::VBox(false, 15));
+    plant_box->set_border_width(20);
 
     Gtk::Label* title_label = Gtk::manage(new Gtk::Label());
-    title_label->set_markup("<span size='large' weight='bold'>Plant Management</span>");
+    title_label->set_markup("<span size='xx-large' weight='bold'>🌱 Plant Management</span>");
     plant_box->pack_start(*title_label, Gtk::PACK_SHRINK);
 
-    // Plant type buttons
-    Gtk::Button* add_plant_btn = Gtk::manage(new Gtk::Button("Add Regular Plant"));
-    Gtk::Button* add_pot_btn = Gtk::manage(new Gtk::Button("Add Pot"));
-    Gtk::Button* add_seed_btn = Gtk::manage(new Gtk::Button("Add Seed Packet"));
-    Gtk::Button* add_decoration_btn = Gtk::manage(new Gtk::Button("Add Decoration"));
+    Gtk::Label* instruction_label = Gtk::manage(new Gtk::Label());
+    instruction_label->set_markup("<span size='large'>Click a button to add items to your greenhouse:</span>");
+    instruction_label->set_margin_top(10);
+    instruction_label->set_margin_bottom(10);
+    plant_box->pack_start(*instruction_label, Gtk::PACK_SHRINK);
 
-    add_plant_btn->set_size_request(200, 50);
-    add_pot_btn->set_size_request(200, 50);
-    add_seed_btn->set_size_request(200, 50);
-    add_decoration_btn->set_size_request(200, 50);
+    // Create a grid for better button layout
+    Gtk::Grid* button_grid = Gtk::manage(new Gtk::Grid());
+    button_grid->set_row_spacing(15);
+    button_grid->set_column_spacing(15);
+    button_grid->set_halign(Gtk::ALIGN_CENTER);
 
-    plant_box->pack_start(*add_plant_btn, Gtk::PACK_SHRINK);
-    plant_box->pack_start(*add_pot_btn, Gtk::PACK_SHRINK);
-    plant_box->pack_start(*add_seed_btn, Gtk::PACK_SHRINK);
-    plant_box->pack_start(*add_decoration_btn, Gtk::PACK_SHRINK);
+    // Plant type buttons with better labels
+    Gtk::Button* add_plant_btn = Gtk::manage(new Gtk::Button("🌹 Add Plant\n(Regular flowering/foliage plant)"));
+    Gtk::Button* add_pot_btn = Gtk::manage(new Gtk::Button("🏺 Add Pot\n(Container for plants)"));
+    Gtk::Button* add_seed_btn = Gtk::manage(new Gtk::Button("🌰 Add Seeds\n(Seed packets for growing)"));
+    Gtk::Button* add_decoration_btn = Gtk::manage(new Gtk::Button("✨ Add Decoration\n(Ornamental items)"));
+
+    add_plant_btn->set_size_request(280, 80);
+    add_pot_btn->set_size_request(280, 80);
+    add_seed_btn->set_size_request(280, 80);
+    add_decoration_btn->set_size_request(280, 80);
+
+    button_grid->attach(*add_plant_btn, 0, 0, 1, 1);
+    button_grid->attach(*add_pot_btn, 1, 0, 1, 1);
+    button_grid->attach(*add_seed_btn, 0, 1, 1, 1);
+    button_grid->attach(*add_decoration_btn, 1, 1, 1, 1);
+
+    plant_box->pack_start(*button_grid, Gtk::PACK_SHRINK);
+
+    // Add info box
+    Gtk::Frame* info_frame = Gtk::manage(new Gtk::Frame("ℹ️  Information"));
+    Gtk::Label* info_label = Gtk::manage(new Gtk::Label(
+        "Items added will be stored in your greenhouse inventory.\n"
+        "Use the 'View' menu to see all items."
+    ));
+    info_label->set_margin_start(10);
+    info_label->set_margin_end(10);
+    info_label->set_margin_top(10);
+    info_label->set_margin_bottom(10);
+    info_frame->add(*info_label);
+    plant_box->pack_start(*info_frame, Gtk::PACK_SHRINK);
 
     // Connect signals
-    add_plant_btn->signal_clicked().connect([this]() {
+    add_plant_btn->signal_clicked().connect([this, add_plant_btn]() {
+        add_plant_btn->set_sensitive(false);
         m_gui_system_handler->addPlant();
-        updateStatus("Regular plant added to greenhouse");
+        updateStatus("✓ Regular plant added to greenhouse");
+        add_plant_btn->set_sensitive(true);
     });
 
-    add_pot_btn->signal_clicked().connect([this]() {
+    add_pot_btn->signal_clicked().connect([this, add_pot_btn]() {
+        add_pot_btn->set_sensitive(false);
         m_gui_system_handler->addPot();
-        updateStatus("Pot added to greenhouse");
+        updateStatus("✓ Pot added to greenhouse");
+        add_pot_btn->set_sensitive(true);
     });
 
-    add_seed_btn->signal_clicked().connect([this]() {
+    add_seed_btn->signal_clicked().connect([this, add_seed_btn]() {
+        add_seed_btn->set_sensitive(false);
         m_gui_system_handler->addSeedPacket();
-        updateStatus("Seed packet added to greenhouse");
+        updateStatus("✓ Seed packet added to greenhouse");
+        add_seed_btn->set_sensitive(true);
     });
 
-    add_decoration_btn->signal_clicked().connect([this]() {
+    add_decoration_btn->signal_clicked().connect([this, add_decoration_btn]() {
+        add_decoration_btn->set_sensitive(false);
         m_gui_system_handler->addDecoration();
-        updateStatus("Decoration added to greenhouse");
+        updateStatus("✓ Decoration added to greenhouse");
+        add_decoration_btn->set_sensitive(true);
     });
 
     m_content_box->pack_start(*plant_box, Gtk::PACK_EXPAND_WIDGET);
     m_current_content = plant_box;
 
     show_all_children();
-    updateStatus("Plant management - Select plant type to add");
+    updateStatus("Plant management - Select item type to add");
 }
 
 void Window::setupStaffManagement() {
     clearMainArea();
 
-    Gtk::VBox* staff_box = Gtk::manage(new Gtk::VBox());
-    staff_box->set_spacing(10);
+    Gtk::VBox* staff_box = Gtk::manage(new Gtk::VBox(false, 15));
+    staff_box->set_border_width(20);
 
     Gtk::Label* title_label = Gtk::manage(new Gtk::Label());
-    title_label->set_markup("<span size='large' weight='bold'>Staff Management</span>");
+    title_label->set_markup("<span size='xx-large' weight='bold'>👥 Staff Management</span>");
     staff_box->pack_start(*title_label, Gtk::PACK_SHRINK);
 
-    // Staff type buttons
-    Gtk::Button* add_caretaker_btn = Gtk::manage(new Gtk::Button("Register Plant Caretaker"));
-    Gtk::Button* add_manager_btn = Gtk::manage(new Gtk::Button("Register Sales Manager"));
-    Gtk::Button* assign_care_btn = Gtk::manage(new Gtk::Button("Assign Care Task"));
-    Gtk::Button* assign_sale_btn = Gtk::manage(new Gtk::Button("Assign Sale Task"));
+    Gtk::Label* instruction_label = Gtk::manage(new Gtk::Label());
+    instruction_label->set_markup("<span size='large'>Manage your greenhouse staff:</span>");
+    instruction_label->set_margin_top(10);
+    instruction_label->set_margin_bottom(10);
+    staff_box->pack_start(*instruction_label, Gtk::PACK_SHRINK);
 
-    add_caretaker_btn->set_size_request(250, 50);
-    add_manager_btn->set_size_request(250, 50);
-    assign_care_btn->set_size_request(250, 50);
-    assign_sale_btn->set_size_request(250, 50);
+    // Registration section
+    Gtk::Frame* register_frame = Gtk::manage(new Gtk::Frame("Register New Staff"));
+    Gtk::VBox* register_box = Gtk::manage(new Gtk::VBox(false, 10));
+    register_box->set_border_width(15);
 
-    staff_box->pack_start(*add_caretaker_btn, Gtk::PACK_SHRINK);
-    staff_box->pack_start(*add_manager_btn, Gtk::PACK_SHRINK);
-    staff_box->pack_start(*assign_care_btn, Gtk::PACK_SHRINK);
-    staff_box->pack_start(*assign_sale_btn, Gtk::PACK_SHRINK);
+    Gtk::Button* add_caretaker_btn = Gtk::manage(new Gtk::Button("🧑‍🌾 Register Plant Caretaker"));
+    Gtk::Button* add_manager_btn = Gtk::manage(new Gtk::Button("💼 Register Sales Manager"));
+
+    add_caretaker_btn->set_size_request(300, 60);
+    add_manager_btn->set_size_request(300, 60);
+
+    register_box->pack_start(*add_caretaker_btn, Gtk::PACK_SHRINK);
+    register_box->pack_start(*add_manager_btn, Gtk::PACK_SHRINK);
+    register_frame->add(*register_box);
+    staff_box->pack_start(*register_frame, Gtk::PACK_SHRINK);
+
+    // Task assignment section
+    Gtk::Frame* task_frame = Gtk::manage(new Gtk::Frame("Assign Tasks"));
+    Gtk::VBox* task_box = Gtk::manage(new Gtk::VBox(false, 10));
+    task_box->set_border_width(15);
+
+    Gtk::Button* assign_care_btn = Gtk::manage(new Gtk::Button("💧 Assign Care Task"));
+    Gtk::Button* assign_sale_btn = Gtk::manage(new Gtk::Button("💰 Assign Sale Task"));
+
+    assign_care_btn->set_size_request(300, 60);
+    assign_sale_btn->set_size_request(300, 60);
+
+    task_box->pack_start(*assign_care_btn, Gtk::PACK_SHRINK);
+    task_box->pack_start(*assign_sale_btn, Gtk::PACK_SHRINK);
+    task_frame->add(*task_box);
+    staff_box->pack_start(*task_frame, Gtk::PACK_SHRINK);
 
     // Connect signals
-    add_caretaker_btn->signal_clicked().connect([this]() {
+    add_caretaker_btn->signal_clicked().connect([this, add_caretaker_btn]() {
+        add_caretaker_btn->set_sensitive(false);
         m_gui_system_handler->registerPlantCaretaker();
-        updateStatus("Plant caretaker registered");
+        updateStatus("✓ Plant caretaker registered successfully");
+        add_caretaker_btn->set_sensitive(true);
     });
 
-    add_manager_btn->signal_clicked().connect([this]() {
+    add_manager_btn->signal_clicked().connect([this, add_manager_btn]() {
+        add_manager_btn->set_sensitive(false);
         m_gui_system_handler->registerSalesManager();
-        updateStatus("Sales manager registered");
+        updateStatus("✓ Sales manager registered successfully");
+        add_manager_btn->set_sensitive(true);
     });
 
-    assign_care_btn->signal_clicked().connect([this]() {
+    assign_care_btn->signal_clicked().connect([this, assign_care_btn]() {
+        assign_care_btn->set_sensitive(false);
         m_gui_system_handler->assignCareTask();
-        updateStatus("Care task assigned to staff");
+        updateStatus("✓ Care task assigned to staff member");
+        assign_care_btn->set_sensitive(true);
     });
 
-    assign_sale_btn->signal_clicked().connect([this]() {
+    assign_sale_btn->signal_clicked().connect([this, assign_sale_btn]() {
+        assign_sale_btn->set_sensitive(false);
         m_gui_system_handler->assignSaleTask();
-        updateStatus("Sale task assigned to staff");
+        updateStatus("✓ Sale task assigned to staff member");
+        assign_sale_btn->set_sensitive(true);
     });
 
     m_content_box->pack_start(*staff_box, Gtk::PACK_EXPAND_WIDGET);
     m_current_content = staff_box;
 
     show_all_children();
-    updateStatus("Staff management - Select action");
+    updateStatus("Staff management - Register staff or assign tasks");
 }
 
 void Window::setupOrderProcessing() {
     clearMainArea();
 
-    Gtk::VBox* order_box = Gtk::manage(new Gtk::VBox());
-    order_box->set_spacing(10);
+    Gtk::VBox* order_box = Gtk::manage(new Gtk::VBox(false, 15));
+    order_box->set_border_width(20);
 
     Gtk::Label* title_label = Gtk::manage(new Gtk::Label());
-    title_label->set_markup("<span size='large' weight='bold'>Order Processing</span>");
+    title_label->set_markup("<span size='xx-large' weight='bold'>🛒 Order Processing</span>");
     order_box->pack_start(*title_label, Gtk::PACK_SHRINK);
 
-    // Order buttons
-    Gtk::Button* create_order_btn = Gtk::manage(new Gtk::Button("Create New Order"));
-    Gtk::Button* add_plant_order_btn = Gtk::manage(new Gtk::Button("Add Plant to Order"));
-    Gtk::Button* add_pot_order_btn = Gtk::manage(new Gtk::Button("Add Pot to Order"));
-    Gtk::Button* add_seed_order_btn = Gtk::manage(new Gtk::Button("Add Seeds to Order"));
-    Gtk::Button* add_decor_order_btn = Gtk::manage(new Gtk::Button("Add Decoration to Order"));
-    Gtk::Button* process_order_btn = Gtk::manage(new Gtk::Button("Process Order"));
+    Gtk::Label* instruction_label = Gtk::manage(new Gtk::Label());
+    instruction_label->set_markup("<span size='large'>Build and process customer orders:</span>");
+    instruction_label->set_margin_top(10);
+    instruction_label->set_margin_bottom(10);
+    order_box->pack_start(*instruction_label, Gtk::PACK_SHRINK);
 
-    create_order_btn->set_size_request(250, 50);
-    add_plant_order_btn->set_size_request(250, 50);
-    add_pot_order_btn->set_size_request(250, 50);
-    add_seed_order_btn->set_size_request(250, 50);
-    add_decor_order_btn->set_size_request(250, 50);
-    process_order_btn->set_size_request(250, 50);
+    // Create order section
+    Gtk::Frame* create_frame = Gtk::manage(new Gtk::Frame("Start New Order"));
+    Gtk::VBox* create_box = Gtk::manage(new Gtk::VBox(false, 10));
+    create_box->set_border_width(15);
+    
+    Gtk::Button* create_order_btn = Gtk::manage(new Gtk::Button("📝 Create New Order"));
+    create_order_btn->set_size_request(300, 60);
+    create_box->pack_start(*create_order_btn, Gtk::PACK_SHRINK);
+    create_frame->add(*create_box);
+    order_box->pack_start(*create_frame, Gtk::PACK_SHRINK);
 
-    order_box->pack_start(*create_order_btn, Gtk::PACK_SHRINK);
-    order_box->pack_start(*add_plant_order_btn, Gtk::PACK_SHRINK);
-    order_box->pack_start(*add_pot_order_btn, Gtk::PACK_SHRINK);
-    order_box->pack_start(*add_seed_order_btn, Gtk::PACK_SHRINK);
-    order_box->pack_start(*add_decor_order_btn, Gtk::PACK_SHRINK);
-    order_box->pack_start(*process_order_btn, Gtk::PACK_SHRINK);
+    // Add items section
+    Gtk::Frame* items_frame = Gtk::manage(new Gtk::Frame("Add Items to Current Order"));
+    Gtk::Grid* items_grid = Gtk::manage(new Gtk::Grid());
+    items_grid->set_row_spacing(10);
+    items_grid->set_column_spacing(10);
+    items_grid->set_border_width(15);
+
+    Gtk::Button* add_plant_order_btn = Gtk::manage(new Gtk::Button("🌹 Add Plant"));
+    Gtk::Button* add_pot_order_btn = Gtk::manage(new Gtk::Button("🏺 Add Pot"));
+    Gtk::Button* add_seed_order_btn = Gtk::manage(new Gtk::Button("🌰 Add Seeds"));
+    Gtk::Button* add_decor_order_btn = Gtk::manage(new Gtk::Button("✨ Add Decoration"));
+
+    add_plant_order_btn->set_size_request(200, 50);
+    add_pot_order_btn->set_size_request(200, 50);
+    add_seed_order_btn->set_size_request(200, 50);
+    add_decor_order_btn->set_size_request(200, 50);
+
+    items_grid->attach(*add_plant_order_btn, 0, 0, 1, 1);
+    items_grid->attach(*add_pot_order_btn, 1, 0, 1, 1);
+    items_grid->attach(*add_seed_order_btn, 0, 1, 1, 1);
+    items_grid->attach(*add_decor_order_btn, 1, 1, 1, 1);
+    
+    items_frame->add(*items_grid);
+    order_box->pack_start(*items_frame, Gtk::PACK_SHRINK);
+
+    // Process order section
+    Gtk::Frame* process_frame = Gtk::manage(new Gtk::Frame("Complete Order"));
+    Gtk::VBox* process_box = Gtk::manage(new Gtk::VBox(false, 10));
+    process_box->set_border_width(15);
+    
+    Gtk::Button* process_order_btn = Gtk::manage(new Gtk::Button("✅ Process Order"));
+    process_order_btn->set_size_request(300, 60);
+    process_box->pack_start(*process_order_btn, Gtk::PACK_SHRINK);
+    process_frame->add(*process_box);
+    order_box->pack_start(*process_frame, Gtk::PACK_SHRINK);
 
     // Connect signals
-    create_order_btn->signal_clicked().connect([this]() {
+    create_order_btn->signal_clicked().connect([this, create_order_btn]() {
+        create_order_btn->set_sensitive(false);
         m_gui_system_handler->createOrder();
-        updateStatus("New order created");
+        updateStatus("✓ New order created - Add items to the order");
+        create_order_btn->set_sensitive(true);
     });
 
     add_plant_order_btn->signal_clicked().connect([this]() {
         m_gui_system_handler->addPlantToOrder();
-        updateStatus("Plant added to current order");
+        updateStatus("✓ Plant added to current order");
     });
 
     add_pot_order_btn->signal_clicked().connect([this]() {
         m_gui_system_handler->addPotToOrder();
-        updateStatus("Pot added to current order");
+        updateStatus("✓ Pot added to current order");
     });
 
     add_seed_order_btn->signal_clicked().connect([this]() {
         m_gui_system_handler->addSeedToOrder();
-        updateStatus("Seed packet added to current order");
+        updateStatus("✓ Seeds added to current order");
     });
 
     add_decor_order_btn->signal_clicked().connect([this]() {
         m_gui_system_handler->addDecorationToOrder();
-        updateStatus("Decoration added to current order");
+        updateStatus("✓ Decoration added to current order");
     });
 
-    process_order_btn->signal_clicked().connect([this]() {
+    process_order_btn->signal_clicked().connect([this, process_order_btn]() {
+        process_order_btn->set_sensitive(false);
         m_gui_system_handler->processCustomerOrder();
-        updateStatus("Order processed successfully");
+        updateStatus("✓ Order processed successfully!");
+        process_order_btn->set_sensitive(true);
     });
 
     m_content_box->pack_start(*order_box, Gtk::PACK_EXPAND_WIDGET);
     m_current_content = order_box;
 
     show_all_children();
-    updateStatus("Order processing - Create and manage customer orders");
+    updateStatus("Order processing - Create a new order to begin");
 }
 
 void Window::setupGreenhouseView() {
     clearMainArea();
 
-    Gtk::VBox* greenhouse_box = Gtk::manage(new Gtk::VBox());
-    greenhouse_box->set_spacing(10);
+    Gtk::VBox* greenhouse_box = Gtk::manage(new Gtk::VBox(false, 15));
+    greenhouse_box->set_border_width(20);
 
     Gtk::Label* title_label = Gtk::manage(new Gtk::Label());
-    title_label->set_markup("<span size='large' weight='bold'>Greenhouse Overview</span>");
+    title_label->set_markup("<span size='xx-large' weight='bold'>🏢 Greenhouse Overview</span>");
     greenhouse_box->pack_start(*title_label, Gtk::PACK_SHRINK);
 
-    // Greenhouse action buttons
-    Gtk::Button* view_summary_btn = Gtk::manage(new Gtk::Button("View Greenhouse Summary"));
-    Gtk::Button* view_inventory_btn = Gtk::manage(new Gtk::Button("View Inventory"));
-    Gtk::Button* view_staff_btn = Gtk::manage(new Gtk::Button("View Staff"));
-    Gtk::Button* water_plants_btn = Gtk::manage(new Gtk::Button("Water All Plants"));
-    Gtk::Button* fertilize_plants_btn = Gtk::manage(new Gtk::Button("Fertilize All Plants"));
+    // Button section
+    Gtk::HBox* button_box = Gtk::manage(new Gtk::HBox(false, 10));
+    
+    Gtk::Button* view_summary_btn = Gtk::manage(new Gtk::Button("📊 Summary"));
+    Gtk::Button* view_inventory_btn = Gtk::manage(new Gtk::Button("📦 Inventory"));
+    Gtk::Button* view_staff_btn = Gtk::manage(new Gtk::Button("👥 Staff Info"));
+    Gtk::Button* water_plants_btn = Gtk::manage(new Gtk::Button("💧 Water Plants"));
+    Gtk::Button* fertilize_plants_btn = Gtk::manage(new Gtk::Button("🌱 Fertilize"));
 
-    view_summary_btn->set_size_request(250, 50);
-    view_inventory_btn->set_size_request(250, 50);
-    view_staff_btn->set_size_request(250, 50);
-    water_plants_btn->set_size_request(250, 50);
-    fertilize_plants_btn->set_size_request(250, 50);
+    view_summary_btn->set_size_request(150, 50);
+    view_inventory_btn->set_size_request(150, 50);
+    view_staff_btn->set_size_request(150, 50);
+    water_plants_btn->set_size_request(150, 50);
+    fertilize_plants_btn->set_size_request(150, 50);
 
-    greenhouse_box->pack_start(*view_summary_btn, Gtk::PACK_SHRINK);
-    greenhouse_box->pack_start(*view_inventory_btn, Gtk::PACK_SHRINK);
-    greenhouse_box->pack_start(*view_staff_btn, Gtk::PACK_SHRINK);
-    greenhouse_box->pack_start(*water_plants_btn, Gtk::PACK_SHRINK);
-    greenhouse_box->pack_start(*fertilize_plants_btn, Gtk::PACK_SHRINK);
+    button_box->pack_start(*view_summary_btn, Gtk::PACK_EXPAND_WIDGET);
+    button_box->pack_start(*view_inventory_btn, Gtk::PACK_EXPAND_WIDGET);
+    button_box->pack_start(*view_staff_btn, Gtk::PACK_EXPAND_WIDGET);
+    button_box->pack_start(*water_plants_btn, Gtk::PACK_EXPAND_WIDGET);
+    button_box->pack_start(*fertilize_plants_btn, Gtk::PACK_EXPAND_WIDGET);
 
-    // Text view for displaying greenhouse information
+    greenhouse_box->pack_start(*button_box, Gtk::PACK_SHRINK);
+
+    // Text view for displaying information
+    Gtk::Frame* display_frame = Gtk::manage(new Gtk::Frame("Information Display"));
     Gtk::ScrolledWindow* scrolled_window = Gtk::manage(new Gtk::ScrolledWindow());
     scrolled_window->set_policy(Gtk::POLICY_AUTOMATIC, Gtk::POLICY_AUTOMATIC);
+    scrolled_window->set_size_request(850, 450);
 
     Gtk::TextView* text_view = Gtk::manage(new Gtk::TextView());
     text_view->set_editable(false);
     text_view->set_cursor_visible(false);
+    text_view->set_wrap_mode(Gtk::WRAP_WORD);
+    text_view->set_left_margin(10);
+    text_view->set_right_margin(10);
+    text_view->set_top_margin(10);
+    text_view->set_bottom_margin(10);
+    
+    // Set monospace font for better alignment
+    Pango::FontDescription font("Monospace 11");
+    text_view->override_font(font);
+    
+    // Show initial summary
+    auto buffer = text_view->get_buffer();
+    buffer->set_text("Click a button above to view greenhouse information.");
+    
     scrolled_window->add(*text_view);
-    greenhouse_box->pack_start(*scrolled_window, Gtk::PACK_EXPAND_WIDGET);
+    display_frame->add(*scrolled_window);
+    greenhouse_box->pack_start(*display_frame, Gtk::PACK_EXPAND_WIDGET);
 
     // Connect signals
     view_summary_btn->signal_clicked().connect([this, text_view]() {
         std::string summary = m_gui_system_handler->getGreenhouseSummary();
         auto buffer = text_view->get_buffer();
         buffer->set_text(summary);
-        updateStatus("Greenhouse summary displayed");
+        updateStatus("📊 Greenhouse summary displayed");
     });
 
     view_inventory_btn->signal_clicked().connect([this, text_view]() {
         std::string inventory = m_gui_system_handler->getInventory();
         auto buffer = text_view->get_buffer();
         buffer->set_text(inventory);
-        updateStatus("Inventory displayed");
+        updateStatus("📦 Inventory displayed");
     });
 
     view_staff_btn->signal_clicked().connect([this, text_view]() {
         std::string staff = m_gui_system_handler->getStaffInfo();
         auto buffer = text_view->get_buffer();
         buffer->set_text(staff);
-        updateStatus("Staff information displayed");
+        updateStatus("👥 Staff information displayed");
     });
 
-    water_plants_btn->signal_clicked().connect([this]() {
+    water_plants_btn->signal_clicked().connect([this, water_plants_btn]() {
+        water_plants_btn->set_sensitive(false);
         m_gui_system_handler->waterAllPlants();
-        updateStatus("All plants watered");
+        updateStatus("✓ All plants have been watered");
+        water_plants_btn->set_sensitive(true);
     });
 
-    fertilize_plants_btn->signal_clicked().connect([this]() {
+    fertilize_plants_btn->signal_clicked().connect([this, fertilize_plants_btn]() {
+        fertilize_plants_btn->set_sensitive(false);
         m_gui_system_handler->fertilizeAllPlants();
-        updateStatus("All plants fertilized");
+        updateStatus("✓ All plants have been fertilized");
+        fertilize_plants_btn->set_sensitive(true);
     });
 
     m_content_box->pack_start(*greenhouse_box, Gtk::PACK_EXPAND_WIDGET);
     m_current_content = greenhouse_box;
 
     show_all_children();
-    updateStatus("Greenhouse view - Select action to view or manage greenhouse");
+    updateStatus("Greenhouse view - Select an action");
 }
 
 void Window::clearMainArea() {
-    // Remove all children from content box
     std::vector<Gtk::Widget*> children = m_content_box->get_children();
     for (Gtk::Widget* child : children) {
         m_content_box->remove(*child);
@@ -347,13 +493,13 @@ void Window::clearMainArea() {
 }
 
 void Window::updateStatus(const std::string& message) {
-    m_status_label->set_text("Status: " + message);
-    std::cout << "GUI Status: " << message << std::endl;
+    m_status_label->set_markup("<b>Status:</b> " + message);
+    std::cout << "Status: " << message << std::endl;
 }
 
 // Signal handler implementations
 void Window::on_main_menu_clicked() {
-    setupMainMenu();
+    showMainMenu();
 }
 
 void Window::on_plant_management_clicked() {

@@ -15,7 +15,8 @@ public:
   void clearMainArea();
 
 protected:
-  void setupMainMenu();
+  void setupLayout();
+  void showMainMenu();
   void setupPlantManagement();
   void setupStaffManagement();
   void setupOrderProcessing();
@@ -30,13 +31,13 @@ protected:
 
   GUISystemHandler* m_gui_system_handler;
 
-  // Main layout - ALL POINTERS
+  // Main layout - using pointers since VBox/HBox need proper initialization
   Gtk::VBox* m_main_box;
   Gtk::HBox* m_header_box;
   Gtk::VBox* m_content_box;
   Gtk::HBox* m_footer_box;
 
-  // Header widgets - ALL POINTERS
+  // Header widgets - using pointers for consistency
   Gtk::Label* m_title_label;
   Gtk::Button* m_main_menu_btn;
   Gtk::Button* m_plant_mgmt_btn;
@@ -47,7 +48,7 @@ protected:
   // Content area (will be dynamically updated)
   Gtk::Widget* m_current_content;
 
-  // Footer - POINTER
+  // Footer - using pointer
   Gtk::Label* m_status_label;
 };
 
