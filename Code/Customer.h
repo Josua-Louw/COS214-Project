@@ -21,6 +21,10 @@ private:
 public:
 	void buy();
 
+	OrderBuilder* anyBuilder() const {
+		return orderBuilders.empty() ? nullptr : orderBuilders.front();
+	}
+
 	Customer(std::string id, NurseryMediator* mediator, std::vector<OrderBuilder*> builders)
 		: Person(id), nurseryHub(mediator), orderBuilders(builders) {};
 
