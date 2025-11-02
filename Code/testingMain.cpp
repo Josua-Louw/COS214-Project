@@ -703,7 +703,6 @@ TEST_CASE("NurseryHub Sell System Test") {
     //     double total = hub->sell(&order);
     //     CHECK(total == 0.0); // Since Order doesn't add any plants
     // }
-    SUBCASE("Sell with multiple plants in order") {
         Order* order = new Order();
         // Assuming Order has a method to add plants
         Plant* plant1 = new Plant("Plant1", 10, hub, strat1);
@@ -756,23 +755,25 @@ TEST_CASE("NurseryHub Sell System Test") {
         delete it;
 
         customer.buy();
-    }
     // SUBCASE("Selling through a sell command") {
-    //     Plant* plant1 = new Plant("Plant3", 10, hub, new RegularCareStrategy());
-    //     hub->registerPlant(plant1);
-    //     hub->registerStaff(new SalesManager("sales1", hub));
-    //     Customer* customer = new Customer("Jane Doe", hub, section1);
-    //     // SellCommand* sellCmd = new SellCommand(customer);
-    //     // sellCmd->execute();
-    //     // delete sellCmd;
-    //     delete customer;
+        Plant* plant5 = new Plant("Plant5", 10, hub, new RegularCareStrategy());
+        hub->registerPlant(plant5);
+        hub->registerStaff(new SalesManager("sales1", hub));
+        Customer* customer3 = new Customer("Jane Doe", hub, section1);
+        SellCommand* sellCmd = new SellCommand(customer3);
+        sellCmd->execute();
+        delete sellCmd;
+        delete customer3;
     // }
     // SUBCASE("Selling through sales manager") {
-    //     Plant* plant1 = new Plant("Plant4", 15, hub, new FertilizerBoostStrategy());
-    //     hub->registerPlant(plant1);
-    //     SalesManager* salesManager = new SalesManager("sales2", hub);
-    //     hub->registerStaff(salesManager);
-        
+        Plant* plant6 = new Plant("Plant6", 15, hub, new FertilizerBoostStrategy());
+        hub->registerPlant(plant6);
+        SalesManager* salesManager = new SalesManager("sales2", hub);
+        hub->registerStaff(salesManager);
+        Customer* customer2 = new Customer("Alice Smith", hub, section1);
+        CommandPtr sellCmd2 = std::make_shared<SellCommand>(customer2);
+        hub->assign(sellCmd2);
+        delete customer2;
     // }
     delete strat1;
     delete strat2;
