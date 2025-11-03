@@ -92,17 +92,17 @@ void GUISystemHandler::processCustomerOrder() {
     {
     case processOrderState::CUSTOMER_ORDER:
         {
-            CustomerOrder* order = new CustomerOrder(customerId, nurseryHub);
-            nurseryHub->registerCustomerOrder(order);
-            order->processOrder();
+            Customer* order = new Customer(customerId, nurseryHub);
+            CommandPtr orderCmd = std::make_shared<PlaceOrderCommand>(order);
+            nurseryHub->assign(orderCmd);
         }
         break;
     case processOrderState::SELF_ORDER:
         {
             std::vector<OrderBuilder*> builders = m_window->getOrderBuilders();
             Customer* order = new Customer(customerId, nurseryHub, builders, greenHouse);
-            nurseryHub->registerCustomerOrder(order);
-            order->processOrder();
+            CommandPtr orderCmd = std::make_shared<PlaceOrderCommand>(order);
+            nurseryHub->assign(orderCmd);
         }
     default:
         break;
