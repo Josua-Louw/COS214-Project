@@ -5,10 +5,8 @@
 #include <iostream>
 
 class TextSystemHandler : public SystemHandler {
-private:
-    PlantMaker* maker;
 public:
-    TextSystemHandler() : SystemHandler(), maker(new PlantMaker()) {}
+    TextSystemHandler() : SystemHandler() {}
     ~TextSystemHandler() override = default;
 
     void systemMenue() override;

@@ -421,6 +421,9 @@ void Window::setupOrderProcessing() {
             create_order_btn->set_sensitive(true);
             return;
         }
+        for (auto builder : m_order_builders) {
+            delete builder; // Clean up previous builders
+        }
         m_order_builders.clear(); // Start fresh order
         updateStatus("✓ New admin order created - Add items to the order");
         create_order_btn->set_sensitive(true);
@@ -452,10 +455,16 @@ void Window::setupOrderProcessing() {
     });
 
     process_order_btn->signal_clicked().connect([this, process_order_btn]() {
+        if (m_process_order_state != processOrderState::SELF_ORDER) {
+            updateStatus("⚠️  Select 'Admin Order' type first");
+            return;
+        }
         process_order_btn->set_sensitive(false);
-        m_process_order_state = processOrderState::SELF_ORDER;
+        //m_process_order_state = processOrderState::SELF_ORDER;
         m_gui_system_handler->processCustomerOrder();
         updateStatus("✓ Admin order processed successfully!");
+        m_process_order_state = processOrderState::NONE; // Reset state
+        m_order_builders.clear(); // Clear current order builders
         process_order_btn->set_sensitive(true);
     });
 
