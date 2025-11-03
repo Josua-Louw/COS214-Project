@@ -11,9 +11,9 @@ GUISystemHandler::GUISystemHandler() : m_window(nullptr) {
 }
 
 GUISystemHandler::~GUISystemHandler() {
-    delete m_window;
-    delete greenHouse;
-    delete nurseryHub;
+    //delete m_window;
+    //delete greenHouse;
+    //delete nurseryHub;
     for (auto strategy : careStrategies) {
         delete strategy;
     }
@@ -21,8 +21,10 @@ GUISystemHandler::~GUISystemHandler() {
 
 void GUISystemHandler::systemMenue() {
     auto app = Gtk::Application::create("org.greenhouse.management");
-    m_window = new Window(this);
-    app->run(*m_window);
+    Window window(this);
+    m_window = &window;
+    app->run(window);
+    m_window = nullptr;
 }
 
 // Plant Management

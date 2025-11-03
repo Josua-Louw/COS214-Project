@@ -13,7 +13,7 @@
 class GUISystemHandler : public SystemHandler {
 public:
     GUISystemHandler();
-    ~GUISystemHandler() override;
+    virtual ~GUISystemHandler();
     void systemMenue() override;
     
     // Plant management
