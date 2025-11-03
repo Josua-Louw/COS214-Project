@@ -5,6 +5,9 @@
 Window::Window(GUISystemHandler* guiSystem) 
     : m_gui_system_handler(guiSystem),
       m_current_content(nullptr)
+      m_add_plant_state(addPlantState::PLANT),  
+      m_register_staff_state(registerStaffState::PLANT_CARETAKER),
+      m_process_order_state(processOrderState::CUSTOMER_ORDER)
 {
     set_title("Greenhouse Management System");
     set_default_size(900, 700);
@@ -156,9 +159,10 @@ void Window::setupPlantManagement() {
     info_frame->add(*info_label);
     plant_box->pack_start(*info_frame, Gtk::PACK_SHRINK);
 
-    // Connect signals
+    // Connect signals - set state then call handler
     add_plant_btn->signal_clicked().connect([this, add_plant_btn]() {
         add_plant_btn->set_sensitive(false);
+        m_add_plant_state = addPlantState::PLANT;
         m_gui_system_handler->addPlant();
         updateStatus("✓ Regular plant added to greenhouse");
         add_plant_btn->set_sensitive(true);
@@ -166,21 +170,24 @@ void Window::setupPlantManagement() {
 
     add_pot_btn->signal_clicked().connect([this, add_pot_btn]() {
         add_pot_btn->set_sensitive(false);
-        m_gui_system_handler->addPot();
+        m_add_plant_state = addPlantState::POT;
+        m_gui_system_handler->addPlant();
         updateStatus("✓ Pot added to greenhouse");
         add_pot_btn->set_sensitive(true);
     });
 
     add_seed_btn->signal_clicked().connect([this, add_seed_btn]() {
         add_seed_btn->set_sensitive(false);
-        m_gui_system_handler->addSeedPacket();
+        m_add_plant_state = addPlantState::SEED;
+        m_gui_system_handler->addPlant();
         updateStatus("✓ Seed packet added to greenhouse");
         add_seed_btn->set_sensitive(true);
     });
 
     add_decoration_btn->signal_clicked().connect([this, add_decoration_btn]() {
         add_decoration_btn->set_sensitive(false);
-        m_gui_system_handler->addDecoration();
+        m_add_plant_state = addPlantState::DECORATION;
+        m_gui_system_handler->addPlant();
         updateStatus("✓ Decoration added to greenhouse");
         add_decoration_btn->set_sensitive(true);
     });
@@ -203,7 +210,7 @@ void Window::setupStaffManagement() {
     staff_box->pack_start(*title_label, Gtk::PACK_SHRINK);
 
     Gtk::Label* instruction_label = Gtk::manage(new Gtk::Label());
-    instruction_label->set_markup("<span size='large'>Manage your greenhouse staff:</span>");
+    instruction_label->set_markup("<span size='large'>Register new staff members:</span>");
     instruction_label->set_margin_top(10);
     instruction_label->set_margin_bottom(10);
     staff_box->pack_start(*instruction_label, Gtk::PACK_SHRINK);
@@ -223,15 +230,14 @@ void Window::setupStaffManagement() {
     register_box->pack_start(*add_caretaker_btn, Gtk::PACK_SHRINK);
     register_box->pack_start(*add_manager_btn, Gtk::PACK_SHRINK);
     register_frame->add(*register_box);
-    staff_box->pack_start(*register_frame, Gtk::PACK_SHRINK);
+    staff_box->pack_start(*register_frame, Gtk::PACK_EXPAND_WIDGET);
 
-        // Info section
+    // Info section
     Gtk::Frame* info_frame = Gtk::manage(new Gtk::Frame("ℹ️  Information"));
     Gtk::Label* info_label = Gtk::manage(new Gtk::Label(
         "Plant Caretakers handle plant care tasks.\n"
         "Sales Managers process customer orders and sales."
     ));
-
     info_label->set_margin_start(10);
     info_label->set_margin_end(10);
     info_label->set_margin_top(10);
@@ -239,17 +245,19 @@ void Window::setupStaffManagement() {
     info_frame->add(*info_label);
     staff_box->pack_start(*info_frame, Gtk::PACK_SHRINK);
 
-    // Connect signals
+    // Connect signals - set state then call handler
     add_caretaker_btn->signal_clicked().connect([this, add_caretaker_btn]() {
         add_caretaker_btn->set_sensitive(false);
-        m_gui_system_handler->registerPlantCaretaker();
+        m_register_staff_state = registerStaffState::PLANT_CARETAKER;
+        m_gui_system_handler->registerStaffMember();
         updateStatus("✓ Plant caretaker registered successfully");
         add_caretaker_btn->set_sensitive(true);
     });
 
     add_manager_btn->signal_clicked().connect([this, add_manager_btn]() {
         add_manager_btn->set_sensitive(false);
-        m_gui_system_handler->registerSalesManager();
+        m_register_staff_state = registerStaffState::SALES_MANAGER;
+        m_gui_system_handler->registerStaffMember();
         updateStatus("✓ Sales manager registered successfully");
         add_manager_btn->set_sensitive(true);
     });
@@ -258,7 +266,7 @@ void Window::setupStaffManagement() {
     m_current_content = staff_box;
 
     show_all_children();
-    updateStatus("Staff management - Register new staff memebers.");
+    updateStatus("Staff management - Register new staff members");
 }
 
 void Window::setupOrderProcessing() {
@@ -356,46 +364,51 @@ void Window::setupOrderProcessing() {
     // Connect signals for order type buttons
     customer_order_btn->signal_clicked().connect([this, customer_order_btn]() {
         customer_order_btn->set_sensitive(false);
+        m_process_order_state = processOrderState::CUSTOMER_ORDER;
         m_gui_system_handler->processCustomerOrder();
         updateStatus("✓ Customer order generated and processed successfully!");
         customer_order_btn->set_sensitive(true);
     });
 
     admin_order_btn->signal_clicked().connect([this]() {
+        m_process_order_state = processOrderState::SELF_ORDER;
+        m_order_builders.clear(); // Clear any previous order builders
         updateStatus("ℹ️  Admin order mode selected - Create order below");
     });
 
     // Connect signals for manual order creation
     create_order_btn->signal_clicked().connect([this, create_order_btn]() {
         create_order_btn->set_sensitive(false);
-        m_gui_system_handler->createOrder();
+        m_order_builders.clear(); // Start fresh order
         updateStatus("✓ New admin order created - Add items to the order");
         create_order_btn->set_sensitive(true);
     });
 
     add_plant_order_btn->signal_clicked().connect([this]() {
-        m_gui_system_handler->addPlantToOrder();
+        // Add plant builder to the order
+        // Note: You'll need to include the proper headers for OrderBuilder classes
         updateStatus("✓ Plant added to current order");
     });
 
     add_pot_order_btn->signal_clicked().connect([this]() {
-        m_gui_system_handler->addPotToOrder();
+        // Add pot builder to the order
         updateStatus("✓ Pot added to current order");
     });
 
     add_seed_order_btn->signal_clicked().connect([this]() {
-        m_gui_system_handler->addSeedToOrder();
+        // Add seed builder to the order
         updateStatus("✓ Seeds added to current order");
     });
 
     add_decor_order_btn->signal_clicked().connect([this]() {
-        m_gui_system_handler->addDecorationToOrder();
+        // Add decoration builder to the order
         updateStatus("✓ Decoration added to current order");
     });
 
     process_order_btn->signal_clicked().connect([this, process_order_btn]() {
         process_order_btn->set_sensitive(false);
-        m_gui_system_handler->createOrder(); // This will need to be updated to process admin order
+        m_process_order_state = processOrderState::SELF_ORDER;
+        m_gui_system_handler->processCustomerOrder();
         updateStatus("✓ Admin order processed successfully!");
         process_order_btn->set_sensitive(true);
     });

@@ -6,15 +6,52 @@
 
 class GUISystemHandler;
 
+enum class addPlantState {
+    NONE,
+    PLANT,
+    POT,
+    SEED,
+    DECORATION
+};
+
+enum class registerStaffState {
+    NONE,
+    PLANT_CARETAKER,
+    SALES_MANAGER
+};
+
+enum class processOrderState {
+    NONE,
+    CUSTOMER_ORDER,
+    SELF_ORDER
+};
+
 class Window : public Gtk::Window {
 public:
+
+  
   Window(GUISystemHandler* guiSystem);
   virtual ~Window();
   
   void updateStatus(const std::string& message);
   void clearMainArea();
 
+  addPlantState   getAddPlantState()      const { return m_add_plant_state; }
+  registerStaffState getRegisterStaffState() const { return m_register_staff_state; }
+  processOrderState  getProcessOrderState()  const { return m_process_order_state; }
+
+  std::vector<OrderBuilder*>& getOrderBuilders() { return m_order_builders; }
+
+
 protected:
+
+  addPlantState      m_add_plant_state      = addPlantState::NONE;
+  registerStaffState m_register_staff_state = registerStaffState::NONE;
+  processOrderState  m_process_order_state  = processOrderState::NONE;
+
+  // For admin orders
+  std::vector<OrderBuilder*> m_order_builders;
+
   void setupLayout();
   void showMainMenu();
   void setupPlantManagement();
@@ -28,6 +65,8 @@ protected:
   void on_staff_management_clicked();
   void on_order_processing_clicked();
   void on_greenhouse_view_clicked();
+
+
 
   GUISystemHandler* m_gui_system_handler;
 
