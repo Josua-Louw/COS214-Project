@@ -2,14 +2,15 @@
 #include "CareStrategy.h"
 #include "SeedState.h"
 #include "DeadState.h"
+#include "PlantMaker.h"
 
 #include <iostream>
 #include <memory>
 
 //using CommandPtr = std::shared_ptr<Command>;
 // Constructor
-GreenHousePlant::GreenHousePlant(const std::string& name, double price, NurseryMediator* mediator, CareStrategy* care)
-    : name(name), price(price), mediator_(mediator), strategy(care) {
+GreenHousePlant::GreenHousePlant(const std::string& name, double price, NurseryMediator* mediator, CareStrategy* care, PlantMaker* maker)
+    : name(name), price(price), mediator_(mediator), strategy(care), maker(maker) {
     this->setState(new SeedState(this));
 	std::cout << "GreenHouse plant successfully created: " << this->getName() << std::endl;
 }
@@ -21,8 +22,11 @@ GreenHousePlant::~GreenHousePlant() {
 	// 	if (cmd)
 	// 		cmd->setAbortStatus(true);
 	// }
-	std::this_thread::sleep_for(std::chrono::milliseconds(100)); //make sure the state thread ends and completes the change before deleting
-    delete state;
+	std::this_thread::sleep_for(std::chrono::microseconds(50)); //make sure the state thread ends and completes the change before deleting
+    if (state)
+	{
+		delete state;
+	}
 	std::cout << "GreenHouse plant successfully deleted" << std::endl;
 }
 
@@ -34,7 +38,7 @@ std::string GreenHousePlant::getName() const {
 double GreenHousePlant::getPrice() const { return price; }
 
 PlantImplementor* GreenHousePlant::clone() {
-	GreenHousePlant* copy = new GreenHousePlant(this->name, this->price, this->mediator_, this->strategy);
+	GreenHousePlant* copy = maker->makePlant(this->name, this->price, this->mediator_, this->strategy);
 
 	copy->setWaterBusy(false);
 	copy->setFertilizingBusy(false);

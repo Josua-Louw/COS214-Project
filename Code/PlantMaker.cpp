@@ -7,6 +7,7 @@
 PlantMaker::~PlantMaker()  {
     for (auto plant : plants) {
         if (plant) {
+            std::cout << "Deleting plant: " << plant->getName() << "\n";
             delete plant;
             plant = nullptr;
         }
@@ -16,7 +17,7 @@ PlantMaker::~PlantMaker()  {
 
 
 GreenHousePlant * PlantMaker::makePlant(std::string name, double price, NurseryMediator * mediator, CareStrategy * care) {
-    auto* plant = new GreenHousePlant(name,price,mediator,care);
+    auto* plant = new GreenHousePlant(name,price,mediator,care,this);
     plants.push_back(plant);
     return plant;
 }
