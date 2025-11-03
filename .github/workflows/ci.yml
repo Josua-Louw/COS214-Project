@@ -37,14 +37,11 @@ jobs:
 
       # Run Valgrind (optional memory check)
       - name: Run Valgrind (memory check)
-        if: success()
-        run: |
-          make -C $PROJECT_DIR valgrind || echo "Valgrind found issues (non-fatal)"
+        run: make -C $PROJECT_DIR MAIN_FILE=testingMain valgrind || echo "Valgrind found issues (non-fatal)"
 
       # Generate coverage report (only on developer/main)
       - name: Generate coverage report
-        if: github.ref == 'refs/heads/developer' || github.ref == 'refs/heads/main'
-        run: make -C $PROJECT_DIR coverage
+        run: make -C $PROJECT_DIR MAIN_FILE=testingMain coverage
 
       # Upload coverage as artifact
       - name: Upload coverage report as artifact
