@@ -2,7 +2,7 @@
 #define NURSERYHUB_H
 
 #include "NurseryMediator.h"
-#include <memory>
+
 class Command;
 class GreenHousePlant;
 class Plant;
@@ -80,6 +80,7 @@ public:
 
 	void setInventoryRoot(GreenHouse* r) { inventoryRoot = r; }
 	GreenHouse* getInventoryRoot() const { return inventoryRoot; }
+	std::string getStaffInfo() const override;
 };
 
 #endif

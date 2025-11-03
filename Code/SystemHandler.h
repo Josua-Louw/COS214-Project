@@ -21,19 +21,15 @@ protected:
     NurseryHub* nurseryHub;
     GreenHouse* greenHouse;
 public:
-    SystemHandler() {
-        nurseryHub = new NurseryHub();
-        greenHouse = new Section("GreenHouse", 5);
-    };
-    virtual ~SystemHandler() {
-        delete nurseryHub;
-        delete greenHouse;
-    };
+    SystemHandler();
+    virtual ~SystemHandler();
     virtual void systemMenue() = 0;
    // virtual void addSection() = 0;
     virtual void addPlant() = 0;
     virtual void registerStaffMember() = 0;
     virtual void processCustomerOrder() = 0;
+    GreenHouse* getGreenHouse() const { return greenHouse; }
+    NurseryHub* getNurseryHub() const { return nurseryHub; }
 };
 
 #endif // SYSTEMHANDLER_H
