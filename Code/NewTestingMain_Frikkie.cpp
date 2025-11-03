@@ -28,14 +28,14 @@
 // The main function is provided by the doctest framework when DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN is defined.
 // No additional code is needed here.
 // This file serves as the entry point for running all tests defined in other test files.
-
+PlantMaker* maker2 = new PlantMaker();
 static Section* buildGreenHouse() {      //HELPER
    Section* root = new Section("Main Greenhouse", 10);
     for (int i = 1; i <= 10; ++i) {
-        root->addItem(new Plant("Plant" + std::to_string(i), 10.0 + i));
+        root->addItem(new Plant("Plant" + std::to_string(i), 10.0 + i,maker2));
     }
-    root->addItem(new Plant("Extra1", 15.0));
-    root->addItem(new Plant("Extra2", 16.0));
+    root->addItem(new Plant("Extra1", 15.0,maker2));
+    root->addItem(new Plant("Extra2", 16.0,maker2));
     Section* treesSection = new Section("Trees", 5);
     root->expand(treesSection);
     return root;
@@ -127,7 +127,7 @@ TEST_CASE("Builder pattern and order creation") {
     seedBuilder.buildPart(&order, "Tomato seeds");
     seedBuilder.buildPart(&order, "Cucumber seeds");
     CHECK(order.getItemCount() == 1); //That which was found is decorated into one package in the order
-    Plant* peaceLily = new Plant("Peace lily", 49.99);
+    Plant* peaceLily = new Plant("Peace lily", 49.99,maker2);
     CHECK(peaceLily != nullptr);
     order.addItem(peaceLily);
     CHECK(order.getItemCount() == 2); //When adding a new plant a new package is made in the order   
@@ -150,4 +150,9 @@ TEST_CASE("Iterator traversal") {
     CHECK(totalCount == root->getTotalItemCount());
     delete rootIt;
     delete root;
+}
+
+
+TEST_CASE("DELETE ALL PLANTS") {
+    delete maker2;
 }

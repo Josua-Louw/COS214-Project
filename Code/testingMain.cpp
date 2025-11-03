@@ -25,6 +25,7 @@
 #include "RegularCareStrategy.h"
 #include "SeedState.h"
 // Optional timing shim — comment out if you didn't add Timing.h
+PlantMaker* maker = new PlantMaker();
 
 /**
  * @file testingMain.cpp
@@ -316,7 +317,7 @@ int testingMain() {
     hub->registerStaff(careTaker3);
     CareStrategy* strat1 = new RegularCareStrategy();
     CareStrategy* strat2 = new FertilizerBoostStrategy();
-    Plant* plant1 = new Plant("plant1", 18, hub, strat1);
+    Plant* plant1 = new Plant("plant1", 18, hub, strat1, maker);
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
     auto* plant2 = new GreenHousePlant("plant2", 18, hub, strat2);
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
@@ -641,7 +642,7 @@ TEST_CASE("Plant and plantimplementor tests") {
     Staff* careTaker2 = new PlantCaretaker("care2",mediator);
     Staff* careTaker3 = new PlantCaretaker("care3",mediator);
     SUBCASE("Plant from original creation") {
-        Plant* plant = new Plant("Daisy", 20, mediator, careStrat);
+        Plant* plant = new Plant("Daisy", 20, mediator, careStrat, maker);
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
         CHECK(plant->getName() == "Daisy");
         CHECK(plant->getPrice() == 20);
@@ -685,7 +686,7 @@ TEST_CASE("Plant and plantimplementor tests") {
 #include "SellCommand.h"
 
 TEST_CASE("NurseryHub Sell System Test") {
-    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    //std::this_thread::sleep_for(std::chrono::milliseconds(500));
     std::cout << "Starting NurseryHub Sell System Test" << std::endl;
     NurseryMediator* hub = new NurseryHub();
     PlantCaretaker* careTaker1 = new PlantCaretaker("care1", hub);
@@ -705,8 +706,8 @@ TEST_CASE("NurseryHub Sell System Test") {
     // }
         Order* order = new Order();
         // Assuming Order has a method to add plants
-        Plant* plant1 = new Plant("Plant1", 10, hub, strat1);
-        Plant* plant2 = new Plant("Plant2", 20, hub, strat2);
+        Plant* plant1 = new Plant("Plant1", 10, hub, strat1, maker);
+        Plant* plant2 = new Plant("Plant2", 20, hub, strat2, maker);
         hub->registerPlant(plant1);
         hub->registerPlant(plant2);
         AddPlant plantBuilder1(section1);
@@ -722,9 +723,9 @@ TEST_CASE("NurseryHub Sell System Test") {
 
         Customer customer("John Doe", hub, section1);
         std::cout << "created Customer: " << customer.getId() <<  std::endl;
-        Plant* plant4 = new Plant("Plant4", 10, hub, strat2);
+        Plant* plant4 = new Plant("Plant4", 10, hub, strat2, maker);
         std::cout << "created plant: " << plant4->getName() << std::endl;
-        Plant* plant3 = new Plant("Plant3", 20, hub, strat1);
+        Plant* plant3 = new Plant("Plant3", 20, hub, strat1, maker);
         std::cout << "created plant: " << plant3->getName() << std::endl;
         section1->addItem(plant3);
         section1->addItem(plant4);
@@ -751,12 +752,12 @@ TEST_CASE("NurseryHub Sell System Test") {
                 std::cout << "Item in section: " << item->getName() << " | Price: " << item->getPrice() << std::endl;
             }
         }
-        
+
         delete it;
 
         customer.buy();
     // SUBCASE("Selling through a sell command") {
-        Plant* plant5 = new Plant("Plant5", 10, hub, new RegularCareStrategy());
+        Plant* plant5 = new Plant("Plant5", 10, hub, new RegularCareStrategy(), maker);
         hub->registerPlant(plant5);
         hub->registerStaff(new SalesManager("sales1", hub));
         Customer* customer3 = new Customer("Jane Doe", hub, section1);
@@ -766,7 +767,7 @@ TEST_CASE("NurseryHub Sell System Test") {
         delete customer3;
     // }
     // SUBCASE("Selling through sales manager") {
-        Plant* plant6 = new Plant("Plant6", 15, hub, new FertilizerBoostStrategy());
+        Plant* plant6 = new Plant("Plant6", 15, hub, new FertilizerBoostStrategy(), maker);
         hub->registerPlant(plant6);
         SalesManager* salesManager = new SalesManager("sales2", hub);
         hub->registerStaff(salesManager);
@@ -779,4 +780,15 @@ TEST_CASE("NurseryHub Sell System Test") {
     delete strat2;
     delete section1;
     delete hub;
+
+}
+
+
+
+
+
+
+
+TEST_CASE("Delete All Plants.") {
+    delete maker;
 }
