@@ -33,9 +33,6 @@ public:
     
     // Plant management
     void addPlant() override;
-    void addPot();
-    void addSeedPacket();
-    void addDecoration();
     
     // Staff management
     void registerStaffMember() override;
