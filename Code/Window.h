@@ -44,9 +44,10 @@ public:
 
   std::vector<OrderBuilder*>& getOrderBuilders() { return m_order_builders; }
 
-
+  double getMoneyInTheBank() const { return moneyInTheBank; }
+  void setMoneyInTheBank(double amount);
 protected:
-
+  double moneyInTheBank = 0.0;
   addPlantState      m_add_plant_state      = addPlantState::NONE;
   registerStaffState m_register_staff_state = registerStaffState::NONE;
   processOrderState  m_process_order_state  = processOrderState::NONE;
@@ -80,6 +81,7 @@ protected:
 
   // Header widgets - using pointers for consistency
   Gtk::Label* m_title_label;
+  Gtk::Label* m_money_label;
   Gtk::Button* m_main_menu_btn;
   Gtk::Button* m_plant_mgmt_btn;
   Gtk::Button* m_staff_mgmt_btn;

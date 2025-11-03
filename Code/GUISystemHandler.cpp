@@ -102,6 +102,14 @@ void GUISystemHandler::registerStaffMember() {
 void GUISystemHandler::processCustomerOrder() {
     std::cout << "Processing customer order" << std::endl;
     std::string customerId = "Customer:" + std::to_string(++customerIdCounter);
+    double initialAmountInGreenHouse = 0.0;
+    Iterator<Item*>* it = greenHouse->createIterator();
+    for (it->first(); !it->isDone(); it->next()) {
+        Item* item = it->currentItem();
+        if (item) {
+            initialAmountInGreenHouse += item->getPrice();
+        }
+    }
     switch (m_window->getProcessOrderState())
     {
     case processOrderState::CUSTOMER_ORDER:
@@ -109,6 +117,7 @@ void GUISystemHandler::processCustomerOrder() {
             Customer* order = new Customer(customerId, nurseryHub, greenHouse);
             CommandPtr orderCmd = std::make_shared<SellCommand>(order);
             nurseryHub->assign(orderCmd);
+            delete order;
         }
         break;
     case processOrderState::SELF_ORDER:
@@ -117,12 +126,26 @@ void GUISystemHandler::processCustomerOrder() {
             Customer* order = new Customer(customerId, nurseryHub, builders);
             CommandPtr orderCmd = std::make_shared<SellCommand>(order);
             nurseryHub->assign(orderCmd);
+            delete order;
         }
         break;
     default:
         std::cout << "invalid order state" << std::endl;
         break;
     }
+    double finalAmountInGreenHouse = 0.0;
+    delete it;
+    it = greenHouse->createIterator();
+    for (it->first(); !it->isDone(); it->next()) {
+        Item* item = it->currentItem();
+        if (item) {
+            finalAmountInGreenHouse += item->getPrice();
+        }
+    }
+    double moneyEarned = initialAmountInGreenHouse - finalAmountInGreenHouse;
+    double currentMoneyInTheBank = m_window->getMoneyInTheBank();
+    m_window->setMoneyInTheBank(currentMoneyInTheBank + moneyEarned);
+    delete it;
 }
 
 std::string GUISystemHandler::getGreenhouseSummary() {

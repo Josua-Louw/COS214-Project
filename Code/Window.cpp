@@ -13,6 +13,7 @@ Window::Window(GUISystemHandler* guiSystem)
       m_register_staff_state(registerStaffState::PLANT_CARETAKER),
       m_process_order_state(processOrderState::CUSTOMER_ORDER)
 {
+    moneyInTheBank = 1000.0;
     set_title("Greenhouse Management System");
     set_default_size(900, 700);
     set_border_width(10);
@@ -24,6 +25,7 @@ Window::Window(GUISystemHandler* guiSystem)
     m_footer_box = new Gtk::HBox(false, 5);
     
     m_title_label = new Gtk::Label("🌿 Greenhouse Management System 🌿");
+    m_money_label = new Gtk::Label("💰 Money in the Bank: $1000.00");
     m_main_menu_btn = new Gtk::Button("🏠 Main Menu");
     m_plant_mgmt_btn = new Gtk::Button("🌱 Plants");
     m_staff_mgmt_btn = new Gtk::Button("👥 Staff");
@@ -49,6 +51,7 @@ void Window::setupLayout() {
     // Setup header with navigation buttons
     m_header_box->set_spacing(5);
     m_header_box->pack_start(*m_title_label, Gtk::PACK_EXPAND_WIDGET);
+    m_header_box->pack_start(*m_money_label, Gtk::PACK_SHRINK);
     m_header_box->pack_start(*m_main_menu_btn, Gtk::PACK_SHRINK);
     m_header_box->pack_start(*m_plant_mgmt_btn, Gtk::PACK_SHRINK);
     m_header_box->pack_start(*m_staff_mgmt_btn, Gtk::PACK_SHRINK);
@@ -165,34 +168,54 @@ void Window::setupPlantManagement() {
 
     // Connect signals - set state then call handler
     add_plant_btn->signal_clicked().connect([this, add_plant_btn]() {
+        if (moneyInTheBank < 10.0) {
+            updateStatus("⚠️ Not enough funds to add a plant");
+            return;
+        }
         add_plant_btn->set_sensitive(false);
         m_add_plant_state = addPlantState::PLANT;
         m_gui_system_handler->addPlant();
         updateStatus("✓ Regular plant added to greenhouse");
+        setMoneyInTheBank(moneyInTheBank - 10.0); // Deduct cost for adding a plant
         add_plant_btn->set_sensitive(true);
     });
 
     add_pot_btn->signal_clicked().connect([this, add_pot_btn]() {
+        if (moneyInTheBank < 5.0) {
+            updateStatus("⚠️ Not enough funds to add a pot");
+            return;
+        }
         add_pot_btn->set_sensitive(false);
         m_add_plant_state = addPlantState::POT;
         m_gui_system_handler->addPlant();
         updateStatus("✓ Pot added to greenhouse");
+        setMoneyInTheBank(moneyInTheBank - 5.0); // Deduct cost for adding a pot
         add_pot_btn->set_sensitive(true);
     });
 
     add_seed_btn->signal_clicked().connect([this, add_seed_btn]() {
+        if (moneyInTheBank < 3.0) {
+            updateStatus("⚠️ Not enough funds to add a seed packet");
+            return;
+        }
         add_seed_btn->set_sensitive(false);
         m_add_plant_state = addPlantState::SEED;
         m_gui_system_handler->addPlant();
         updateStatus("✓ Seed packet added to greenhouse");
+        setMoneyInTheBank(moneyInTheBank - 3.0); // Deduct cost for adding a seed packet
         add_seed_btn->set_sensitive(true);
     });
 
     add_decoration_btn->signal_clicked().connect([this, add_decoration_btn]() {
+        if (moneyInTheBank < 3.0) {
+            updateStatus("⚠️ Not enough funds to add a decoration");
+            return;
+        }
         add_decoration_btn->set_sensitive(false);
         m_add_plant_state = addPlantState::DECORATION;
         m_gui_system_handler->addPlant();
         updateStatus("✓ Decoration added to greenhouse");
+        setMoneyInTheBank(moneyInTheBank - 3.0); // Deduct cost for adding a decoration
         add_decoration_btn->set_sensitive(true);
     });
 
@@ -251,18 +274,28 @@ void Window::setupStaffManagement() {
 
     // Connect signals - set state then call handler
     add_caretaker_btn->signal_clicked().connect([this, add_caretaker_btn]() {
+        if (moneyInTheBank < 100.0) {
+            updateStatus("⚠️ Not enough funds to hire a plant caretaker");
+            return;
+        }
         add_caretaker_btn->set_sensitive(false);
         m_register_staff_state = registerStaffState::PLANT_CARETAKER;
         m_gui_system_handler->registerStaffMember();
         updateStatus("✓ Plant caretaker registered successfully");
+        setMoneyInTheBank(getMoneyInTheBank() - 100.0); // Deduct cost for hiring a caretaker
         add_caretaker_btn->set_sensitive(true);
     });
 
     add_manager_btn->signal_clicked().connect([this, add_manager_btn]() {
+        if (moneyInTheBank < 150.0) {
+            updateStatus("⚠️ Not enough funds to hire a sales manager");
+            return;
+        }
         add_manager_btn->set_sensitive(false);
         m_register_staff_state = registerStaffState::SALES_MANAGER;
         m_gui_system_handler->registerStaffMember();
         updateStatus("✓ Sales manager registered successfully");
+        setMoneyInTheBank(getMoneyInTheBank() - 150.0); // Deduct cost for hiring a manager
         add_manager_btn->set_sensitive(true);
     });
 
@@ -563,4 +596,9 @@ void Window::on_order_processing_clicked() {
 
 void Window::on_greenhouse_view_clicked() {
     setupGreenhouseView();
+}
+
+void Window::setMoneyInTheBank(double amount) {
+    moneyInTheBank = amount;
+    m_money_label->set_markup("💰 Money in the Bank: $" + std::to_string(moneyInTheBank));
 }
