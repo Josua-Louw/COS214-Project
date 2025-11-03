@@ -1,8 +1,6 @@
 #ifndef NURSERYHUB_H
 #define NURSERYHUB_H
 
-#include <vector>
-#include <string>
 #include "NurseryMediator.h"
 #include <memory>
 class Command;
@@ -34,7 +32,7 @@ using CommandPtr = std::shared_ptr<Command>;
 class NurseryHub : public NurseryMediator {
 
 private:
-	std::vector<Plant*> plants;      ///< Plants registered with the mediator.
+	//std::vector<Plant*> plants;      ///< Plants registered with the mediator.
 	Staff* manager = nullptr;
 	Staff* staff = nullptr;       ///< Staff members available for assignments.
 	std::vector<Customer*> customers;///< Customers interacting through the mediator.
@@ -77,7 +75,8 @@ public:
 	void beginCare(GreenHousePlant* p, std::string type) override;
 	void finishCare(GreenHousePlant* p, std::string type, bool success) override;
 
-	std::vector<std::string> getPlantNamesByType(OrderBuilder* builder) const;
+	std::vector<std::string> getPlantNamesByType(OrderBuilder* builder) const override;
+	double sell(Order* order) override;
 
 	void setInventoryRoot(GreenHouse* r) { inventoryRoot = r; }
 	GreenHouse* getInventoryRoot() const { return inventoryRoot; }

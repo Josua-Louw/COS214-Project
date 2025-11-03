@@ -61,6 +61,7 @@ void Order::addItem(Item* item) {
     {
       items.push_back(item->getOrderPlant());
     }
+    allItems.push_back(item);
   }
 }
 
@@ -77,4 +78,13 @@ void Order::printOrder() const {
     std::cout << "--------------------------" << std::endl;
     std::cout << "Total: R" << std::fixed << std::setprecision(2) << getTotalCost() << std::endl;
     std::cout << "==========================" << std::endl;
+}
+
+double Order::sellOrder(GreenHouse* gh) {
+    double totalRevenue = 0.0;
+    for (Item* item : allItems) {
+        totalRevenue += gh->sell(item);
+    }
+    allItems.clear();
+    return totalRevenue;
 }

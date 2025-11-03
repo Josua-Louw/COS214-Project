@@ -20,18 +20,9 @@ std::string SellCommand::getType() {
  * Adds the plant to the order and removes it from the greenhouse inventory by calling sell on the plant (as a GreenHouse leaf). Updates the order's total cost, supporting customer transactions (FR5, FR8, FR10).
  */
 void SellCommand::execute() {
-    if (!plant || !order) return;
-
-    //lazy resolve the composite root if not provided
-    if (!inventory) {
-        if (Customer* c = order->getCustomer()) {
-            if (OrderBuilder* b = c->anyBuilder()) {
-                inventory = b->getGreenHouse();
-            }
-        }
+    if (customer) {
+        customer->buy();
+    } else {
+        std::cout << "No customer associated with this SellCommand." << std::endl;
     }
-    if (!inventory) return;
-
-    order->addItem(plant);
-    inventory->sell(plant);
 }

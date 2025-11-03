@@ -21,14 +21,13 @@ NurseryHub::NurseryHub() : manager(nullptr), staff(nullptr) {
 }
 
 void NurseryHub::createMgr() {
-	auto* mgr = new Manager("manager-1",this);
-	manager = mgr;
+	manager = new Manager("manager-1",this);
 	staff = manager;
 }
 
 NurseryHub::~NurseryHub() {
-	if (manager)
-		delete manager;
+	if (manager && staff)
+		delete staff;
 	manager = nullptr;
 	staff = nullptr;
 }
@@ -76,8 +75,9 @@ void NurseryHub::notify(void*, std::string, std::string) {
  * @brief Register a plant with the mediator.
  */
 void NurseryHub::registerPlant(Plant* p) {
-	if (p && !ptrPresent(plants, p)) {
-		plants.push_back(p);
+	if (inventoryRoot)
+	{
+		inventoryRoot->expand(p);
 	}
 }
 
@@ -86,7 +86,7 @@ void NurseryHub::registerPlant(Plant* p) {
  */
 void NurseryHub::registerStaff(Staff* s) {
 	if (s && staff) {
-		s->addStaffMember(staff);
+		staff->addStaffMember(s);
 		staff = s;
 	}
 }
@@ -127,22 +127,38 @@ void NurseryHub::finishCare(GreenHousePlant* p, std::string type, bool success) 
 std::vector<std::string> NurseryHub::getPlantNamesByType(OrderBuilder* builder) const {
 	std::vector<std::string> names;
 	if (!builder) return names;
-	names.reserve(plants.size());
+	//names.reserve(plants.size());
 
-	std::vector<Item*> items;
-	items.reserve(plants.size());
-	for (Plant* p : plants)
-		items.push_back(static_cast<Item*>(p));
+	//std::vector<Item*> items;
+	//items.reserve(plants.size());
+	// for (Plant* p : plants)
+	// 	items.push_back(static_cast<Item*>(p));
 
-	ItemIterator it(items);
-	for (it.first(); !it.isDone(); it.next()) {
-		Item* item = it.currentItem();
+	// ItemIterator it(items);
+	// for (it.first(); !it.isDone(); it.next()) {
+	// 	Item* item = it.currentItem();
+	// 	if (!item) continue;
+
+	// 	if (builder->checkType(item))
+	// 		names.push_back(item->getName());
+	// }
+	Iterator<Item*>* it = inventoryRoot->createIterator();
+	for (it->first(); !it->isDone(); it->next()) {
+		Item* item = it->currentItem();
 		if (!item) continue;
-
+		std::cout << "Checking item: " << item->getName() << std::endl;
 		if (builder->checkType(item))
 			names.push_back(item->getName());
 	}
+	delete it;
 	return names;
+}
+
+double NurseryHub::sell(Order* order) {
+	if (order == nullptr || inventoryRoot == nullptr) {
+		return 0.0;
+	}
+	return order->sellOrder(inventoryRoot);
 }
 
 // std::vector<std::string> NurseryHub::getPlantNamesByType(PLANT_TYPE type) const {

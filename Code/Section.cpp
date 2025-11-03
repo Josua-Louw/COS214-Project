@@ -101,7 +101,9 @@ double Section::sell(Item* item) {
  * @return Pointer to the dynamically allocated Iterator* (caller responsible for delete).
 */ 
 Iterator<Item*>* Section::createIterator() {
-    return new ItemIterator(items);
+    std::vector<Item*> allItems;
+    collectAllItems(allItems);
+    return new ItemIterator(allItems);
 }
 
 /**
@@ -220,6 +222,18 @@ void Section::printSummaryHelper(int indentLevel) const {
         std::cout << indent << "  Subsections:" << std::endl;
         for (size_t i = 0; i < section.size(); ++i) {
             section[i]->printSummaryHelper(indentLevel + 1);
+        }
+    }
+}
+
+void Section::collectAllItems(std::vector<Item*>& allItems) {
+    for (auto* item : items) {
+        allItems.push_back(item);
+    }
+    for (auto* subsection : section) {
+        Section* sub = dynamic_cast<Section*>(subsection);
+        if (sub != nullptr) {
+            sub->collectAllItems(allItems);
         }
     }
 }
