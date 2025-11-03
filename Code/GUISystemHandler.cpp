@@ -154,7 +154,23 @@ std::string GUISystemHandler::getGreenhouseSummary() {
     std::stringstream ss;
     ss << "=== GREENHOUSE SUMMARY ===\n\n";
     ss << greenHouse->getName() << " Section\n";
-    ss << "Total Items: " << greenHouse->getTotalItemCount() << "\n";
+    int numItems = 0;
+    Iterator<Item*>* it = greenHouse->createIterator();
+    for (it->first(); !it->isDone(); it->next()) {
+        Item* item = it->currentItem();
+        if (item) {
+            if (item->getType() == PLANT_TYPE::GREENHOUSE_PLANT)
+            {
+                Plant* plant = dynamic_cast<Plant*>(item);
+                if (plant && !plant->isPlantActive()) {
+                    continue; // Skip inactive greenhouse plants
+                }
+            }
+            numItems++;
+        }
+    }
+    delete it;
+    ss << "Total Items: " << numItems << "\n";
     ss << "Capacity: 100\n\n";
     ss << "Use 'View Inventory' for detailed item list.\n";
     return ss.str();
@@ -169,6 +185,13 @@ std::string GUISystemHandler::getInventory() {
     for (it->first(); !it->isDone(); it->next()) {
         Item* item = it->currentItem();
         if (item) {
+            if (item->getType() == PLANT_TYPE::GREENHOUSE_PLANT)
+            {
+                Plant* plant = dynamic_cast<Plant*>(item);
+                if (plant && !plant->isPlantActive()) {
+                    continue; // Skip inactive greenhouse plants
+                }
+            }
             ss << "- " << item->getName() << " | Price: R" << item->getPrice() << "\n";
             totalValue += item->getPrice();
         }

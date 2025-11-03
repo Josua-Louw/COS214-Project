@@ -70,6 +70,8 @@ public:
      * @details Cleans up resources associated with the Plant object.
      */
     ~Plant();
+
+    bool isPlantActive() const;
 };
 
 #endif // PLANT_H
