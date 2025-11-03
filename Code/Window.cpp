@@ -210,35 +210,34 @@ void Window::setupStaffManagement() {
 
     // Registration section
     Gtk::Frame* register_frame = Gtk::manage(new Gtk::Frame("Register New Staff"));
-    Gtk::VBox* register_box = Gtk::manage(new Gtk::VBox(false, 10));
-    register_box->set_border_width(15);
+    Gtk::VBox* register_box = Gtk::manage(new Gtk::VBox(false, 15));
+    register_box->set_border_width(20);
+    register_box->set_halign(Gtk::ALIGN_CENTER);
 
     Gtk::Button* add_caretaker_btn = Gtk::manage(new Gtk::Button("🧑‍🌾 Register Plant Caretaker"));
     Gtk::Button* add_manager_btn = Gtk::manage(new Gtk::Button("💼 Register Sales Manager"));
 
-    add_caretaker_btn->set_size_request(300, 60);
-    add_manager_btn->set_size_request(300, 60);
+    add_caretaker_btn->set_size_request(350, 70);
+    add_manager_btn->set_size_request(350, 70);
 
     register_box->pack_start(*add_caretaker_btn, Gtk::PACK_SHRINK);
     register_box->pack_start(*add_manager_btn, Gtk::PACK_SHRINK);
     register_frame->add(*register_box);
     staff_box->pack_start(*register_frame, Gtk::PACK_SHRINK);
 
-    // Task assignment section
-    Gtk::Frame* task_frame = Gtk::manage(new Gtk::Frame("Assign Tasks"));
-    Gtk::VBox* task_box = Gtk::manage(new Gtk::VBox(false, 10));
-    task_box->set_border_width(15);
+        // Info section
+    Gtk::Frame* info_frame = Gtk::manage(new Gtk::Frame("ℹ️  Information"));
+    Gtk::Label* info_label = Gtk::manage(new Gtk::Label(
+        "Plant Caretakers handle plant care tasks.\n"
+        "Sales Managers process customer orders and sales."
+    ));
 
-    Gtk::Button* assign_care_btn = Gtk::manage(new Gtk::Button("💧 Assign Care Task"));
-    Gtk::Button* assign_sale_btn = Gtk::manage(new Gtk::Button("💰 Assign Sale Task"));
-
-    assign_care_btn->set_size_request(300, 60);
-    assign_sale_btn->set_size_request(300, 60);
-
-    task_box->pack_start(*assign_care_btn, Gtk::PACK_SHRINK);
-    task_box->pack_start(*assign_sale_btn, Gtk::PACK_SHRINK);
-    task_frame->add(*task_box);
-    staff_box->pack_start(*task_frame, Gtk::PACK_SHRINK);
+    info_label->set_margin_start(10);
+    info_label->set_margin_end(10);
+    info_label->set_margin_top(10);
+    info_label->set_margin_bottom(10);
+    info_frame->add(*info_label);
+    staff_box->pack_start(*info_frame, Gtk::PACK_SHRINK);
 
     // Connect signals
     add_caretaker_btn->signal_clicked().connect([this, add_caretaker_btn]() {
@@ -255,25 +254,11 @@ void Window::setupStaffManagement() {
         add_manager_btn->set_sensitive(true);
     });
 
-    assign_care_btn->signal_clicked().connect([this, assign_care_btn]() {
-        assign_care_btn->set_sensitive(false);
-        m_gui_system_handler->assignCareTask();
-        updateStatus("✓ Care task assigned to staff member");
-        assign_care_btn->set_sensitive(true);
-    });
-
-    assign_sale_btn->signal_clicked().connect([this, assign_sale_btn]() {
-        assign_sale_btn->set_sensitive(false);
-        m_gui_system_handler->assignSaleTask();
-        updateStatus("✓ Sale task assigned to staff member");
-        assign_sale_btn->set_sensitive(true);
-    });
-
     m_content_box->pack_start(*staff_box, Gtk::PACK_EXPAND_WIDGET);
     m_current_content = staff_box;
 
     show_all_children();
-    updateStatus("Staff management - Register staff or assign tasks");
+    updateStatus("Staff management - Register new staff memebers.");
 }
 
 void Window::setupOrderProcessing() {
@@ -287,63 +272,104 @@ void Window::setupOrderProcessing() {
     order_box->pack_start(*title_label, Gtk::PACK_SHRINK);
 
     Gtk::Label* instruction_label = Gtk::manage(new Gtk::Label());
-    instruction_label->set_markup("<span size='large'>Build and process customer orders:</span>");
+    instruction_label->set_markup("<span size='large'>Choose order type and process orders:</span>");
     instruction_label->set_margin_top(10);
     instruction_label->set_margin_bottom(10);
     order_box->pack_start(*instruction_label, Gtk::PACK_SHRINK);
 
-    // Create order section
-    Gtk::Frame* create_frame = Gtk::manage(new Gtk::Frame("Start New Order"));
-    Gtk::VBox* create_box = Gtk::manage(new Gtk::VBox(false, 10));
-    create_box->set_border_width(15);
+    // Order type selection section
+    Gtk::Frame* type_frame = Gtk::manage(new Gtk::Frame("Order Type"));
+    Gtk::HBox* type_box = Gtk::manage(new Gtk::HBox(false, 15));
+    type_box->set_border_width(15);
+    type_box->set_halign(Gtk::ALIGN_CENTER);
+    
+    Gtk::Button* customer_order_btn = Gtk::manage(new Gtk::Button("👤 Customer Order\n(Simulated)"));
+    Gtk::Button* admin_order_btn = Gtk::manage(new Gtk::Button("🔧 Admin Order\n(Manual)"));
+    
+    customer_order_btn->set_size_request(250, 80);
+    admin_order_btn->set_size_request(250, 80);
+    
+    type_box->pack_start(*customer_order_btn, Gtk::PACK_EXPAND_WIDGET);
+    type_box->pack_start(*admin_order_btn, Gtk::PACK_EXPAND_WIDGET);
+    type_frame->add(*type_box);
+    order_box->pack_start(*type_frame, Gtk::PACK_SHRINK);
+
+    // Manual order creation section (for admin orders)
+    Gtk::Frame* manual_frame = Gtk::manage(new Gtk::Frame("Manual Order Creation (Admin Only)"));
+    Gtk::VBox* manual_vbox = Gtk::manage(new Gtk::VBox(false, 10));
+    manual_vbox->set_border_width(15);
     
     Gtk::Button* create_order_btn = Gtk::manage(new Gtk::Button("📝 Create New Order"));
-    create_order_btn->set_size_request(300, 60);
-    create_box->pack_start(*create_order_btn, Gtk::PACK_SHRINK);
-    create_frame->add(*create_box);
-    order_box->pack_start(*create_frame, Gtk::PACK_SHRINK);
-
+    create_order_btn->set_size_request(300, 50);
+    manual_vbox->pack_start(*create_order_btn, Gtk::PACK_SHRINK);
+    
     // Add items section
-    Gtk::Frame* items_frame = Gtk::manage(new Gtk::Frame("Add Items to Current Order"));
+    Gtk::Label* add_items_label = Gtk::manage(new Gtk::Label("Add Items to Current Order:"));
+    add_items_label->set_margin_top(10);
+    add_items_label->set_margin_bottom(5);
+    manual_vbox->pack_start(*add_items_label, Gtk::PACK_SHRINK);
+    
     Gtk::Grid* items_grid = Gtk::manage(new Gtk::Grid());
     items_grid->set_row_spacing(10);
     items_grid->set_column_spacing(10);
-    items_grid->set_border_width(15);
+    items_grid->set_halign(Gtk::ALIGN_CENTER);
 
     Gtk::Button* add_plant_order_btn = Gtk::manage(new Gtk::Button("🌹 Add Plant"));
     Gtk::Button* add_pot_order_btn = Gtk::manage(new Gtk::Button("🏺 Add Pot"));
     Gtk::Button* add_seed_order_btn = Gtk::manage(new Gtk::Button("🌰 Add Seeds"));
     Gtk::Button* add_decor_order_btn = Gtk::manage(new Gtk::Button("✨ Add Decoration"));
 
-    add_plant_order_btn->set_size_request(200, 50);
-    add_pot_order_btn->set_size_request(200, 50);
-    add_seed_order_btn->set_size_request(200, 50);
-    add_decor_order_btn->set_size_request(200, 50);
+    add_plant_order_btn->set_size_request(180, 45);
+    add_pot_order_btn->set_size_request(180, 45);
+    add_seed_order_btn->set_size_request(180, 45);
+    add_decor_order_btn->set_size_request(180, 45);
 
     items_grid->attach(*add_plant_order_btn, 0, 0, 1, 1);
     items_grid->attach(*add_pot_order_btn, 1, 0, 1, 1);
     items_grid->attach(*add_seed_order_btn, 0, 1, 1, 1);
     items_grid->attach(*add_decor_order_btn, 1, 1, 1, 1);
     
-    items_frame->add(*items_grid);
-    order_box->pack_start(*items_frame, Gtk::PACK_SHRINK);
-
-    // Process order section
-    Gtk::Frame* process_frame = Gtk::manage(new Gtk::Frame("Complete Order"));
-    Gtk::VBox* process_box = Gtk::manage(new Gtk::VBox(false, 10));
-    process_box->set_border_width(15);
+    manual_vbox->pack_start(*items_grid, Gtk::PACK_SHRINK);
     
+    // Process order button
     Gtk::Button* process_order_btn = Gtk::manage(new Gtk::Button("✅ Process Order"));
-    process_order_btn->set_size_request(300, 60);
-    process_box->pack_start(*process_order_btn, Gtk::PACK_SHRINK);
-    process_frame->add(*process_box);
-    order_box->pack_start(*process_frame, Gtk::PACK_SHRINK);
+    process_order_btn->set_size_request(300, 50);
+    process_order_btn->set_margin_top(10);
+    manual_vbox->pack_start(*process_order_btn, Gtk::PACK_SHRINK);
+    
+    manual_frame->add(*manual_vbox);
+    order_box->pack_start(*manual_frame, Gtk::PACK_SHRINK);
 
-    // Connect signals
+    // Info section
+    Gtk::Frame* info_frame = Gtk::manage(new Gtk::Frame("ℹ️  Information"));
+    Gtk::Label* info_label = Gtk::manage(new Gtk::Label(
+        "• Customer Order: Automatically generates a random order and processes it\n"
+        "• Admin Order: Manually create and build an order step-by-step"
+    ));
+    info_label->set_margin_start(10);
+    info_label->set_margin_end(10);
+    info_label->set_margin_top(10);
+    info_label->set_margin_bottom(10);
+    info_frame->add(*info_label);
+    order_box->pack_start(*info_frame, Gtk::PACK_SHRINK);
+
+    // Connect signals for order type buttons
+    customer_order_btn->signal_clicked().connect([this, customer_order_btn]() {
+        customer_order_btn->set_sensitive(false);
+        m_gui_system_handler->processCustomerOrder();
+        updateStatus("✓ Customer order generated and processed successfully!");
+        customer_order_btn->set_sensitive(true);
+    });
+
+    admin_order_btn->signal_clicked().connect([this]() {
+        updateStatus("ℹ️  Admin order mode selected - Create order below");
+    });
+
+    // Connect signals for manual order creation
     create_order_btn->signal_clicked().connect([this, create_order_btn]() {
         create_order_btn->set_sensitive(false);
         m_gui_system_handler->createOrder();
-        updateStatus("✓ New order created - Add items to the order");
+        updateStatus("✓ New admin order created - Add items to the order");
         create_order_btn->set_sensitive(true);
     });
 
@@ -369,8 +395,8 @@ void Window::setupOrderProcessing() {
 
     process_order_btn->signal_clicked().connect([this, process_order_btn]() {
         process_order_btn->set_sensitive(false);
-        m_gui_system_handler->processCustomerOrder();
-        updateStatus("✓ Order processed successfully!");
+        m_gui_system_handler->createOrder(); // This will need to be updated to process admin order
+        updateStatus("✓ Admin order processed successfully!");
         process_order_btn->set_sensitive(true);
     });
 
@@ -378,8 +404,9 @@ void Window::setupOrderProcessing() {
     m_current_content = order_box;
 
     show_all_children();
-    updateStatus("Order processing - Create a new order to begin");
+    updateStatus("Order processing - Select order type");
 }
+
 
 void Window::setupGreenhouseView() {
     clearMainArea();
