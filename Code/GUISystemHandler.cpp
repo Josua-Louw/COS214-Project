@@ -93,7 +93,7 @@ void GUISystemHandler::processCustomerOrder() {
     case processOrderState::CUSTOMER_ORDER:
         {
             Customer* order = new Customer(customerId, nurseryHub);
-            CommandPtr orderCmd = std::make_shared<PlaceOrderCommand>(order);
+            CommandPtr orderCmd = std::make_shared<SellCommand>(order);
             nurseryHub->assign(orderCmd);
         }
         break;
@@ -101,7 +101,7 @@ void GUISystemHandler::processCustomerOrder() {
         {
             std::vector<OrderBuilder*> builders = m_window->getOrderBuilders();
             Customer* order = new Customer(customerId, nurseryHub, builders, greenHouse);
-            CommandPtr orderCmd = std::make_shared<PlaceOrderCommand>(order);
+            CommandPtr orderCmd = std::make_shared<SellCommand>(order);
             nurseryHub->assign(orderCmd);
         }
     default:
