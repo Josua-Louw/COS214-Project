@@ -2,7 +2,7 @@
 *.gcda
 *.gcno
 *.gz
-*.html
+/Code/*.html
 *.css
 *.o
 main
@@ -11,6 +11,4 @@ valgrind.txt
 coverage.txt
 coverage_output.txt
 .vscode
-html
-latex
 .idea

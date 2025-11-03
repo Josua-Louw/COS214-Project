@@ -1,0 +1,89 @@
+\doxysection{Flowering\+State Class Reference}
+\hypertarget{classFloweringState}{}\label{classFloweringState}\index{FloweringState@{FloweringState}}
+
+
+Represents the flowering state in a plant\textquotesingle{}s lifecycle.  
+
+
+
+
+{\ttfamily \#include $<$Flowering\+State.\+h$>$}
+
+
+
+Inheritance diagram for Flowering\+State\+:
+% FIG 0
+
+
+Collaboration diagram for Flowering\+State\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classFloweringState_a0f2ef88f6245065320c0d5184f988611}{transition\+To\+Next}} () override
+\begin{DoxyCompactList}\small\item\em Transitions the plant to the next state in its lifecycle. \end{DoxyCompactList}\item 
+\Hypertarget{classFloweringState_ae857aad1c88e715a6a1bb4cd9e626869}\label{classFloweringState_ae857aad1c88e715a6a1bb4cd9e626869} 
+{\bfseries Flowering\+State} (\mbox{\hyperlink{classGreenHousePlant}{Green\+House\+Plant}} \texorpdfstring{$\ast$}{*}plant)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classPlantState}{Plant\+State}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classPlantState_a161ce94f53bbe443c85e313688aa63b0}{\texorpdfstring{$\sim$}{\string~}\+Plant\+State}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor to ensure proper cleanup in derived classes. \end{DoxyCompactList}\item 
+{\bfseries Plant\+State} (\mbox{\hyperlink{classGreenHousePlant}{Green\+House\+Plant}} \texorpdfstring{$\ast$}{*}plant)
+\item 
+void {\bfseries set\+Plant\+Alive} (bool plant\+Exist)
+\item 
+bool {\bfseries is\+Alive} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classPlantState}{Plant\+State}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::atomic$<$ bool $>$ {\bfseries plant\+Alive} \{true\}
+\item 
+\mbox{\hyperlink{classGreenHousePlant}{Green\+House\+Plant}} \texorpdfstring{$\ast$}{*} {\bfseries plant\+\_\+} = nullptr
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents the flowering state in a plant\textquotesingle{}s lifecycle. 
+
+The \doxylink{classFloweringState}{Flowering\+State} class models the phase where the plant is actively producing flowers, a critical stage for reproduction. It inherits from \doxylink{classPlantState}{Plant\+State}, part of the plant lifecycle state machine. Care actions, such as watering and fertilizing, are essential to sustain flowering and influence whether the plant returns to a mature state, progresses to senescence, or dies due to insufficient care. \begin{DoxyNote}{Note}
+This stage is pivotal for the plant’s reproductive success and subsequent lifecycle transitions. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{classPlantState}{Plant\+State}, \doxylink{classMatureState}{Mature\+State}, \doxylink{classSenescenceState}{Senescence\+State}, \doxylink{classDyingState}{Dying\+State} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classFloweringState_a0f2ef88f6245065320c0d5184f988611}\label{classFloweringState_a0f2ef88f6245065320c0d5184f988611} 
+\index{FloweringState@{FloweringState}!transitionToNext@{transitionToNext}}
+\index{transitionToNext@{transitionToNext}!FloweringState@{FloweringState}}
+\doxysubsubsection{\texorpdfstring{transitionToNext()}{transitionToNext()}}
+{\footnotesize\ttfamily void Flowering\+State\+::transition\+To\+Next (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Transitions the plant to the next state in its lifecycle. 
+
+Moves the plant from the flowering state to either the mature state, the senescence state, or the dying state if care is insufficient. The decision between mature and senescence states depends on the care strategy, which is not implemented in this method. \begin{DoxyNote}{Note}
+The next state is typically the \doxylink{classMatureState}{Mature\+State}, \doxylink{classSenescenceState}{Senescence\+State}, or \doxylink{classDyingState}{Dying\+State}, based on care actions and strategy. 
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{classMatureState}{Mature\+State}, \doxylink{classSenescenceState}{Senescence\+State}, \doxylink{classDyingState}{Dying\+State} 
+\end{DoxySeeAlso}
+
+
+Implements \mbox{\hyperlink{classPlantState_a21cd156c2af73852ff8f0bdf91a923f7}{Plant\+State}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\mbox{\hyperlink{FloweringState_8h}{Flowering\+State.\+h}}\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/Flowering\+State.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,27 @@
+\doxysection{Decoration\+Adapter.\+h}
+\hypertarget{DecorationAdapter_8h_source}{}\label{DecorationAdapter_8h_source}\index{/home/josua/Code/C++/COS214/COS214-\/Project/Code/DecorationAdapter.h@{/home/josua/Code/C++/COS214/COS214-\/Project/Code/DecorationAdapter.h}}
+\mbox{\hyperlink{DecorationAdapter_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ DECORATIONADAPTER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ DECORATIONADAPTER\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Decoration_8h}{Decoration.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Item_8h}{Item.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classDecorationAdapter}{DecorationAdapter}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classItem}{Item}}\ \{}
+\DoxyCodeLine{00018\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{classDecoration}{Decoration}}*\ decoration;}
+\DoxyCodeLine{00020\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{classDecorationAdapter_a2747a5051beb258e9e14dba15037d1a0}{DecorationAdapter}}(std::string\ name,\ \textcolor{keywordtype}{double}\ price)\ :\ decoration(new\ \mbox{\hyperlink{classDecoration}{Decoration}}(price,\ name))\ \{\}}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{classDecorationAdapter_a20e30e987d095a68d26f68a4f6b669f1}{DecorationAdapter}}(\mbox{\hyperlink{classDecoration}{Decoration}}*\ d)\ :\ decoration(d)\ \{\}}
+\DoxyCodeLine{00035\ \ \ \ \ std::string\ \mbox{\hyperlink{classDecorationAdapter_a8d95f58e0ed0d44591e5451b8fa3ecc0}{getName}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{classDecorationAdapter_a06cdbd8aab50e8336ddc7314e0cba417}{\string~DecorationAdapter}}();}
+\DoxyCodeLine{00040\ \ \ \ \ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classDecorationAdapter_a0f3284dd4241a6d99eaaae169f6f5205}{getPrice}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00042\ \ \ \ \ PLANT\_TYPE\ \mbox{\hyperlink{classDecorationAdapter_a70599c91a8d5f229671b226b1f75064f}{getType}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{classOrderPlant}{OrderPlant}}*\ \mbox{\hyperlink{classDecorationAdapter_a35f4b5d72c3fa641bf07675527cd3580}{getOrderPlant}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00044\ \};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ DECORATIONADAPTER\_H}}
+
+\end{DoxyCode}

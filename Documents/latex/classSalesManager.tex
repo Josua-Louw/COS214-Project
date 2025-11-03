@@ -1,0 +1,126 @@
+\doxysection{Sales\+Manager Class Reference}
+\hypertarget{classSalesManager}{}\label{classSalesManager}\index{SalesManager@{SalesManager}}
+
+
+Concrete staff class for handling customer sales in the \doxylink{classPlant}{Plant} Nursery Simulator.  
+
+
+
+
+{\ttfamily \#include $<$Sales\+Manager.\+h$>$}
+
+
+
+Inheritance diagram for Sales\+Manager\+:
+% FIG 0
+
+
+Collaboration diagram for Sales\+Manager\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classSalesManager_a9f670a16ceb6edbfaa0e3de8e33ea9e9}{Sales\+Manager}} (const std\+::string \&\mbox{\hyperlink{classPerson_a2711d352a03cebd2f5bf075300aa3455}{id}}, \mbox{\hyperlink{classNurseryMediator}{Nursery\+Mediator}} \texorpdfstring{$\ast$}{*}hub)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classSalesManager}{Sales\+Manager} with an ID and \doxylink{classNurseryHub}{Nursery\+Hub}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSalesManager_a28c8cdc5d37bc68cbc8f6366d4a958fb}{receive\+Command}} (Command\+Ptr command) override
+\begin{DoxyCompactList}\small\item\em Receives and executes a \doxylink{classSellCommand}{Sell\+Command}, processing a customer order. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSalesManager_a10ac64f8a0df678958ff088f12d0ad55}{print\+Chain}} () override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classStaff}{Staff}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classStaff_a70080bba44a3fa87481522658c11bfa7}{Staff}} (const std\+::string \&\mbox{\hyperlink{classPerson_a2711d352a03cebd2f5bf075300aa3455}{id}})
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classStaff}{Staff} member with an ID. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStaff_a1609c17ad84dbc493bae917da72c1a75}{get\+Next\+Staff}} () const
+\begin{DoxyCompactList}\small\item\em Gets the next staff in the chain for testing purposes. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Staff} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor for proper cleanup of derived classes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classStaff_acb0f13658f7a9f46c9dc464f8d7100d0}{add\+Staff\+Member}} (\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*}staff)
+\begin{DoxyCompactList}\small\item\em Adds a staff member to the beginning of the chain. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classPerson}{Person}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPerson_ab4d04ab113b61ebf36f218b93a2970fb}{Person}} (const std\+::string \&\mbox{\hyperlink{classPerson_a2711d352a03cebd2f5bf075300aa3455}{id}})
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classPerson}{Person} with an ID. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classPerson_acecdc665a6fc6a4e39e67195a6931eb7}{get\+Id}} () const
+\begin{DoxyCompactList}\small\item\em Gets the person\textquotesingle{}s ID. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Person} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor for proper cleanup of derived classes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classStaff}{Staff}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStaff_acf0a8c2d64aec5a1a6f07401e4ddcbae}{next\+Staff}}
+\item 
+std\+::atomic$<$ bool $>$ {\bfseries staff\+Busy} \{false\}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classPerson}{Person}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classPerson_a2711d352a03cebd2f5bf075300aa3455}{id}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Concrete staff class for handling customer sales in the \doxylink{classPlant}{Plant} Nursery Simulator. 
+
+Inherits from \doxylink{classStaff}{Staff} to manage sales tasks, implementing the \doxylink{classCommand}{Command} Pattern (FR5) via receive\+Command to process \doxylink{classSellCommand}{Sell\+Command} tasks. Participates in the Chain of Responsibility Pattern (FR6) by receiving delegated tasks via next\+Staff. Interacts with \doxylink{classCustomer}{Customer} and \doxylink{classNurseryHub}{Nursery\+Hub} (Mediator, FR7) to facilitate sales and order processing. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classSalesManager_a9f670a16ceb6edbfaa0e3de8e33ea9e9}\label{classSalesManager_a9f670a16ceb6edbfaa0e3de8e33ea9e9} 
+\index{SalesManager@{SalesManager}!SalesManager@{SalesManager}}
+\index{SalesManager@{SalesManager}!SalesManager@{SalesManager}}
+\doxysubsubsection{\texorpdfstring{SalesManager()}{SalesManager()}}
+{\footnotesize\ttfamily Sales\+Manager\+::\+Sales\+Manager (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{id,  }\item[{\mbox{\hyperlink{classNurseryMediator}{Nursery\+Mediator}} \texorpdfstring{$\ast$}{*}}]{hub }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{classSalesManager}{Sales\+Manager} with an ID and \doxylink{classNurseryHub}{Nursery\+Hub}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Unique identifier for the \doxylink{classSalesManager}{Sales\+Manager}. \\
+\hline
+{\em hub} & Pointer to the \doxylink{classNurseryHub}{Nursery\+Hub} mediator. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classSalesManager_a10ac64f8a0df678958ff088f12d0ad55}\label{classSalesManager_a10ac64f8a0df678958ff088f12d0ad55} 
+\index{SalesManager@{SalesManager}!printChain@{printChain}}
+\index{printChain@{printChain}!SalesManager@{SalesManager}}
+\doxysubsubsection{\texorpdfstring{printChain()}{printChain()}}
+{\footnotesize\ttfamily void Sales\+Manager\+::print\+Chain (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classStaff}{Staff}}.
+
+\Hypertarget{classSalesManager_a28c8cdc5d37bc68cbc8f6366d4a958fb}\label{classSalesManager_a28c8cdc5d37bc68cbc8f6366d4a958fb} 
+\index{SalesManager@{SalesManager}!receiveCommand@{receiveCommand}}
+\index{receiveCommand@{receiveCommand}!SalesManager@{SalesManager}}
+\doxysubsubsection{\texorpdfstring{receiveCommand()}{receiveCommand()}}
+{\footnotesize\ttfamily void Sales\+Manager\+::receive\+Command (\begin{DoxyParamCaption}\item[{Command\+Ptr}]{command }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Receives and executes a \doxylink{classSellCommand}{Sell\+Command}, processing a customer order. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em command} & Pointer to the \doxylink{classCommand}{Command} (e.\+g., \doxylink{classSellCommand}{Sell\+Command}) to execute.\\
+\hline
+{\em command} & Pointer to the \doxylink{classCommand}{Command} (e.\+g., \doxylink{classSellCommand}{Sell\+Command}) to execute.\\
+\hline
+\end{DoxyParams}
+Executes the command if the \doxylink{classSalesManager}{Sales\+Manager} is available (task\+List empty) and the command is a \doxylink{classSellCommand}{Sell\+Command}, then removes itself from the chain and notifies \doxylink{classNurseryHub}{Nursery\+Hub}. If busy or the command is not a \doxylink{classSellCommand}{Sell\+Command}, delegates to the next staff member. Supports FR5 (\doxylink{classCommand}{Command}) and FR6 (Chain of Responsibility). 
+
+Implements \mbox{\hyperlink{classStaff_a0100153a6ee93cd761d43008f3fe625d}{Staff}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/Sales\+Manager.\+h\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\mbox{\hyperlink{SalesManager_8cpp}{Sales\+Manager.\+cpp}}\end{DoxyCompactItemize}

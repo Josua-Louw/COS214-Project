@@ -1,0 +1,27 @@
+\doxysection{Sales\+Manager.\+h}
+\hypertarget{SalesManager_8h_source}{}\label{SalesManager_8h_source}\index{/home/josua/Code/C++/COS214/COS214-\/Project/Code/SalesManager.h@{/home/josua/Code/C++/COS214/COS214-\/Project/Code/SalesManager.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SALES\_MANAGER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SALES\_MANAGER\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Staff.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{NurseryMediator_8h}{NurseryMediator.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{using\ }CommandPtr\ =\ std::shared\_ptr<Command>;}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSalesManager}{SalesManager}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classStaff}{Staff}}\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{classNurseryMediator}{NurseryMediator}}*\ nurseryHub;\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{classSalesManager_a9f670a16ceb6edbfaa0e3de8e33ea9e9}{SalesManager}}(\textcolor{keyword}{const}\ std::string\&\ \textcolor{keywordtype}{id},\ \mbox{\hyperlink{classNurseryMediator}{NurseryMediator}}*\ hub)\ :\ \mbox{\hyperlink{classStaff}{Staff}}(\mbox{\hyperlink{classPerson_a2711d352a03cebd2f5bf075300aa3455}{id}}),\ nurseryHub(hub)\ \{\}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSalesManager_a28c8cdc5d37bc68cbc8f6366d4a958fb}{receiveCommand}}(CommandPtr\ command)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ printChain()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00034\ \};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SALES\_MANAGER\_H}}
+
+\end{DoxyCode}

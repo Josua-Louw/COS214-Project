@@ -1,0 +1,32 @@
+\doxysection{Manager.\+h}
+\hypertarget{Manager_8h_source}{}\label{Manager_8h_source}\index{/home/josua/Code/C++/COS214/COS214-\/Project/Code/Manager.h@{/home/josua/Code/C++/COS214/COS214-\/Project/Code/Manager.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ MANAGER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ MANAGER\_H\ \ \ }}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Staff.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Command.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{NurseryHub_8h}{NurseryHub.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <queue>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classManager}{Manager}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classStaff}{Staff}}\ \{}
+\DoxyCodeLine{00021\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{classNurseryHub}{NurseryHub}}*\ nurseryHub\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00023\ \ \ \ \ std::queue<Command*>\ pendingCommands;\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{classManager_a9470152907e2d5e765ba1d9c37c34c9c}{Manager}}(\textcolor{keyword}{const}\ std::string\&\ \textcolor{keywordtype}{id},\ \mbox{\hyperlink{classNurseryHub}{NurseryHub}}*\ hub)\ :\ \mbox{\hyperlink{classStaff}{Staff}}(\mbox{\hyperlink{classPerson_a2711d352a03cebd2f5bf075300aa3455}{id}}),\ nurseryHub(hub)\ \{\}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classManager_aaee6f62a31bc3c7eac166c9c32e9a683}{receiveCommand}}(CommandPtr\ command)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classManager_a483e85c79b03256c62bf2eb24f8fa2cc}{redistributeCommands}}(CommandPtr\ command)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{void}\ printChain()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ MANAGER\_H}}
+
+\end{DoxyCode}

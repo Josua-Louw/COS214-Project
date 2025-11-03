@@ -1,0 +1,37 @@
+\doxysection{Customer.\+h}
+\hypertarget{Customer_8h_source}{}\label{Customer_8h_source}\index{/home/josua/Code/C++/COS214/COS214-\/Project/Code/Customer.h@{/home/josua/Code/C++/COS214/COS214-\/Project/Code/Customer.h}}
+\mbox{\hyperlink{Customer_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ CUSTOMER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ CUSTOMER\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Person_8h}{Person.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{NurseryMediator_8h}{NurseryMediator.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Order_8h}{Order.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{AddSeed_8h}{AddSeed.h}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{AddPot_8h}{AddPot.h}}"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{AddDecoration_8h}{AddDecoration.h}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{AddPlant_8h}{AddPlant.h}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <cstdlib>}\ \textcolor{comment}{//\ For\ rand()\ and\ srand()}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classOrderBuilder}{OrderBuilder}};}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classCustomer}{Customer}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classPerson}{Person}}\ \{}
+\DoxyCodeLine{00035\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{comment}{//\ List\ of\ order\ builders\ used\ by\ the\ customer}}
+\DoxyCodeLine{00037\ \ \ \ \ std::vector<OrderBuilder*>\ orderBuilders;}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{//\ Mediator\ for\ communication\ with\ the\ nursery\ system}}
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{classNurseryMediator}{NurseryMediator}}*\ nurseryHub;}
+\DoxyCodeLine{00040\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classCustomer_aae8bdd1774ac008b7c754b3a5341797f}{buy}}();}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{//Constructor\ to\ generate\ a\ random\ set\ of\ order\ builders}}
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{classCustomer}{Customer}}(std::string\ \textcolor{keywordtype}{id},\ \mbox{\hyperlink{classNurseryMediator}{NurseryMediator}}*\ mediator,\ \mbox{\hyperlink{classGreenHouse}{GreenHouse}}*\ gh);}
+\DoxyCodeLine{00065\ \ \ \ \ \mbox{\hyperlink{classCustomer_a1029d31a7710ea78de7567aca5753839}{Customer}}(std::string\ \textcolor{keywordtype}{id},\ \mbox{\hyperlink{classNurseryMediator}{NurseryMediator}}*\ mediator,\ std::vector<OrderBuilder*>\ builders)}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classPerson}{Person}}(\mbox{\hyperlink{classPerson_a2711d352a03cebd2f5bf075300aa3455}{id}}),\ nurseryHub(mediator),\ orderBuilders(builders)\ \{\};}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classCustomer_ab93fb14683b0393b9c900109f77c2629}{\string~Customer}}();}
+\DoxyCodeLine{00074\ \};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

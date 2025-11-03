@@ -1,0 +1,136 @@
+\doxysection{Plant\+Implementor Class Reference}
+\hypertarget{classPlantImplementor}{}\label{classPlantImplementor}\index{PlantImplementor@{PlantImplementor}}
+
+
+Abstract base class for plant implementors.  
+
+
+
+
+{\ttfamily \#include $<$Plant\+Implementor.\+h$>$}
+
+
+
+Inheritance diagram for Plant\+Implementor\+:
+% FIG 0
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classPlantImplementor_a29706eaf1387e699a87baca0ac122563}\label{classPlantImplementor_a29706eaf1387e699a87baca0ac122563} 
+{\bfseries Plant\+Implementor} ()=default
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlantImplementor_a87801b3ef7e9abdc9c61eb051371a9e8}{Plant\+Implementor}} (const \mbox{\hyperlink{classPlantImplementor}{Plant\+Implementor}} \&)=default
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classPlantImplementor_a6abc7afd3c77552a3042259237dd7b4c}\label{classPlantImplementor_a6abc7afd3c77552a3042259237dd7b4c} 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Plant\+Implementor} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor to ensure proper cleanup in derived classes. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classPlantImplementor}{Plant\+Implementor}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classPlantImplementor_aa019bd21868f3270e91c37f2c2303908}{clone}} ()=0
+\begin{DoxyCompactList}\small\item\em Clones the plant implementor. \end{DoxyCompactList}\item 
+virtual double \mbox{\hyperlink{classPlantImplementor_aca43daed510a22fe117d84ecf990a408}{get\+Price}} () const =0
+\begin{DoxyCompactList}\small\item\em Gets the price of the plant implementor. \end{DoxyCompactList}\item 
+virtual std\+::string \mbox{\hyperlink{classPlantImplementor_ae8d702a85bbae84a715593a071a17e62}{get\+Name}} () const =0
+\begin{DoxyCompactList}\small\item\em Gets the name of the plant implementor. \end{DoxyCompactList}\item 
+virtual PLANT\+\_\+\+TYPE \mbox{\hyperlink{classPlantImplementor_aaa0c955307ca7ec352fde01067053238}{get\+Type}} () const =0
+\begin{DoxyCompactList}\small\item\em Gets the type of the plant implementor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Abstract base class for plant implementors. 
+
+The \doxylink{classPlantImplementor}{Plant\+Implementor} class provides a common interface for all plant implementors, allowing for cloning of plant implementor objects. It is an abstract class with a pure virtual method for cloning, which must be implemented by derived classes. \begin{DoxyNote}{Note}
+This class is abstract and cannot be instantiated directly. 
+\end{DoxyNote}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classPlantImplementor_a87801b3ef7e9abdc9c61eb051371a9e8}\label{classPlantImplementor_a87801b3ef7e9abdc9c61eb051371a9e8} 
+\index{PlantImplementor@{PlantImplementor}!PlantImplementor@{PlantImplementor}}
+\index{PlantImplementor@{PlantImplementor}!PlantImplementor@{PlantImplementor}}
+\doxysubsubsection{\texorpdfstring{PlantImplementor()}{PlantImplementor()}}
+{\footnotesize\ttfamily Plant\+Implementor\+::\+Plant\+Implementor (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classPlantImplementor}{Plant\+Implementor}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Copy constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The \doxylink{classPlantImplementor}{Plant\+Implementor} object to copy from. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classPlantImplementor_aa019bd21868f3270e91c37f2c2303908}\label{classPlantImplementor_aa019bd21868f3270e91c37f2c2303908} 
+\index{PlantImplementor@{PlantImplementor}!clone@{clone}}
+\index{clone@{clone}!PlantImplementor@{PlantImplementor}}
+\doxysubsubsection{\texorpdfstring{clone()}{clone()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classPlantImplementor}{Plant\+Implementor}} \texorpdfstring{$\ast$}{*} Plant\+Implementor\+::clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Clones the plant implementor. 
+
+\begin{DoxyReturn}{Returns}
+A pointer to a new \doxylink{classPlantImplementor}{Plant\+Implementor} object that is a copy of the current object. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classDecoration_a211dc14c5bc8afe13f502788c1e69f03}{Decoration}}, \mbox{\hyperlink{classGreenHousePlant_ab5104a68363e886342468f000fdb3b6e}{Green\+House\+Plant}}, \mbox{\hyperlink{classPlantType_ae9fe6795920198cff1d7f9790a356e55}{Plant\+Type}}, \mbox{\hyperlink{classPot_a39eb270c37c95047b5e6ea5286af7708}{Pot}}, and \mbox{\hyperlink{classSeedPacket_af02f100266aceab2619795964395ddae}{Seed\+Packet}}.
+
+\Hypertarget{classPlantImplementor_ae8d702a85bbae84a715593a071a17e62}\label{classPlantImplementor_ae8d702a85bbae84a715593a071a17e62} 
+\index{PlantImplementor@{PlantImplementor}!getName@{getName}}
+\index{getName@{getName}!PlantImplementor@{PlantImplementor}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily virtual std\+::string Plant\+Implementor\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Gets the name of the plant implementor. 
+
+\begin{DoxyReturn}{Returns}
+The name of the plant implementor as a string. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classOrderPlant_a6ee0e4aa43da9a300858bfc7054d6718}{Order\+Plant}}, \mbox{\hyperlink{classGreenHousePlant_a8365e4f6acf6e715b67a96f838fc140c}{Green\+House\+Plant}}, \mbox{\hyperlink{classPlantDecorator_a75b485a18a77cf92755f3b9128d774ed}{Plant\+Decorator}}, and \mbox{\hyperlink{classSeedPacket_a1b5c16d6be0564ec83781ff466d2f472}{Seed\+Packet}}.
+
+\Hypertarget{classPlantImplementor_aca43daed510a22fe117d84ecf990a408}\label{classPlantImplementor_aca43daed510a22fe117d84ecf990a408} 
+\index{PlantImplementor@{PlantImplementor}!getPrice@{getPrice}}
+\index{getPrice@{getPrice}!PlantImplementor@{PlantImplementor}}
+\doxysubsubsection{\texorpdfstring{getPrice()}{getPrice()}}
+{\footnotesize\ttfamily virtual double Plant\+Implementor\+::get\+Price (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Gets the price of the plant implementor. 
+
+\begin{DoxyReturn}{Returns}
+The price of the plant implementor as a double. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classOrderPlant_a65e5d15a731d2d5d0b0aa5bcc45c5099}{Order\+Plant}}, \mbox{\hyperlink{classGreenHousePlant_a65122b6ef45c317c7dd83481dc2a81a8}{Green\+House\+Plant}}, \mbox{\hyperlink{classPlantDecorator_ac22e9f31ab48a99b7ca285e9239b91ab}{Plant\+Decorator}}, and \mbox{\hyperlink{classSeedPacket_aef1b979c774285488d339c73480bd1b6}{Seed\+Packet}}.
+
+\Hypertarget{classPlantImplementor_aaa0c955307ca7ec352fde01067053238}\label{classPlantImplementor_aaa0c955307ca7ec352fde01067053238} 
+\index{PlantImplementor@{PlantImplementor}!getType@{getType}}
+\index{getType@{getType}!PlantImplementor@{PlantImplementor}}
+\doxysubsubsection{\texorpdfstring{getType()}{getType()}}
+{\footnotesize\ttfamily virtual PLANT\+\_\+\+TYPE Plant\+Implementor\+::get\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Gets the type of the plant implementor. 
+
+\begin{DoxyReturn}{Returns}
+The type of the plant implementor as a PLANT\+\_\+\+TYPE enum. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classOrderPlant_a1210e855109d563dc809701a66385fba}{Order\+Plant}}, \mbox{\hyperlink{classDecoration_a7ff0b790cc67acc06dc319e2c151fe2a}{Decoration}}, \mbox{\hyperlink{classGreenHousePlant_aca337c1084289a8d55d5fbc36f35ada1}{Green\+House\+Plant}}, \mbox{\hyperlink{classPlantType_a62d0ce5e0550b01520d85986c173f028}{Plant\+Type}}, \mbox{\hyperlink{classPot_a99514b4c17735b4c53113f00ca54c101}{Pot}}, and \mbox{\hyperlink{classSeedPacket_a6b0ddbca44dd8de583c966ec67d59de4}{Seed\+Packet}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\mbox{\hyperlink{PlantImplementor_8h}{Plant\+Implementor.\+h}}\end{DoxyCompactItemize}

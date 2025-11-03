@@ -87,7 +87,7 @@ int testingMain() {
 
 //TESTS STRATEGIES AND STATE TIME
 TEST_CASE("TEST") {
-   //testingMain();
+   testingMain();
 }
 
 

@@ -1,0 +1,128 @@
+\doxysection{Add\+Decoration Class Reference}
+\hypertarget{classAddDecoration}{}\label{classAddDecoration}\index{AddDecoration@{AddDecoration}}
+
+
+Concrete class for adding decorative plants to an order in a greenhouse management system. This class implements the build\+Part method to add decorative plants to an order based on the item name.  
+
+
+
+
+{\ttfamily \#include $<$Add\+Decoration.\+h$>$}
+
+
+
+Inheritance diagram for Add\+Decoration\+:
+% FIG 0
+
+
+Collaboration diagram for Add\+Decoration\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classAddDecoration_aef70d9dc76a4d1c9e283c2388b5034fa}{Add\+Decoration}} (\mbox{\hyperlink{classGreenHouse}{Green\+House}} \texorpdfstring{$\ast$}{*}gh)
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{classAddDecoration}{Add\+Decoration}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classOrder}{Order}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classAddDecoration_a616c6170a5c30e323275a50f20b4ba07}{build\+Part}} (\mbox{\hyperlink{classOrder}{Order}} \texorpdfstring{$\ast$}{*}order, std\+::string item\+Name)
+\begin{DoxyCompactList}\small\item\em Builds the part of the order by adding decorative plants based on the item name. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classAddDecoration_a5d1eb6ffe4192fbf7354326f41c3a75c}{check\+Type}} (\mbox{\hyperlink{classItem}{Item}} \texorpdfstring{$\ast$}{*}item)
+\begin{DoxyCompactList}\small\item\em Checks if the given plant is of decorative type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classOrderBuilder}{Order\+Builder}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classOrderBuilder_a17c935b73d886a71b07a7fc90a61de3a}{Order\+Builder}} (\mbox{\hyperlink{classGreenHouse}{Green\+House}} \texorpdfstring{$\ast$}{*}gh)
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{classOrderBuilder}{Order\+Builder}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classGreenHouse}{Green\+House}} \texorpdfstring{$\ast$}{*} {\bfseries get\+Green\+House} () const
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Order\+Builder} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor for proper cleanup of derived classes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classOrderBuilder}{Order\+Builder}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classGreenHouse}{Green\+House}} \texorpdfstring{$\ast$}{*} {\bfseries green\+House}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Concrete class for adding decorative plants to an order in a greenhouse management system. This class implements the build\+Part method to add decorative plants to an order based on the item name. 
+
+\begin{DoxyNote}{Note}
+This class inherits from the \doxylink{classOrderBuilder}{Order\+Builder} abstract class. 
+\end{DoxyNote}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classAddDecoration_aef70d9dc76a4d1c9e283c2388b5034fa}\label{classAddDecoration_aef70d9dc76a4d1c9e283c2388b5034fa} 
+\index{AddDecoration@{AddDecoration}!AddDecoration@{AddDecoration}}
+\index{AddDecoration@{AddDecoration}!AddDecoration@{AddDecoration}}
+\doxysubsubsection{\texorpdfstring{AddDecoration()}{AddDecoration()}}
+{\footnotesize\ttfamily Add\+Decoration\+::\+Add\+Decoration (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGreenHouse}{Green\+House}} \texorpdfstring{$\ast$}{*}}]{gh }\end{DoxyParamCaption})}
+
+
+
+Constructor for \doxylink{classAddDecoration}{Add\+Decoration}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gh} & Pointer to the \doxylink{classGreenHouse}{Green\+House} instance. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classAddDecoration_a616c6170a5c30e323275a50f20b4ba07}\label{classAddDecoration_a616c6170a5c30e323275a50f20b4ba07} 
+\index{AddDecoration@{AddDecoration}!buildPart@{buildPart}}
+\index{buildPart@{buildPart}!AddDecoration@{AddDecoration}}
+\doxysubsubsection{\texorpdfstring{buildPart()}{buildPart()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classOrder}{Order}} \texorpdfstring{$\ast$}{*} Add\+Decoration\+::build\+Part (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classOrder}{Order}} \texorpdfstring{$\ast$}{*}}]{order,  }\item[{std\+::string}]{item\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Builds the part of the order by adding decorative plants based on the item name. 
+
+Builds the part of the order by adding decorative plants based on the item name. The method searches for decorative plants in the greenhouse and adds them to the order. The method checks the plant type and adds it to the order if it matches the decorative type.
+
+
+\begin{DoxyParams}{Parameters}
+{\em order} & Pointer to the current order. \\
+\hline
+{\em item\+Name} & Name of the decorative plant item to be added. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the updated order. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classOrderBuilder_af8b78c8774a790ed4533eafa541af34c}{Order\+Builder}}.
+
+\Hypertarget{classAddDecoration_a5d1eb6ffe4192fbf7354326f41c3a75c}\label{classAddDecoration_a5d1eb6ffe4192fbf7354326f41c3a75c} 
+\index{AddDecoration@{AddDecoration}!checkType@{checkType}}
+\index{checkType@{checkType}!AddDecoration@{AddDecoration}}
+\doxysubsubsection{\texorpdfstring{checkType()}{checkType()}}
+{\footnotesize\ttfamily bool Add\+Decoration\+::check\+Type (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classItem}{Item}} \texorpdfstring{$\ast$}{*}}]{item }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Checks if the given plant is of decorative type. 
+
+Checks if the given plant is of decorative type. The method verifies if the plant matches the criteria for being classified as a decorative plant.
+
+
+\begin{DoxyParams}{Parameters}
+{\em item} & Pointer to the plant to be checked. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the plant is decorative, false otherwise. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classOrderBuilder}{Order\+Builder}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\mbox{\hyperlink{AddDecoration_8h}{Add\+Decoration.\+h}}\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\mbox{\hyperlink{AddDecoration_8cpp}{Add\+Decoration.\+cpp}}\end{DoxyCompactItemize}

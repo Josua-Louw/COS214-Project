@@ -1,0 +1,68 @@
+\doxysection{Command Class Reference}
+\hypertarget{classCommand}{}\label{classCommand}\index{Command@{Command}}
+
+
+Abstract base class for the \doxylink{classCommand}{Command} Pattern in the \doxylink{classPlant}{Plant} Nursery Simulator.  
+
+
+
+
+{\ttfamily \#include $<$Command.\+h$>$}
+
+
+
+Inheritance diagram for Command\+:
+% FIG 0
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classCommand_a4ddceb564acfad25f4203f23ecd35ade}\label{classCommand_a4ddceb564acfad25f4203f23ecd35ade} 
+bool {\bfseries get\+Abort\+Status} ()
+\item 
+\Hypertarget{classCommand_a28b202054a20396e42f0e6db42c3f288}\label{classCommand_a28b202054a20396e42f0e6db42c3f288} 
+void {\bfseries set\+Abort\+Status} (bool abort)
+\item 
+virtual void \mbox{\hyperlink{classCommand_a6fd7d9bd8df8bfc881e4d6c7cd1878b7}{execute}} ()=0
+\begin{DoxyCompactList}\small\item\em Executes the command, performing the specific task. \end{DoxyCompactList}\item 
+\Hypertarget{classCommand_a7ac791e32dbc7995723e8b7275bc21b3}\label{classCommand_a7ac791e32dbc7995723e8b7275bc21b3} 
+virtual std\+::string {\bfseries get\+Type} ()=0
+\item 
+\Hypertarget{classCommand_ae9b4be5744f57668c7a861a91d6f46a4}\label{classCommand_ae9b4be5744f57668c7a861a91d6f46a4} 
+virtual \mbox{\hyperlink{classGreenHousePlant}{Green\+House\+Plant}} \texorpdfstring{$\ast$}{*} {\bfseries get\+Plant} ()=0
+\item 
+\Hypertarget{classCommand_aa545a53d35818f9efb936daf3fa16c61}\label{classCommand_aa545a53d35818f9efb936daf3fa16c61} 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Command} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor for proper cleanup of derived classes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classCommand_aa223d86cabc602f90f598b7047421f19}\label{classCommand_aa223d86cabc602f90f598b7047421f19} 
+std\+::atomic$<$ bool $>$ {\bfseries abort} \{false\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Abstract base class for the \doxylink{classCommand}{Command} Pattern in the \doxylink{classPlant}{Plant} Nursery Simulator. 
+
+Encapsulates staff tasks (e.\+g., watering, fertilizing, selling) as command objects, allowing tasks to be stored, executed, and potentially undone. Commands are assigned to \doxylink{classStaff}{Staff} via \doxylink{classNurseryHub}{Nursery\+Hub} (Mediator) and stored in \doxylink{classStaff}{Staff}\textquotesingle{}s task\+List. This pattern decouples task requests from their execution, enabling flexible task management. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classCommand_a6fd7d9bd8df8bfc881e4d6c7cd1878b7}\label{classCommand_a6fd7d9bd8df8bfc881e4d6c7cd1878b7} 
+\index{Command@{Command}!execute@{execute}}
+\index{execute@{execute}!Command@{Command}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily virtual void Command\+::execute (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Executes the command, performing the specific task. 
+
+Pure virtual method implemented by concrete command classes (e.\+g., \doxylink{classWaterPlant}{Water\+Plant}, \doxylink{classSellCommand}{Sell\+Command}). 
+
+Implemented in \mbox{\hyperlink{classFertilizePlant_ad8ede20d849d582846ee17896e6009b2}{Fertilize\+Plant}}, \mbox{\hyperlink{classSellCommand_ad58606c7f2da10773afce8d6cc85f873}{Sell\+Command}}, and \mbox{\hyperlink{classWaterPlant_a81c2f65734e0abc9a205af146cabd901}{Water\+Plant}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/Command.\+h\end{DoxyCompactItemize}

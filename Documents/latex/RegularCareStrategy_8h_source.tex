@@ -1,0 +1,25 @@
+\doxysection{Regular\+Care\+Strategy.\+h}
+\hypertarget{RegularCareStrategy_8h_source}{}\label{RegularCareStrategy_8h_source}\index{/home/josua/Code/C++/COS214/COS214-\/Project/Code/RegularCareStrategy.h@{/home/josua/Code/C++/COS214/COS214-\/Project/Code/RegularCareStrategy.h}}
+\mbox{\hyperlink{RegularCareStrategy_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ REGULARCARESTRATEGY\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ REGULARCARESTRATEGY\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{CareStrategy_8h}{CareStrategy.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Command.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00009\ \textcolor{keyword}{using\ }CommandPtr\ =\ std::shared\_ptr<Command>;}
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classRegularCareStrategy}{RegularCareStrategy}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classCareStrategy}{CareStrategy}}\ \{}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00031\ \ \ \ \ \ std::vector<CommandPtr>\ \mbox{\hyperlink{classRegularCareStrategy_a233de7dcfde54272a21c010883525f73}{applyCare}}(\mbox{\hyperlink{classGreenHousePlant}{GreenHousePlant}}\ \&plant)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00036\ \ \ \ \ std::string\ \mbox{\hyperlink{classRegularCareStrategy_a3efb23e42f5d679759948ea9bc681f3c}{getStrategyName}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00037\ \};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

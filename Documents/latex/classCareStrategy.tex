@@ -1,0 +1,74 @@
+\doxysection{Care\+Strategy Class Reference}
+\hypertarget{classCareStrategy}{}\label{classCareStrategy}\index{CareStrategy@{CareStrategy}}
+
+
+Defines the interface for different plant care strategies.  
+
+
+
+
+{\ttfamily \#include $<$Care\+Strategy.\+h$>$}
+
+
+
+Inheritance diagram for Care\+Strategy\+:
+% FIG 0
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual std\+::vector$<$ Command\+Ptr $>$ \mbox{\hyperlink{classCareStrategy_a59e9c7f5752fc2771616770769b6e3fc}{apply\+Care}} (\mbox{\hyperlink{classGreenHousePlant}{Green\+House\+Plant}} \&plant)=0
+\begin{DoxyCompactList}\small\item\em Applies the specific care behavior defined by the concrete strategy. \end{DoxyCompactList}\item 
+virtual std\+::string \mbox{\hyperlink{classCareStrategy_adedd8cd8952a44c0f1df3d047308273e}{get\+Strategy\+Name}} () const =0
+\begin{DoxyCompactList}\small\item\em Retrieves the name or description of the applied care strategy. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Defines the interface for different plant care strategies. 
+
+This abstract class represents the Strategy design pattern\textquotesingle{}s interface. Concrete care strategies implement this interface to provide customized behavior for plant maintenance.
+
+\begin{DoxyNote}{Note}
+The Strategy pattern is used to encapsulate various plant care techniques and allow dynamic selection of care behavior at runtime. 
+\end{DoxyNote}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classCareStrategy_a59e9c7f5752fc2771616770769b6e3fc}\label{classCareStrategy_a59e9c7f5752fc2771616770769b6e3fc} 
+\index{CareStrategy@{CareStrategy}!applyCare@{applyCare}}
+\index{applyCare@{applyCare}!CareStrategy@{CareStrategy}}
+\doxysubsubsection{\texorpdfstring{applyCare()}{applyCare()}}
+{\footnotesize\ttfamily virtual std\+::vector$<$ Command\+Ptr $>$ Care\+Strategy\+::apply\+Care (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGreenHousePlant}{Green\+House\+Plant}} \&}]{plant }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Applies the specific care behavior defined by the concrete strategy. 
+
+\begin{DoxyNote}{Note}
+This is a pure virtual function that must be overridden by subclasses. 
+\end{DoxyNote}
+
+
+Implemented in \mbox{\hyperlink{classFertilizerBoostStrategy_ac65040af0d671638503cca29e21e4c1a}{Fertilizer\+Boost\+Strategy}}, \mbox{\hyperlink{classRegularCareStrategy_a233de7dcfde54272a21c010883525f73}{Regular\+Care\+Strategy}}, and \mbox{\hyperlink{classWaterLimitingStrategy_ab7be93bb0f989ef69b4fecc207ccf795}{Water\+Limiting\+Strategy}}.
+
+\Hypertarget{classCareStrategy_adedd8cd8952a44c0f1df3d047308273e}\label{classCareStrategy_adedd8cd8952a44c0f1df3d047308273e} 
+\index{CareStrategy@{CareStrategy}!getStrategyName@{getStrategyName}}
+\index{getStrategyName@{getStrategyName}!CareStrategy@{CareStrategy}}
+\doxysubsubsection{\texorpdfstring{getStrategyName()}{getStrategyName()}}
+{\footnotesize\ttfamily virtual std\+::string Care\+Strategy\+::get\+Strategy\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Retrieves the name or description of the applied care strategy. 
+
+\begin{DoxyNote}{Note}
+Used primarily for identifying the current strategy being applied. 
+\end{DoxyNote}
+
+
+Implemented in \mbox{\hyperlink{classFertilizerBoostStrategy_ac58c58007c2169035ad30a76eb587131}{Fertilizer\+Boost\+Strategy}}, \mbox{\hyperlink{classRegularCareStrategy_a3efb23e42f5d679759948ea9bc681f3c}{Regular\+Care\+Strategy}}, and \mbox{\hyperlink{classWaterLimitingStrategy_a6716c670bdb9d7bd6dba61c6e4b23f10}{Water\+Limiting\+Strategy}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\mbox{\hyperlink{CareStrategy_8h}{Care\+Strategy.\+h}}\end{DoxyCompactItemize}

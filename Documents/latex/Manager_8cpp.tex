@@ -1,0 +1,27 @@
+\doxysection{/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\+Manager.cpp File Reference}
+\hypertarget{Manager_8cpp}{}\label{Manager_8cpp}\index{/home/josua/Code/C++/COS214/COS214-\/Project/Code/Manager.cpp@{/home/josua/Code/C++/COS214/COS214-\/Project/Code/Manager.cpp}}
+
+
+Implementation of the \doxylink{classManager}{Manager} class.  
+
+
+{\ttfamily \#include "{}Manager.\+h"{}}\newline
+{\ttfamily \#include $<$utility$>$}\newline
+{\ttfamily \#include "{}Water\+Plant.\+h"{}}\newline
+{\ttfamily \#include "{}Fertilize\+Plant.\+h"{}}\newline
+{\ttfamily \#include "{}Sell\+Command.\+h"{}}\newline
+{\ttfamily \#include "{}Nursery\+Hub.\+h"{}}\newline
+Include dependency graph for Manager.\+cpp\+:
+% FIG 0
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{Manager_8cpp_afc32edf075c294b2887c4b938f416ec5}\label{Manager_8cpp_afc32edf075c294b2887c4b938f416ec5} 
+using {\bfseries Command\+Ptr} = std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classCommand}{Command}} $>$
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of the \doxylink{classManager}{Manager} class. 
+
+Handles task distribution by queuing unhandled commands (FR6) and redistributing them via \doxylink{classNurseryHub}{Nursery\+Hub} (FR7). Supports the \doxylink{classCommand}{Command} Pattern (FR5) by storing commands and the Chain of Responsibility Pattern (FR6) as the final handler in the chain. 

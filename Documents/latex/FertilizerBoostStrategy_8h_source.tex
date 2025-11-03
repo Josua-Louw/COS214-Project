@@ -1,0 +1,23 @@
+\doxysection{Fertilizer\+Boost\+Strategy.\+h}
+\hypertarget{FertilizerBoostStrategy_8h_source}{}\label{FertilizerBoostStrategy_8h_source}\index{/home/josua/Code/C++/COS214/COS214-\/Project/Code/FertilizerBoostStrategy.h@{/home/josua/Code/C++/COS214/COS214-\/Project/Code/FertilizerBoostStrategy.h}}
+\mbox{\hyperlink{FertilizerBoostStrategy_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ FERTILIZERBOOSTSTRATEGY\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ FERTILIZERBOOSTSTRATEGY\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{CareStrategy_8h}{CareStrategy.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Command.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00009\ \textcolor{keyword}{using\ }CommandPtr\ =\ std::shared\_ptr<Command>;}
+\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classFertilizerBoostStrategy}{FertilizerBoostStrategy}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classCareStrategy}{CareStrategy}}\ \{}
+\DoxyCodeLine{00024\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00030\ \ \ \ \ std::vector<CommandPtr>\ \mbox{\hyperlink{classFertilizerBoostStrategy_ac65040af0d671638503cca29e21e4c1a}{applyCare}}(\mbox{\hyperlink{classGreenHousePlant}{GreenHousePlant}}\ \&plant)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00035\ \ \ \ \ std::string\ \mbox{\hyperlink{classFertilizerBoostStrategy_ac58c58007c2169035ad30a76eb587131}{getStrategyName}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00036\ \};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

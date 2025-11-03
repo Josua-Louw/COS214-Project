@@ -1,0 +1,155 @@
+\doxysection{Item\+Iterator Class Reference}
+\hypertarget{classItemIterator}{}\label{classItemIterator}\index{ItemIterator@{ItemIterator}}
+
+
+Concrete iterator that traverses \doxylink{classItem}{Item} nodes inside \doxylink{classGreenHouse}{Green\+House} section(s).  
+
+
+
+
+{\ttfamily \#include $<$Item\+Iterator.\+h$>$}
+
+
+
+Inheritance diagram for Item\+Iterator\+:
+% FIG 0
+
+
+Collaboration diagram for Item\+Iterator\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classItemIterator_a4b1f8121dd96d513f1982b0017898337}{Item\+Iterator}} (const std\+::vector$<$ \mbox{\hyperlink{classItem}{Item}} \texorpdfstring{$\ast$}{*} $>$ \&item\+List)
+\begin{DoxyCompactList}\small\item\em Constructs an \doxylink{classItemIterator}{Item\+Iterator} with a list of \doxylink{classItem}{Item} pointers. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classItemIterator_a8a44eb7958210175ff5a44a74a96d57a}{first}} ()
+\begin{DoxyCompactList}\small\item\em Resets the iterator to the first item. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classItemIterator_a3d06941aa6db90a941fe70427d8fc70c}{next}} ()
+\begin{DoxyCompactList}\small\item\em Advances the iterator to the next item. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classItemIterator_a41946dbbeacd6740989f098a262a90d7}{is\+Done}} () const
+\begin{DoxyCompactList}\small\item\em Checks if the iterator has reached the end of the collection. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classItem}{Item}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classItemIterator_a82f47a8fac2a80802181169c9c507685}{current\+Item}} () const
+\begin{DoxyCompactList}\small\item\em Gets the current item in the iteration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classIterator}{Iterator$<$ Item \texorpdfstring{$\ast$}{*} $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Iterator} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor for proper cleanup of derived classes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Concrete iterator that traverses \doxylink{classItem}{Item} nodes inside \doxylink{classGreenHouse}{Green\+House} section(s). 
+
+Iterates through a collection of \doxylink{classItem}{Item} pointers (e.\+g., pots, decorations, or seed packets). \begin{DoxyNote}{Note}
+This class inherits from the abstract \doxylink{classIterator}{Iterator} class. 
+\end{DoxyNote}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classItemIterator_a4b1f8121dd96d513f1982b0017898337}\label{classItemIterator_a4b1f8121dd96d513f1982b0017898337} 
+\index{ItemIterator@{ItemIterator}!ItemIterator@{ItemIterator}}
+\index{ItemIterator@{ItemIterator}!ItemIterator@{ItemIterator}}
+\doxysubsubsection{\texorpdfstring{ItemIterator()}{ItemIterator()}}
+{\footnotesize\ttfamily Item\+Iterator\+::\+Item\+Iterator (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{classItem}{Item}} \texorpdfstring{$\ast$}{*} $>$ \&}]{item\+List }\end{DoxyParamCaption})}
+
+
+
+Constructs an \doxylink{classItemIterator}{Item\+Iterator} with a list of \doxylink{classItem}{Item} pointers. 
+
+Construct a new \doxylink{classItemIterator}{Item\+Iterator} object.
+
+
+\begin{DoxyParams}{Parameters}
+{\em item\+List} & Vector of \doxylink{classItem}{Item} pointers to iterate over. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classItemIterator_a82f47a8fac2a80802181169c9c507685}\label{classItemIterator_a82f47a8fac2a80802181169c9c507685} 
+\index{ItemIterator@{ItemIterator}!currentItem@{currentItem}}
+\index{currentItem@{currentItem}!ItemIterator@{ItemIterator}}
+\doxysubsubsection{\texorpdfstring{currentItem()}{currentItem()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classItem}{Item}} \texorpdfstring{$\ast$}{*} Item\+Iterator\+::current\+Item (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Gets the current item in the iteration. 
+
+Returns the current \doxylink{classItem}{Item} object that the iterator points to.
+
+\begin{DoxyReturn}{Returns}
+Pointer to the current \doxylink{classItem}{Item}.
+
+Pointer to the current \doxylink{classItem}{Item} object.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+If the iterator is at a valid position, this method retrieves the current \doxylink{classItem}{Item} for processing. If the iterator is at the end (\doxylink{classItemIterator_a41946dbbeacd6740989f098a262a90d7}{is\+Done()} == true), this method may return nullptr. 
+\end{DoxyNote}
+
+
+Implements \mbox{\hyperlink{classIterator_a600526b76eff8dad301ad8a075094a67}{Iterator$<$ Item \texorpdfstring{$\ast$}{*} $>$}}.
+
+\Hypertarget{classItemIterator_a8a44eb7958210175ff5a44a74a96d57a}\label{classItemIterator_a8a44eb7958210175ff5a44a74a96d57a} 
+\index{ItemIterator@{ItemIterator}!first@{first}}
+\index{first@{first}!ItemIterator@{ItemIterator}}
+\doxysubsubsection{\texorpdfstring{first()}{first()}}
+{\footnotesize\ttfamily void Item\+Iterator\+::first (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Resets the iterator to the first item. 
+
+This method resets the iterator to the first element of the container (the first \doxylink{classItem}{Item} in a (sub)section).
+
+\begin{DoxyNote}{Note}
+Typically called before a loop begins to ensure iteration starts from the beginning. 
+\end{DoxyNote}
+
+
+Implements \mbox{\hyperlink{classIterator_a6f13cc79a1574086c63ce4ddba1d3d9f}{Iterator$<$ Item \texorpdfstring{$\ast$}{*} $>$}}.
+
+\Hypertarget{classItemIterator_a41946dbbeacd6740989f098a262a90d7}\label{classItemIterator_a41946dbbeacd6740989f098a262a90d7} 
+\index{ItemIterator@{ItemIterator}!isDone@{isDone}}
+\index{isDone@{isDone}!ItemIterator@{ItemIterator}}
+\doxysubsubsection{\texorpdfstring{isDone()}{isDone()}}
+{\footnotesize\ttfamily bool Item\+Iterator\+::is\+Done (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Checks if the iterator has reached the end of the collection. 
+
+Checks if the iterator has reached the end of the \doxylink{classItem}{Item} collection.
+
+\begin{DoxyReturn}{Returns}
+true if all items have been iterated over, false otherwise.
+
+true if all Items have been visited, false otherwise.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This method allows client code to determine when iteration is complete. 
+\end{DoxyNote}
+
+
+Implements \mbox{\hyperlink{classIterator_a9be4cac2471ddcf68a75c12088498d5f}{Iterator$<$ Item \texorpdfstring{$\ast$}{*} $>$}}.
+
+\Hypertarget{classItemIterator_a3d06941aa6db90a941fe70427d8fc70c}\label{classItemIterator_a3d06941aa6db90a941fe70427d8fc70c} 
+\index{ItemIterator@{ItemIterator}!next@{next}}
+\index{next@{next}!ItemIterator@{ItemIterator}}
+\doxysubsubsection{\texorpdfstring{next()}{next()}}
+{\footnotesize\ttfamily void Item\+Iterator\+::next (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Advances the iterator to the next item. 
+
+Advances the iterator to the next \doxylink{classItem}{Item} object in the collection/list. After calling this method, the iterator points to the next \doxylink{classItem}{Item}, if it exists. If the end of the collection is reached, subsequent calls to \doxylink{classItemIterator_a3d06941aa6db90a941fe70427d8fc70c}{next()} should have no effect, and \doxylink{classItemIterator_a41946dbbeacd6740989f098a262a90d7}{is\+Done()} should return true. 
+
+Implements \mbox{\hyperlink{classIterator_a94a7b0c50676cd9ee924eddece41d8d4}{Iterator$<$ Item \texorpdfstring{$\ast$}{*} $>$}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\mbox{\hyperlink{ItemIterator_8h}{Item\+Iterator.\+h}}\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\mbox{\hyperlink{ItemIterator_8cpp}{Item\+Iterator.\+cpp}}\end{DoxyCompactItemize}

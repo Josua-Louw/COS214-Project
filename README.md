@@ -20,3 +20,6 @@ Project for COS214 by the Five guys group
 - Run the following in the /Code directory: `make run`
 ## Install gtkmm
 - Run: `sudo apt-get install libgtkmm-3.0-dev` in the linux terminal
+
+## Short Description of program
+With the gtkmm library installed and the compiled demo main one can run the project and will see a basic gui system pop up. This will allow the user to interact with the developed system which simulates the running of a nursery. User's will be able to add plants, pots, seeds and decor to the nursery. They will be able to hire staff to manage the nursery. They will be able to sell the items to customers and lastly be able to view some summaries of the system.

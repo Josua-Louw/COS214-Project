@@ -93,3 +93,13 @@ OrderPlant* Plant::getOrderPlant() const {
     }
     return nullptr;
 }
+
+bool Plant::isPlantActive() const {
+    if (implementor && implementor->getType() == PLANT_TYPE::GREENHOUSE_PLANT) {
+        GreenHousePlant* ghPlant = dynamic_cast<GreenHousePlant*>(implementor);
+        if (ghPlant) {
+            return ghPlant->getIsActive();
+        }
+    }
+    return false; // Non-greenhouse plants are considered inactive in this context
+}

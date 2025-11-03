@@ -1,0 +1,32 @@
+\doxysection{Order\+Plant.\+h}
+\hypertarget{OrderPlant_8h_source}{}\label{OrderPlant_8h_source}\index{/home/josua/Code/C++/COS214/COS214-\/Project/Code/OrderPlant.h@{/home/josua/Code/C++/COS214/COS214-\/Project/Code/OrderPlant.h}}
+\mbox{\hyperlink{OrderPlant_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ ORDER\_PLANT\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ ORDER\_PLANT\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{PlantImplementor_8h}{PlantImplementor.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classOrderPlant}{OrderPlant}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classPlantImplementor}{PlantImplementor}}\ \{}
+\DoxyCodeLine{00024\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{double}\ cost;}
+\DoxyCodeLine{00026\ \ \ \ \ std::string\ name;}
+\DoxyCodeLine{00027\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{classOrderPlant}{OrderPlant}}()\ :\ cost(0.0),\ name(\textcolor{stringliteral}{"{}"{}})\ \{\}}
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{classOrderPlant}{OrderPlant}}(\textcolor{keywordtype}{double}\ cost,\ \textcolor{keyword}{const}\ std::string\&\ name)\ :\ cost(cost),\ name(name)\ \{\}}
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{classOrderPlant}{OrderPlant}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classOrderPlant}{OrderPlant}}\&);}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classOrderPlant_a65e5d15a731d2d5d0b0aa5bcc45c5099}{getPrice}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classOrderPlant_a1806444706a692cfda31eaac6a83fe51}{decorate}}(\mbox{\hyperlink{classOrderPlant}{OrderPlant}}*\ orderPlant)\ =\ 0;}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{virtual}\ std::string\ \mbox{\hyperlink{classOrderPlant_a6ee0e4aa43da9a300858bfc7054d6718}{getName}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00053\ \textcolor{comment}{\ \ \ \ \ *\ @brief\ Gets\ the\ type\ of\ the\ plant.}}
+\DoxyCodeLine{00054\ \textcolor{comment}{\ \ \ \ \ *\ @return\ The\ type\ of\ the\ plant\ as\ a\ string.}}
+\DoxyCodeLine{00055\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{virtual}\ PLANT\_TYPE\ \mbox{\hyperlink{classOrderPlant_a1210e855109d563dc809701a66385fba}{getType}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classOrderPlant_a0ab30c332e6c6e09e17ac532fbeaf646}{\string~OrderPlant}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00061\ \};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ORDER\_PLANT\_H}}
+
+\end{DoxyCode}

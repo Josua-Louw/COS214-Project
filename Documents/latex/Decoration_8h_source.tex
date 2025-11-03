@@ -1,0 +1,23 @@
+\doxysection{Decoration.\+h}
+\hypertarget{Decoration_8h_source}{}\label{Decoration_8h_source}\index{/home/josua/Code/C++/COS214/COS214-\/Project/Code/Decoration.h@{/home/josua/Code/C++/COS214/COS214-\/Project/Code/Decoration.h}}
+\mbox{\hyperlink{Decoration_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ DECORATION\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ DECORATION\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{PlantDecorator_8h}{PlantDecorator.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classDecoration}{Decoration}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classPlantDecorator}{PlantDecorator}}\ \{}
+\DoxyCodeLine{00019\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{classDecoration}{Decoration}}()\ :\ \mbox{\hyperlink{classPlantDecorator}{PlantDecorator}}()\ \{\}}
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{classDecoration}{Decoration}}(\textcolor{keywordtype}{double}\ cost,\ \textcolor{keyword}{const}\ std::string\&\ name)\ :\ \mbox{\hyperlink{classPlantDecorator}{PlantDecorator}}(cost,\ name)\ \{\}}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{classDecoration}{Decoration}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classDecoration}{Decoration}}\&\ other)\ :\ \mbox{\hyperlink{classPlantDecorator}{PlantDecorator}}(other)\ \{\}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00028\ \ \ \ \ PLANT\_TYPE\ \mbox{\hyperlink{classDecoration_a7ff0b790cc67acc06dc319e2c151fe2a}{getType}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{classPlantImplementor}{PlantImplementor}}*\ \mbox{\hyperlink{classDecoration_a211dc14c5bc8afe13f502788c1e69f03}{clone}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00035\ \};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

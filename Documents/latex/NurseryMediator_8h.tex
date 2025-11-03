@@ -1,0 +1,32 @@
+\doxysection{/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\+Nursery\+Mediator.h File Reference}
+\hypertarget{NurseryMediator_8h}{}\label{NurseryMediator_8h}\index{/home/josua/Code/C++/COS214/COS214-\/Project/Code/NurseryMediator.h@{/home/josua/Code/C++/COS214/COS214-\/Project/Code/NurseryMediator.h}}
+
+
+Abstract mediator interface for coordinating communication in the nursery.  
+
+
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$memory$>$}\newline
+Include dependency graph for Nursery\+Mediator.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classNurseryMediator}{Nursery\+Mediator}}
+\begin{DoxyCompactList}\small\item\em Abstract Mediator in the Mediator design pattern. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{NurseryMediator_8h_afc32edf075c294b2887c4b938f416ec5}\label{NurseryMediator_8h_afc32edf075c294b2887c4b938f416ec5} 
+using {\bfseries Command\+Ptr} = std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classCommand}{Command}} $>$
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Abstract mediator interface for coordinating communication in the nursery. 
+
+The mediator decouples colleagues (e.\+g., \doxylink{classStaff}{Staff}, \doxylink{classCustomer}{Customer}, \doxylink{classGreenHouse}{Green\+House}) by routing events and commands between them. Colleagues interact with the mediator instead of referencing each other directly. 

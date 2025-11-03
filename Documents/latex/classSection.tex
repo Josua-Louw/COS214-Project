@@ -1,0 +1,366 @@
+\doxysection{Section Class Reference}
+\hypertarget{classSection}{}\label{classSection}\index{Section@{Section}}
+
+
+\doxylink{classSection}{Section} is the concrete composite class. It implements operations used by the Composite pattern, such as adding additional subsections to the greenhouse by aggregating child \doxylink{classGreenHouse}{Green\+House} pointers.  
+
+
+
+
+{\ttfamily \#include $<$Section.\+h$>$}
+
+
+
+Inheritance diagram for Section\+:
+% FIG 0
+
+
+Collaboration diagram for Section\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classSection_adb9fe78c220a2e4ca8d83410e5be3232}{Section}} (const std\+::string \&section\+Name, size\+\_\+t cap=10)
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{classSection}{Section}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classSection_ae2582a77c7ecb8cbd4a1b58e7ad3296e}{\texorpdfstring{$\sim$}{\string~}\+Section}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for \doxylink{classSection}{Section}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSection_ad9124dd6f1206df9031e7fafa556e3a3}{expand}} (\mbox{\hyperlink{classGreenHouse}{Green\+House}} \texorpdfstring{$\ast$}{*}green\+House)
+\begin{DoxyCompactList}\small\item\em Expands the greenhouse by adding a subsection. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classGreenHouse}{Green\+House}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classSection_a88e5848f1a7aeeb91b0e764334fca432}{get\+Subsection}} (const std\+::string \&section\+Name)
+\begin{DoxyCompactList}\small\item\em Gets a subsection of the greenhouse by name. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classSection_a6a544b3b30a7c56cc478255e94243fcf}{sell}} (\mbox{\hyperlink{classItem}{Item}} \texorpdfstring{$\ast$}{*}item)
+\begin{DoxyCompactList}\small\item\em Sells an item from the greenhouse. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classIterator}{Iterator}}$<$ \mbox{\hyperlink{classItem}{Item}} \texorpdfstring{$\ast$}{*} $>$ \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classSection_a87747ade6452c75cbd3ce3f8ae9f6a71}{create\+Iterator}} ()
+\begin{DoxyCompactList}\small\item\em Creates an iterator for traversing the greenhouse structure. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classItem}{Item}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classSection_a019cd2f078c2b9b6e99c6f61502968d9}{find\+Item}} (const std\+::string \&item\+Name)
+\begin{DoxyCompactList}\small\item\em Finds an item in the greenhouse by name. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSection_af54ba3f34eba6ea70ab4d21747b8c7d2}{add\+Item}} (\mbox{\hyperlink{classItem}{Item}} \texorpdfstring{$\ast$}{*}item)
+\begin{DoxyCompactList}\small\item\em Adds an item to the section. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classSection_a7cbc405be4191359433d1150161904d2}{get\+Name}} () const
+\begin{DoxyCompactList}\small\item\em Gets the name of the section. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classSection_a64016e7b6eff0374d0d7b15c1a8aa572}{get\+Item\+Count}} () const
+\begin{DoxyCompactList}\small\item\em Gets the count of items in the section. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSection_aff65a38c02b3fc2187e4ebae3697dcc0}{print\+Summary}} () const
+\begin{DoxyCompactList}\small\item\em Prints a summary of the section and its items. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classSection_a56e52a3e3310ce4a71b909e371885e6f}{get\+Total\+Item\+Count}} () const
+\begin{DoxyCompactList}\small\item\em Gets the total item count in the greenhouse. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSection_a4bdf9145564a91fb2b05e6e67b69f9f2}{print\+Summary\+Helper}} (int indent\+Level) const
+\begin{DoxyCompactList}\small\item\em Helper function to print summary with indentation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSection_a8efa3664046967ed3fdd34babf3a59e4}{collect\+All\+Items}} (std\+::vector$<$ \mbox{\hyperlink{classItem}{Item}} \texorpdfstring{$\ast$}{*} $>$ \&all\+Items)
+\begin{DoxyCompactList}\small\item\em Helper function to capture all items in sections (including subsections). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classGreenHouse}{Green\+House}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Green\+House} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor for proper cleanup of derived classes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{classSection}{Section} is the concrete composite class. It implements operations used by the Composite pattern, such as adding additional subsections to the greenhouse by aggregating child \doxylink{classGreenHouse}{Green\+House} pointers. 
+
+\begin{DoxyNote}{Note}
+This class inherits from the \doxylink{classGreenHouse}{Green\+House} abstract class. 
+\end{DoxyNote}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classSection_adb9fe78c220a2e4ca8d83410e5be3232}\label{classSection_adb9fe78c220a2e4ca8d83410e5be3232} 
+\index{Section@{Section}!Section@{Section}}
+\index{Section@{Section}!Section@{Section}}
+\doxysubsubsection{\texorpdfstring{Section()}{Section()}}
+{\footnotesize\ttfamily Section\+::\+Section (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{section\+Name,  }\item[{size\+\_\+t}]{cap = {\ttfamily 10} }\end{DoxyParamCaption})}
+
+
+
+Constructor for \doxylink{classSection}{Section}. 
+
+Creates a greenhouse section by adding a subsection (leaf) of the \doxylink{classGreenHouse}{Green\+House} class.
+
+
+\begin{DoxyParams}{Parameters}
+{\em section\+Name} & Name of the section. \\
+\hline
+{\em cap} & Maximum capacity of items in the section before creating a new subsection.\\
+\hline
+{\em section\+Name} & Name of the section to be created (composite). \\
+\hline
+{\em cap} & Capacity of the items that the section may hold. Default = 10. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classSection_ae2582a77c7ecb8cbd4a1b58e7ad3296e}\label{classSection_ae2582a77c7ecb8cbd4a1b58e7ad3296e} 
+\index{Section@{Section}!````~Section@{\texorpdfstring{$\sim$}{\string~}Section}}
+\index{````~Section@{\texorpdfstring{$\sim$}{\string~}Section}!Section@{Section}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Section()}{\string~Section()}}
+{\footnotesize\ttfamily Section\+::\texorpdfstring{$\sim$}{\string~}\+Section (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Destructor for \doxylink{classSection}{Section}. 
+
+Destructor for a section object. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classSection_af54ba3f34eba6ea70ab4d21747b8c7d2}\label{classSection_af54ba3f34eba6ea70ab4d21747b8c7d2} 
+\index{Section@{Section}!addItem@{addItem}}
+\index{addItem@{addItem}!Section@{Section}}
+\doxysubsubsection{\texorpdfstring{addItem()}{addItem()}}
+{\footnotesize\ttfamily void Section\+::add\+Item (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classItem}{Item}} \texorpdfstring{$\ast$}{*}}]{item }\end{DoxyParamCaption})}
+
+
+
+Adds an item to the section. 
+
+Adds an \doxylink{classItem}{Item} (\doxylink{classPlant}{Plant}, \doxylink{classPot}{Pot}, \doxylink{classDecoration}{Decoration}, etc.) to the section.
+
+
+\begin{DoxyParams}{Parameters}
+{\em item} & Pointer to the \doxylink{classItem}{Item} to be added.\\
+\hline
+{\em item} & Pointer to the \doxylink{classItem}{Item} to be added.\\
+\hline
+\end{DoxyParams}
+Groups items logically by type using runtime type identification (RTTI). If the section reaches its capacity, a new subsection is created. \Hypertarget{classSection_a8efa3664046967ed3fdd34babf3a59e4}\label{classSection_a8efa3664046967ed3fdd34babf3a59e4} 
+\index{Section@{Section}!collectAllItems@{collectAllItems}}
+\index{collectAllItems@{collectAllItems}!Section@{Section}}
+\doxysubsubsection{\texorpdfstring{collectAllItems()}{collectAllItems()}}
+{\footnotesize\ttfamily void Section\+::collect\+All\+Items (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classItem}{Item}} \texorpdfstring{$\ast$}{*} $>$ \&}]{all\+Items }\end{DoxyParamCaption})}
+
+
+
+Helper function to capture all items in sections (including subsections). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em all\+Items} & Vector list to be populated by items. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classSection_a87747ade6452c75cbd3ce3f8ae9f6a71}\label{classSection_a87747ade6452c75cbd3ce3f8ae9f6a71} 
+\index{Section@{Section}!createIterator@{createIterator}}
+\index{createIterator@{createIterator}!Section@{Section}}
+\doxysubsubsection{\texorpdfstring{createIterator()}{createIterator()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classIterator}{Iterator}}$<$ \mbox{\hyperlink{classItem}{Item}} \texorpdfstring{$\ast$}{*} $>$ \texorpdfstring{$\ast$}{*} Section\+::create\+Iterator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Creates an iterator for traversing the greenhouse structure. 
+
+Create a concrete iterator for traversing contained items.
+
+\begin{DoxyReturn}{Returns}
+Pointer to an \doxylink{classIterator}{Iterator} for \doxylink{classGreenHouse}{Green\+House} items.
+
+Pointer to the dynamically allocated Iterator\texorpdfstring{$\ast$}{*} (caller responsible for delete). 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classGreenHouse_a98509e35ac2530d9969ffad9a48c86e9}{Green\+House}}.
+
+\Hypertarget{classSection_ad9124dd6f1206df9031e7fafa556e3a3}\label{classSection_ad9124dd6f1206df9031e7fafa556e3a3} 
+\index{Section@{Section}!expand@{expand}}
+\index{expand@{expand}!Section@{Section}}
+\doxysubsubsection{\texorpdfstring{expand()}{expand()}}
+{\footnotesize\ttfamily void Section\+::expand (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGreenHouse}{Green\+House}} \texorpdfstring{$\ast$}{*}}]{green\+House }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Expands the greenhouse by adding a subsection. 
+
+Expands the greenhouse by adding a subsection (leaf) of the \doxylink{classGreenHouse}{Green\+House} class.
+
+
+\begin{DoxyParams}{Parameters}
+{\em green\+House} & Pointer to the \doxylink{classGreenHouse}{Green\+House} subsection to be added.\\
+\hline
+{\em green\+House} & Pointer to the current subsection to be added (composite). \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classGreenHouse_a2392129c852e29041be945e62672d7c7}{Green\+House}}.
+
+\Hypertarget{classSection_a019cd2f078c2b9b6e99c6f61502968d9}\label{classSection_a019cd2f078c2b9b6e99c6f61502968d9} 
+\index{Section@{Section}!findItem@{findItem}}
+\index{findItem@{findItem}!Section@{Section}}
+\doxysubsubsection{\texorpdfstring{findItem()}{findItem()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classItem}{Item}} \texorpdfstring{$\ast$}{*} Section\+::find\+Item (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{item\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Finds an item in the greenhouse by name. 
+
+Find a plant by name (string) inside this node/subsection of the greenhouse.
+
+
+\begin{DoxyParams}{Parameters}
+{\em item\+Name} & Name of the item to find. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the found \doxylink{classItem}{Item}, or nullptr if not found.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em item\+Name} & \doxylink{classPlant}{Plant} name to be searched for.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the item (Item\texorpdfstring{$\ast$}{*}), otherwise nullptr if not found. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classGreenHouse_ab24ab427fe31f79358fe3eb71ef67b1d}{Green\+House}}.
+
+\Hypertarget{classSection_a64016e7b6eff0374d0d7b15c1a8aa572}\label{classSection_a64016e7b6eff0374d0d7b15c1a8aa572} 
+\index{Section@{Section}!getItemCount@{getItemCount}}
+\index{getItemCount@{getItemCount}!Section@{Section}}
+\doxysubsubsection{\texorpdfstring{getItemCount()}{getItemCount()}}
+{\footnotesize\ttfamily size\+\_\+t Section\+::get\+Item\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the count of items in the section. 
+
+\begin{DoxyReturn}{Returns}
+The number of items in the section as a size\+\_\+t. 
+\end{DoxyReturn}
+\Hypertarget{classSection_a7cbc405be4191359433d1150161904d2}\label{classSection_a7cbc405be4191359433d1150161904d2} 
+\index{Section@{Section}!getName@{getName}}
+\index{getName@{getName}!Section@{Section}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily std\+::string Section\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Gets the name of the section. 
+
+Returns the name of this section (getter).
+
+\begin{DoxyReturn}{Returns}
+The name of the section as a string.
+
+String name of this section. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classGreenHouse_a09bb46b4ba8f584519820cc4f41ab6b0}{Green\+House}}.
+
+\Hypertarget{classSection_a88e5848f1a7aeeb91b0e764334fca432}\label{classSection_a88e5848f1a7aeeb91b0e764334fca432} 
+\index{Section@{Section}!getSubsection@{getSubsection}}
+\index{getSubsection@{getSubsection}!Section@{Section}}
+\doxysubsubsection{\texorpdfstring{getSubsection()}{getSubsection()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classGreenHouse}{Green\+House}} \texorpdfstring{$\ast$}{*} Section\+::get\+Subsection (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{section\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Gets a subsection of the greenhouse by name. 
+
+Searches the greenhouse for a specific subsection (leaf) that belongs to the \doxylink{classGreenHouse}{Green\+House} class.
+
+
+\begin{DoxyParams}{Parameters}
+{\em section\+Name} & Name of the subsection to retrieve. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the \doxylink{classGreenHouse}{Green\+House} subsection.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em section\+Name} & String description of the section to be searched for.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the greenhouse section that was searched for, or nullptr if not found. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classGreenHouse_a6ec0154de0da4d520237e8186c037ce2}{Green\+House}}.
+
+\Hypertarget{classSection_a56e52a3e3310ce4a71b909e371885e6f}\label{classSection_a56e52a3e3310ce4a71b909e371885e6f} 
+\index{Section@{Section}!getTotalItemCount@{getTotalItemCount}}
+\index{getTotalItemCount@{getTotalItemCount}!Section@{Section}}
+\doxysubsubsection{\texorpdfstring{getTotalItemCount()}{getTotalItemCount()}}
+{\footnotesize\ttfamily size\+\_\+t Section\+::get\+Total\+Item\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Gets the total item count in the greenhouse. 
+
+\begin{DoxyReturn}{Returns}
+The total number of items as a size\+\_\+t. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classGreenHouse_a28ad36f146bccad627e207499aacf1fd}{Green\+House}}.
+
+\Hypertarget{classSection_aff65a38c02b3fc2187e4ebae3697dcc0}\label{classSection_aff65a38c02b3fc2187e4ebae3697dcc0} 
+\index{Section@{Section}!printSummary@{printSummary}}
+\index{printSummary@{printSummary}!Section@{Section}}
+\doxysubsubsection{\texorpdfstring{printSummary()}{printSummary()}}
+{\footnotesize\ttfamily void Section\+::print\+Summary (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Prints a summary of the section and its items. 
+
+Prints a summary of this section and its subsections. 
+
+Implements \mbox{\hyperlink{classGreenHouse_a8c63c75888cbf0997f392037691e7ed3}{Green\+House}}.
+
+\Hypertarget{classSection_a4bdf9145564a91fb2b05e6e67b69f9f2}\label{classSection_a4bdf9145564a91fb2b05e6e67b69f9f2} 
+\index{Section@{Section}!printSummaryHelper@{printSummaryHelper}}
+\index{printSummaryHelper@{printSummaryHelper}!Section@{Section}}
+\doxysubsubsection{\texorpdfstring{printSummaryHelper()}{printSummaryHelper()}}
+{\footnotesize\ttfamily void Section\+::print\+Summary\+Helper (\begin{DoxyParamCaption}\item[{int}]{indent\+Level }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Helper function to print summary with indentation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em indent\+Level} & Level of indentation for formatting. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classGreenHouse_aa749f5b410622d6dbaf2499074e5d82c}{Green\+House}}.
+
+\Hypertarget{classSection_a6a544b3b30a7c56cc478255e94243fcf}\label{classSection_a6a544b3b30a7c56cc478255e94243fcf} 
+\index{Section@{Section}!sell@{sell}}
+\index{sell@{sell}!Section@{Section}}
+\doxysubsubsection{\texorpdfstring{sell()}{sell()}}
+{\footnotesize\ttfamily double Section\+::sell (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classItem}{Item}} \texorpdfstring{$\ast$}{*}}]{item }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Sells an item from the greenhouse. 
+
+Sell an item represented by the given \doxylink{classGreenHouse}{Green\+House} node.
+
+
+\begin{DoxyParams}{Parameters}
+{\em item} & Pointer to the \doxylink{classItem}{Item} to be sold. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The sale price as a double.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em \doxylink{classItem}{Item}} & \doxylink{classGreenHouse}{Green\+House} node (an Item\texorpdfstring{$\ast$}{*} that is to be sold).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Total price of the item (double). 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classGreenHouse_af41dd583538481d7cf3702dd84cc4f80}{Green\+House}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\mbox{\hyperlink{Section_8h}{Section.\+h}}\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\mbox{\hyperlink{Section_8cpp}{Section.\+cpp}}\end{DoxyCompactItemize}
