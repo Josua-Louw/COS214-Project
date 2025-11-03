@@ -19,7 +19,7 @@
 class SeedState;
 using CommandPtr = std::shared_ptr<Command>;
 
-
+class PlantMaker; // Forward declaration
 
 /**
  * @file Plant.h
@@ -74,8 +74,10 @@ private:
     std::atomic<bool> isActive{true};
 
     std::vector<CommandPtr> currentCommand = {};
+
+    PlantMaker* maker;
 public:
-    explicit GreenHousePlant(const std::string& name = "", double price = 0.0, NurseryMediator* mediator = nullptr, CareStrategy* care = nullptr);
+    explicit GreenHousePlant(const std::string& name = "", double price = 0.0, NurseryMediator* mediator = nullptr, CareStrategy* care = nullptr, PlantMaker* maker = nullptr);
 
     ~GreenHousePlant() override;
 

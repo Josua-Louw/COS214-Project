@@ -25,6 +25,7 @@
 #include "RegularCareStrategy.h"
 #include "SeedState.h"
 // Optional timing shim — comment out if you didn't add Timing.h
+PlantMaker* maker = new PlantMaker();
 
 /**
  * @file testingMain.cpp
@@ -38,273 +39,6 @@
 // No additional code is needed here.
 // This file serves as the entry point for running all tests defined in other test files.
 
-/**
- * @brief Minimal mock for NurseryHub to test notifications.
- */
-// class MockNurseryHub : public NurseryHub {
-// public:
-//     bool notified = false;
-//     std::string lastEvent;
-//     std::string lastData;
-
-//     void notify(void* sender, std::string event, std::string data) override {
-//         notified = true;
-//         lastEvent = event;
-//         lastData = data;
-//     }
-//     void assign(Command* cmd) override {}
-//     void registerPlant(Plant* p) override {}
-//     void registerStaff(Staff* s) override {}
-// };
-
-// /**
-//  * @brief Minimal mock for GreenHousePlant and Plant to test commands.
-//  * @brief Minimal mock for GreenHousePlant to test FertilizePlant, WaterPlant, and SellCommand.
-//  */
-// class MockGreenHousePlant : public GreenHousePlant, public Plant {
-// public:
-//     bool fed = false;
-//     bool watered = false;
-//     double price = 10.0;
-//     std::string name = "Rose";
-
-//     // GreenHousePlant methods
-//     void feed() { fed = true; }
-//     void water() { watered = true; }
-//     double getPrice() const { return price; }
-//     PLANT_TYPE getType() const { return PLANT_TYPE::GREENHOUSE_PLANT; }
-//     PlantImplementor* clone() { return new MockGreenHousePlant(*this); }
-//     std::string getName() const { return name; } // Satisfies Item::getName
-
-//     // Plant methods
-//     void convertToOrderType() {}
-//     std::string getImplementorType() { return "MockGreenHousePlant"; }
-
-//     // GreenHouse methods (via Item)
-//     double sell(GreenHouse* item) {
-//         if (dynamic_cast<MockGreenHousePlant*>(item) == this) {
-//             return price;
-//         }
-//         return 0.0;
-//     }
-//     void expand(GreenHouse*) {}
-//     GreenHouse* getSubsection(std::string) { return nullptr; }
-//     Iterator* CreateIterator() { return nullptr; }
-//     Plant* findItem(std::string itemName) {
-//         return (itemName == name) ? this : nullptr;
-//     }
-// };
-
-// /**
-//  * @brief Minimal mock for Order to test SellCommand.
-//  */
-// class MockOrder : public Order {
-// public:
-//     bool plantAdded = false;
-//     Plant* addedPlant = nullptr;
-
-//     void addPlant(Plant* p) {
-//         plantAdded = true;
-//         addedPlant = p;
-//     }
-// };
-
-// TEST_CASE("Chain of Responsibility Tests for PlantCaretaker and SalesManager") {
-//     MockNurseryHub* hub = new MockNurseryHub();
-//     MockGreenHousePlant* plant = new MockGreenHousePlant();
-//     MockOrder* order = new MockOrder();
-
-//     SUBCASE("PlantCaretaker handles WaterPlant command") {
-//         PlantCaretaker* caretaker = new PlantCaretaker("PC1", hub);
-//         WaterPlant* cmd = new WaterPlant(plant);
-
-//         bool handled = caretaker->handleRequest(cmd);
-//         CHECK(handled == true);
-//         CHECK(plant->watered == true);
-//         CHECK(caretaker->getTaskList().size() == 1);
-//         CHECK(caretaker->getNextStaff() == nullptr);
-//         CHECK(hub->notified == true);
-//         CHECK(hub->lastEvent == "CARE_COMPLETED");
-//         CHECK(hub->lastData == "Plant cared for");
-
-//         delete cmd;
-//         delete caretaker;
-//     }
-
-//     SUBCASE("PlantCaretaker handles FertilizePlant command") {
-//         PlantCaretaker* caretaker = new PlantCaretaker("PC1", hub);
-//         FertilizePlant* cmd = new FertilizePlant(plant);
-
-//         bool handled = caretaker->handleRequest(cmd);
-//         CHECK(handled == true);
-//         CHECK(plant->fed == true);
-//         CHECK(caretaker->getTaskList().size() == 1);
-//         CHECK(caretaker->getNextStaff() == nullptr);
-//         CHECK(hub->notified == true);
-//         CHECK(hub->lastEvent == "CARE_COMPLETED");
-//         CHECK(hub->lastData == "Plant cared for");
-
-//         delete cmd;
-//         delete caretaker;
-//     }
-
-//     SUBCASE("PlantCaretaker delegates SellCommand to SalesManager") {
-//         PlantCaretaker* caretaker = new PlantCaretaker("PC1", hub);
-//         SalesManager* manager = new SalesManager("SM1", hub);
-//         caretaker->setNextStaff(manager);
-//         SellCommand* cmd = new SellCommand(plant, order);
-
-//         bool handled = caretaker->handleRequest(cmd);
-//         CHECK(handled == true);
-//         CHECK(caretaker->getTaskList().size() == 0);
-//         CHECK(caretaker->getNextStaff() == manager);
-//         CHECK(manager->getTaskList().size() == 1);
-//         CHECK(manager->getNextStaff() == nullptr);
-//         CHECK(order->plantAdded == true);
-//         CHECK(order->addedPlant == static_cast<Plant*>(plant));
-//         CHECK(hub->notified == true);
-//         CHECK(hub->lastEvent == "SALE_COMPLETED");
-//         CHECK(hub->lastData == "Order processed");
-
-//         delete cmd;
-//         delete manager;
-//         delete caretaker;
-//     }
-
-//     SUBCASE("SalesManager handles SellCommand") {
-//         SalesManager* manager = new SalesManager("SM1", hub);
-//         SellCommand* cmd = new SellCommand(plant, order);
-
-//         bool handled = manager->handleRequest(cmd);
-//         CHECK(handled == true);
-//         CHECK(order->plantAdded == true);
-//         CHECK(order->addedPlant == static_cast<Plant*>(plant));
-//         CHECK(manager->getTaskList().size() == 1);
-//         CHECK(manager->getNextStaff() == nullptr);
-//         CHECK(hub->notified == true);
-//         CHECK(hub->lastEvent == "SALE_COMPLETED");
-//         CHECK(hub->lastData == "Order processed");
-
-//         delete cmd;
-//         delete manager;
-//     }
-
-//     SUBCASE("SalesManager delegates WaterPlant to PlantCaretaker") {
-//         SalesManager* manager = new SalesManager("SM1", hub);
-//         PlantCaretaker* caretaker = new PlantCaretaker("PC1", hub);
-//         manager->setNextStaff(caretaker);
-//         WaterPlant* cmd = new WaterPlant(plant);
-
-//         bool handled = manager->handleRequest(cmd);
-//         CHECK(handled == true);
-//         CHECK(manager->getTaskList().size() == 0);
-//         CHECK(manager->getNextStaff() == caretaker);
-//         CHECK(caretaker->getTaskList().size() == 1);
-//         CHECK(caretaker->getNextStaff() == nullptr);
-//         CHECK(plant->watered == true);
-//         CHECK(hub->notified == true);
-//         CHECK(hub->lastEvent == "CARE_COMPLETED");
-//         CHECK(hub->lastData == "Plant cared for");
-
-//         delete cmd;
-//         delete caretaker;
-//         delete manager;
-//     }
-
-//     SUBCASE("No staff handles unmatched command") {
-//         PlantCaretaker* caretaker = new PlantCaretaker("PC1", hub);
-//         SalesManager* manager = new SalesManager("SM1", hub);
-//         caretaker->setNextStaff(manager);
-//         class DummyCommand : public Command {
-//         public:
-//             void execute() override {}
-//         };
-//         DummyCommand* cmd = new DummyCommand();
-
-//         bool handled = caretaker->handleRequest(cmd);
-//         CHECK(handled == false);
-//         CHECK(caretaker->getTaskList().size() == 0);
-//         CHECK(manager->getTaskList().size() == 0);
-//         CHECK(caretaker->getNextStaff() == manager);
-//         CHECK(manager->getNextStaff() == nullptr);
-//         CHECK(hub->notified == false);
-
-//         delete cmd;
-//         delete manager;
-//         delete caretaker;
-//     }
-
-//     delete plant;
-//     delete order;
-//     delete hub;
-// }
-
-// TEST_CASE("FertilizePlant Command Tests") {
-//     SUBCASE("Execute calls feed on valid GreenHousePlant") {
-//         MockGreenHousePlant* plant = new MockGreenHousePlant();
-//         FertilizePlant cmd(plant);
-//         cmd.execute();
-
-//         CHECK(plant->fed == true);
-
-//         delete plant;
-//     }
-
-//     SUBCASE("Execute with null plant does nothing") {
-//         FertilizePlant cmd(nullptr);
-//         CHECK_NOTHROW(cmd.execute());
-//     }
-// }
-
-// TEST_CASE("WaterPlant Command Tests") {
-//     SUBCASE("Execute calls water on valid GreenHousePlant") {
-//         MockGreenHousePlant* plant = new MockGreenHousePlant();
-//         WaterPlant cmd(plant);
-//         cmd.execute();
-
-//         CHECK(plant->watered == true);
-
-//         delete plant;
-//     }
-
-//     SUBCASE("Execute with null plant does nothing") {
-//         WaterPlant cmd(nullptr);
-//         CHECK_NOTHROW(cmd.execute());
-//     }
-// }
-
-// TEST_CASE("SellCommand Command Tests") {
-//     SUBCASE("Execute calls addPlant and sell on valid Plant and Order") {
-//         MockGreenHousePlant* plant = new MockGreenHousePlant();
-//         MockOrder* order = new MockOrder();
-//         SellCommand cmd(plant, order); // MockGreenHousePlant* is a Plant*
-//         cmd.execute();
-
-//         CHECK(order->plantAdded == true);
-//         CHECK(order->addedPlant == static_cast<Plant*>(plant));
-//         CHECK(plant->sell(static_cast<GreenHouse*>(plant)) == 10.0);
-
-//         delete plant;
-//         delete order;
-//     }
-
-//     SUBCASE("Execute with null plant or order does nothing") {
-//         MockGreenHousePlant* plant = new MockGreenHousePlant();
-//         MockOrder* order = new MockOrder();
-//         SellCommand cmd1(nullptr, order);
-//         SellCommand cmd2(plant, nullptr);
-//         SellCommand cmd3(nullptr, nullptr);
-
-//         CHECK_NOTHROW(cmd1.execute());
-//         CHECK_NOTHROW(cmd2.execute());
-//         CHECK_NOTHROW(cmd3.execute());
-//         CHECK(order->plantAdded == false);
-
-//         delete plant;
-//         delete order;
-//     }
-// }
-
 int testingMain() {
     NurseryMediator* hub = new NurseryHub();
     Staff* careTaker1 = new PlantCaretaker("care1",hub);
@@ -316,28 +50,29 @@ int testingMain() {
     hub->registerStaff(careTaker3);
     CareStrategy* strat1 = new RegularCareStrategy();
     CareStrategy* strat2 = new FertilizerBoostStrategy();
-    Plant* plant1 = new Plant("plant1", 18, hub, strat1);
+    Plant* plant1 = new Plant("plant1", 18, hub, strat1, maker);
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    auto* plant2 = new GreenHousePlant("plant2", 18, hub, strat2);
+    auto* plant2 = maker->makePlant("plant2", 18, hub, strat2);
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    auto* plant3 = new GreenHousePlant("plant3", 18, hub, strat1);
+    auto* plant3 = maker->makePlant("plant3", 18, hub, strat1);
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    auto* plant4 = new GreenHousePlant("plant4", 18, hub, strat1);
+    auto* plant4 = maker->makePlant ("plant4", 18, hub, strat1);
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    auto* plant5 = new GreenHousePlant("plant5", 18, hub, strat2);
+    auto* plant5 = maker->makePlant("plant5", 18, hub, strat2);
 
     std::this_thread::sleep_for(std::chrono::seconds(20)); //runs simulation for a minute before deleting
     plant3->deactivatePlant();
-    delete plant2;
+    
     std::this_thread::sleep_for(std::chrono::seconds(10));
     plant3->reactivatePlant();
     std::this_thread::sleep_for(std::chrono::seconds(20));
 
     std::cout << "Deleting Plants" << std::endl;
     delete plant1;
-    delete plant3;
-    delete plant4;
-    delete plant5;
+    plant2->deactivatePlant();
+    plant3->deactivatePlant();
+    plant4->deactivatePlant();
+    plant5->deactivatePlant();
     delete strat1;
     delete strat2;
     // delete careTaker1;
@@ -355,32 +90,6 @@ TEST_CASE("TEST") {
    //testingMain();
 }
 
-// TEST_CASE("WaterLimiting reduces watering pressure") {
-//     GreenHousePlant p;
-//     WaterLimitingStrategy s;
-//     p.setStrategy(&s);
-//     int h0 = p.getHydration(), n0 = p.getNutrition();
-//     p.applyCurrentCare();
-//     CHECK(p.getHydration() == h0 + 1);
-//     CHECK(p.getNutrition() == n0 + 2);
-// }
-
-// TEST_CASE("Switching strategies changes behavior at runtime") {
-//     GreenHousePlant p;
-//     RegularCareStrategy reg;
-//     FertilizerBoostStrategy fert;
-
-//     p.setStrategy(&reg);
-//     int h0 = p.getHydration(), n0 = p.getNutrition();
-//     p.applyCurrentCare();
-//     CHECK(p.getHydration() == h0 + 3);
-//     CHECK(p.getNutrition() == n0 + 2);
-
-//     p.setStrategy(&fert);
-//     p.applyCurrentCare();
-//     CHECK(p.getHydration() == h0 + 3 + 2); // +2 more from fert
-//     CHECK(p.getNutrition() == n0 + 2 + 5); // +5 more from fert
-// }
 
 //TEST for seed packet functionality
 #include "SeedPacket.h"
@@ -641,9 +350,9 @@ TEST_CASE("Plant and plantimplementor tests") {
     Staff* careTaker2 = new PlantCaretaker("care2",mediator);
     Staff* careTaker3 = new PlantCaretaker("care3",mediator);
     SUBCASE("Plant from original creation") {
-        Plant* plant = new Plant("Daisy", 20, mediator, careStrat);
+        Plant* plant = new Plant("Daisy Error", 20, mediator, careStrat, maker);
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
-        CHECK(plant->getName() == "Daisy");
+        CHECK(plant->getName() == "Daisy Error");
         CHECK(plant->getPrice() == 20);
         CHECK(plant->getType() == PLANT_TYPE::GREENHOUSE_PLANT);
         plant->convertToOrderType();
@@ -685,7 +394,7 @@ TEST_CASE("Plant and plantimplementor tests") {
 #include "SellCommand.h"
 
 TEST_CASE("NurseryHub Sell System Test") {
-    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    //std::this_thread::sleep_for(std::chrono::milliseconds(500));
     std::cout << "Starting NurseryHub Sell System Test" << std::endl;
     NurseryMediator* hub = new NurseryHub();
     PlantCaretaker* careTaker1 = new PlantCaretaker("care1", hub);
@@ -705,8 +414,8 @@ TEST_CASE("NurseryHub Sell System Test") {
     // }
         Order* order = new Order();
         // Assuming Order has a method to add plants
-        Plant* plant1 = new Plant("Plant1", 10, hub, strat1);
-        Plant* plant2 = new Plant("Plant2", 20, hub, strat2);
+        Plant* plant1 = new Plant("Plant1", 10, hub, strat1, maker);
+        Plant* plant2 = new Plant("Plant2", 20, hub, strat2, maker);
         hub->registerPlant(plant1);
         hub->registerPlant(plant2);
         AddPlant plantBuilder1(section1);
@@ -722,9 +431,9 @@ TEST_CASE("NurseryHub Sell System Test") {
 
         Customer customer("John Doe", hub, section1);
         std::cout << "created Customer: " << customer.getId() <<  std::endl;
-        Plant* plant4 = new Plant("Plant4", 10, hub, strat2);
+        Plant* plant4 = new Plant("Plant4", 10, hub, strat2, maker);
         std::cout << "created plant: " << plant4->getName() << std::endl;
-        Plant* plant3 = new Plant("Plant3", 20, hub, strat1);
+        Plant* plant3 = new Plant("Plant3", 20, hub, strat1, maker);
         std::cout << "created plant: " << plant3->getName() << std::endl;
         section1->addItem(plant3);
         section1->addItem(plant4);
@@ -751,12 +460,12 @@ TEST_CASE("NurseryHub Sell System Test") {
                 std::cout << "Item in section: " << item->getName() << " | Price: " << item->getPrice() << std::endl;
             }
         }
-        
+
         delete it;
 
         customer.buy();
     // SUBCASE("Selling through a sell command") {
-        Plant* plant5 = new Plant("Plant5", 10, hub, new RegularCareStrategy());
+        Plant* plant5 = new Plant("Plant5", 10, hub, new RegularCareStrategy(), maker);
         hub->registerPlant(plant5);
         hub->registerStaff(new SalesManager("sales1", hub));
         Customer* customer3 = new Customer("Jane Doe", hub, section1);
@@ -766,7 +475,7 @@ TEST_CASE("NurseryHub Sell System Test") {
         delete customer3;
     // }
     // SUBCASE("Selling through sales manager") {
-        Plant* plant6 = new Plant("Plant6", 15, hub, new FertilizerBoostStrategy());
+        Plant* plant6 = new Plant("Plant6", 15, hub, new FertilizerBoostStrategy(), maker);
         hub->registerPlant(plant6);
         SalesManager* salesManager = new SalesManager("sales2", hub);
         hub->registerStaff(salesManager);
@@ -779,4 +488,15 @@ TEST_CASE("NurseryHub Sell System Test") {
     delete strat2;
     delete section1;
     delete hub;
+
+}
+
+
+
+
+
+
+
+TEST_CASE("Delete All Plants.") {
+    delete maker;
 }
