@@ -161,6 +161,23 @@ double NurseryHub::sell(Order* order) {
 	return order->sellOrder(inventoryRoot);
 }
 
+std::string NurseryHub::getStaffInfo() const {
+	std::stringstream ss;
+	ss << "=== STAFF INFORMATION ===\n\n";
+	ss << "Registered Staff:\n";
+	Staff* current = staff;
+	std::vector<std::string> staffList;
+	while (current) {
+		staffList.push_back("- " + current->getId() + "\n");
+		current = current->getNextStaff();
+	}
+	std::reverse(staffList.begin(), staffList.end());
+	for (const auto& entry : staffList) {
+		ss << entry;
+	}
+	return ss.str();
+}
+
 // std::vector<std::string> NurseryHub::getPlantNamesByType(PLANT_TYPE type) const {
 // 	std::vector<std::string> names;
 // 	names.reserve(plants.size());

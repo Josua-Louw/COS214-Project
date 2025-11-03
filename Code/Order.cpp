@@ -48,9 +48,25 @@ double total = 0.0;
  */
 void Order::addItem(Item* item) {
 	if (item){
+    //check if item is already in order:
+    for (const auto& existingItem : allItems) {
+        if (existingItem == item) {
+            return;
+        }
+    }
+
     if (activePlant && item->getType() != PLANT_TYPE::GREENHOUSE_PLANT)
     {
-      activePlant->decorate(item->getOrderPlant());
+      OrderPlant* tryDecorate = item->getOrderPlant();
+      try
+      {
+        activePlant->decorate(item->getOrderPlant());
+      }
+      catch(...)
+      {
+        items.push_back(tryDecorate);
+        activePlant = nullptr;
+      }      
     }
     else if (item->getType() == PLANT_TYPE::GREENHOUSE_PLANT)
     {

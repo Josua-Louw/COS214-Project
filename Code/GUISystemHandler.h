@@ -6,6 +6,9 @@
 #include <string>
 #include <utility>
 #include "SellCommand.h"
+#include "FertilizerBoostStrategy.h"
+#include "WaterLimitingStrategy.h"
+#include "RegularCareStrategy.h"
 
 class GUISystemHandler : public SystemHandler {
 public:
@@ -35,6 +38,7 @@ private:
     std::vector<std::pair<std::string, double>> decorationNames = {{"Glitter Decoration", 8.0}, {"Fairy Lights", 10.0}, {"Mini Gnome", 12.0}, {"Decorative Stones", 6.0}, {"Plant Stakes", 5.0}};
     int customerIdCounter = 0;
     int staffIdCounter = 0;
+    const std::vector<CareStrategy*> careStrategies = {new RegularCareStrategy(), new FertilizerBoostStrategy(), new WaterLimitingStrategy()};
 };
 
 #endif

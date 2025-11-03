@@ -1,6 +1,10 @@
 #include "Window.h"
 #include "GUISystemHandler.h"
 #include <iostream>
+#include "AddPlant.h"
+#include "AddPot.h"
+#include "AddSeed.h"
+#include "AddDecoration.h"
 
 Window::Window(GUISystemHandler* guiSystem) 
     : m_gui_system_handler(guiSystem),
@@ -379,6 +383,11 @@ void Window::setupOrderProcessing() {
     // Connect signals for manual order creation
     create_order_btn->signal_clicked().connect([this, create_order_btn]() {
         create_order_btn->set_sensitive(false);
+        if (m_process_order_state != processOrderState::SELF_ORDER) {
+            updateStatus("⚠️  Select 'Admin Order' type first");
+            create_order_btn->set_sensitive(true);
+            return;
+        }
         m_order_builders.clear(); // Start fresh order
         updateStatus("✓ New admin order created - Add items to the order");
         create_order_btn->set_sensitive(true);
@@ -387,21 +396,25 @@ void Window::setupOrderProcessing() {
     add_plant_order_btn->signal_clicked().connect([this]() {
         // Add plant builder to the order
         // Note: You'll need to include the proper headers for OrderBuilder classes
+        m_order_builders.push_back(new AddPlant(m_gui_system_handler->getGreenHouse()));
         updateStatus("✓ Plant added to current order");
     });
 
     add_pot_order_btn->signal_clicked().connect([this]() {
         // Add pot builder to the order
+        m_order_builders.push_back(new AddPot(m_gui_system_handler->getGreenHouse()));
         updateStatus("✓ Pot added to current order");
     });
 
     add_seed_order_btn->signal_clicked().connect([this]() {
         // Add seed builder to the order
+        m_order_builders.push_back(new AddSeed(m_gui_system_handler->getGreenHouse()));
         updateStatus("✓ Seeds added to current order");
     });
 
     add_decor_order_btn->signal_clicked().connect([this]() {
         // Add decoration builder to the order
+        m_order_builders.push_back(new AddDecoration(m_gui_system_handler->getGreenHouse()));
         updateStatus("✓ Decoration added to current order");
     });
 
@@ -437,20 +450,14 @@ void Window::setupGreenhouseView() {
     Gtk::Button* view_summary_btn = Gtk::manage(new Gtk::Button("📊 Summary"));
     Gtk::Button* view_inventory_btn = Gtk::manage(new Gtk::Button("📦 Inventory"));
     Gtk::Button* view_staff_btn = Gtk::manage(new Gtk::Button("👥 Staff Info"));
-    Gtk::Button* water_plants_btn = Gtk::manage(new Gtk::Button("💧 Water Plants"));
-    Gtk::Button* fertilize_plants_btn = Gtk::manage(new Gtk::Button("🌱 Fertilize"));
 
     view_summary_btn->set_size_request(150, 50);
     view_inventory_btn->set_size_request(150, 50);
     view_staff_btn->set_size_request(150, 50);
-    water_plants_btn->set_size_request(150, 50);
-    fertilize_plants_btn->set_size_request(150, 50);
 
     button_box->pack_start(*view_summary_btn, Gtk::PACK_EXPAND_WIDGET);
     button_box->pack_start(*view_inventory_btn, Gtk::PACK_EXPAND_WIDGET);
     button_box->pack_start(*view_staff_btn, Gtk::PACK_EXPAND_WIDGET);
-    button_box->pack_start(*water_plants_btn, Gtk::PACK_EXPAND_WIDGET);
-    button_box->pack_start(*fertilize_plants_btn, Gtk::PACK_EXPAND_WIDGET);
 
     greenhouse_box->pack_start(*button_box, Gtk::PACK_SHRINK);
 

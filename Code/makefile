@@ -8,7 +8,7 @@ MAIN_FILE ?= DemoMain
 # Get all .cpp files, then exclude the main file we're NOT using
 ALL_CPP := $(wildcard *.cpp)
 ifeq ($(MAIN_FILE),testingMain)
-    EXCLUDE := DemoMain.cpp
+    EXCLUDE := DemoMain.cpp Window.cpp GUISystemHandler.cpp
 else ifeq ($(MAIN_FILE),DemoMain)
     EXCLUDE := testingMain.cpp NewTestingMain_Frikkie.cpp
 else

@@ -1,6 +1,5 @@
 #include "GUISystemHandler.h"
 #include <iostream>
-#include <sstream>
 
 GUISystemHandler::GUISystemHandler() : m_window(nullptr) {
     // Initialize system components
@@ -15,6 +14,9 @@ GUISystemHandler::~GUISystemHandler() {
     delete m_window;
     delete greenHouse;
     delete nurseryHub;
+    for (auto strategy : careStrategies) {
+        delete strategy;
+    }
 }
 
 void GUISystemHandler::systemMenue() {
@@ -31,9 +33,10 @@ void GUISystemHandler::addPlant() {
     case addPlantState::PLANT:
     {
         int index = rand() % plantNames.size();
+        int strategyIndex = rand() % careStrategies.size();
         std::string plantName = plantNames[index].first;
         double plantPrice = plantNames[index].second;
-        Plant* newPlant = new Plant(plantName, plantPrice);
+        Plant* newPlant = new Plant(plantName, plantPrice, nurseryHub, careStrategies[strategyIndex]);
         greenHouse->expand(newPlant);
         break;
     }
@@ -115,7 +118,9 @@ void GUISystemHandler::processCustomerOrder() {
             CommandPtr orderCmd = std::make_shared<SellCommand>(order);
             nurseryHub->assign(orderCmd);
         }
+        break;
     default:
+        std::cout << "invalid order state" << std::endl;
         break;
     }
 }
@@ -123,7 +128,7 @@ void GUISystemHandler::processCustomerOrder() {
 std::string GUISystemHandler::getGreenhouseSummary() {
     std::stringstream ss;
     ss << "=== GREENHOUSE SUMMARY ===\n\n";
-    ss << "Main Greenhouse Section\n";
+    ss << greenHouse->getName() << " Section\n";
     ss << "Total Items: " << greenHouse->getTotalItemCount() << "\n";
     ss << "Capacity: 100\n\n";
     ss << "Use 'View Inventory' for detailed item list.\n";
@@ -134,20 +139,21 @@ std::string GUISystemHandler::getInventory() {
     std::stringstream ss;
     ss << "=== INVENTORY ===\n\n";
     ss << "Available Items:\n";
-    ss << "- Plants: Rose Plant (R25.00)\n";
-    ss << "- Pots: Ceramic Pot (R15.00)\n"; 
-    ss << "- Seeds: Sunflower Seeds (R5.00)\n";
-    ss << "- Decorations: Glitter Decoration (R8.00)\n\n";
-    ss << "Total value: R53.00";
+    double totalValue = 0.0;
+    Iterator<Item*>* it = greenHouse->createIterator();
+    for (it->first(); !it->isDone(); it->next()) {
+        Item* item = it->currentItem();
+        if (item) {
+            ss << "- " << item->getName() << " | Price: R" << item->getPrice() << "\n";
+            totalValue += item->getPrice();
+        }
+    }
+    delete it;
+
+    ss << "Total value: R" << totalValue << "\n";
     return ss.str();
 }
 
 std::string GUISystemHandler::getStaffInfo() {
-    std::stringstream ss;
-    ss << "=== STAFF INFORMATION ===\n\n";
-    ss << "Registered Staff:\n";
-    ss << "- Plant Caretakers: PC1\n";
-    ss << "- Sales Managers: SM1\n\n";
-    ss << "All staff are available and ready for assignments.";
-    return ss.str();
+    return nurseryHub->getStaffInfo();
 }

@@ -34,6 +34,8 @@ public:
     virtual void addPlant() = 0;
     virtual void registerStaffMember() = 0;
     virtual void processCustomerOrder() = 0;
+    GreenHouse* getGreenHouse() const { return greenHouse; }
+    NurseryHub* getNurseryHub() const { return nurseryHub; }
 };
 
 #endif // SYSTEMHANDLER_H

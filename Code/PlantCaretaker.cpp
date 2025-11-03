@@ -17,6 +17,10 @@ using CommandPtr = std::shared_ptr<Command>;
 
 
 void PlantCaretaker::receiveCommand(CommandPtr command) {
+    if (command && command->getType() == "SellCommand") {
+        if (nextStaff) nextStaff->receiveCommand(command);
+        return;
+    }
     std::unique_lock<std::mutex> lock(staffMutex);
 
     if (!command || !command->getPlant()) return;
@@ -33,7 +37,7 @@ void PlantCaretaker::receiveCommand(CommandPtr command) {
 
     std::thread([this, command]() {
         if (!command || !command->getPlant() || !command->getPlant()->getIsActive()) return;
-
+    
         std::mutex execMutex;
         std::condition_variable cv;
         bool done = false;
