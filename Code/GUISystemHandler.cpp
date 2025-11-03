@@ -29,30 +29,41 @@ void GUISystemHandler::addPlant() {
     switch ( m_window->getAddPlantState())
     {
     case addPlantState::PLANT:
+    {
         int index = rand() % plantNames.size();
         std::string plantName = plantNames[index].first;
         double plantPrice = plantNames[index].second;
         Plant* newPlant = new Plant(plantName, plantPrice);
         greenHouse->expand(newPlant);
         break;
+    }
     case addPlantState::POT:
-        std::string potName = potNames[rand() % potNames.size()].first;
-        double potPrice = potNames[rand() % potNames.size()].second;
+    {
+        int potIndex = rand() % potNames.size();
+        std::string potName = potNames[potIndex].first;
+        double potPrice = potNames[potIndex].second;
         PotAdapter* newPot = new PotAdapter(potName, potPrice);
         greenHouse->expand(newPot);
         break;
+    }
     case addPlantState::SEED:
-        std::string seedName = seedNames[rand() % seedNames.size()].first;
-        double seedPrice = seedNames[rand() % seedNames.size()].second;
+    {
+        int seedIndex = rand() % seedNames.size();
+        std::string seedName = seedNames[seedIndex].first;
+        double seedPrice = seedNames[seedIndex].second;
         SeedPacketAdapter* newSeed = new SeedPacketAdapter(seedName, seedPrice);
         greenHouse->expand(newSeed);
         break;
+    }
     case addPlantState::DECORATION:
-        std::string decorName = decorationNames[rand() % decorationNames.size()].first;
-        double decorPrice = decorationNames[rand() % decorationNames.size()].second;
+    {
+        int decorIndex = rand() % decorationNames.size();
+        std::string decorName = decorationNames[decorIndex].first;
+        double decorPrice = decorationNames[decorIndex].second;
         DecorationAdapter* newDecor = new DecorationAdapter(decorName, decorPrice);
         greenHouse->expand(newDecor);
         break;
+    }
     default:
         break;
     }
@@ -92,7 +103,7 @@ void GUISystemHandler::processCustomerOrder() {
     {
     case processOrderState::CUSTOMER_ORDER:
         {
-            Customer* order = new Customer(customerId, nurseryHub);
+            Customer* order = new Customer(customerId, nurseryHub, greenHouse);
             CommandPtr orderCmd = std::make_shared<SellCommand>(order);
             nurseryHub->assign(orderCmd);
         }
@@ -100,7 +111,7 @@ void GUISystemHandler::processCustomerOrder() {
     case processOrderState::SELF_ORDER:
         {
             std::vector<OrderBuilder*> builders = m_window->getOrderBuilders();
-            Customer* order = new Customer(customerId, nurseryHub, builders, greenHouse);
+            Customer* order = new Customer(customerId, nurseryHub, builders);
             CommandPtr orderCmd = std::make_shared<SellCommand>(order);
             nurseryHub->assign(orderCmd);
         }

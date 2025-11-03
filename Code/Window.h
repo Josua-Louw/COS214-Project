@@ -4,6 +4,8 @@
 #include <gtkmm.h>
 #include <vector>
 
+class OrderBuilder;
+
 class GUISystemHandler;
 
 enum class addPlantState {

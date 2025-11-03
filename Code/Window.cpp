@@ -4,7 +4,7 @@
 
 Window::Window(GUISystemHandler* guiSystem) 
     : m_gui_system_handler(guiSystem),
-      m_current_content(nullptr)
+      m_current_content(nullptr),
       m_add_plant_state(addPlantState::PLANT),  
       m_register_staff_state(registerStaffState::PLANT_CARETAKER),
       m_process_order_state(processOrderState::CUSTOMER_ORDER)
@@ -503,19 +503,19 @@ void Window::setupGreenhouseView() {
         updateStatus("👥 Staff information displayed");
     });
 
-    water_plants_btn->signal_clicked().connect([this, water_plants_btn]() {
-        water_plants_btn->set_sensitive(false);
-        m_gui_system_handler->waterAllPlants();
-        updateStatus("✓ All plants have been watered");
-        water_plants_btn->set_sensitive(true);
-    });
+    // water_plants_btn->signal_clicked().connect([this, water_plants_btn]() {
+    //     water_plants_btn->set_sensitive(false);
+    //     m_gui_system_handler->waterAllPlants();
+    //     updateStatus("✓ All plants have been watered");
+    //     water_plants_btn->set_sensitive(true);
+    // });
 
-    fertilize_plants_btn->signal_clicked().connect([this, fertilize_plants_btn]() {
-        fertilize_plants_btn->set_sensitive(false);
-        m_gui_system_handler->fertilizeAllPlants();
-        updateStatus("✓ All plants have been fertilized");
-        fertilize_plants_btn->set_sensitive(true);
-    });
+    // fertilize_plants_btn->signal_clicked().connect([this, fertilize_plants_btn]() {
+    //     fertilize_plants_btn->set_sensitive(false);
+    //     m_gui_system_handler->fertilizeAllPlants();
+    //     updateStatus("✓ All plants have been fertilized");
+    //     fertilize_plants_btn->set_sensitive(true);
+    // });
 
     m_content_box->pack_start(*greenhouse_box, Gtk::PACK_EXPAND_WIDGET);
     m_current_content = greenhouse_box;
