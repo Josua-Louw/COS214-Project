@@ -1,0 +1,114 @@
+\doxysection{Order\+Builder Class Reference}
+\hypertarget{classOrderBuilder}{}\label{classOrderBuilder}\index{OrderBuilder@{OrderBuilder}}
+
+
+Abstract class for building parts of an order in a greenhouse management system. This class defines the interface for building specific parts of an order based on plant types.  
+
+
+
+
+{\ttfamily \#include $<$Order\+Builder.\+h$>$}
+
+
+
+Inheritance diagram for Order\+Builder\+:
+% FIG 0
+
+
+Collaboration diagram for Order\+Builder\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classOrderBuilder_a17c935b73d886a71b07a7fc90a61de3a}{Order\+Builder}} (\mbox{\hyperlink{classGreenHouse}{Green\+House}} \texorpdfstring{$\ast$}{*}gh)
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{classOrderBuilder}{Order\+Builder}. \end{DoxyCompactList}\item 
+\Hypertarget{classOrderBuilder_a536c76a6ee0bf8a158e3ebe9712b031b}\label{classOrderBuilder_a536c76a6ee0bf8a158e3ebe9712b031b} 
+\mbox{\hyperlink{classGreenHouse}{Green\+House}} \texorpdfstring{$\ast$}{*} {\bfseries get\+Green\+House} () const
+\item 
+virtual \mbox{\hyperlink{classOrder}{Order}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classOrderBuilder_af8b78c8774a790ed4533eafa541af34c}{build\+Part}} (\mbox{\hyperlink{classOrder}{Order}} \texorpdfstring{$\ast$}{*}order, std\+::string item\+Name)=0
+\begin{DoxyCompactList}\small\item\em Builds the part of the order based on the item name. The method searches for plants in the greenhouse and adds them to the order if they match the criteria defined in check\+Type. \end{DoxyCompactList}\item 
+\Hypertarget{classOrderBuilder_a1ac2317684f3dd80ebff5fdfd3c28f44}\label{classOrderBuilder_a1ac2317684f3dd80ebff5fdfd3c28f44} 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Order\+Builder} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor for proper cleanup of derived classes. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classOrderBuilder_a97f22af4025cda5adc912a8c2c70b4c4}{check\+Type}} (\mbox{\hyperlink{classItem}{Item}} \texorpdfstring{$\ast$}{*}item)=0
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classOrderBuilder_accb058f99f73b640b64e2b6475d6a125}\label{classOrderBuilder_accb058f99f73b640b64e2b6475d6a125} 
+\mbox{\hyperlink{classGreenHouse}{Green\+House}} \texorpdfstring{$\ast$}{*} {\bfseries green\+House}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Abstract class for building parts of an order in a greenhouse management system. This class defines the interface for building specific parts of an order based on plant types. 
+
+\begin{DoxyNote}{Note}
+This class needs a pointer to a \doxylink{classGreenHouse}{Green\+House} object to access plant data. 
+
+Derived classes must implement the build\+Part and check\+Type methods.
+
+The build\+Part method falls under the Builder Design Pattern. 
+
+The check\+Type method falls under the Template Method Design Pattern which is a step in the process. 
+\end{DoxyNote}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classOrderBuilder_a17c935b73d886a71b07a7fc90a61de3a}\label{classOrderBuilder_a17c935b73d886a71b07a7fc90a61de3a} 
+\index{OrderBuilder@{OrderBuilder}!OrderBuilder@{OrderBuilder}}
+\index{OrderBuilder@{OrderBuilder}!OrderBuilder@{OrderBuilder}}
+\doxysubsubsection{\texorpdfstring{OrderBuilder()}{OrderBuilder()}}
+{\footnotesize\ttfamily Order\+Builder\+::\+Order\+Builder (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGreenHouse}{Green\+House}} \texorpdfstring{$\ast$}{*}}]{gh }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor for \doxylink{classOrderBuilder}{Order\+Builder}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gh} & Pointer to the \doxylink{classGreenHouse}{Green\+House} instance. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classOrderBuilder_af8b78c8774a790ed4533eafa541af34c}\label{classOrderBuilder_af8b78c8774a790ed4533eafa541af34c} 
+\index{OrderBuilder@{OrderBuilder}!buildPart@{buildPart}}
+\index{buildPart@{buildPart}!OrderBuilder@{OrderBuilder}}
+\doxysubsubsection{\texorpdfstring{buildPart()}{buildPart()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classOrder}{Order}} \texorpdfstring{$\ast$}{*} Order\+Builder\+::build\+Part (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classOrder}{Order}} \texorpdfstring{$\ast$}{*}}]{order,  }\item[{std\+::string}]{item\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Builds the part of the order based on the item name. The method searches for plants in the greenhouse and adds them to the order if they match the criteria defined in check\+Type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em order} & Pointer to the current order. \\
+\hline
+{\em item\+Name} & Name of the item to be added.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the updated order. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classAddDecoration_a616c6170a5c30e323275a50f20b4ba07}{Add\+Decoration}}, \mbox{\hyperlink{classAddPlant_a710cf7cff44f5161df6a9f46e607545f}{Add\+Plant}}, \mbox{\hyperlink{classAddPot_a047cbda058d056ec5eebf0330f3944a6}{Add\+Pot}}, and \mbox{\hyperlink{classAddSeed_a15874d20e5ab57798f316eb1290d282f}{Add\+Seed}}.
+
+\Hypertarget{classOrderBuilder_a97f22af4025cda5adc912a8c2c70b4c4}\label{classOrderBuilder_a97f22af4025cda5adc912a8c2c70b4c4} 
+\index{OrderBuilder@{OrderBuilder}!checkType@{checkType}}
+\index{checkType@{checkType}!OrderBuilder@{OrderBuilder}}
+\doxysubsubsection{\texorpdfstring{checkType()}{checkType()}}
+{\footnotesize\ttfamily virtual bool Order\+Builder\+::check\+Type (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classItem}{Item}} \texorpdfstring{$\ast$}{*}}]{item }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classAddDecoration_a5d1eb6ffe4192fbf7354326f41c3a75c}{Add\+Decoration}}, \mbox{\hyperlink{classAddPlant_ad952f85cc31572f5be16c1feba2a6792}{Add\+Plant}}, \mbox{\hyperlink{classAddPot_a436186b2819561409529a1bae11fc0db}{Add\+Pot}}, and \mbox{\hyperlink{classAddSeed_a1e328948bccaf3f8aa5ea763d6a536b1}{Add\+Seed}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\mbox{\hyperlink{OrderBuilder_8h}{Order\+Builder.\+h}}\end{DoxyCompactItemize}

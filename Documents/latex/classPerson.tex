@@ -1,0 +1,83 @@
+\doxysection{Person Class Reference}
+\hypertarget{classPerson}{}\label{classPerson}\index{Person@{Person}}
+
+
+Abstract base class for entities with an identifier.  
+
+
+
+
+{\ttfamily \#include $<$Person.\+h$>$}
+
+
+
+Inheritance diagram for Person\+:
+% FIG 0
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPerson_ab4d04ab113b61ebf36f218b93a2970fb}{Person}} (const std\+::string \&\mbox{\hyperlink{classPerson_a2711d352a03cebd2f5bf075300aa3455}{id}})
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classPerson}{Person} with an ID. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classPerson_acecdc665a6fc6a4e39e67195a6931eb7}{get\+Id}} () const
+\begin{DoxyCompactList}\small\item\em Gets the person\textquotesingle{}s ID. \end{DoxyCompactList}\item 
+\Hypertarget{classPerson_a22234d7de3132c581406f040196eef44}\label{classPerson_a22234d7de3132c581406f040196eef44} 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Person} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor for proper cleanup of derived classes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classPerson_a2711d352a03cebd2f5bf075300aa3455}{id}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Abstract base class for entities with an identifier. 
+
+Stores a unique ID for staff members (e.\+g., \doxylink{classPlantCaretaker}{Plant\+Caretaker}, \doxylink{classSalesManager}{Sales\+Manager}). 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classPerson_ab4d04ab113b61ebf36f218b93a2970fb}\label{classPerson_ab4d04ab113b61ebf36f218b93a2970fb} 
+\index{Person@{Person}!Person@{Person}}
+\index{Person@{Person}!Person@{Person}}
+\doxysubsubsection{\texorpdfstring{Person()}{Person()}}
+{\footnotesize\ttfamily Person\+::\+Person (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{classPerson}{Person} with an ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Unique identifier for the person. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classPerson_acecdc665a6fc6a4e39e67195a6931eb7}\label{classPerson_acecdc665a6fc6a4e39e67195a6931eb7} 
+\index{Person@{Person}!getId@{getId}}
+\index{getId@{getId}!Person@{Person}}
+\doxysubsubsection{\texorpdfstring{getId()}{getId()}}
+{\footnotesize\ttfamily std\+::string Person\+::get\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the person\textquotesingle{}s ID. 
+
+\begin{DoxyReturn}{Returns}
+The ID as a string. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classPerson_a2711d352a03cebd2f5bf075300aa3455}\label{classPerson_a2711d352a03cebd2f5bf075300aa3455} 
+\index{Person@{Person}!id@{id}}
+\index{id@{id}!Person@{Person}}
+\doxysubsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily std\+::string Person\+::id\hspace{0.3cm}{\ttfamily [protected]}}
+
+Unique identifier for the person. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\mbox{\hyperlink{Person_8h}{Person.\+h}}\end{DoxyCompactItemize}

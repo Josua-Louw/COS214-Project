@@ -1,0 +1,180 @@
+\doxysection{Plant Class Reference}
+\hypertarget{classPlant}{}\label{classPlant}\index{Plant@{Plant}}
+
+
+Class representing a plant in the system.  
+
+
+
+
+{\ttfamily \#include $<$Plant.\+h$>$}
+
+
+
+Inheritance diagram for Plant\+:
+% FIG 0
+
+
+Collaboration diagram for Plant\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classPlant_ab4c9a1fcdc31e6fb27ae75f9f2bd9d3b}\label{classPlant_ab4c9a1fcdc31e6fb27ae75f9f2bd9d3b} 
+{\bfseries Plant} (\mbox{\hyperlink{classPlantImplementor}{Plant\+Implementor}} \texorpdfstring{$\ast$}{*}impl)
+\item 
+\Hypertarget{classPlant_afee1237f0bf8c37ee069e78b998e722a}\label{classPlant_afee1237f0bf8c37ee069e78b998e722a} 
+{\bfseries Plant} (const std\+::string \&name, double price, \mbox{\hyperlink{classPlantMaker}{Plant\+Maker}} \texorpdfstring{$\ast$}{*}maker)
+\item 
+\Hypertarget{classPlant_aa7cc9711b8284275e40523d1428dfdaf}\label{classPlant_aa7cc9711b8284275e40523d1428dfdaf} 
+{\bfseries Plant} (const std\+::string \&name, double price, \mbox{\hyperlink{classNurseryMediator}{Nursery\+Mediator}} \texorpdfstring{$\ast$}{*}mediator, \mbox{\hyperlink{classCareStrategy}{Care\+Strategy}} \texorpdfstring{$\ast$}{*}care, \mbox{\hyperlink{classPlantMaker}{Plant\+Maker}} \texorpdfstring{$\ast$}{*}maker)
+\item 
+void \mbox{\hyperlink{classPlant_a7028b5d45387c18d19dcd12535d8aed6}{convert\+To\+Order\+Type}} ()
+\begin{DoxyCompactList}\small\item\em Converts the plant to an order type. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classPlant_a1a6e78e58443899921fb32f1622dc0bc}{get\+Price}} () const
+\begin{DoxyCompactList}\small\item\em Gets the price of the plant. \end{DoxyCompactList}\item 
+PLANT\+\_\+\+TYPE \mbox{\hyperlink{classPlant_a8591b3b9aa8e5d68db9b56484edd73e6}{get\+Type}} () const
+\begin{DoxyCompactList}\small\item\em Gets the implementor type of the plant. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classPlant_a0a33e0decfc6403a5b72027ac5b90977}{get\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em Gets the name of the plant. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classOrderPlant}{Order\+Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classPlant_ab76163e4c4ea41a9cf36a90c864cce34}{get\+Order\+Plant}} () const override
+\begin{DoxyCompactList}\small\item\em Get the \doxylink{classOrderPlant}{Order\+Plant} of the item. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlant_ab0effb2b143e6da7b65ebd13a3b1fc29}{\texorpdfstring{$\sim$}{\string~}\+Plant}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{classPlant}{Plant} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classItem}{Item}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Item} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor to ensure proper cleanup in derived classes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classItem_afc98cd6fa9a1486d93cfa8c4a65d9b02}{expand}} (\mbox{\hyperlink{classGreenHouse}{Green\+House}} \texorpdfstring{$\ast$}{*}gh) override
+\begin{DoxyCompactList}\small\item\em Expands the greenhouse by adding a subsection. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classItem_a496237e938255c1b3b0d07990c351855}{sell}} (\mbox{\hyperlink{classItem}{Item}} \texorpdfstring{$\ast$}{*}item) override
+\begin{DoxyCompactList}\small\item\em Sells an item from the greenhouse. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classGreenHouse}{Green\+House}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classItem_a6c9cc9eb271efd094f0e72de7fbec5c0}{get\+Subsection}} (const std\+::string \&section\+Name) override
+\begin{DoxyCompactList}\small\item\em Gets a subsection of the greenhouse by name. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classIterator}{Iterator}}$<$ \mbox{\hyperlink{classItem}{Item}} \texorpdfstring{$\ast$}{*} $>$ \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classItem_a06af31c2974e92883138d40448a2c506}{create\+Iterator}} () override
+\begin{DoxyCompactList}\small\item\em Creates an iterator for traversing the greenhouse structure. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classItem}{Item}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classItem_a74fe8f0acbee1b97d348eac072e52faf}{find\+Item}} (const std\+::string \&item\+Name) override
+\begin{DoxyCompactList}\small\item\em Finds an item in the greenhouse by name. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classItem_af44d230847c85447e642dd13c515ea79}{print\+Summary}} () const override
+\begin{DoxyCompactList}\small\item\em Prints a summary of the greenhouse section or item. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classItem_a8b97377d2f0055e802c82cdf96127718}{get\+Total\+Item\+Count}} () const
+\begin{DoxyCompactList}\small\item\em Gets the total item count in the greenhouse. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classItem_a392049ba38114a93e7bfd8a9bca2bf13}{print\+Summary\+Helper}} (int indent\+Level) const
+\begin{DoxyCompactList}\small\item\em Helper function to print summary with indentation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classGreenHouse}{Green\+House}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Green\+House} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor for proper cleanup of derived classes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class representing a plant in the system. 
+
+The \doxylink{classPlant}{Plant} class provides a common interface for all plant types, managing their properties such as price and implementor type. It inherits from \doxylink{classGreenHouse}{Green\+House}, integrating with the greenhouse framework. \begin{DoxySeeAlso}{See also}
+\doxylink{classGreenHouse}{Green\+House}, \doxylink{classPlantImplementor}{Plant\+Implementor}, \doxylink{classGreenHousePlant}{Green\+House\+Plant}, \doxylink{classOrderPlant}{Order\+Plant} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classPlant_ab0effb2b143e6da7b65ebd13a3b1fc29}\label{classPlant_ab0effb2b143e6da7b65ebd13a3b1fc29} 
+\index{Plant@{Plant}!````~Plant@{\texorpdfstring{$\sim$}{\string~}Plant}}
+\index{````~Plant@{\texorpdfstring{$\sim$}{\string~}Plant}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Plant()}{\string~Plant()}}
+{\footnotesize\ttfamily Plant\+::\texorpdfstring{$\sim$}{\string~}\+Plant (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor for the \doxylink{classPlant}{Plant} class. 
+
+Cleans up resources associated with the \doxylink{classPlant}{Plant} object. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classPlant_a7028b5d45387c18d19dcd12535d8aed6}\label{classPlant_a7028b5d45387c18d19dcd12535d8aed6} 
+\index{Plant@{Plant}!convertToOrderType@{convertToOrderType}}
+\index{convertToOrderType@{convertToOrderType}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{convertToOrderType()}{convertToOrderType()}}
+{\footnotesize\ttfamily void Plant\+::convert\+To\+Order\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Converts the plant to an order type. 
+
+Defines the interface for converting the plant to an order type, with implementation details provided by derived classes based on the plant’s type. \begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\Hypertarget{classPlant_a0a33e0decfc6403a5b72027ac5b90977}\label{classPlant_a0a33e0decfc6403a5b72027ac5b90977} 
+\index{Plant@{Plant}!getName@{getName}}
+\index{getName@{getName}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily std\+::string Plant\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Gets the name of the plant. 
+
+Overrides the get\+Name method from the \doxylink{classItem}{Item} class to provide the name of the plant. \begin{DoxyReturn}{Returns}
+std\+::string The name of the plant. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classItem_a9b6cc0c6903b1c89d51376d645863144}{Item}}.
+
+\Hypertarget{classPlant_ab76163e4c4ea41a9cf36a90c864cce34}\label{classPlant_ab76163e4c4ea41a9cf36a90c864cce34} 
+\index{Plant@{Plant}!getOrderPlant@{getOrderPlant}}
+\index{getOrderPlant@{getOrderPlant}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{getOrderPlant()}{getOrderPlant()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classOrderPlant}{Order\+Plant}} \texorpdfstring{$\ast$}{*} Plant\+::get\+Order\+Plant (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get the \doxylink{classOrderPlant}{Order\+Plant} of the item. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to the implementation of the item of type \doxylink{classOrderPlant}{Order\+Plant}. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classItem_a8fccecaf375afc2b271330b4418c1548}{Item}}.
+
+\Hypertarget{classPlant_a1a6e78e58443899921fb32f1622dc0bc}\label{classPlant_a1a6e78e58443899921fb32f1622dc0bc} 
+\index{Plant@{Plant}!getPrice@{getPrice}}
+\index{getPrice@{getPrice}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{getPrice()}{getPrice()}}
+{\footnotesize\ttfamily double Plant\+::get\+Price (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Gets the price of the plant. 
+
+Defines the interface for retrieving the price of the plant, with implementation details provided by derived classes based on the plant’s type. \begin{DoxyReturn}{Returns}
+double The price of the plant. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classItem_abc213b52b45bd32dab76efa05b05dea4}{Item}}.
+
+\Hypertarget{classPlant_a8591b3b9aa8e5d68db9b56484edd73e6}\label{classPlant_a8591b3b9aa8e5d68db9b56484edd73e6} 
+\index{Plant@{Plant}!getType@{getType}}
+\index{getType@{getType}!Plant@{Plant}}
+\doxysubsubsection{\texorpdfstring{getType()}{getType()}}
+{\footnotesize\ttfamily PLANT\+\_\+\+TYPE Plant\+::get\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Gets the implementor type of the plant. 
+
+Defines the interface for retrieving the implementor type of the plant, with implementation details provided by derived classes based on the plant’s type. \begin{DoxyReturn}{Returns}
+PLANT\+\_\+\+TYPE The implementor type of the plant. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classItem_a20b37f4ceb7930c4e35d1b247e4363b2}{Item}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\mbox{\hyperlink{Plant_8h}{Plant.\+h}}\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/Plant.\+cpp\end{DoxyCompactItemize}

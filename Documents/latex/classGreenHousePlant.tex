@@ -1,0 +1,229 @@
+\doxysection{Green\+House\+Plant Class Reference}
+\hypertarget{classGreenHousePlant}{}\label{classGreenHousePlant}\index{GreenHousePlant@{GreenHousePlant}}
+
+
+Class representing a plant in the greenhouse system.  
+
+
+
+
+{\ttfamily \#include $<$Green\+House\+Plant.\+h$>$}
+
+
+
+Inheritance diagram for Green\+House\+Plant\+:
+% FIG 0
+
+
+Collaboration diagram for Green\+House\+Plant\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classGreenHousePlant_afee2b18b46c3ffc6e05e092d94173ead}\label{classGreenHousePlant_afee2b18b46c3ffc6e05e092d94173ead} 
+{\bfseries Green\+House\+Plant} (const std\+::string \&name="{}"{}, double price=0.\+0, \mbox{\hyperlink{classNurseryMediator}{Nursery\+Mediator}} \texorpdfstring{$\ast$}{*}mediator=nullptr, \mbox{\hyperlink{classCareStrategy}{Care\+Strategy}} \texorpdfstring{$\ast$}{*}care=nullptr, \mbox{\hyperlink{classPlantMaker}{Plant\+Maker}} \texorpdfstring{$\ast$}{*}maker=nullptr)
+\item 
+\Hypertarget{classGreenHousePlant_aab665cb3170de4f9e7fd84fcec90ae2f}\label{classGreenHousePlant_aab665cb3170de4f9e7fd84fcec90ae2f} 
+{\bfseries Green\+House\+Plant} (const \mbox{\hyperlink{classGreenHousePlant}{Green\+House\+Plant}} \&)=delete
+\item 
+\Hypertarget{classGreenHousePlant_aa91994f92bc36d7c1e7a6a941d5e056a}\label{classGreenHousePlant_aa91994f92bc36d7c1e7a6a941d5e056a} 
+\mbox{\hyperlink{classGreenHousePlant}{Green\+House\+Plant}} \& {\bfseries operator=} (const \mbox{\hyperlink{classGreenHousePlant}{Green\+House\+Plant}} \&)=delete
+\item 
+Command\+Ptr \mbox{\hyperlink{classGreenHousePlant_a0181c00dcb0ec27275df38c3ec632fcb}{water}} (int time)
+\begin{DoxyCompactList}\small\item\em Waters the plant. \end{DoxyCompactList}\item 
+Command\+Ptr \mbox{\hyperlink{classGreenHousePlant_a03068c8ebd6d104f3b3b65902669dc47}{feed}} (int time)
+\begin{DoxyCompactList}\small\item\em Feeds the plant. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classGreenHousePlant_a65122b6ef45c317c7dd83481dc2a81a8}{get\+Price}} () const override
+\begin{DoxyCompactList}\small\item\em Gets the price of the plant. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlantImplementor}{Plant\+Implementor}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classGreenHousePlant_ab5104a68363e886342468f000fdb3b6e}{clone}} () override
+\begin{DoxyCompactList}\small\item\em Creates a clone of the plant. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classGreenHousePlant_a8365e4f6acf6e715b67a96f838fc140c}{get\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em Gets the name of the plant. \end{DoxyCompactList}\item 
+PLANT\+\_\+\+TYPE \mbox{\hyperlink{classGreenHousePlant_aca337c1084289a8d55d5fbc36f35ada1}{get\+Type}} () const override
+\begin{DoxyCompactList}\small\item\em Gets the type of the plant. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGreenHousePlant_a096a6613591f49d5d2ef9a7ec2b1ea8e}{set\+Strategy}} (\mbox{\hyperlink{classCareStrategy}{Care\+Strategy}} \texorpdfstring{$\ast$}{*}s)
+\begin{DoxyCompactList}\small\item\em Virtual destructor to ensure proper cleanup in derived classes. \end{DoxyCompactList}\item 
+\Hypertarget{classGreenHousePlant_ac2dfe266bd861b54728b86aad3ff105c}\label{classGreenHousePlant_ac2dfe266bd861b54728b86aad3ff105c} 
+std\+::vector$<$ Command\+Ptr $>$ {\bfseries apply\+Current\+Care} ()
+\item 
+\Hypertarget{classGreenHousePlant_a5063d15e41eb43b621a1e58396aa37e8}\label{classGreenHousePlant_a5063d15e41eb43b621a1e58396aa37e8} 
+void {\bfseries watering} (int time)
+\item 
+\Hypertarget{classGreenHousePlant_a2cb6cbbf2f3dfa72f6fa7d04d99c6996}\label{classGreenHousePlant_a2cb6cbbf2f3dfa72f6fa7d04d99c6996} 
+void {\bfseries fertilizing} (int time)
+\item 
+\Hypertarget{classGreenHousePlant_a44661da55144b245e5b953a970990a96}\label{classGreenHousePlant_a44661da55144b245e5b953a970990a96} 
+void {\bfseries set\+Mediator} (\mbox{\hyperlink{classNurseryMediator}{Nursery\+Mediator}} \texorpdfstring{$\ast$}{*}m)
+\item 
+\Hypertarget{classGreenHousePlant_a46bac63120074e85ba8dc04f772e2150}\label{classGreenHousePlant_a46bac63120074e85ba8dc04f772e2150} 
+void {\bfseries set\+Water\+Success} (bool success)
+\item 
+\Hypertarget{classGreenHousePlant_a46a8b65654de1a52ed32dac299479ebe}\label{classGreenHousePlant_a46a8b65654de1a52ed32dac299479ebe} 
+void {\bfseries set\+Fertilizing\+Success} (bool success)
+\item 
+\Hypertarget{classGreenHousePlant_a02a8936369eef944256d3a076381c485}\label{classGreenHousePlant_a02a8936369eef944256d3a076381c485} 
+void {\bfseries set\+Water\+Busy} (bool busy)
+\item 
+\Hypertarget{classGreenHousePlant_a9cdade6099bc72ee334bad79420335e7}\label{classGreenHousePlant_a9cdade6099bc72ee334bad79420335e7} 
+void {\bfseries set\+Fertilizing\+Busy} (bool busy)
+\item 
+\Hypertarget{classGreenHousePlant_ad0a00e25e930c5c6e9e35875d33ec58f}\label{classGreenHousePlant_ad0a00e25e930c5c6e9e35875d33ec58f} 
+bool {\bfseries get\+Water\+Success} () const
+\item 
+\Hypertarget{classGreenHousePlant_ae6c531319c49666b555bfe9ae4d3cd82}\label{classGreenHousePlant_ae6c531319c49666b555bfe9ae4d3cd82} 
+bool {\bfseries get\+Fertilizing\+Success} () const
+\item 
+\Hypertarget{classGreenHousePlant_a33ab41eb3cd267927a252dade167839c}\label{classGreenHousePlant_a33ab41eb3cd267927a252dade167839c} 
+bool {\bfseries get\+Water\+Busy} () const
+\item 
+\Hypertarget{classGreenHousePlant_aca271b7afe23782dd8fe7f346fa9fa97}\label{classGreenHousePlant_aca271b7afe23782dd8fe7f346fa9fa97} 
+bool {\bfseries get\+Fertilizing\+Busy} () const
+\item 
+\Hypertarget{classGreenHousePlant_aedfa60a38e5d96751f8befa4b6059d70}\label{classGreenHousePlant_aedfa60a38e5d96751f8befa4b6059d70} 
+bool {\bfseries get\+Is\+Active} () const
+\item 
+\Hypertarget{classGreenHousePlant_a27b9cac902b720d628d149809eba47dc}\label{classGreenHousePlant_a27b9cac902b720d628d149809eba47dc} 
+void {\bfseries mark\+Care\+Started} (std\+::string type)
+\item 
+\Hypertarget{classGreenHousePlant_afd03207a00de2c7aba33af33711f6a9e}\label{classGreenHousePlant_afd03207a00de2c7aba33af33711f6a9e} 
+void {\bfseries mark\+Care\+Finished} (bool success, std\+::string type)
+\item 
+\Hypertarget{classGreenHousePlant_a063c180fe7b485026f35e13ae27bd366}\label{classGreenHousePlant_a063c180fe7b485026f35e13ae27bd366} 
+void {\bfseries set\+State} (\mbox{\hyperlink{classPlantState}{Plant\+State}} \texorpdfstring{$\ast$}{*}new\+State)
+\item 
+\Hypertarget{classGreenHousePlant_a7a2f71ac11211d8e5566943077f9b481}\label{classGreenHousePlant_a7a2f71ac11211d8e5566943077f9b481} 
+void {\bfseries deactivate\+Plant} ()
+\item 
+\Hypertarget{classGreenHousePlant_a992c306e68cc06cacaecc15957f4082c}\label{classGreenHousePlant_a992c306e68cc06cacaecc15957f4082c} 
+void {\bfseries reactivate\+Plant} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classPlantImplementor}{Plant\+Implementor}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Plant\+Implementor} ()=default
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlantImplementor_a87801b3ef7e9abdc9c61eb051371a9e8}{Plant\+Implementor}} (const \mbox{\hyperlink{classPlantImplementor}{Plant\+Implementor}} \&)=default
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Plant\+Implementor} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor to ensure proper cleanup in derived classes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class representing a plant in the greenhouse system. 
+
+The \doxylink{classGreenHousePlant}{Green\+House\+Plant} class provides a common interface for all plant types, managing their lifecycle states, care strategies, and properties such as name and price. It inherits from \doxylink{classPlantImplementor}{Plant\+Implementor}, integrating with the greenhouse framework. The class is abstract, with pure virtual methods for watering, feeding, pricing, cloning, and type identification, which must be implemented by derived classes. \begin{DoxySeeAlso}{See also}
+\doxylink{classGreenHouse}{Green\+House}, \doxylink{classCareStrategy}{Care\+Strategy}, \doxylink{classPlantState}{Plant\+State}, \doxylink{classSeedState}{Seed\+State}, \doxylink{classSeedlingState}{Seedling\+State}, \doxylink{classJuvenileState}{Juvenile\+State}, \doxylink{classMatureState}{Mature\+State}, \doxylink{classFloweringState}{Flowering\+State}, \doxylink{classSenescenceState}{Senescence\+State}, \doxylink{classDyingState}{Dying\+State}, \doxylink{classDeadState}{Dead\+State} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classGreenHousePlant_ab5104a68363e886342468f000fdb3b6e}\label{classGreenHousePlant_ab5104a68363e886342468f000fdb3b6e} 
+\index{GreenHousePlant@{GreenHousePlant}!clone@{clone}}
+\index{clone@{clone}!GreenHousePlant@{GreenHousePlant}}
+\doxysubsubsection{\texorpdfstring{clone()}{clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlantImplementor}{Plant\+Implementor}} \texorpdfstring{$\ast$}{*} Green\+House\+Plant\+::clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Creates a clone of the plant. 
+
+Produces a new instance of the plant with the same properties, as implemented by derived classes, supporting the prototype design pattern. \begin{DoxyReturn}{Returns}
+A pointer to the newly created clone of the plant. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlantImplementor_aa019bd21868f3270e91c37f2c2303908}{Plant\+Implementor}}.
+
+\Hypertarget{classGreenHousePlant_a03068c8ebd6d104f3b3b65902669dc47}\label{classGreenHousePlant_a03068c8ebd6d104f3b3b65902669dc47} 
+\index{GreenHousePlant@{GreenHousePlant}!feed@{feed}}
+\index{feed@{feed}!GreenHousePlant@{GreenHousePlant}}
+\doxysubsubsection{\texorpdfstring{feed()}{feed()}}
+{\footnotesize\ttfamily Command\+Ptr Green\+House\+Plant\+::feed (\begin{DoxyParamCaption}\item[{int}]{time }\end{DoxyParamCaption})}
+
+
+
+Feeds the plant. 
+
+Defines the interface for feeding the plant (e.\+g., applying fertilizer), with implementation details provided by derived classes based on the plant’s type and state. \begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\Hypertarget{classGreenHousePlant_a8365e4f6acf6e715b67a96f838fc140c}\label{classGreenHousePlant_a8365e4f6acf6e715b67a96f838fc140c} 
+\index{GreenHousePlant@{GreenHousePlant}!getName@{getName}}
+\index{getName@{getName}!GreenHousePlant@{GreenHousePlant}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily std\+::string Green\+House\+Plant\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Gets the name of the plant. 
+
+Returns the name of the plant stored in the private member variable. \begin{DoxyReturn}{Returns}
+The name of the plant as a string. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlantImplementor_ae8d702a85bbae84a715593a071a17e62}{Plant\+Implementor}}.
+
+\Hypertarget{classGreenHousePlant_a65122b6ef45c317c7dd83481dc2a81a8}\label{classGreenHousePlant_a65122b6ef45c317c7dd83481dc2a81a8} 
+\index{GreenHousePlant@{GreenHousePlant}!getPrice@{getPrice}}
+\index{getPrice@{getPrice}!GreenHousePlant@{GreenHousePlant}}
+\doxysubsubsection{\texorpdfstring{getPrice()}{getPrice()}}
+{\footnotesize\ttfamily double Green\+House\+Plant\+::get\+Price (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Gets the price of the plant. 
+
+Returns the monetary value of the plant, determined by its type and characteristics, as implemented by derived classes. \begin{DoxyReturn}{Returns}
+The price of the plant as a double. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlantImplementor_aca43daed510a22fe117d84ecf990a408}{Plant\+Implementor}}.
+
+\Hypertarget{classGreenHousePlant_aca337c1084289a8d55d5fbc36f35ada1}\label{classGreenHousePlant_aca337c1084289a8d55d5fbc36f35ada1} 
+\index{GreenHousePlant@{GreenHousePlant}!getType@{getType}}
+\index{getType@{getType}!GreenHousePlant@{GreenHousePlant}}
+\doxysubsubsection{\texorpdfstring{getType()}{getType()}}
+{\footnotesize\ttfamily PLANT\+\_\+\+TYPE Green\+House\+Plant\+::get\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Gets the type of the plant. 
+
+Returns a string identifying the specific type of the plant (e.\+g., species or category), as implemented by derived classes. \begin{DoxyReturn}{Returns}
+The type of the plant as a string. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlantImplementor_aaa0c955307ca7ec352fde01067053238}{Plant\+Implementor}}.
+
+\Hypertarget{classGreenHousePlant_a096a6613591f49d5d2ef9a7ec2b1ea8e}\label{classGreenHousePlant_a096a6613591f49d5d2ef9a7ec2b1ea8e} 
+\index{GreenHousePlant@{GreenHousePlant}!setStrategy@{setStrategy}}
+\index{setStrategy@{setStrategy}!GreenHousePlant@{GreenHousePlant}}
+\doxysubsubsection{\texorpdfstring{setStrategy()}{setStrategy()}}
+{\footnotesize\ttfamily void Green\+House\+Plant\+::set\+Strategy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classCareStrategy}{Care\+Strategy}} \texorpdfstring{$\ast$}{*}}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Virtual destructor to ensure proper cleanup in derived classes. 
+
+Provides a virtual destructor to allow safe deletion of derived class objects through a \doxylink{classPlant}{Plant} pointer. \Hypertarget{classGreenHousePlant_a0181c00dcb0ec27275df38c3ec632fcb}\label{classGreenHousePlant_a0181c00dcb0ec27275df38c3ec632fcb} 
+\index{GreenHousePlant@{GreenHousePlant}!water@{water}}
+\index{water@{water}!GreenHousePlant@{GreenHousePlant}}
+\doxysubsubsection{\texorpdfstring{water()}{water()}}
+{\footnotesize\ttfamily Command\+Ptr Green\+House\+Plant\+::water (\begin{DoxyParamCaption}\item[{int}]{time }\end{DoxyParamCaption})}
+
+
+
+Waters the plant. 
+
+Defines the interface for watering the plant, with implementation details provided by derived classes based on the plant’s type and state. \begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/Green\+House\+Plant.\+h\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/Green\+House\+Plant.\+cpp\end{DoxyCompactItemize}

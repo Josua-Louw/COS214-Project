@@ -1,0 +1,142 @@
+\doxysection{Window Class Reference}
+\hypertarget{classWindow}{}\label{classWindow}\index{Window@{Window}}
+
+
+Inheritance diagram for Window\+:
+% FIG 0
+
+
+Collaboration diagram for Window\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classWindow_a6148ec9d09f760df30540397a6926212}\label{classWindow_a6148ec9d09f760df30540397a6926212} 
+{\bfseries Window} (\mbox{\hyperlink{classGUISystemHandler}{GUISystem\+Handler}} \texorpdfstring{$\ast$}{*}gui\+System)
+\item 
+\Hypertarget{classWindow_aac1b73e1b4df54fabac4b9cbddb43d24}\label{classWindow_aac1b73e1b4df54fabac4b9cbddb43d24} 
+void {\bfseries update\+Status} (const std\+::string \&message)
+\item 
+\Hypertarget{classWindow_ada1c3bfa67d709140673a39f5c1c79ed}\label{classWindow_ada1c3bfa67d709140673a39f5c1c79ed} 
+void {\bfseries clear\+Main\+Area} ()
+\item 
+\Hypertarget{classWindow_a188a4ad00044ebdfc8782c0b3ad15ba1}\label{classWindow_a188a4ad00044ebdfc8782c0b3ad15ba1} 
+add\+Plant\+State {\bfseries get\+Add\+Plant\+State} () const
+\item 
+\Hypertarget{classWindow_a100e149b52cd5cd3670ed86ae0f572fc}\label{classWindow_a100e149b52cd5cd3670ed86ae0f572fc} 
+register\+Staff\+State {\bfseries get\+Register\+Staff\+State} () const
+\item 
+\Hypertarget{classWindow_ae52ce9c543e168d586c177fcb467aed2}\label{classWindow_ae52ce9c543e168d586c177fcb467aed2} 
+process\+Order\+State {\bfseries get\+Process\+Order\+State} () const
+\item 
+\Hypertarget{classWindow_aa2efc8fe650857dc586dfb3dc7b042e8}\label{classWindow_aa2efc8fe650857dc586dfb3dc7b042e8} 
+std\+::vector$<$ \mbox{\hyperlink{classOrderBuilder}{Order\+Builder}} \texorpdfstring{$\ast$}{*} $>$ \& {\bfseries get\+Order\+Builders} ()
+\item 
+\Hypertarget{classWindow_a350f1dfd172e77ed777c5d8a38ee97e4}\label{classWindow_a350f1dfd172e77ed777c5d8a38ee97e4} 
+double {\bfseries get\+Money\+In\+The\+Bank} () const
+\item 
+\Hypertarget{classWindow_a56781e3da11b67f444bc5293605c62ff}\label{classWindow_a56781e3da11b67f444bc5293605c62ff} 
+void {\bfseries set\+Money\+In\+The\+Bank} (double amount)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classWindow_a5f69995778213fff441bc12112c1aa83}\label{classWindow_a5f69995778213fff441bc12112c1aa83} 
+void {\bfseries setup\+Layout} ()
+\item 
+\Hypertarget{classWindow_a35c1c04eb4c4506b26ace176908143a3}\label{classWindow_a35c1c04eb4c4506b26ace176908143a3} 
+void {\bfseries show\+Main\+Menu} ()
+\item 
+\Hypertarget{classWindow_ad2b021d73b52ff0991ef3bd016561f21}\label{classWindow_ad2b021d73b52ff0991ef3bd016561f21} 
+void {\bfseries setup\+Plant\+Management} ()
+\item 
+\Hypertarget{classWindow_abad5b6cc477149a60f717bf090b2e43f}\label{classWindow_abad5b6cc477149a60f717bf090b2e43f} 
+void {\bfseries setup\+Staff\+Management} ()
+\item 
+\Hypertarget{classWindow_a4a3119591b3726a1ddcda9d5a242c29c}\label{classWindow_a4a3119591b3726a1ddcda9d5a242c29c} 
+void {\bfseries setup\+Order\+Processing} ()
+\item 
+\Hypertarget{classWindow_ae4ca490d739d9b0d731350ec2ce7d30d}\label{classWindow_ae4ca490d739d9b0d731350ec2ce7d30d} 
+void {\bfseries setup\+Greenhouse\+View} ()
+\item 
+\Hypertarget{classWindow_a08e9cdeabdaf9f41473f7b4553cba107}\label{classWindow_a08e9cdeabdaf9f41473f7b4553cba107} 
+void {\bfseries on\+\_\+main\+\_\+menu\+\_\+clicked} ()
+\item 
+\Hypertarget{classWindow_a37cd6d79569bfc0e0d9a8c2df500ba82}\label{classWindow_a37cd6d79569bfc0e0d9a8c2df500ba82} 
+void {\bfseries on\+\_\+plant\+\_\+management\+\_\+clicked} ()
+\item 
+\Hypertarget{classWindow_a0a27a0a00f97cb1bb0e3ea8f40f8f85c}\label{classWindow_a0a27a0a00f97cb1bb0e3ea8f40f8f85c} 
+void {\bfseries on\+\_\+staff\+\_\+management\+\_\+clicked} ()
+\item 
+\Hypertarget{classWindow_a85b985dd5c520d4b6aaad6f76c13fd11}\label{classWindow_a85b985dd5c520d4b6aaad6f76c13fd11} 
+void {\bfseries on\+\_\+order\+\_\+processing\+\_\+clicked} ()
+\item 
+\Hypertarget{classWindow_a45a0cadadbcd79f82926579ac7473125}\label{classWindow_a45a0cadadbcd79f82926579ac7473125} 
+void {\bfseries on\+\_\+greenhouse\+\_\+view\+\_\+clicked} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classWindow_a38f3a0962bfdbe44393a589c427fc4df}\label{classWindow_a38f3a0962bfdbe44393a589c427fc4df} 
+double {\bfseries money\+In\+The\+Bank} = 0.\+0
+\item 
+\Hypertarget{classWindow_ab130cda083bacfda8958df3f75f8b666}\label{classWindow_ab130cda083bacfda8958df3f75f8b666} 
+add\+Plant\+State {\bfseries m\+\_\+add\+\_\+plant\+\_\+state} = add\+Plant\+State\+::\+NONE
+\item 
+\Hypertarget{classWindow_ac2e99cc21a7c22ace509ba19f6f4bd1d}\label{classWindow_ac2e99cc21a7c22ace509ba19f6f4bd1d} 
+register\+Staff\+State {\bfseries m\+\_\+register\+\_\+staff\+\_\+state} = register\+Staff\+State\+::\+NONE
+\item 
+\Hypertarget{classWindow_a4f31fdd713b31511fc1a2c8b99e6e6a0}\label{classWindow_a4f31fdd713b31511fc1a2c8b99e6e6a0} 
+process\+Order\+State {\bfseries m\+\_\+process\+\_\+order\+\_\+state} = process\+Order\+State\+::\+NONE
+\item 
+\Hypertarget{classWindow_a92f28737b2956a099019c06b600f4f02}\label{classWindow_a92f28737b2956a099019c06b600f4f02} 
+std\+::vector$<$ \mbox{\hyperlink{classOrderBuilder}{Order\+Builder}} \texorpdfstring{$\ast$}{*} $>$ {\bfseries m\+\_\+order\+\_\+builders}
+\item 
+\Hypertarget{classWindow_ac516cf31362cada8a3fe64c834bf1b84}\label{classWindow_ac516cf31362cada8a3fe64c834bf1b84} 
+\mbox{\hyperlink{classGUISystemHandler}{GUISystem\+Handler}} \texorpdfstring{$\ast$}{*} {\bfseries m\+\_\+gui\+\_\+system\+\_\+handler}
+\item 
+\Hypertarget{classWindow_ab4748cb77f3637a1ca1a75be909802e1}\label{classWindow_ab4748cb77f3637a1ca1a75be909802e1} 
+Gtk\+::\+VBox \texorpdfstring{$\ast$}{*} {\bfseries m\+\_\+main\+\_\+box}
+\item 
+\Hypertarget{classWindow_afbf6d0e608efcd7ca460278f02bda303}\label{classWindow_afbf6d0e608efcd7ca460278f02bda303} 
+Gtk\+::\+HBox \texorpdfstring{$\ast$}{*} {\bfseries m\+\_\+header\+\_\+box}
+\item 
+\Hypertarget{classWindow_a09e9759d2fac9f3463642f9d5704d214}\label{classWindow_a09e9759d2fac9f3463642f9d5704d214} 
+Gtk\+::\+VBox \texorpdfstring{$\ast$}{*} {\bfseries m\+\_\+content\+\_\+box}
+\item 
+\Hypertarget{classWindow_acdc1f313ef017f645083beaa4259db99}\label{classWindow_acdc1f313ef017f645083beaa4259db99} 
+Gtk\+::\+HBox \texorpdfstring{$\ast$}{*} {\bfseries m\+\_\+footer\+\_\+box}
+\item 
+\Hypertarget{classWindow_a6c283dfccc840da8a2a09065e133df97}\label{classWindow_a6c283dfccc840da8a2a09065e133df97} 
+Gtk\+::\+Label \texorpdfstring{$\ast$}{*} {\bfseries m\+\_\+title\+\_\+label}
+\item 
+\Hypertarget{classWindow_ac34103b384a5e2b52db978d0ec08affc}\label{classWindow_ac34103b384a5e2b52db978d0ec08affc} 
+Gtk\+::\+Label \texorpdfstring{$\ast$}{*} {\bfseries m\+\_\+money\+\_\+label}
+\item 
+\Hypertarget{classWindow_a08557b19186a21e09550b2596a0489d7}\label{classWindow_a08557b19186a21e09550b2596a0489d7} 
+Gtk\+::\+Button \texorpdfstring{$\ast$}{*} {\bfseries m\+\_\+main\+\_\+menu\+\_\+btn}
+\item 
+\Hypertarget{classWindow_aa58de9df7d8467b8af32729d26142c12}\label{classWindow_aa58de9df7d8467b8af32729d26142c12} 
+Gtk\+::\+Button \texorpdfstring{$\ast$}{*} {\bfseries m\+\_\+plant\+\_\+mgmt\+\_\+btn}
+\item 
+\Hypertarget{classWindow_a4b8c2b6fa668aad82e13f62bfd9a0ed8}\label{classWindow_a4b8c2b6fa668aad82e13f62bfd9a0ed8} 
+Gtk\+::\+Button \texorpdfstring{$\ast$}{*} {\bfseries m\+\_\+staff\+\_\+mgmt\+\_\+btn}
+\item 
+\Hypertarget{classWindow_ac26bb61aeec8d2b8593d01d876ce7833}\label{classWindow_ac26bb61aeec8d2b8593d01d876ce7833} 
+Gtk\+::\+Button \texorpdfstring{$\ast$}{*} {\bfseries m\+\_\+order\+\_\+btn}
+\item 
+\Hypertarget{classWindow_a30d6691288685f4bfadf8944a24c6870}\label{classWindow_a30d6691288685f4bfadf8944a24c6870} 
+Gtk\+::\+Button \texorpdfstring{$\ast$}{*} {\bfseries m\+\_\+greenhouse\+\_\+btn}
+\item 
+\Hypertarget{classWindow_a78f39c0955f2b37974deae56061034ae}\label{classWindow_a78f39c0955f2b37974deae56061034ae} 
+Gtk\+::\+Widget \texorpdfstring{$\ast$}{*} {\bfseries m\+\_\+current\+\_\+content}
+\item 
+\Hypertarget{classWindow_ab25cc0e43516178ff187b973057f1fc9}\label{classWindow_ab25cc0e43516178ff187b973057f1fc9} 
+Gtk\+::\+Label \texorpdfstring{$\ast$}{*} {\bfseries m\+\_\+status\+\_\+label}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/Window.\+h\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/Window.\+cpp\end{DoxyCompactItemize}

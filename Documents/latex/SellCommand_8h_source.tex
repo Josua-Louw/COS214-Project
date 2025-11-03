@@ -1,0 +1,25 @@
+\doxysection{Sell\+Command.\+h}
+\hypertarget{SellCommand_8h_source}{}\label{SellCommand_8h_source}\index{/home/josua/Code/C++/COS214/COS214-\/Project/Code/SellCommand.h@{/home/josua/Code/C++/COS214/COS214-\/Project/Code/SellCommand.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SELL\_COMMAND\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SELL\_COMMAND\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Command.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Plant_8h}{Plant.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Order_8h}{Order.h}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSellCommand}{SellCommand}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classCommand}{Command}}\ \{}
+\DoxyCodeLine{00015\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{classCustomer}{Customer}}*\ customer\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00017\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{classSellCommand_a203ebd09b8937ab298fdbfda628ea446}{SellCommand}}(\mbox{\hyperlink{classCustomer}{Customer}}*\ customer):\ customer(customer)\ \{\}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ std::string\ getType();}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{classGreenHousePlant}{GreenHousePlant}}*\ getPlant()\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};\ \};}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSellCommand_ad58606c7f2da10773afce8d6cc85f873}{execute}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00031\ \};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SELL\_COMMAND\_H}}
+
+\end{DoxyCode}

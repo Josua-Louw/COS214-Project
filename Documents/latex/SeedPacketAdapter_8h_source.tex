@@ -1,0 +1,27 @@
+\doxysection{Seed\+Packet\+Adapter.\+h}
+\hypertarget{SeedPacketAdapter_8h_source}{}\label{SeedPacketAdapter_8h_source}\index{/home/josua/Code/C++/COS214/COS214-\/Project/Code/SeedPacketAdapter.h@{/home/josua/Code/C++/COS214/COS214-\/Project/Code/SeedPacketAdapter.h}}
+\mbox{\hyperlink{SeedPacketAdapter_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SEED\_PACKET\_ADAPTER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SEED\_PACKET\_ADAPTER\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{SeedPacket_8h}{SeedPacket.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Item_8h}{Item.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSeedPacketAdapter}{SeedPacketAdapter}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classItem}{Item}}\ \{}
+\DoxyCodeLine{00018\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{classSeedPacket}{SeedPacket}}*\ seedPacket;}
+\DoxyCodeLine{00020\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{classSeedPacketAdapter_af8b4e4f6c95d35cc1ee0629c98107243}{SeedPacketAdapter}}(std::string\ name,\ \textcolor{keywordtype}{double}\ price)\ :\ seedPacket(new\ \mbox{\hyperlink{classSeedPacket}{SeedPacket}}(price,\ name))\ \{\}}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{classSeedPacketAdapter_a466fa257032be4f0a01539c1aee894fc}{SeedPacketAdapter}}(\mbox{\hyperlink{classSeedPacket}{SeedPacket}}*\ sp)\ :\ seedPacket(sp)\ \{\}}
+\DoxyCodeLine{00035\ \ \ \ \ std::string\ \mbox{\hyperlink{classSeedPacketAdapter_a8e82ac1082d4670a4cfc521c81947cb1}{getName}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{classSeedPacketAdapter_a5f160216f570c363a2e76cbdcf228948}{\string~SeedPacketAdapter}}();}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classSeedPacketAdapter_a1da67314e7e6f4829a4d92a79e5cd93f}{getPrice}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00042\ \ \ \ \ PLANT\_TYPE\ \mbox{\hyperlink{classSeedPacketAdapter_a10c89ded3c9929aa38478f6077dd6eef}{getType}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{classOrderPlant}{OrderPlant}}*\ \mbox{\hyperlink{classSeedPacketAdapter_a26b07b48181b7622cc82a83a9a18588e}{getOrderPlant}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00044\ \};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SEED\_PACKET\_ADAPTER\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,149 @@
+\doxysection{Staff Class Reference}
+\hypertarget{classStaff}{}\label{classStaff}\index{Staff@{Staff}}
+
+
+Abstract base class for staff in the \doxylink{classPlant}{Plant} Nursery Simulator, implementing Chain of Responsibility and \doxylink{classCommand}{Command} Patterns.  
+
+
+
+
+{\ttfamily \#include $<$Staff.\+h$>$}
+
+
+
+Inheritance diagram for Staff\+:
+% FIG 0
+
+
+Collaboration diagram for Staff\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classStaff_a70080bba44a3fa87481522658c11bfa7}{Staff}} (const std\+::string \&\mbox{\hyperlink{classPerson_a2711d352a03cebd2f5bf075300aa3455}{id}})
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classStaff}{Staff} member with an ID. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classStaff_a0100153a6ee93cd761d43008f3fe625d}{receive\+Command}} (Command\+Ptr command)=0
+\begin{DoxyCompactList}\small\item\em Receives and stores a command in task\+List for execution. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStaff_a1609c17ad84dbc493bae917da72c1a75}{get\+Next\+Staff}} () const
+\begin{DoxyCompactList}\small\item\em Gets the next staff in the chain for testing purposes. \end{DoxyCompactList}\item 
+\Hypertarget{classStaff_ab7ae31008728fc1c384d749b2927bc66}\label{classStaff_ab7ae31008728fc1c384d749b2927bc66} 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Staff} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor for proper cleanup of derived classes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classStaff_acb0f13658f7a9f46c9dc464f8d7100d0}{add\+Staff\+Member}} (\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*}staff)
+\begin{DoxyCompactList}\small\item\em Adds a staff member to the beginning of the chain. \end{DoxyCompactList}\item 
+\Hypertarget{classStaff_ad3cde7adda2c756636d798b16e5cffe1}\label{classStaff_ad3cde7adda2c756636d798b16e5cffe1} 
+virtual void {\bfseries print\+Chain} ()=0
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classPerson}{Person}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPerson_ab4d04ab113b61ebf36f218b93a2970fb}{Person}} (const std\+::string \&\mbox{\hyperlink{classPerson_a2711d352a03cebd2f5bf075300aa3455}{id}})
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classPerson}{Person} with an ID. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classPerson_acecdc665a6fc6a4e39e67195a6931eb7}{get\+Id}} () const
+\begin{DoxyCompactList}\small\item\em Gets the person\textquotesingle{}s ID. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Person} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor for proper cleanup of derived classes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStaff_acf0a8c2d64aec5a1a6f07401e4ddcbae}{next\+Staff}}
+\item 
+\Hypertarget{classStaff_ad6b13deaf828a6e74c30bbc5bf366d4d}\label{classStaff_ad6b13deaf828a6e74c30bbc5bf366d4d} 
+std\+::atomic$<$ bool $>$ {\bfseries staff\+Busy} \{false\}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classPerson}{Person}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classPerson_a2711d352a03cebd2f5bf075300aa3455}{id}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Abstract base class for staff in the \doxylink{classPlant}{Plant} Nursery Simulator, implementing Chain of Responsibility and \doxylink{classCommand}{Command} Patterns. 
+
+Represents staff members who handle tasks like plant care and customer interactions. The Chain of Responsibility Pattern (FR6) distributes commands to available staff via next\+Staff, removing assigned staff from the chain. The \doxylink{classCommand}{Command} Pattern (FR5) stores tasks in task\+List for execution. \doxylink{classStaff}{Staff} interacts with \doxylink{classNurseryHub}{Nursery\+Hub} (Mediator, FR7) for task coordination. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classStaff_a70080bba44a3fa87481522658c11bfa7}\label{classStaff_a70080bba44a3fa87481522658c11bfa7} 
+\index{Staff@{Staff}!Staff@{Staff}}
+\index{Staff@{Staff}!Staff@{Staff}}
+\doxysubsubsection{\texorpdfstring{Staff()}{Staff()}}
+{\footnotesize\ttfamily Staff\+::\+Staff (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{classStaff}{Staff} member with an ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Unique identifier for the staff. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classStaff_acb0f13658f7a9f46c9dc464f8d7100d0}\label{classStaff_acb0f13658f7a9f46c9dc464f8d7100d0} 
+\index{Staff@{Staff}!addStaffMember@{addStaffMember}}
+\index{addStaffMember@{addStaffMember}!Staff@{Staff}}
+\doxysubsubsection{\texorpdfstring{addStaffMember()}{addStaffMember()}}
+{\footnotesize\ttfamily void Staff\+::add\+Staff\+Member (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*}}]{staff }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Adds a staff member to the beginning of the chain. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em staff} & Pointer to the \doxylink{classStaff}{Staff} member to add. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+\textquotesingle{}this\textquotesingle{} will be at the end of the chain. 
+\end{DoxyNote}
+\Hypertarget{classStaff_a1609c17ad84dbc493bae917da72c1a75}\label{classStaff_a1609c17ad84dbc493bae917da72c1a75} 
+\index{Staff@{Staff}!getNextStaff@{getNextStaff}}
+\index{getNextStaff@{getNextStaff}!Staff@{Staff}}
+\doxysubsubsection{\texorpdfstring{getNextStaff()}{getNextStaff()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*} Staff\+::get\+Next\+Staff (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the next staff in the chain for testing purposes. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to the next \doxylink{classStaff}{Staff} member. 
+\end{DoxyReturn}
+\Hypertarget{classStaff_a0100153a6ee93cd761d43008f3fe625d}\label{classStaff_a0100153a6ee93cd761d43008f3fe625d} 
+\index{Staff@{Staff}!receiveCommand@{receiveCommand}}
+\index{receiveCommand@{receiveCommand}!Staff@{Staff}}
+\doxysubsubsection{\texorpdfstring{receiveCommand()}{receiveCommand()}}
+{\footnotesize\ttfamily virtual void Staff\+::receive\+Command (\begin{DoxyParamCaption}\item[{Command\+Ptr}]{command }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Receives and stores a command in task\+List for execution. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em command} & Pointer to the \doxylink{classCommand}{Command} to be executed. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classManager_aaee6f62a31bc3c7eac166c9c32e9a683}{Manager}}, \mbox{\hyperlink{classPlantCaretaker_aab9479a442e16dfb1fbb5409c2b76062}{Plant\+Caretaker}}, and \mbox{\hyperlink{classSalesManager_a28c8cdc5d37bc68cbc8f6366d4a958fb}{Sales\+Manager}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classStaff_acf0a8c2d64aec5a1a6f07401e4ddcbae}\label{classStaff_acf0a8c2d64aec5a1a6f07401e4ddcbae} 
+\index{Staff@{Staff}!nextStaff@{nextStaff}}
+\index{nextStaff@{nextStaff}!Staff@{Staff}}
+\doxysubsubsection{\texorpdfstring{nextStaff}{nextStaff}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classStaff}{Staff}}\texorpdfstring{$\ast$}{*} Staff\+::next\+Staff}
+
+Pointer to the next staff in the chain (FR6). 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/Staff.\+h\end{DoxyCompactItemize}

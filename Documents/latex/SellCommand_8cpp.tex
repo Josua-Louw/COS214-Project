@@ -1,0 +1,19 @@
+\doxysection{/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\+Sell\+Command.cpp File Reference}
+\hypertarget{SellCommand_8cpp}{}\label{SellCommand_8cpp}\index{/home/josua/Code/C++/COS214/COS214-\/Project/Code/SellCommand.cpp@{/home/josua/Code/C++/COS214/COS214-\/Project/Code/SellCommand.cpp}}
+
+
+Implementation of the \doxylink{classSellCommand}{Sell\+Command} class.  
+
+
+{\ttfamily \#include "{}Sell\+Command.\+h"{}}\newline
+{\ttfamily \#include "{}Order.\+h"{}}\newline
+{\ttfamily \#include "{}Customer.\+h"{}}\newline
+{\ttfamily \#include "{}Order\+Builder.\+h"{}}\newline
+Include dependency graph for Sell\+Command.\+cpp\+:
+% FIG 0
+
+
+\doxysubsection{Detailed Description}
+Implementation of the \doxylink{classSellCommand}{Sell\+Command} class. 
+
+Executes the sale of a plant as part of a customer order, updating the greenhouse inventory and order status. Assigned to \doxylink{classSalesManager}{Sales\+Manager} via \doxylink{classNurseryHub}{Nursery\+Hub} (Mediator, FR7). Integrates with the Builder Pattern (\doxylink{classOrderBuilder}{Order\+Builder}, FR8), Decorator Pattern (\doxylink{classOrder}{Order} customization, FR10), and Composite Pattern (\doxylink{classGreenHouse}{Green\+House}, FR1). 

@@ -1,0 +1,91 @@
+\doxysection{/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/testing\+Main.cpp File Reference}
+\hypertarget{testingMain_8cpp}{}\label{testingMain_8cpp}\index{/home/josua/Code/C++/COS214/COS214-\/Project/Code/testingMain.cpp@{/home/josua/Code/C++/COS214/COS214-\/Project/Code/testingMain.cpp}}
+
+
+This file contains the main function for running tests using the doctest framework.  
+
+
+{\ttfamily \#include "{}doctest.\+h"{}}\newline
+{\ttfamily \#include $<$atomic$>$}\newline
+{\ttfamily \#include $<$thread$>$}\newline
+{\ttfamily \#include $<$chrono$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$functional$>$}\newline
+{\ttfamily \#include "{}Plant.\+h"{}}\newline
+{\ttfamily \#include "{}Green\+House\+Plant.\+h"{}}\newline
+{\ttfamily \#include "{}Regular\+Care\+Strategy.\+h"{}}\newline
+{\ttfamily \#include "{}Fertilizer\+Boost\+Strategy.\+h"{}}\newline
+{\ttfamily \#include "{}Water\+Limiting\+Strategy.\+h"{}}\newline
+{\ttfamily \#include "{}Water\+Plant.\+h"{}}\newline
+{\ttfamily \#include "{}Fertilize\+Plant.\+h"{}}\newline
+{\ttfamily \#include "{}Plant\+Caretaker.\+h"{}}\newline
+{\ttfamily \#include "{}Nursery\+Mediator.\+h"{}}\newline
+{\ttfamily \#include "{}Command.\+h"{}}\newline
+{\ttfamily \#include "{}Nursery\+Hub.\+h"{}}\newline
+{\ttfamily \#include "{}Care\+Strategy.\+h"{}}\newline
+{\ttfamily \#include "{}Seed\+State.\+h"{}}\newline
+{\ttfamily \#include "{}Seed\+Packet.\+h"{}}\newline
+{\ttfamily \#include "{}Decoration.\+h"{}}\newline
+{\ttfamily \#include "{}Pot.\+h"{}}\newline
+{\ttfamily \#include "{}Plant\+Type.\+h"{}}\newline
+{\ttfamily \#include "{}Seed\+Packet\+Adapter.\+h"{}}\newline
+{\ttfamily \#include "{}Pot\+Adapter.\+h"{}}\newline
+{\ttfamily \#include "{}Decoration\+Adapter.\+h"{}}\newline
+{\ttfamily \#include "{}Order.\+h"{}}\newline
+{\ttfamily \#include "{}Section.\+h"{}}\newline
+{\ttfamily \#include "{}Customer.\+h"{}}\newline
+{\ttfamily \#include "{}Sales\+Manager.\+h"{}}\newline
+{\ttfamily \#include "{}Sell\+Command.\+h"{}}\newline
+Include dependency graph for testing\+Main.\+cpp\+:
+% FIG 0
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{testingMain_8cpp_a3e8a4e0e14562f844e9b3dd20e129d90}\label{testingMain_8cpp_a3e8a4e0e14562f844e9b3dd20e129d90} 
+int {\bfseries testing\+Main} ()
+\item 
+\Hypertarget{testingMain_8cpp_ad2e58ec638865194b9dd31ff3f0f1272}\label{testingMain_8cpp_ad2e58ec638865194b9dd31ff3f0f1272} 
+{\bfseries TEST\+\_\+\+CASE} ("{}TEST"{})
+\item 
+\Hypertarget{testingMain_8cpp_acc2456e0fa9bb122c586da202f92a387}\label{testingMain_8cpp_acc2456e0fa9bb122c586da202f92a387} 
+{\bfseries TEST\+\_\+\+CASE} ("{}Seed Packet Test Case"{})
+\item 
+\Hypertarget{testingMain_8cpp_aef3a05d0136894c633bc617b872a8d69}\label{testingMain_8cpp_aef3a05d0136894c633bc617b872a8d69} 
+{\bfseries TEST\+\_\+\+CASE} ("{}Decoration Test Case"{})
+\item 
+\Hypertarget{testingMain_8cpp_a7cfef1efd4dc2e659aef5d2417779b7f}\label{testingMain_8cpp_a7cfef1efd4dc2e659aef5d2417779b7f} 
+{\bfseries TEST\+\_\+\+CASE} ("{}Pot Test Case"{})
+\item 
+\Hypertarget{testingMain_8cpp_ac32aa3039eae0ab1545e8c4c5b8fc0f5}\label{testingMain_8cpp_ac32aa3039eae0ab1545e8c4c5b8fc0f5} 
+{\bfseries TEST\+\_\+\+CASE} ("{}Plant\+Type Test Case"{})
+\item 
+\Hypertarget{testingMain_8cpp_a8dc486b4a978d3b5981406e7f9ef1806}\label{testingMain_8cpp_a8dc486b4a978d3b5981406e7f9ef1806} 
+{\bfseries TEST\+\_\+\+CASE} ("{}Complete Decorator Chain Test Case"{})
+\item 
+\Hypertarget{testingMain_8cpp_a0f541ffce8d532f6f2a4568c1c310c2c}\label{testingMain_8cpp_a0f541ffce8d532f6f2a4568c1c310c2c} 
+{\bfseries TEST\+\_\+\+CASE} ("{}Adapter Pattern Test Cases"{})
+\item 
+\Hypertarget{testingMain_8cpp_a7308f7eb717b3386499f1f219c2ba3b6}\label{testingMain_8cpp_a7308f7eb717b3386499f1f219c2ba3b6} 
+{\bfseries TEST\+\_\+\+CASE} ("{}Plant and plantimplementor tests"{})
+\item 
+\Hypertarget{testingMain_8cpp_a08937a8261b0eac6ed7fd6079403336e}\label{testingMain_8cpp_a08937a8261b0eac6ed7fd6079403336e} 
+{\bfseries TEST\+\_\+\+CASE} ("{}Nursery\+Hub Sell System Test"{})
+\item 
+\Hypertarget{testingMain_8cpp_acb5e9d779773a594606954220f1a7a8c}\label{testingMain_8cpp_acb5e9d779773a594606954220f1a7a8c} 
+{\bfseries TEST\+\_\+\+CASE} ("{}Delete All Plants."{})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{testingMain_8cpp_afd317fe449a061d48cfff31c0717ae55}\label{testingMain_8cpp_afd317fe449a061d48cfff31c0717ae55} 
+\mbox{\hyperlink{classPlantMaker}{Plant\+Maker}} \texorpdfstring{$\ast$}{*} {\bfseries maker} = new \mbox{\hyperlink{classPlantMaker}{Plant\+Maker}}()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file contains the main function for running tests using the doctest framework. 
+
+The DOCTEST\+\_\+\+CONFIG\+\_\+\+IMPLEMENT\+\_\+\+WITH\+\_\+\+MAIN macro is defined to provide a main function for the test executable. This file should be included in the test build of the project to enable test execution. \begin{DoxyNote}{Note}
+Ensure that the doctest library is properly linked in the test build configuration. 
+\end{DoxyNote}

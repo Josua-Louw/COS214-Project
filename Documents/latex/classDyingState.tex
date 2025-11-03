@@ -1,0 +1,72 @@
+\doxysection{Dying\+State Class Reference}
+\hypertarget{classDyingState}{}\label{classDyingState}\index{DyingState@{DyingState}}
+
+
+Inheritance diagram for Dying\+State\+:
+% FIG 0
+
+
+Collaboration diagram for Dying\+State\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classDyingState_a5acdc6a77bf2308a4727a0bf38277a6e}{transition\+To\+Next}} () override
+\begin{DoxyCompactList}\small\item\em Transitions the plant to the next state in its lifecycle. \end{DoxyCompactList}\item 
+\Hypertarget{classDyingState_a333a716c5e829ebc1d463c11f33e4c96}\label{classDyingState_a333a716c5e829ebc1d463c11f33e4c96} 
+{\bfseries Dying\+State} (\mbox{\hyperlink{classGreenHousePlant}{Green\+House\+Plant}} \texorpdfstring{$\ast$}{*}plant, std\+::string previous\+Kind)
+\item 
+\Hypertarget{classDyingState_af697e40bc4e9a8828a313143d68a91bc}\label{classDyingState_af697e40bc4e9a8828a313143d68a91bc} 
+void {\bfseries restore\+Previous\+State} (\mbox{\hyperlink{classGreenHousePlant}{Green\+House\+Plant}} \texorpdfstring{$\ast$}{*}plant)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classPlantState}{Plant\+State}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classPlantState_a161ce94f53bbe443c85e313688aa63b0}{\texorpdfstring{$\sim$}{\string~}\+Plant\+State}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor to ensure proper cleanup in derived classes. \end{DoxyCompactList}\item 
+{\bfseries Plant\+State} (\mbox{\hyperlink{classGreenHousePlant}{Green\+House\+Plant}} \texorpdfstring{$\ast$}{*}plant)
+\item 
+void {\bfseries set\+Plant\+Alive} (bool plant\+Exist)
+\item 
+bool {\bfseries is\+Alive} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classPlantState}{Plant\+State}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::atomic$<$ bool $>$ {\bfseries plant\+Alive} \{true\}
+\item 
+\mbox{\hyperlink{classGreenHousePlant}{Green\+House\+Plant}} \texorpdfstring{$\ast$}{*} {\bfseries plant\+\_\+} = nullptr
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classDyingState_a5acdc6a77bf2308a4727a0bf38277a6e}\label{classDyingState_a5acdc6a77bf2308a4727a0bf38277a6e} 
+\index{DyingState@{DyingState}!transitionToNext@{transitionToNext}}
+\index{transitionToNext@{transitionToNext}!DyingState@{DyingState}}
+\doxysubsubsection{\texorpdfstring{transitionToNext()}{transitionToNext()}}
+{\footnotesize\ttfamily void Dying\+State\+::transition\+To\+Next (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Transitions the plant to the next state in its lifecycle. 
+
+Defines the interface for transitioning the plant to its next lifecycle state, which may depend on care actions or other conditions. Derived classes implement this method to specify the next state (e.\+g., from seedling to juvenile or dying). \begin{DoxyNote}{Note}
+This is a pure virtual method, requiring implementation in derived classes. 
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{classSeedState}{Seed\+State}, \doxylink{classSeedlingState}{Seedling\+State}, \doxylink{classJuvenileState}{Juvenile\+State}, \doxylink{classMatureState}{Mature\+State}, \doxylink{classFloweringState}{Flowering\+State}, \doxylink{classSenescenceState}{Senescence\+State}, \doxylink{classDyingState}{Dying\+State}, \doxylink{classDeadState}{Dead\+State} 
+\end{DoxySeeAlso}
+
+
+Implements \mbox{\hyperlink{classPlantState_a21cd156c2af73852ff8f0bdf91a923f7}{Plant\+State}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/Dying\+State.\+h\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/Dying\+State.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,46 @@
+\doxysection{Section.\+h}
+\hypertarget{Section_8h_source}{}\label{Section_8h_source}\index{/home/josua/Code/C++/COS214/COS214-\/Project/Code/Section.h@{/home/josua/Code/C++/COS214/COS214-\/Project/Code/Section.h}}
+\mbox{\hyperlink{Section_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SECTION\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SECTION\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{GreenHouse_8h}{GreenHouse.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Item_8h}{Item.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Iterator_8h}{Iterator.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{ItemIterator_8h}{ItemIterator.h}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Plant_8h}{Plant.h}}"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{PotAdapter_8h}{PotAdapter.h}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{DecorationAdapter_8h}{DecorationAdapter.h}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{SeedPacketAdapter_8h}{SeedPacketAdapter.h}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSection}{Section}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classGreenHouse}{GreenHouse}}\ \{}
+\DoxyCodeLine{00041\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00042\ \ \ \ \ std::string\ name;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00043\ \ \ \ \ std::vector<GreenHouse*>\ section;\ }
+\DoxyCodeLine{00044\ \ \ \ \ std::vector<Item*>\ items;\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ All\ items\ (including\ plants,\ pots,\ etc.)}}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ capacity;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//This\ refers\ to\ the\ max\ number\ of\ items\ before\ creating\ new\ subsection}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{classSection}{Section}}(\textcolor{keyword}{const}\ std::string\&\ sectionName,\ \textcolor{keywordtype}{size\_t}\ cap\ =\ 10);}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classSection_ae2582a77c7ecb8cbd4a1b58e7ad3296e}{\string~Section}}();}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSection_ad9124dd6f1206df9031e7fafa556e3a3}{expand}}(\mbox{\hyperlink{classGreenHouse}{GreenHouse}}*\ greenHouse);}
+\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{classGreenHouse}{GreenHouse}}*\ \mbox{\hyperlink{classSection_a88e5848f1a7aeeb91b0e764334fca432}{getSubsection}}(\textcolor{keyword}{const}\ std::string\&\ sectionName);}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classSection_a6a544b3b30a7c56cc478255e94243fcf}{sell}}(\mbox{\hyperlink{classItem}{Item}}*\ item);}
+\DoxyCodeLine{00079\ \ \ \ \ \mbox{\hyperlink{classIterator}{Iterator<Item*>}}*\ \mbox{\hyperlink{classSection_a87747ade6452c75cbd3ce3f8ae9f6a71}{createIterator}}();}
+\DoxyCodeLine{00085\ \ \ \ \ \mbox{\hyperlink{classItem}{Item}}*\ \mbox{\hyperlink{classSection_a019cd2f078c2b9b6e99c6f61502968d9}{findItem}}(\textcolor{keyword}{const}\ std::string\&\ itemName);}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSection_af54ba3f34eba6ea70ab4d21747b8c7d2}{addItem}}(\mbox{\hyperlink{classItem}{Item}}*\ item);}
+\DoxyCodeLine{00095\ \ \ \ \ std::string\ \mbox{\hyperlink{classSection_a7cbc405be4191359433d1150161904d2}{getName}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classSection_a64016e7b6eff0374d0d7b15c1a8aa572}{getItemCount}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSection_aff65a38c02b3fc2187e4ebae3697dcc0}{printSummary}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classSection_a56e52a3e3310ce4a71b909e371885e6f}{getTotalItemCount}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSection_a4bdf9145564a91fb2b05e6e67b69f9f2}{printSummaryHelper}}(\textcolor{keywordtype}{int}\ indentLevel)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSection_a8efa3664046967ed3fdd34babf3a59e4}{collectAllItems}}(std::vector<Item*>\&\ allItems);}
+\DoxyCodeLine{00120\ \};}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

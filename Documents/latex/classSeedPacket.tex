@@ -1,0 +1,166 @@
+\doxysection{Seed\+Packet Class Reference}
+\hypertarget{classSeedPacket}{}\label{classSeedPacket}\index{SeedPacket@{SeedPacket}}
+
+
+Represents the seeds of the particular plant.  
+
+
+
+
+{\ttfamily \#include $<$Seed\+Packet.\+h$>$}
+
+
+
+Inheritance diagram for Seed\+Packet\+:
+% FIG 0
+
+
+Collaboration diagram for Seed\+Packet\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classSeedPacket_aa0716901a7b707021b497c74c0785cd8}\label{classSeedPacket_aa0716901a7b707021b497c74c0785cd8} 
+{\bfseries Seed\+Packet} (double cost, const std\+::string \&name)
+\item 
+\Hypertarget{classSeedPacket_aedb2140fc935336c6c84da9a1fef9aae}\label{classSeedPacket_aedb2140fc935336c6c84da9a1fef9aae} 
+{\bfseries Seed\+Packet} (const \mbox{\hyperlink{classSeedPacket}{Seed\+Packet}} \&)
+\item 
+double \mbox{\hyperlink{classSeedPacket_aef1b979c774285488d339c73480bd1b6}{get\+Price}} () const override
+\begin{DoxyCompactList}\small\item\em Gets the price of the seeds. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classSeedPacket_a1b5c16d6be0564ec83781ff466d2f472}{get\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em Gets the name of the plant. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlantImplementor}{Plant\+Implementor}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classSeedPacket_af02f100266aceab2619795964395ddae}{clone}} () override
+\begin{DoxyCompactList}\small\item\em Create a clone of the seeds. \end{DoxyCompactList}\item 
+PLANT\+\_\+\+TYPE \mbox{\hyperlink{classSeedPacket_a6b0ddbca44dd8de583c966ec67d59de4}{get\+Type}} () const override
+\begin{DoxyCompactList}\small\item\em Get the type of plant the seeds are of. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSeedPacket_a43c531ec918afbeeafbc9ee0267c9e42}{decorate}} (\mbox{\hyperlink{classOrderPlant}{Order\+Plant}} \texorpdfstring{$\ast$}{*}order\+Plant) override
+\begin{DoxyCompactList}\small\item\em Add decoration to the given plant. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classOrderPlant}{Order\+Plant}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Order\+Plant} (double cost, const std\+::string \&name)
+\item 
+\mbox{\hyperlink{classOrderPlant_a2f26d17aec973d21877f89052b639162}{Order\+Plant}} (const \mbox{\hyperlink{classOrderPlant}{Order\+Plant}} \&)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Order\+Plant} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor to ensure proper cleanup in derived classes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classPlantImplementor}{Plant\+Implementor}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Plant\+Implementor} ()=default
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlantImplementor_a87801b3ef7e9abdc9c61eb051371a9e8}{Plant\+Implementor}} (const \mbox{\hyperlink{classPlantImplementor}{Plant\+Implementor}} \&)=default
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Plant\+Implementor} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor to ensure proper cleanup in derived classes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classOrderPlant}{Order\+Plant}}}
+\begin{DoxyCompactItemize}
+\item 
+double {\bfseries cost}
+\item 
+std\+::string {\bfseries name}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents the seeds of the particular plant. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classSeedPacket_af02f100266aceab2619795964395ddae}\label{classSeedPacket_af02f100266aceab2619795964395ddae} 
+\index{SeedPacket@{SeedPacket}!clone@{clone}}
+\index{clone@{clone}!SeedPacket@{SeedPacket}}
+\doxysubsubsection{\texorpdfstring{clone()}{clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlantImplementor}{Plant\+Implementor}} \texorpdfstring{$\ast$}{*} Seed\+Packet\+::clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Create a clone of the seeds. 
+
+\begin{DoxyReturn}{Returns}
+A pointer to the newly created clone of the seeds. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlantImplementor_aa019bd21868f3270e91c37f2c2303908}{Plant\+Implementor}}.
+
+\Hypertarget{classSeedPacket_a43c531ec918afbeeafbc9ee0267c9e42}\label{classSeedPacket_a43c531ec918afbeeafbc9ee0267c9e42} 
+\index{SeedPacket@{SeedPacket}!decorate@{decorate}}
+\index{decorate@{decorate}!SeedPacket@{SeedPacket}}
+\doxysubsubsection{\texorpdfstring{decorate()}{decorate()}}
+{\footnotesize\ttfamily void Seed\+Packet\+::decorate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classOrderPlant}{Order\+Plant}} \texorpdfstring{$\ast$}{*}}]{order\+Plant }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Add decoration to the given plant. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em order\+Plant} & Pointer to the plant to be decorated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classOrderPlant_a1806444706a692cfda31eaac6a83fe51}{Order\+Plant}}.
+
+\Hypertarget{classSeedPacket_a1b5c16d6be0564ec83781ff466d2f472}\label{classSeedPacket_a1b5c16d6be0564ec83781ff466d2f472} 
+\index{SeedPacket@{SeedPacket}!getName@{getName}}
+\index{getName@{getName}!SeedPacket@{SeedPacket}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily std\+::string Seed\+Packet\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Gets the name of the plant. 
+
+\begin{DoxyReturn}{Returns}
+The name of the plant as a string. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classOrderPlant_a6ee0e4aa43da9a300858bfc7054d6718}{Order\+Plant}}.
+
+\Hypertarget{classSeedPacket_aef1b979c774285488d339c73480bd1b6}\label{classSeedPacket_aef1b979c774285488d339c73480bd1b6} 
+\index{SeedPacket@{SeedPacket}!getPrice@{getPrice}}
+\index{getPrice@{getPrice}!SeedPacket@{SeedPacket}}
+\doxysubsubsection{\texorpdfstring{getPrice()}{getPrice()}}
+{\footnotesize\ttfamily double Seed\+Packet\+::get\+Price (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Gets the price of the seeds. 
+
+\begin{DoxyReturn}{Returns}
+The price of the seeds as a double. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classOrderPlant_a65e5d15a731d2d5d0b0aa5bcc45c5099}{Order\+Plant}}.
+
+\Hypertarget{classSeedPacket_a6b0ddbca44dd8de583c966ec67d59de4}\label{classSeedPacket_a6b0ddbca44dd8de583c966ec67d59de4} 
+\index{SeedPacket@{SeedPacket}!getType@{getType}}
+\index{getType@{getType}!SeedPacket@{SeedPacket}}
+\doxysubsubsection{\texorpdfstring{getType()}{getType()}}
+{\footnotesize\ttfamily PLANT\+\_\+\+TYPE Seed\+Packet\+::get\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get the type of plant the seeds are of. 
+
+\begin{DoxyReturn}{Returns}
+The type of plant the seeds are of as a string. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classOrderPlant_a1210e855109d563dc809701a66385fba}{Order\+Plant}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\mbox{\hyperlink{SeedPacket_8h}{Seed\+Packet.\+h}}\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/Seed\+Packet.\+cpp\end{DoxyCompactItemize}

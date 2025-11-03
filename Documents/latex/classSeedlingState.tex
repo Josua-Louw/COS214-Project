@@ -1,0 +1,89 @@
+\doxysection{Seedling\+State Class Reference}
+\hypertarget{classSeedlingState}{}\label{classSeedlingState}\index{SeedlingState@{SeedlingState}}
+
+
+Represents the seedling state in a plant\textquotesingle{}s lifecycle.  
+
+
+
+
+{\ttfamily \#include $<$Seedling\+State.\+h$>$}
+
+
+
+Inheritance diagram for Seedling\+State\+:
+% FIG 0
+
+
+Collaboration diagram for Seedling\+State\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classSeedlingState_aae560a23ebd8cc0b7d121de86f403d1f}{transition\+To\+Next}} () override
+\begin{DoxyCompactList}\small\item\em Transitions the plant to the next state in its lifecycle. \end{DoxyCompactList}\item 
+\Hypertarget{classSeedlingState_aa864d68853aaf3b15849b7f806fa5d70}\label{classSeedlingState_aa864d68853aaf3b15849b7f806fa5d70} 
+{\bfseries Seedling\+State} (\mbox{\hyperlink{classGreenHousePlant}{Green\+House\+Plant}} \texorpdfstring{$\ast$}{*}plant)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classPlantState}{Plant\+State}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classPlantState_a161ce94f53bbe443c85e313688aa63b0}{\texorpdfstring{$\sim$}{\string~}\+Plant\+State}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor to ensure proper cleanup in derived classes. \end{DoxyCompactList}\item 
+{\bfseries Plant\+State} (\mbox{\hyperlink{classGreenHousePlant}{Green\+House\+Plant}} \texorpdfstring{$\ast$}{*}plant)
+\item 
+void {\bfseries set\+Plant\+Alive} (bool plant\+Exist)
+\item 
+bool {\bfseries is\+Alive} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classPlantState}{Plant\+State}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::atomic$<$ bool $>$ {\bfseries plant\+Alive} \{true\}
+\item 
+\mbox{\hyperlink{classGreenHousePlant}{Green\+House\+Plant}} \texorpdfstring{$\ast$}{*} {\bfseries plant\+\_\+} = nullptr
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents the seedling state in a plant\textquotesingle{}s lifecycle. 
+
+The \doxylink{classSeedlingState}{Seedling\+State} class models the phase where the plant is a young seedling, recently germinated and vulnerable. It inherits from \doxylink{classPlantState}{Plant\+State}, part of the plant lifecycle state machine. Care actions in this state, such as watering and fertilizing, are critical for healthy growth and progression to the juvenile state. \begin{DoxyNote}{Note}
+This is an early, delicate stage in the plant\textquotesingle{}s lifecycle. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{classPlantState}{Plant\+State}, \doxylink{classJuvenileState}{Juvenile\+State}, \doxylink{classDyingState}{Dying\+State} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classSeedlingState_aae560a23ebd8cc0b7d121de86f403d1f}\label{classSeedlingState_aae560a23ebd8cc0b7d121de86f403d1f} 
+\index{SeedlingState@{SeedlingState}!transitionToNext@{transitionToNext}}
+\index{transitionToNext@{transitionToNext}!SeedlingState@{SeedlingState}}
+\doxysubsubsection{\texorpdfstring{transitionToNext()}{transitionToNext()}}
+{\footnotesize\ttfamily void Seedling\+State\+::transition\+To\+Next (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Transitions the plant to the next state in its lifecycle. 
+
+Moves the plant from the seedling state to the juvenile state if appropriate care has been provided. If care is insufficient, the plant transitions to the dying state. \begin{DoxyNote}{Note}
+The next state is typically the \doxylink{classJuvenileState}{Juvenile\+State} or, in case of inadequate care, the \doxylink{classDyingState}{Dying\+State}. 
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{classJuvenileState}{Juvenile\+State}, \doxylink{classDyingState}{Dying\+State} 
+\end{DoxySeeAlso}
+
+
+Implements \mbox{\hyperlink{classPlantState_a21cd156c2af73852ff8f0bdf91a923f7}{Plant\+State}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\mbox{\hyperlink{SeedlingState_8h}{Seedling\+State.\+h}}\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/Seedling\+State.\+cpp\end{DoxyCompactItemize}

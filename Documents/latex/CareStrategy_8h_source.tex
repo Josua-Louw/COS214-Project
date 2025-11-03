@@ -1,0 +1,27 @@
+\doxysection{Care\+Strategy.\+h}
+\hypertarget{CareStrategy_8h_source}{}\label{CareStrategy_8h_source}\index{/home/josua/Code/C++/COS214/COS214-\/Project/Code/CareStrategy.h@{/home/josua/Code/C++/COS214/COS214-\/Project/Code/CareStrategy.h}}
+\mbox{\hyperlink{CareStrategy_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ CARESTRATEGY\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ CARESTRATEGY\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Command.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{using\ }CommandPtr\ =\ std::shared\_ptr<Command>;}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classGreenHousePlant}{GreenHousePlant}};}
+\DoxyCodeLine{00025\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classCareStrategy}{CareStrategy}}\ \{}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classCareStrategy}{\string~CareStrategy}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{virtual}\ std::vector<CommandPtr>\ \mbox{\hyperlink{classCareStrategy_a59e9c7f5752fc2771616770769b6e3fc}{applyCare}}(\mbox{\hyperlink{classGreenHousePlant}{GreenHousePlant}}\ \&plant)\ =\ 0;}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{virtual}\ std::string\ \mbox{\hyperlink{classCareStrategy_adedd8cd8952a44c0f1df3d047308273e}{getStrategyName}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00042\ \};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

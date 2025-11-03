@@ -1,0 +1,85 @@
+\doxysection{Regular\+Care\+Strategy Class Reference}
+\hypertarget{classRegularCareStrategy}{}\label{classRegularCareStrategy}\index{RegularCareStrategy@{RegularCareStrategy}}
+
+
+Represents a standard care strategy that provides consistent maintenance to plants.  
+
+
+
+
+{\ttfamily \#include $<$Regular\+Care\+Strategy.\+h$>$}
+
+
+
+Inheritance diagram for Regular\+Care\+Strategy\+:
+% FIG 0
+
+
+Collaboration diagram for Regular\+Care\+Strategy\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ Command\+Ptr $>$ \mbox{\hyperlink{classRegularCareStrategy_a233de7dcfde54272a21c010883525f73}{apply\+Care}} (\mbox{\hyperlink{classGreenHousePlant}{Green\+House\+Plant}} \&plant) override
+\begin{DoxyCompactList}\small\item\em Applies regular care actions to maintain plant health. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classRegularCareStrategy_a3efb23e42f5d679759948ea9bc681f3c}{get\+Strategy\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em Returns the identifying name of this strategy ("{}\+Regular Care Strategy"{}). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a standard care strategy that provides consistent maintenance to plants. 
+
+This class implements the \doxylink{classCareStrategy}{Care\+Strategy} interface and defines how a plant is cared for under regular/normal conditions, such as regular watering and sunlight exposure.
+
+\begin{DoxyNote}{Note}
+Implements the Strategy design pattern. 
+\end{DoxyNote}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classRegularCareStrategy_a233de7dcfde54272a21c010883525f73}\label{classRegularCareStrategy_a233de7dcfde54272a21c010883525f73} 
+\index{RegularCareStrategy@{RegularCareStrategy}!applyCare@{applyCare}}
+\index{applyCare@{applyCare}!RegularCareStrategy@{RegularCareStrategy}}
+\doxysubsubsection{\texorpdfstring{applyCare()}{applyCare()}}
+{\footnotesize\ttfamily std\+::vector$<$ Command\+Ptr $>$ Regular\+Care\+Strategy\+::apply\+Care (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGreenHousePlant}{Green\+House\+Plant}} \&}]{plant }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Applies regular care actions to maintain plant health. 
+
+Applies the standard care routine for a plant.
+
+\begin{DoxyNote}{Note}
+Represents a balanced and consistent care approach.
+
+Includes balanced watering, nutrient checks and all other overall maintenance. 
+\end{DoxyNote}
+
+
+Implements \mbox{\hyperlink{classCareStrategy_a59e9c7f5752fc2771616770769b6e3fc}{Care\+Strategy}}.
+
+\Hypertarget{classRegularCareStrategy_a3efb23e42f5d679759948ea9bc681f3c}\label{classRegularCareStrategy_a3efb23e42f5d679759948ea9bc681f3c} 
+\index{RegularCareStrategy@{RegularCareStrategy}!getStrategyName@{getStrategyName}}
+\index{getStrategyName@{getStrategyName}!RegularCareStrategy@{RegularCareStrategy}}
+\doxysubsubsection{\texorpdfstring{getStrategyName()}{getStrategyName()}}
+{\footnotesize\ttfamily std\+::string Regular\+Care\+Strategy\+::get\+Strategy\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Returns the identifying name of this strategy ("{}\+Regular Care Strategy"{}). 
+
+Returns the identifying name of this strategy.
+
+\begin{DoxyReturn}{Returns}
+The name of the care strategy ("{}\+Regular Care Strategy"{}). 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classCareStrategy_adedd8cd8952a44c0f1df3d047308273e}{Care\+Strategy}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\mbox{\hyperlink{RegularCareStrategy_8h}{Regular\+Care\+Strategy.\+h}}\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\mbox{\hyperlink{RegularCareStrategy_8cpp}{Regular\+Care\+Strategy.\+cpp}}\end{DoxyCompactItemize}

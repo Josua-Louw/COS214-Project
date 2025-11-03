@@ -1,0 +1,31 @@
+\doxysection{Plant\+Decorator.\+h}
+\hypertarget{PlantDecorator_8h_source}{}\label{PlantDecorator_8h_source}\index{/home/josua/Code/C++/COS214/COS214-\/Project/Code/PlantDecorator.h@{/home/josua/Code/C++/COS214/COS214-\/Project/Code/PlantDecorator.h}}
+\mbox{\hyperlink{PlantDecorator_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ PLANTDECORATOR\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ PLANTDECORATOR\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{OrderPlant_8h}{OrderPlant.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classPlantDecorator}{PlantDecorator}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classOrderPlant}{OrderPlant}}\ \{}
+\DoxyCodeLine{00016\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{classPlantDecorator}{PlantDecorator}}()\ :\ component(\textcolor{keyword}{nullptr})\ \{\}}
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{classPlantDecorator}{PlantDecorator}}(\textcolor{keywordtype}{double}\ cost,\ \textcolor{keyword}{const}\ std::string\&\ name)\ :\ \mbox{\hyperlink{classOrderPlant}{OrderPlant}}(cost,\ name),\ component(\textcolor{keyword}{nullptr})\ \{\}}
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{classPlantDecorator_aeab3112a905ee40121aa3472da1c211b}{PlantDecorator}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classPlantDecorator}{PlantDecorator}}\&\ other)\ :\ \mbox{\hyperlink{classOrderPlant}{OrderPlant}}(other),\ component((other.component)\ ?\ dynamic\_cast<\mbox{\hyperlink{classOrderPlant}{OrderPlant}}*>(other.component-\/>\mbox{\hyperlink{classPlantImplementor_aa019bd21868f3270e91c37f2c2303908}{clone}}())\ :\ nullptr)\ \{\}}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classPlantDecorator_ac22e9f31ab48a99b7ca285e9239b91ab}{getPrice}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ std::string\ \mbox{\hyperlink{classPlantDecorator_a75b485a18a77cf92755f3b9128d774ed}{getName}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPlantDecorator_a99f5a9ebe97096413784d78f2a7b1d2a}{decorate}}(\mbox{\hyperlink{classOrderPlant}{OrderPlant}}*\ orderPlant)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classPlantDecorator_ac96952357f89417896bcc022c9c968de}{\string~PlantDecorator}}();}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{classOrderPlant}{OrderPlant}}*\ component;}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

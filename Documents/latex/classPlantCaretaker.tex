@@ -1,0 +1,127 @@
+\doxysection{Plant\+Caretaker Class Reference}
+\hypertarget{classPlantCaretaker}{}\label{classPlantCaretaker}\index{PlantCaretaker@{PlantCaretaker}}
+
+
+Concrete staff class for managing plant care in the \doxylink{classPlant}{Plant} Nursery Simulator.  
+
+
+
+
+{\ttfamily \#include $<$Plant\+Caretaker.\+h$>$}
+
+
+
+Inheritance diagram for Plant\+Caretaker\+:
+% FIG 0
+
+
+Collaboration diagram for Plant\+Caretaker\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPlantCaretaker_aff3e27c316754af0bc1af86c239ab318}{Plant\+Caretaker}} (const std\+::string \&\mbox{\hyperlink{classPerson_a2711d352a03cebd2f5bf075300aa3455}{id}}, \mbox{\hyperlink{classNurseryMediator}{Nursery\+Mediator}} \texorpdfstring{$\ast$}{*}hub)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classPlantCaretaker}{Plant\+Caretaker} with an ID and \doxylink{classNurseryHub}{Nursery\+Hub}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPlantCaretaker_aab9479a442e16dfb1fbb5409c2b76062}{receive\+Command}} (Command\+Ptr command) override
+\begin{DoxyCompactList}\small\item\em Receives and executes a care command (e.\+g., \doxylink{classWaterPlant}{Water\+Plant}, \doxylink{classFertilizePlant}{Fertilize\+Plant}). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPlantCaretaker_a3ca92a82ef3ca090e71672caa4054480}{print\+Chain}} () override
+\item 
+\Hypertarget{classPlantCaretaker_a030dd45c216eb311f96c18a027ae26bf}\label{classPlantCaretaker_a030dd45c216eb311f96c18a027ae26bf} 
+void {\bfseries mark\+Free} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classStaff}{Staff}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classStaff_a70080bba44a3fa87481522658c11bfa7}{Staff}} (const std\+::string \&\mbox{\hyperlink{classPerson_a2711d352a03cebd2f5bf075300aa3455}{id}})
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classStaff}{Staff} member with an ID. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStaff_a1609c17ad84dbc493bae917da72c1a75}{get\+Next\+Staff}} () const
+\begin{DoxyCompactList}\small\item\em Gets the next staff in the chain for testing purposes. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Staff} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor for proper cleanup of derived classes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classStaff_acb0f13658f7a9f46c9dc464f8d7100d0}{add\+Staff\+Member}} (\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*}staff)
+\begin{DoxyCompactList}\small\item\em Adds a staff member to the beginning of the chain. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classPerson}{Person}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPerson_ab4d04ab113b61ebf36f218b93a2970fb}{Person}} (const std\+::string \&\mbox{\hyperlink{classPerson_a2711d352a03cebd2f5bf075300aa3455}{id}})
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classPerson}{Person} with an ID. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classPerson_acecdc665a6fc6a4e39e67195a6931eb7}{get\+Id}} () const
+\begin{DoxyCompactList}\small\item\em Gets the person\textquotesingle{}s ID. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Person} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor for proper cleanup of derived classes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classStaff}{Staff}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classStaff_acf0a8c2d64aec5a1a6f07401e4ddcbae}{next\+Staff}}
+\item 
+std\+::atomic$<$ bool $>$ {\bfseries staff\+Busy} \{false\}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classPerson}{Person}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classPerson_a2711d352a03cebd2f5bf075300aa3455}{id}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Concrete staff class for managing plant care in the \doxylink{classPlant}{Plant} Nursery Simulator. 
+
+Inherits from \doxylink{classStaff}{Staff} to handle plant care tasks, implementing the \doxylink{classCommand}{Command} Pattern (FR5) via receive\+Command to process commands like \doxylink{classWaterPlant}{Water\+Plant} and \doxylink{classFertilizePlant}{Fertilize\+Plant}. Participates in the Chain of Responsibility Pattern (FR6) by receiving delegated tasks via next\+Staff. Interacts with \doxylink{classPlant}{Plant} and \doxylink{classNurseryHub}{Nursery\+Hub} (Mediator, FR7) to update plant states. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classPlantCaretaker_aff3e27c316754af0bc1af86c239ab318}\label{classPlantCaretaker_aff3e27c316754af0bc1af86c239ab318} 
+\index{PlantCaretaker@{PlantCaretaker}!PlantCaretaker@{PlantCaretaker}}
+\index{PlantCaretaker@{PlantCaretaker}!PlantCaretaker@{PlantCaretaker}}
+\doxysubsubsection{\texorpdfstring{PlantCaretaker()}{PlantCaretaker()}}
+{\footnotesize\ttfamily Plant\+Caretaker\+::\+Plant\+Caretaker (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{id,  }\item[{\mbox{\hyperlink{classNurseryMediator}{Nursery\+Mediator}} \texorpdfstring{$\ast$}{*}}]{hub }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{classPlantCaretaker}{Plant\+Caretaker} with an ID and \doxylink{classNurseryHub}{Nursery\+Hub}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Unique identifier for the \doxylink{classPlantCaretaker}{Plant\+Caretaker}. \\
+\hline
+{\em hub} & Pointer to the \doxylink{classNurseryHub}{Nursery\+Hub} mediator. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classPlantCaretaker_a3ca92a82ef3ca090e71672caa4054480}\label{classPlantCaretaker_a3ca92a82ef3ca090e71672caa4054480} 
+\index{PlantCaretaker@{PlantCaretaker}!printChain@{printChain}}
+\index{printChain@{printChain}!PlantCaretaker@{PlantCaretaker}}
+\doxysubsubsection{\texorpdfstring{printChain()}{printChain()}}
+{\footnotesize\ttfamily void Plant\+Caretaker\+::print\+Chain (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classStaff}{Staff}}.
+
+\Hypertarget{classPlantCaretaker_aab9479a442e16dfb1fbb5409c2b76062}\label{classPlantCaretaker_aab9479a442e16dfb1fbb5409c2b76062} 
+\index{PlantCaretaker@{PlantCaretaker}!receiveCommand@{receiveCommand}}
+\index{receiveCommand@{receiveCommand}!PlantCaretaker@{PlantCaretaker}}
+\doxysubsubsection{\texorpdfstring{receiveCommand()}{receiveCommand()}}
+{\footnotesize\ttfamily void Plant\+Caretaker\+::receive\+Command (\begin{DoxyParamCaption}\item[{Command\+Ptr}]{command }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Receives and executes a care command (e.\+g., \doxylink{classWaterPlant}{Water\+Plant}, \doxylink{classFertilizePlant}{Fertilize\+Plant}). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em command} & Pointer to the \doxylink{classCommand}{Command} to execute. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classStaff_a0100153a6ee93cd761d43008f3fe625d}{Staff}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/Plant\+Caretaker.\+h\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\mbox{\hyperlink{PlantCaretaker_8cpp}{Plant\+Caretaker.\+cpp}}\end{DoxyCompactItemize}
