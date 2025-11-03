@@ -38,7 +38,7 @@ void GUISystemHandler::addPlant() {
         int strategyIndex = rand() % careStrategies.size();
         std::string plantName = plantNames[index].first;
         double plantPrice = plantNames[index].second;
-        Plant* newPlant = new Plant(plantName, plantPrice, nurseryHub, careStrategies[strategyIndex]);
+        Plant* newPlant = new Plant(plantName, plantPrice, nurseryHub, careStrategies[strategyIndex], plantMaker);
         greenHouse->expand(newPlant);
         break;
     }

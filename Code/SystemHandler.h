@@ -15,11 +15,13 @@
 #include "AddDecoration.h"
 #include "AddPot.h"
 #include "AddSeed.h"
+#include "PlantMaker.h"
 
 class SystemHandler {
 protected:
     NurseryHub* nurseryHub;
     GreenHouse* greenHouse;
+    PlantMaker* plantMaker;
 public:
     SystemHandler();
     virtual ~SystemHandler();

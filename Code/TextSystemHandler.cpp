@@ -101,7 +101,7 @@ void TextSystemHandler::addPlant() {
     switch (itemType)
     {
     case 1:
-        newItem = new Plant(itemName, itemPrice, maker);
+        newItem = new Plant(itemName, itemPrice, plantMaker);
         break;
     case 2:
         newItem = new PotAdapter(itemName, itemPrice);
