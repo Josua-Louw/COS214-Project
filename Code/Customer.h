@@ -11,14 +11,19 @@ class OrderBuilder;
 class Customer : public Person {
 
 private:
-	std::vector<OrderBuilder*> orderBuilders;
 	NurseryMediator* nurseryHub;
+	std::vector<OrderBuilder*> orderBuilders;
+
 
 	//TEMPORARY - for testing
 	std::vector<std::string> itemNames;
 
 public:
 	void buy();
+
+	OrderBuilder* anyBuilder() const {
+		return orderBuilders.empty() ? nullptr : orderBuilders.front();
+	}
 
 	Customer(std::string id, NurseryMediator* mediator, std::vector<OrderBuilder*> builders)
 		: Person(id), nurseryHub(mediator), orderBuilders(builders) {};

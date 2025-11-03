@@ -1,11 +1,16 @@
 #ifndef PLANTSTATE_H
 #define PLANTSTATE_H
 
+#include <atomic>
+#include <iostream>
+
 /**
  * @file PlantState.h
  * @brief Defines the PlantState class, the abstract base class for plant lifecycle states.
  * @details This file contains the declaration of the PlantState class, which serves as the base class for all states in the plant lifecycle state machine. It defines the interface for handling care actions and state transitions.
  */
+
+class GreenHousePlant;
 
 /**
  * @class PlantState
@@ -15,14 +20,10 @@
  * @see SeedState, SeedlingState, JuvenileState, MatureState, FloweringState, SenescenceState, DyingState, DeadState
  */
 class PlantState {
+protected:
+    std::atomic<bool> plantAlive{true};
+    GreenHousePlant* plant_ = nullptr;
 public:
-    /**
-     * @brief Handles care actions specific to the current state.
-     * @details Defines the interface for performing care actions (e.g., watering, fertilizing) appropriate to the plant’s current lifecycle state. Derived classes implement this method to provide state-specific care logic.
-     * @note This is a pure virtual method, requiring implementation in derived classes.
-     * @return void
-     */
-    virtual void handleCare() = 0;
 
     /**
      * @brief Transitions the plant to the next state in its lifecycle.
@@ -37,7 +38,13 @@ public:
      * @brief Virtual destructor to ensure proper cleanup in derived classes.
      * @details Provides a virtual destructor to allow safe deletion of derived class objects through a PlantState pointer.
      */
-    virtual ~PlantState() = default;
+    virtual ~PlantState() {std::cout << "deleting PlantState" << std::endl;};
+
+    explicit PlantState(GreenHousePlant* plant) : plant_(plant) {};
+
+    void setPlantAlive(bool plantExist);
+
+    bool isAlive() const;
 };
 
 #endif // PLANTSTATE_H

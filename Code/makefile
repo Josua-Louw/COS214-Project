@@ -41,12 +41,11 @@ valgrind: $(EXEC)
 gdb: $(EXEC)
 	gdb ./$(EXEC)
 
-coverage: $(OBJ)
-	$(MAKE) clean
-	$(MAKE) CXXFLAGS="$(CXXFLAGS) --coverage" all
+coverage: $(EXEC)
 	./$(EXEC) > $(COVERAGE_OUT) 2>&1 || true
 	gcov -f -m -r -j ${filesInCoverageReport} > $(COVERAGE_LOG) || true
-	-gcovr --exclude 'doctest.h' --html-details -o output.html || true
+	# Generate an HTML report (optional, requires gcovr installed)
+	-gcovr --exclude 'doctest.h' --gcov-ignore-parse-errors negative_hits.warn --html-details -o output.html || true
 
 .PHONY: coverage clean
 

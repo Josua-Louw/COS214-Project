@@ -3,7 +3,7 @@
 
 #include "Command.h"
 #include "GreenHousePlant.h"
-
+class GreenHousePlant;
 /**
  * @class FertilizePlant
  * @brief Concrete command for fertilizing a plant in the Plant Nursery Simulator.
@@ -13,12 +13,18 @@
 class FertilizePlant : public Command {
 private:
     GreenHousePlant* plant; /**< The greenhouse plant to be fertilized. */
+    int time;
+
 public:
     /**
      * @brief Constructs a FertilizePlant command for a specific greenhouse plant.
      * @param plant Pointer to the GreenHousePlant to be fertilized.
      */
-    FertilizePlant(GreenHousePlant* plant) : plant(plant) {}
+    FertilizePlant(GreenHousePlant* plant, int time) : plant(plant), time(time) {}
+
+    std::string getType() override;
+
+    GreenHousePlant* getPlant() override;
     
     /**
      * @brief Executes the fertilization task.
