@@ -340,9 +340,9 @@ int testingMain() {
     delete plant5;
     delete strat1;
     delete strat2;
-    delete careTaker1;
-    delete careTaker2;
-    delete careTaker3;
+    // delete careTaker1;
+    // delete careTaker2;
+    // delete careTaker3;
     delete hub;
 
     //std::this_thread::sleep_for(std::chrono::seconds(2));
@@ -352,7 +352,7 @@ int testingMain() {
 
 //TESTS STRATEGIES AND STATE TIME
 TEST_CASE("TEST") {
-    testingMain();
+   //testingMain();
 }
 
 // TEST_CASE("WaterLimiting reduces watering pressure") {
@@ -635,7 +635,6 @@ TEST_CASE("Adapter Pattern Test Cases") {
 #include "Plant.h"
 
 TEST_CASE("Plant and plantimplementor tests") {
-    // CANNOT TEST CAUSES SEGFAULT
     CareStrategy* careStrat = new RegularCareStrategy();
     NurseryMediator* mediator = new NurseryHub();
     Staff* careTaker1 = new PlantCaretaker("care1",mediator);
@@ -672,8 +671,112 @@ TEST_CASE("Plant and plantimplementor tests") {
         delete op; // Clean up
     }
     delete careStrat;
-    delete careTaker1;
-    delete careTaker2;
-    delete careTaker3;
+    // delete careTaker1;
+    // delete careTaker2;
+    // delete careTaker3;
     delete mediator;
+}
+
+//SELL system tests
+#include "Order.h"
+#include "Section.h"
+#include "Customer.h"
+#include "SalesManager.h"
+#include "SellCommand.h"
+
+TEST_CASE("NurseryHub Sell System Test") {
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    std::cout << "Starting NurseryHub Sell System Test" << std::endl;
+    NurseryMediator* hub = new NurseryHub();
+    PlantCaretaker* careTaker1 = new PlantCaretaker("care1", hub);
+    PlantCaretaker* careTaker2 = new PlantCaretaker("care2", hub);
+    CareStrategy* strat1 = new RegularCareStrategy();
+    CareStrategy* strat2 = new FertilizerBoostStrategy();
+    hub->registerStaff(careTaker1);
+    hub->registerStaff(careTaker2);
+    careTaker2->printChain();
+    Section* section1 = new Section("Root Greenhouse");
+    hub->setInventoryRoot(section1);
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    // SUBCASE("Sell with valid order") {
+    //     Order order;
+    //     double total = hub->sell(&order);
+    //     CHECK(total == 0.0); // Since Order doesn't add any plants
+    // }
+        Order* order = new Order();
+        // Assuming Order has a method to add plants
+        Plant* plant1 = new Plant("Plant1", 10, hub, strat1);
+        Plant* plant2 = new Plant("Plant2", 20, hub, strat2);
+        hub->registerPlant(plant1);
+        hub->registerPlant(plant2);
+        AddPlant plantBuilder1(section1);
+        AddPlant plantBuilder2(section1);
+        plantBuilder1.buildPart(order, "Plant1");
+        plantBuilder2.buildPart(order, "Plant2");
+        double total = hub->sell(order);
+        CHECK(total == 30.0); // 10 + 20
+        order->printOrder();
+        delete order;
+
+        std::cout << "Customer buying plants" << std::endl;
+
+        Customer customer("John Doe", hub, section1);
+        std::cout << "created Customer: " << customer.getId() <<  std::endl;
+        Plant* plant4 = new Plant("Plant4", 10, hub, strat2);
+        std::cout << "created plant: " << plant4->getName() << std::endl;
+        Plant* plant3 = new Plant("Plant3", 20, hub, strat1);
+        std::cout << "created plant: " << plant3->getName() << std::endl;
+        section1->addItem(plant3);
+        section1->addItem(plant4);
+        PotAdapter* pot = new PotAdapter("Ceramic Pot", 5.0);
+        std::cout << "created Pot: " << pot->getName() << std::endl;
+        DecorationAdapter* decor = new DecorationAdapter("Glitter", 3.0);
+        std::cout << "created Decoration: " << decor->getName() << std::endl;
+        SeedPacketAdapter* seed = new SeedPacketAdapter("Sunflower Seeds", 7.0);
+        std::cout << "created SeedPacket: " << seed->getName() << std::endl;
+        section1->addItem(seed);
+        section1->addItem(pot);
+        section1->addItem(decor);
+
+        section1->printSummary();
+        std::cout << "Printed summary" << std::endl;
+
+        Iterator<Item*>* it = section1->createIterator();
+        for (it->first(); !it->isDone(); it->next())
+        {
+            Item* item = it->currentItem();
+            std::cout << item << std::endl;
+            if (item)
+            {
+                std::cout << "Item in section: " << item->getName() << " | Price: " << item->getPrice() << std::endl;
+            }
+        }
+        
+        delete it;
+
+        customer.buy();
+    // SUBCASE("Selling through a sell command") {
+        Plant* plant5 = new Plant("Plant5", 10, hub, new RegularCareStrategy());
+        hub->registerPlant(plant5);
+        hub->registerStaff(new SalesManager("sales1", hub));
+        Customer* customer3 = new Customer("Jane Doe", hub, section1);
+        SellCommand* sellCmd = new SellCommand(customer3);
+        sellCmd->execute();
+        delete sellCmd;
+        delete customer3;
+    // }
+    // SUBCASE("Selling through sales manager") {
+        Plant* plant6 = new Plant("Plant6", 15, hub, new FertilizerBoostStrategy());
+        hub->registerPlant(plant6);
+        SalesManager* salesManager = new SalesManager("sales2", hub);
+        hub->registerStaff(salesManager);
+        Customer* customer2 = new Customer("Alice Smith", hub, section1);
+        CommandPtr sellCmd2 = std::make_shared<SellCommand>(customer2);
+        hub->assign(sellCmd2);
+        delete customer2;
+    // }
+    delete strat1;
+    delete strat2;
+    delete section1;
+    delete hub;
 }

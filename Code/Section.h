@@ -112,6 +112,11 @@ public:
 	 * @param indentLevel Level of indentation for formatting.
 	 */
 	void printSummaryHelper(int indentLevel) const;
+	/**
+	 * @brief Helper function to capture all items in sections (including subsections).
+	 * @param allItems Vector list to be populated by items.
+	 */
+	void collectAllItems(std::vector<Item*>& allItems);
 };
 
 #endif

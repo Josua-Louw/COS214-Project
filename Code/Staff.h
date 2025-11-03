@@ -41,7 +41,14 @@ public:
     /**
      * @brief Virtual destructor for proper cleanup of derived classes.
      */
-    virtual ~Staff() override = default;
+    virtual ~Staff() {
+        if (nextStaff)
+        {
+            delete nextStaff;
+            nextStaff = nullptr;
+        }
+        
+    };
     /**
      * @brief Adds a staff member to the beginning of the chain.
      * @param staff Pointer to the Staff member to add.
@@ -52,7 +59,12 @@ public:
         if (staff == nullptr) {
             return;
         }
-        this->nextStaff = staff;
+        if (!staff->nextStaff) {
+            staff->nextStaff = this;
+        }
+        else {
+            addStaffMember(staff->nextStaff);
+        }
     }
 
     virtual void printChain() = 0;

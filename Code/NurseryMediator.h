@@ -2,13 +2,17 @@
 #define NURSERYMEDIATOR_H
 
 #include <string>
+#include <vector>
 #include <memory>
 
 class Command;
 class GreenHousePlant;
+class GreenHouse;
 class Plant;
 class Staff;
 class Customer;
+class Order;
+class OrderBuilder;
 using CommandPtr = std::shared_ptr<Command>;
 /**
  * @file NurseryMediator.h
@@ -71,6 +75,12 @@ public:
 	// virtual bool wasLastCareSuccessful(const GreenHousePlant* p) const = 0;
 	virtual void beginCare(GreenHousePlant* p, std::string type) = 0;               //caretaker grabbed job
 	virtual void finishCare(GreenHousePlant* p, std::string type, bool success) =0;//timer for command completed
+
+	virtual std::vector<std::string> getPlantNamesByType(class OrderBuilder* builder) const = 0;
+	virtual double sell(Order* order) = 0;
+
+	virtual void setInventoryRoot(GreenHouse* r) = 0;
+	virtual GreenHouse* getInventoryRoot() const = 0;
 };
 
 #endif
