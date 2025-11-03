@@ -140,36 +140,14 @@ TEST_CASE("Builder pattern and order creation") {
 TEST_CASE("Iterator traversal") {
     Section* root = buildGreenHouse();
     Iterator<Item*>* rootIt = root->createIterator();
-    int localCount = 0;
+    int totalCount = 0;
     for (rootIt->first(); !rootIt->isDone(); rootIt->next()) {
         Item* current = rootIt->currentItem();
         CHECK(current != nullptr);
-        ++localCount;
+        ++totalCount;
     }
-    CHECK(localCount == 0);
-    delete rootIt;
-    std::function<int(GreenHouse*)> countAll = [&](GreenHouse* gh) -> int {
-        if (!gh) return 0;
-        Section* section = dynamic_cast<Section*>(gh);
-        if (!section) return 0;
-        int subtotal = 0;
-        Iterator<Item*>* it = section->createIterator();
-        for (it->first(); !it->isDone(); it->next()) {
-            Item* current = it->currentItem();
-            if (current) ++subtotal;
-        }
-        delete it;
-        const char* subsectionNames[] = {
-            "Plants", "Pots", "Seeds", "Decorations", "Trees",
-            "Plants_Subsection_2", "Plants_Subsection_3"
-        };
-        for (auto name : subsectionNames) {
-            GreenHouse* sub = section->getSubsection(name);
-            if (sub) subtotal += countAll(sub);
-        }
-        return subtotal;
-    };
-    int totalCount = countAll(root);
+    CHECK(totalCount == 12);
     CHECK(totalCount == root->getTotalItemCount());
+    delete rootIt;
     delete root;
 }
