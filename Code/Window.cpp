@@ -45,6 +45,19 @@ Window::Window(GUISystemHandler* guiSystem)
 
 Window::~Window() {
     // GTK manages widget cleanup through parent-child relationships
+    delete m_title_label;
+    delete m_money_label;
+    delete m_main_menu_btn;
+    delete m_plant_mgmt_btn;
+    delete m_staff_mgmt_btn;
+    delete m_order_btn;
+    delete m_greenhouse_btn;
+    delete m_status_label;
+
+    delete m_main_box;
+    delete m_header_box;
+    delete m_content_box;
+    delete m_footer_box;
 }
 
 void Window::setupLayout() {
