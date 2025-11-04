@@ -23,3 +23,6 @@ Project for COS214 by the Five guys group
 
 ## Short Description of program
 With the gtkmm library installed and the compiled demo main one can run the project and will see a basic gui system pop up. This will allow the user to interact with the developed system which simulates the running of a nursery. User's will be able to add plants, pots, seeds and decor to the nursery. They will be able to hire staff to manage the nursery. They will be able to sell the items to customers and lastly be able to view some summaries of the system.
+
+## Link to final report
+https://docs.google.com/document/d/1hSm_1QtMAh-OFpIWZGpLNB3GoRe-G730/edit?usp=drive_link&ouid=111078249680039405448&rtpof=true&sd=true
