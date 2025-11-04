@@ -1,12 +1,12 @@
 \doxysection{GUISystem\+Handler.\+h}
 \hypertarget{GUISystemHandler_8h_source}{}\label{GUISystemHandler_8h_source}\index{/home/josua/Code/C++/COS214/COS214-\/Project/Code/GUISystemHandler.h@{/home/josua/Code/C++/COS214/COS214-\/Project/Code/GUISystemHandler.h}}
-
+\mbox{\hyperlink{GUISystemHandler_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ GUISYSTEMHANDLER\_H}}
 \DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ GUISYSTEMHANDLER\_H}}
 \DoxyCodeLine{00003\ }
 \DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}SystemHandler.h"{}}}
-\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Window.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Window_8h}{Window.h}}"{}}}
 \DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <string>}}
 \DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <utility>}}
 \DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}SellCommand.h"{}}}
@@ -14,37 +14,37 @@
 \DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{WaterLimitingStrategy_8h}{WaterLimitingStrategy.h}}"{}}}
 \DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{RegularCareStrategy_8h}{RegularCareStrategy.h}}"{}}}
 \DoxyCodeLine{00012\ }
-\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classGUISystemHandler}{GUISystemHandler}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classSystemHandler}{SystemHandler}}\ \{}
-\DoxyCodeLine{00014\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{classGUISystemHandler}{GUISystemHandler}}();}
-\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classGUISystemHandler}{\string~GUISystemHandler}}();}
-\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{void}\ systemMenue()\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00018\ \ \ \ \ }
-\DoxyCodeLine{00019\ \ \ \ \ \textcolor{comment}{//\ Plant\ management}}
-\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{void}\ addPlant()\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00021\ \ \ \ \ }
-\DoxyCodeLine{00022\ \ \ \ \ \textcolor{comment}{//\ Staff\ management}}
-\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{void}\ registerStaffMember()\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00024\ \ \ \ \ }
-\DoxyCodeLine{00025\ \ \ \ \ \textcolor{comment}{//\ Order\ processing}}
-\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{void}\ processCustomerOrder()\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00027\ \ \ \ \ }
-\DoxyCodeLine{00028\ \ \ \ \ \textcolor{comment}{//\ Greenhouse\ management}}
-\DoxyCodeLine{00029\ \ \ \ \ std::string\ getGreenhouseSummary();}
-\DoxyCodeLine{00030\ \ \ \ \ std::string\ getInventory();}
-\DoxyCodeLine{00031\ \ \ \ \ std::string\ getStaffInfo();}
-\DoxyCodeLine{00032\ }
-\DoxyCodeLine{00033\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{classWindow}{Window}}*\ m\_window;}
-\DoxyCodeLine{00035\ \ \ \ \ std::vector<std::pair<std::string,\ double>>\ plantNames\ =\ \{\{\textcolor{stringliteral}{"{}Rose\ Plant"{}},\ 25.0\},\ \{\textcolor{stringliteral}{"{}Tulip\ Plant"{}},\ 30.0\},\ \{\textcolor{stringliteral}{"{}Daisy\ Plant"{}},\ 20.0\},\ \{\textcolor{stringliteral}{"{}Sunflower\ Plant"{}},\ 15.0\},\ \{\textcolor{stringliteral}{"{}Orchid\ Plant"{}},\ 40.0\},\ \{\textcolor{stringliteral}{"{}Lily\ Plant"{}},\ 35.0\}\};}
-\DoxyCodeLine{00036\ \ \ \ \ std::vector<std::pair<std::string,\ double>>\ potNames\ =\ \{\{\textcolor{stringliteral}{"{}Ceramic\ Pot"{}},\ 15.0\},\ \{\textcolor{stringliteral}{"{}Plastic\ Pot"{}},\ 10.0\},\ \{\textcolor{stringliteral}{"{}Terracotta\ Pot"{}},\ 12.0\},\ \{\textcolor{stringliteral}{"{}Wooden\ Pot"{}},\ 18.0\},\ \{\textcolor{stringliteral}{"{}Metal\ Pot"{}},\ 20.0\}\};}
-\DoxyCodeLine{00037\ \ \ \ \ std::vector<std::pair<std::string,\ double>>\ seedNames\ =\ \{\{\textcolor{stringliteral}{"{}Sunflower\ Seeds"{}},\ 5.0\},\ \{\textcolor{stringliteral}{"{}Rose\ Seeds"{}},\ 6.0\},\ \{\textcolor{stringliteral}{"{}Tulip\ Bulbs"{}},\ 7.0\},\ \{\textcolor{stringliteral}{"{}Daisy\ Seeds"{}},\ 4.0\},\ \{\textcolor{stringliteral}{"{}Orchid\ Seeds"{}},\ 8.0\}\};}
-\DoxyCodeLine{00038\ \ \ \ \ std::vector<std::pair<std::string,\ double>>\ decorationNames\ =\ \{\{\textcolor{stringliteral}{"{}Glitter\ Decoration"{}},\ 8.0\},\ \{\textcolor{stringliteral}{"{}Fairy\ Lights"{}},\ 10.0\},\ \{\textcolor{stringliteral}{"{}Mini\ Gnome"{}},\ 12.0\},\ \{\textcolor{stringliteral}{"{}Decorative\ Stones"{}},\ 6.0\},\ \{\textcolor{stringliteral}{"{}Plant\ Stakes"{}},\ 5.0\}\};}
-\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{int}\ customerIdCounter\ =\ 0;}
-\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{int}\ staffIdCounter\ =\ 0;}
-\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{const}\ std::vector<CareStrategy*>\ careStrategies\ =\ \{\textcolor{keyword}{new}\ \mbox{\hyperlink{classRegularCareStrategy}{RegularCareStrategy}}(),\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classFertilizerBoostStrategy}{FertilizerBoostStrategy}}(),\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classWaterLimitingStrategy}{WaterLimitingStrategy}}()\};}
-\DoxyCodeLine{00042\ \};}
-\DoxyCodeLine{00043\ }
-\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00031\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classGUISystemHandler}{GUISystemHandler}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classSystemHandler}{SystemHandler}}\ \{}
+\DoxyCodeLine{00032\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{classGUISystemHandler}{GUISystemHandler}}();}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classGUISystemHandler}{\string~GUISystemHandler}}();}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ systemMenue()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00036\ \ \ \ \ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//\ Plant\ management}}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ addPlant()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00039\ \ \ \ \ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{//\ Staff\ management}}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ registerStaffMember()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00042\ \ \ \ \ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{//\ Order\ processing}}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ processCustomerOrder()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00045\ \ \ \ \ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{comment}{//\ Greenhouse\ management}}
+\DoxyCodeLine{00047\ \ \ \ \ std::string\ getGreenhouseSummary();}
+\DoxyCodeLine{00048\ \ \ \ \ std::string\ getInventory();}
+\DoxyCodeLine{00049\ \ \ \ \ std::string\ getStaffInfo();}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{classWindow}{Window}}*\ m\_window;}
+\DoxyCodeLine{00053\ \ \ \ \ std::vector<std::pair<std::string,\ double>>\ plantNames\ =\ \{\{\textcolor{stringliteral}{"{}Rose\ Plant"{}},\ 25.0\},\ \{\textcolor{stringliteral}{"{}Tulip\ Plant"{}},\ 30.0\},\ \{\textcolor{stringliteral}{"{}Daisy\ Plant"{}},\ 20.0\},\ \{\textcolor{stringliteral}{"{}Sunflower\ Plant"{}},\ 15.0\},\ \{\textcolor{stringliteral}{"{}Orchid\ Plant"{}},\ 40.0\},\ \{\textcolor{stringliteral}{"{}Lily\ Plant"{}},\ 35.0\}\};}
+\DoxyCodeLine{00054\ \ \ \ \ std::vector<std::pair<std::string,\ double>>\ potNames\ =\ \{\{\textcolor{stringliteral}{"{}Ceramic\ Pot"{}},\ 15.0\},\ \{\textcolor{stringliteral}{"{}Plastic\ Pot"{}},\ 10.0\},\ \{\textcolor{stringliteral}{"{}Terracotta\ Pot"{}},\ 12.0\},\ \{\textcolor{stringliteral}{"{}Wooden\ Pot"{}},\ 18.0\},\ \{\textcolor{stringliteral}{"{}Metal\ Pot"{}},\ 20.0\}\};}
+\DoxyCodeLine{00055\ \ \ \ \ std::vector<std::pair<std::string,\ double>>\ seedNames\ =\ \{\{\textcolor{stringliteral}{"{}Sunflower\ Seeds"{}},\ 5.0\},\ \{\textcolor{stringliteral}{"{}Rose\ Seeds"{}},\ 6.0\},\ \{\textcolor{stringliteral}{"{}Tulip\ Bulbs"{}},\ 7.0\},\ \{\textcolor{stringliteral}{"{}Daisy\ Seeds"{}},\ 4.0\},\ \{\textcolor{stringliteral}{"{}Orchid\ Seeds"{}},\ 8.0\}\};}
+\DoxyCodeLine{00056\ \ \ \ \ std::vector<std::pair<std::string,\ double>>\ decorationNames\ =\ \{\{\textcolor{stringliteral}{"{}Glitter\ Decoration"{}},\ 8.0\},\ \{\textcolor{stringliteral}{"{}Fairy\ Lights"{}},\ 10.0\},\ \{\textcolor{stringliteral}{"{}Mini\ Gnome"{}},\ 12.0\},\ \{\textcolor{stringliteral}{"{}Decorative\ Stones"{}},\ 6.0\},\ \{\textcolor{stringliteral}{"{}Plant\ Stakes"{}},\ 5.0\}\};}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{int}\ customerIdCounter\ =\ 0;}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{int}\ staffIdCounter\ =\ 0;}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{const}\ std::vector<CareStrategy*>\ careStrategies\ =\ \{\textcolor{keyword}{new}\ \mbox{\hyperlink{classRegularCareStrategy}{RegularCareStrategy}}(),\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classFertilizerBoostStrategy}{FertilizerBoostStrategy}}(),\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classWaterLimitingStrategy}{WaterLimitingStrategy}}()\};}
+\DoxyCodeLine{00060\ \};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

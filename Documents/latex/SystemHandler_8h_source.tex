@@ -19,23 +19,25 @@
 \DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{AddDecoration_8h}{AddDecoration.h}}"{}}}
 \DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{AddPot_8h}{AddPot.h}}"{}}}
 \DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{AddSeed_8h}{AddSeed.h}}"{}}}
-\DoxyCodeLine{00018\ }
-\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSystemHandler}{SystemHandler}}\ \{}
-\DoxyCodeLine{00020\ \textcolor{keyword}{protected}:}
-\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{classNurseryHub}{NurseryHub}}*\ nurseryHub;}
-\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{classGreenHouse}{GreenHouse}}*\ greenHouse;}
-\DoxyCodeLine{00023\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{classSystemHandler}{SystemHandler}}();}
-\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classSystemHandler}{\string~SystemHandler}}();}
-\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ systemMenue()\ =\ 0;}
-\DoxyCodeLine{00027\ \ \ \ \textcolor{comment}{//\ virtual\ void\ addSection()\ =\ 0;}}
-\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ addPlant()\ =\ 0;}
-\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ registerStaffMember()\ =\ 0;}
-\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ processCustomerOrder()\ =\ 0;}
-\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{classGreenHouse}{GreenHouse}}*\ getGreenHouse()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ greenHouse;\ \}}
-\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{classNurseryHub}{NurseryHub}}*\ getNurseryHub()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ nurseryHub;\ \}}
-\DoxyCodeLine{00033\ \};}
-\DoxyCodeLine{00034\ }
-\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SYSTEMHANDLER\_H}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}PlantMaker.h"{}}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSystemHandler}{SystemHandler}}\ \{}
+\DoxyCodeLine{00021\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{classNurseryHub}{NurseryHub}}*\ nurseryHub;}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{classGreenHouse}{GreenHouse}}*\ greenHouse;}
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{classPlantMaker}{PlantMaker}}*\ plantMaker;}
+\DoxyCodeLine{00025\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{classSystemHandler}{SystemHandler}}();}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classSystemHandler}{\string~SystemHandler}}();}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ systemMenue()\ =\ 0;}
+\DoxyCodeLine{00029\ \ \ \ \textcolor{comment}{//\ virtual\ void\ addSection()\ =\ 0;}}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ addPlant()\ =\ 0;}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ registerStaffMember()\ =\ 0;}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ processCustomerOrder()\ =\ 0;}
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{classGreenHouse}{GreenHouse}}*\ getGreenHouse()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ greenHouse;\ \}}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{classNurseryHub}{NurseryHub}}*\ getNurseryHub()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ nurseryHub;\ \}}
+\DoxyCodeLine{00035\ \};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SYSTEMHANDLER\_H}}
 
 \end{DoxyCode}

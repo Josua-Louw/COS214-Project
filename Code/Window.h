@@ -4,6 +4,15 @@
 #include <gtkmm.h>
 #include <vector>
 
+/**
+ * @file Window.h
+ * @brief Declaration of the Window class for the Greenhouse Management System GUI.
+ * @details This class manages the main window of the application, including layout and navigation
+ * between different sections such as Plant Management, Staff Management, Order Processing, and
+ * Greenhouse View.
+ * 
+ */
+
 class OrderBuilder;
 
 class GUISystemHandler;
@@ -28,10 +37,21 @@ enum class processOrderState {
     SELF_ORDER
 };
 
+/**
+ * @class Window
+ * @brief Main application window for the Greenhouse Management System.
+ * @details This class sets up the GUI layout and handles navigation between different
+ * management sections. It interacts with the GUISystemHandler to perform actions
+ * based on user input.
+ */
+
 class Window : public Gtk::Window {
 public:
 
-  
+  /**
+   * @brief Constructor for the Window class.
+   * @param guiSystem Pointer to the GUISystemHandler instance for handling system operations.
+   */
   Window(GUISystemHandler* guiSystem);
   virtual ~Window();
   

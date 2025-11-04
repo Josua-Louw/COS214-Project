@@ -20,7 +20,7 @@ digraph "/home/josua/Code/C++/COS214/COS214-Project/Code/AddPlant.h"
   Node5 -> Node8 [id="edge7_Node000005_Node000008",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node8 [id="Node000008",label="/home/josua/Code/C\l++/COS214/COS214-Project\l/Code/SystemHandler.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$SystemHandler_8h_source.html",tooltip=" "];
   Node8 -> Node9 [id="edge8_Node000008_Node000009",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node9 [id="Node000009",label="/home/josua/Code/C\l++/COS214/COS214-Project\l/Code/GUISystemHandler.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$GUISystemHandler_8h_source.html",tooltip=" "];
+  Node9 [id="Node000009",label="/home/josua/Code/C\l++/COS214/COS214-Project\l/Code/GUISystemHandler.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$GUISystemHandler_8h.html",tooltip="Declaration of the GUISystemHandler class for managing greenhouse operations."];
   Node8 -> Node10 [id="edge9_Node000008_Node000010",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node10 [id="Node000010",label="/home/josua/Code/C\l++/COS214/COS214-Project\l/Code/TextSystemHandler.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$TextSystemHandler_8h_source.html",tooltip=" "];
   Node5 -> Node11 [id="edge10_Node000005_Node000011",dir="back",color="steelblue1",style="solid",tooltip=" "];
