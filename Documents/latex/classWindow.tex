@@ -2,6 +2,15 @@
 \hypertarget{classWindow}{}\label{classWindow}\index{Window@{Window}}
 
 
+Main application window for the Greenhouse Management System.  
+
+
+
+
+{\ttfamily \#include $<$Window.\+h$>$}
+
+
+
 Inheritance diagram for Window\+:
 % FIG 0
 
@@ -11,9 +20,8 @@ Collaboration diagram for Window\+:
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{classWindow_a6148ec9d09f760df30540397a6926212}\label{classWindow_a6148ec9d09f760df30540397a6926212} 
-{\bfseries Window} (\mbox{\hyperlink{classGUISystemHandler}{GUISystem\+Handler}} \texorpdfstring{$\ast$}{*}gui\+System)
-\item 
+\mbox{\hyperlink{classWindow_a6148ec9d09f760df30540397a6926212}{Window}} (\mbox{\hyperlink{classGUISystemHandler}{GUISystem\+Handler}} \texorpdfstring{$\ast$}{*}gui\+System)
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{classWindow}{Window} class. \end{DoxyCompactList}\item 
 \Hypertarget{classWindow_aac1b73e1b4df54fabac4b9cbddb43d24}\label{classWindow_aac1b73e1b4df54fabac4b9cbddb43d24} 
 void {\bfseries update\+Status} (const std\+::string \&message)
 \item 
@@ -136,7 +144,30 @@ Gtk\+::\+Label \texorpdfstring{$\ast$}{*} {\bfseries m\+\_\+status\+\_\+label}
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+Main application window for the Greenhouse Management System. 
+
+This class sets up the GUI layout and handles navigation between different management sections. It interacts with the \doxylink{classGUISystemHandler}{GUISystem\+Handler} to perform actions based on user input. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classWindow_a6148ec9d09f760df30540397a6926212}\label{classWindow_a6148ec9d09f760df30540397a6926212} 
+\index{Window@{Window}!Window@{Window}}
+\index{Window@{Window}!Window@{Window}}
+\doxysubsubsection{\texorpdfstring{Window()}{Window()}}
+{\footnotesize\ttfamily Window\+::\+Window (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGUISystemHandler}{GUISystem\+Handler}} \texorpdfstring{$\ast$}{*}}]{gui\+System }\end{DoxyParamCaption})}
+
+
+
+Constructor for the \doxylink{classWindow}{Window} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gui\+System} & Pointer to the \doxylink{classGUISystemHandler}{GUISystem\+Handler} instance for handling system operations. \\
+\hline
+\end{DoxyParams}
+
+
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/Window.\+h\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\mbox{\hyperlink{Window_8h}{Window.\+h}}\item 
 /home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/Window.\+cpp\end{DoxyCompactItemize}

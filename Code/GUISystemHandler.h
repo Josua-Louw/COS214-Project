@@ -10,6 +10,24 @@
 #include "WaterLimitingStrategy.h"
 #include "RegularCareStrategy.h"
 
+/**
+ * @file GUISystemHandler.h
+ * @brief Declaration of the GUISystemHandler class for managing greenhouse operations.
+ * @details This class implements the SystemHandler interface to provide functionality
+ * for plant management, staff registration, order processing, and greenhouse overview.
+ * It interacts with the GUI components to facilitate user actions within the greenhouse
+ * management system.
+ */
+
+ /**
+  * @class GUISystemHandler
+  * @brief Manages greenhouse operations and interfaces with the GUI.
+  * @details This class extends SystemHandler to implement specific functionalities
+  * such as adding plants, registering staff members, processing customer orders,
+  * and providing summaries of the greenhouse state. It utilizes various care strategies
+  * to manage plant care effectively.
+  */
+
 class GUISystemHandler : public SystemHandler {
 public:
     GUISystemHandler();

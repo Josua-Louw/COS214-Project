@@ -2,6 +2,15 @@
 \hypertarget{classGUISystemHandler}{}\label{classGUISystemHandler}\index{GUISystemHandler@{GUISystemHandler}}
 
 
+Manages greenhouse operations and interfaces with the GUI.  
+
+
+
+
+{\ttfamily \#include $<$GUISystem\+Handler.\+h$>$}
+
+
+
 Inheritance diagram for GUISystem\+Handler\+:
 % FIG 0
 
@@ -42,8 +51,15 @@ std\+::string {\bfseries get\+Staff\+Info} ()
 \mbox{\hyperlink{classNurseryHub}{Nursery\+Hub}} \texorpdfstring{$\ast$}{*} {\bfseries nursery\+Hub}
 \item 
 \mbox{\hyperlink{classGreenHouse}{Green\+House}} \texorpdfstring{$\ast$}{*} {\bfseries green\+House}
+\item 
+\mbox{\hyperlink{classPlantMaker}{Plant\+Maker}} \texorpdfstring{$\ast$}{*} {\bfseries plant\+Maker}
 \end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+Manages greenhouse operations and interfaces with the GUI. 
+
+This class extends \doxylink{classSystemHandler}{System\+Handler} to implement specific functionalities such as adding plants, registering staff members, processing customer orders, and providing summaries of the greenhouse state. It utilizes various care strategies to manage plant care effectively. 
 
 \doxysubsection{Member Function Documentation}
 \Hypertarget{classGUISystemHandler_a4001304cfbfc5801f090e0a59039bcc9}\label{classGUISystemHandler_a4001304cfbfc5801f090e0a59039bcc9} 
@@ -90,5 +106,5 @@ Implements \mbox{\hyperlink{classSystemHandler}{System\+Handler}}.
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/GUISystem\+Handler.\+h\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\mbox{\hyperlink{GUISystemHandler_8h}{GUISystem\+Handler.\+h}}\item 
 /home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/GUISystem\+Handler.\+cpp\end{DoxyCompactItemize}

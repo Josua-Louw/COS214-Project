@@ -77,6 +77,11 @@ $(function() {
   <div class="headertitle"><div class="title">Window Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Main application window for the Greenhouse Management System.  
+ <a href="classWindow.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Window_8h_source.html">Window.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for Window:</div>
 <div class="dyncontent">
@@ -90,8 +95,8 @@ Collaboration diagram for Window:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a6148ec9d09f760df30540397a6926212" id="r_a6148ec9d09f760df30540397a6926212"><td class="memItemLeft" align="right" valign="top"><a id="a6148ec9d09f760df30540397a6926212" name="a6148ec9d09f760df30540397a6926212"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Window</b> (<a class="el" href="classGUISystemHandler.html">GUISystemHandler</a> *guiSystem)</td></tr>
+<tr class="memitem:a6148ec9d09f760df30540397a6926212" id="r_a6148ec9d09f760df30540397a6926212"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWindow.html#a6148ec9d09f760df30540397a6926212">Window</a> (<a class="el" href="classGUISystemHandler.html">GUISystemHandler</a> *guiSystem)</td></tr>
+<tr class="memdesc:a6148ec9d09f760df30540397a6926212"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for the <a class="el" href="classWindow.html" title="Main application window for the Greenhouse Management System.">Window</a> class.  <br /></td></tr>
 <tr class="separator:a6148ec9d09f760df30540397a6926212"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aac1b73e1b4df54fabac4b9cbddb43d24" id="r_aac1b73e1b4df54fabac4b9cbddb43d24"><td class="memItemLeft" align="right" valign="top"><a id="aac1b73e1b4df54fabac4b9cbddb43d24" name="aac1b73e1b4df54fabac4b9cbddb43d24"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>updateStatus</b> (const std::string &amp;message)</td></tr>
@@ -214,6 +219,36 @@ Gtk::Widget *&#160;</td><td class="memItemRight" valign="bottom"><b>m_current_co
 Gtk::Label *&#160;</td><td class="memItemRight" valign="bottom"><b>m_status_label</b></td></tr>
 <tr class="separator:ab25cc0e43516178ff187b973057f1fc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Main application window for the Greenhouse Management System. </p>
+<p>This class sets up the GUI layout and handles navigation between different management sections. It interacts with the <a class="el" href="classGUISystemHandler.html" title="Manages greenhouse operations and interfaces with the GUI.">GUISystemHandler</a> to perform actions based on user input. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a6148ec9d09f760df30540397a6926212" name="a6148ec9d09f760df30540397a6926212"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6148ec9d09f760df30540397a6926212">&#9670;&#160;</a></span>Window()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Window::Window </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classGUISystemHandler.html">GUISystemHandler</a> *&#160;</td>
+          <td class="paramname"><em>guiSystem</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor for the <a class="el" href="classWindow.html" title="Main application window for the Greenhouse Management System.">Window</a> class. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">guiSystem</td><td>Pointer to the <a class="el" href="classGUISystemHandler.html" title="Manages greenhouse operations and interfaces with the GUI.">GUISystemHandler</a> instance for handling system operations. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>/home/josua/Code/C++/COS214/COS214-Project/Code/<a class="el" href="Window_8h_source.html">Window.h</a></li>
 <li>/home/josua/Code/C++/COS214/COS214-Project/Code/<b>Window.cpp</b></li>

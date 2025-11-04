@@ -1,0 +1,49 @@
+\doxysection{/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\+Window.h File Reference}
+\hypertarget{Window_8h}{}\label{Window_8h}\index{/home/josua/Code/C++/COS214/COS214-\/Project/Code/Window.h@{/home/josua/Code/C++/COS214/COS214-\/Project/Code/Window.h}}
+
+
+Declaration of the \doxylink{classWindow}{Window} class for the Greenhouse Management System GUI.  
+
+
+{\ttfamily \#include $<$gtkmm.\+h$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+Include dependency graph for Window.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classWindow}{Window}}
+\begin{DoxyCompactList}\small\item\em Main application window for the Greenhouse Management System. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{Window_8h_a6ce0d729486de75b8b2f5e0b9853bdfd}\label{Window_8h_a6ce0d729486de75b8b2f5e0b9853bdfd} 
+enum class {\bfseries add\+Plant\+State} \{ \newline
+{\bfseries NONE}
+, {\bfseries PLANT}
+, {\bfseries POT}
+, {\bfseries SEED}
+, \newline
+{\bfseries DECORATION}
+ \}
+\item 
+\Hypertarget{Window_8h_a1fe7472ea9de0caad776d442692fe300}\label{Window_8h_a1fe7472ea9de0caad776d442692fe300} 
+enum class {\bfseries register\+Staff\+State} \{ {\bfseries NONE}
+, {\bfseries PLANT\+\_\+\+CARETAKER}
+, {\bfseries SALES\+\_\+\+MANAGER}
+ \}
+\item 
+\Hypertarget{Window_8h_af69c35413c9a6c0abc87d889e49036d1}\label{Window_8h_af69c35413c9a6c0abc87d889e49036d1} 
+enum class {\bfseries process\+Order\+State} \{ {\bfseries NONE}
+, {\bfseries CUSTOMER\+\_\+\+ORDER}
+, {\bfseries SELF\+\_\+\+ORDER}
+ \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Declaration of the \doxylink{classWindow}{Window} class for the Greenhouse Management System GUI. 
+
+This class manages the main window of the application, including layout and navigation between different sections such as \doxylink{classPlant}{Plant} Management, \doxylink{classStaff}{Staff} Management, \doxylink{classOrder}{Order} Processing, and Greenhouse View. 

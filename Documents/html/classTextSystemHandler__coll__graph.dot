@@ -13,4 +13,6 @@ digraph "TextSystemHandler"
   Node4 [id="Node000004",label="NurseryMediator",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$classNurseryMediator.html",tooltip="Abstract Mediator in the Mediator design pattern."];
   Node5 -> Node2 [id="edge4_Node000002_Node000005",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" greenHouse",fontcolor="grey" ];
   Node5 [id="Node000005",label="GreenHouse",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$classGreenHouse.html",tooltip="GreenHouse is the common interface for Section (composite) and Plant (leaf). It defines operations us..."];
+  Node6 -> Node2 [id="edge5_Node000002_Node000006",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" plantMaker",fontcolor="grey" ];
+  Node6 [id="Node000006",label="PlantMaker",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",URL="$classPlantMaker.html",tooltip=" "];
 }
