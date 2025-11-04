@@ -1,0 +1,89 @@
+\doxysection{Senescence\+State Class Reference}
+\hypertarget{classSenescenceState}{}\label{classSenescenceState}\index{SenescenceState@{SenescenceState}}
+
+
+Represents the senescence state in a plant\textquotesingle{}s lifecycle.  
+
+
+
+
+{\ttfamily \#include $<$Senescence\+State.\+h$>$}
+
+
+
+Inheritance diagram for Senescence\+State\+:
+% FIG 0
+
+
+Collaboration diagram for Senescence\+State\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classSenescenceState_ab877c165d46d275be66c66eafc856710}{transition\+To\+Next}} () override
+\begin{DoxyCompactList}\small\item\em Transitions the plant to the next state in its lifecycle. \end{DoxyCompactList}\item 
+\Hypertarget{classSenescenceState_af8ab7e7d10c57d210a10616c9ae45097}\label{classSenescenceState_af8ab7e7d10c57d210a10616c9ae45097} 
+{\bfseries Senescence\+State} (\mbox{\hyperlink{classGreenHousePlant}{Green\+House\+Plant}} \texorpdfstring{$\ast$}{*}plant)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classPlantState}{Plant\+State}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classPlantState_a161ce94f53bbe443c85e313688aa63b0}{\texorpdfstring{$\sim$}{\string~}\+Plant\+State}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor to ensure proper cleanup in derived classes. \end{DoxyCompactList}\item 
+{\bfseries Plant\+State} (\mbox{\hyperlink{classGreenHousePlant}{Green\+House\+Plant}} \texorpdfstring{$\ast$}{*}plant)
+\item 
+void {\bfseries set\+Plant\+Alive} (bool plant\+Exist)
+\item 
+bool {\bfseries is\+Alive} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classPlantState}{Plant\+State}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::atomic$<$ bool $>$ {\bfseries plant\+Alive} \{true\}
+\item 
+\mbox{\hyperlink{classGreenHousePlant}{Green\+House\+Plant}} \texorpdfstring{$\ast$}{*} {\bfseries plant\+\_\+} = nullptr
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents the senescence state in a plant\textquotesingle{}s lifecycle. 
+
+The \doxylink{classSenescenceState}{Senescence\+State} class models the phase where a plant is aging and no longer actively growing. This is the final stage before the plant transitions to a dying state. It inherits from \doxylink{classPlantState}{Plant\+State}, part of the plant lifecycle state machine. \begin{DoxyNote}{Note}
+This is the end of the plant\textquotesingle{}s active lifecycle, and most care actions are ineffective. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{classPlantState}{Plant\+State}, \doxylink{classDyingState}{Dying\+State} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classSenescenceState_ab877c165d46d275be66c66eafc856710}\label{classSenescenceState_ab877c165d46d275be66c66eafc856710} 
+\index{SenescenceState@{SenescenceState}!transitionToNext@{transitionToNext}}
+\index{transitionToNext@{transitionToNext}!SenescenceState@{SenescenceState}}
+\doxysubsubsection{\texorpdfstring{transitionToNext()}{transitionToNext()}}
+{\footnotesize\ttfamily void Senescence\+State\+::transition\+To\+Next (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Transitions the plant to the next state in its lifecycle. 
+
+Moves the plant from the senescence state to the dying state, marking the end of its lifecycle. \begin{DoxyNote}{Note}
+The next state is typically the \doxylink{classDyingState}{Dying\+State}. 
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{classDyingState}{Dying\+State} 
+\end{DoxySeeAlso}
+
+
+Implements \mbox{\hyperlink{classPlantState_a21cd156c2af73852ff8f0bdf91a923f7}{Plant\+State}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\mbox{\hyperlink{SenescenceState_8h}{Senescence\+State.\+h}}\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/Senescence\+State.\+cpp\end{DoxyCompactItemize}

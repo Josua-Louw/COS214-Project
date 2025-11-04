@@ -1,0 +1,114 @@
+\doxysection{Iterator\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classIterator}{}\label{classIterator}\index{Iterator$<$ T $>$@{Iterator$<$ T $>$}}
+
+
+Templated abstract interface defining the traversal operations for iterating over collections of type T objects in the \doxylink{classGreenHouse}{Green\+House} system.  
+
+
+
+
+{\ttfamily \#include $<$Iterator.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classIterator_ace58b658db7a3023dd07ffc5e66d992f}\label{classIterator_ace58b658db7a3023dd07ffc5e66d992f} 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Iterator} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor for proper cleanup of derived classes. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classIterator_a6f13cc79a1574086c63ce4ddba1d3d9f}{first}} ()=0
+\begin{DoxyCompactList}\small\item\em Resets the iterator to the first element in the collection. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classIterator_a94a7b0c50676cd9ee924eddece41d8d4}{next}} ()=0
+\begin{DoxyCompactList}\small\item\em Advances the iterator to the next element in the collection. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classIterator_a9be4cac2471ddcf68a75c12088498d5f}{is\+Done}} () const =0
+\begin{DoxyCompactList}\small\item\em Checks if the iterator has reached the end of the collection. \end{DoxyCompactList}\item 
+virtual T \mbox{\hyperlink{classIterator_a600526b76eff8dad301ad8a075094a67}{current\+Item}} () const =0
+\begin{DoxyCompactList}\small\item\em Gets the current element in the iteration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\newline
+class Iterator$<$ T $>$}
+Templated abstract interface defining the traversal operations for iterating over collections of type T objects in the \doxylink{classGreenHouse}{Green\+House} system. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type of element to iterate over (e.\+g., Plant\texorpdfstring{$\ast$}{*}, Item\texorpdfstring{$\ast$}{*}, etc.)\\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyNote}{Note}
+This class is abstract with pure virtual functions first, next, is\+Done, current\+Item. Consider templating this class (Iterator$<$\+T$>$) later to allow for the creators of iterators for staff, customers, etc. 
+\end{DoxyNote}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classIterator_a600526b76eff8dad301ad8a075094a67}\label{classIterator_a600526b76eff8dad301ad8a075094a67} 
+\index{Iterator$<$ T $>$@{Iterator$<$ T $>$}!currentItem@{currentItem}}
+\index{currentItem@{currentItem}!Iterator$<$ T $>$@{Iterator$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{currentItem()}{currentItem()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+virtual T \mbox{\hyperlink{classIterator}{Iterator}}$<$ T $>$\+::current\+Item (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Gets the current element in the iteration. 
+
+\begin{DoxyReturn}{Returns}
+The current element of type T. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classItemIterator_a82f47a8fac2a80802181169c9c507685}{Item\+Iterator}}.
+
+\Hypertarget{classIterator_a6f13cc79a1574086c63ce4ddba1d3d9f}\label{classIterator_a6f13cc79a1574086c63ce4ddba1d3d9f} 
+\index{Iterator$<$ T $>$@{Iterator$<$ T $>$}!first@{first}}
+\index{first@{first}!Iterator$<$ T $>$@{Iterator$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{first()}{first()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+virtual void \mbox{\hyperlink{classIterator}{Iterator}}$<$ T $>$\+::first (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Resets the iterator to the first element in the collection. 
+
+
+
+Implemented in \mbox{\hyperlink{classItemIterator_a8a44eb7958210175ff5a44a74a96d57a}{Item\+Iterator}}.
+
+\Hypertarget{classIterator_a9be4cac2471ddcf68a75c12088498d5f}\label{classIterator_a9be4cac2471ddcf68a75c12088498d5f} 
+\index{Iterator$<$ T $>$@{Iterator$<$ T $>$}!isDone@{isDone}}
+\index{isDone@{isDone}!Iterator$<$ T $>$@{Iterator$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{isDone()}{isDone()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+virtual bool \mbox{\hyperlink{classIterator}{Iterator}}$<$ T $>$\+::is\+Done (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Checks if the iterator has reached the end of the collection. 
+
+\begin{DoxyReturn}{Returns}
+true if all elements have been iterated over, false otherwise. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classItemIterator_a41946dbbeacd6740989f098a262a90d7}{Item\+Iterator}}.
+
+\Hypertarget{classIterator_a94a7b0c50676cd9ee924eddece41d8d4}\label{classIterator_a94a7b0c50676cd9ee924eddece41d8d4} 
+\index{Iterator$<$ T $>$@{Iterator$<$ T $>$}!next@{next}}
+\index{next@{next}!Iterator$<$ T $>$@{Iterator$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{next()}{next()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+virtual void \mbox{\hyperlink{classIterator}{Iterator}}$<$ T $>$\+::next (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Advances the iterator to the next element in the collection. 
+
+
+
+Implemented in \mbox{\hyperlink{classItemIterator_a3d06941aa6db90a941fe70427d8fc70c}{Item\+Iterator}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\mbox{\hyperlink{Iterator_8h}{Iterator.\+h}}\end{DoxyCompactItemize}

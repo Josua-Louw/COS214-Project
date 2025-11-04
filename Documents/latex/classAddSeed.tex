@@ -1,0 +1,146 @@
+\doxysection{Add\+Seed Class Reference}
+\hypertarget{classAddSeed}{}\label{classAddSeed}\index{AddSeed@{AddSeed}}
+
+
+Concrete class for adding seed plants to an order in a greenhouse management system. This class implements the build\+Part method to add seed plants to an order based on the item name.  
+
+
+
+
+{\ttfamily \#include $<$Add\+Seed.\+h$>$}
+
+
+
+Inheritance diagram for Add\+Seed\+:
+% FIG 0
+
+
+Collaboration diagram for Add\+Seed\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classAddSeed_af6e522833f388e45d9ddbbc0ddede530}{Add\+Seed}} (\mbox{\hyperlink{classGreenHouse}{Green\+House}} \texorpdfstring{$\ast$}{*}gh)
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{classAddSeed}{Add\+Seed}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classOrder}{Order}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classAddSeed_a15874d20e5ab57798f316eb1290d282f}{build\+Part}} (\mbox{\hyperlink{classOrder}{Order}} \texorpdfstring{$\ast$}{*}order, std\+::string item\+Name)
+\begin{DoxyCompactList}\small\item\em Builds the part of the order by adding seed plants based on the item name. The method searches for seed plants in the greenhouse and adds them to the order. The method checks the plant type and adds it to the order if it is a seed plant. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classAddSeed_a1e328948bccaf3f8aa5ea763d6a536b1}{check\+Type}} (\mbox{\hyperlink{classItem}{Item}} \texorpdfstring{$\ast$}{*}item)
+\begin{DoxyCompactList}\small\item\em Checks if the given plant meets the criteria for being added to the order. The method verifies if the plant matches the required type for inclusion in the order. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classOrderBuilder}{Order\+Builder}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classOrderBuilder_a17c935b73d886a71b07a7fc90a61de3a}{Order\+Builder}} (\mbox{\hyperlink{classGreenHouse}{Green\+House}} \texorpdfstring{$\ast$}{*}gh)
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{classOrderBuilder}{Order\+Builder}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classGreenHouse}{Green\+House}} \texorpdfstring{$\ast$}{*} {\bfseries get\+Green\+House} () const
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Order\+Builder} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor for proper cleanup of derived classes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classOrderBuilder}{Order\+Builder}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classGreenHouse}{Green\+House}} \texorpdfstring{$\ast$}{*} {\bfseries green\+House}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Concrete class for adding seed plants to an order in a greenhouse management system. This class implements the build\+Part method to add seed plants to an order based on the item name. 
+
+\begin{DoxyNote}{Note}
+This class inherits from the \doxylink{classOrderBuilder}{Order\+Builder} abstract class. 
+\end{DoxyNote}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classAddSeed_af6e522833f388e45d9ddbbc0ddede530}\label{classAddSeed_af6e522833f388e45d9ddbbc0ddede530} 
+\index{AddSeed@{AddSeed}!AddSeed@{AddSeed}}
+\index{AddSeed@{AddSeed}!AddSeed@{AddSeed}}
+\doxysubsubsection{\texorpdfstring{AddSeed()}{AddSeed()}}
+{\footnotesize\ttfamily Add\+Seed\+::\+Add\+Seed (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGreenHouse}{Green\+House}} \texorpdfstring{$\ast$}{*}}]{gh }\end{DoxyParamCaption})}
+
+
+
+Constructor for \doxylink{classAddSeed}{Add\+Seed}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gh} & Pointer to the \doxylink{classGreenHouse}{Green\+House} instance. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classAddSeed_a15874d20e5ab57798f316eb1290d282f}\label{classAddSeed_a15874d20e5ab57798f316eb1290d282f} 
+\index{AddSeed@{AddSeed}!buildPart@{buildPart}}
+\index{buildPart@{buildPart}!AddSeed@{AddSeed}}
+\doxysubsubsection{\texorpdfstring{buildPart()}{buildPart()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classOrder}{Order}} \texorpdfstring{$\ast$}{*} Add\+Seed\+::build\+Part (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classOrder}{Order}} \texorpdfstring{$\ast$}{*}}]{order,  }\item[{std\+::string}]{item\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Builds the part of the order by adding seed plants based on the item name. The method searches for seed plants in the greenhouse and adds them to the order. The method checks the plant type and adds it to the order if it is a seed plant. 
+
+Builds the part of the order by adding seed plants based on the item name. The method searches for seed plants in the greenhouse and adds them to the order. The method checks the plant type and adds it to the order if it matches the seed type.
+
+
+\begin{DoxyParams}{Parameters}
+{\em order} & Pointer to the current order. \\
+\hline
+{\em item\+Name} & Name of the seed item to be added.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the updated order.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em order} & Pointer to the current order. \\
+\hline
+{\em item\+Name} & Name of the seed plant item to be added.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the updated order. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classOrderBuilder_af8b78c8774a790ed4533eafa541af34c}{Order\+Builder}}.
+
+\Hypertarget{classAddSeed_a1e328948bccaf3f8aa5ea763d6a536b1}\label{classAddSeed_a1e328948bccaf3f8aa5ea763d6a536b1} 
+\index{AddSeed@{AddSeed}!checkType@{checkType}}
+\index{checkType@{checkType}!AddSeed@{AddSeed}}
+\doxysubsubsection{\texorpdfstring{checkType()}{checkType()}}
+{\footnotesize\ttfamily bool Add\+Seed\+::check\+Type (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classItem}{Item}} \texorpdfstring{$\ast$}{*}}]{item }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Checks if the given plant meets the criteria for being added to the order. The method verifies if the plant matches the required type for inclusion in the order. 
+
+Checks if the given plant is of seed type. The method verifies if the plant matches the criteria for being classified as a seed plant.
+
+
+\begin{DoxyParams}{Parameters}
+{\em plant} & Pointer to the plant to be checked.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the plant is a seed plant, false otherwise.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em plant} & Pointer to the plant to be checked.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the plant is a seed, false otherwise. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classOrderBuilder}{Order\+Builder}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\mbox{\hyperlink{AddSeed_8h}{Add\+Seed.\+h}}\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\mbox{\hyperlink{AddSeed_8cpp}{Add\+Seed.\+cpp}}\end{DoxyCompactItemize}

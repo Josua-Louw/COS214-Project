@@ -1,0 +1,59 @@
+\doxysection{Nursery\+Hub.\+h}
+\hypertarget{NurseryHub_8h_source}{}\label{NurseryHub_8h_source}\index{/home/josua/Code/C++/COS214/COS214-\/Project/Code/NurseryHub.h@{/home/josua/Code/C++/COS214/COS214-\/Project/Code/NurseryHub.h}}
+\mbox{\hyperlink{NurseryHub_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ NURSERYHUB\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ NURSERYHUB\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{NurseryMediator_8h}{NurseryMediator.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classCommand}{Command}};}
+\DoxyCodeLine{00007\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classGreenHousePlant}{GreenHousePlant}};}
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classPlant}{Plant}};}
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classStaff}{Staff}};}
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classCustomer}{Customer}};}
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classOrderBuilder}{OrderBuilder}};}
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classGreenHouse}{GreenHouse}};}
+\DoxyCodeLine{00013\ \textcolor{keyword}{enum\ class}\ PLANT\_TYPE;}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{using\ }CommandPtr\ =\ std::shared\_ptr<Command>;}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classNurseryHub}{NurseryHub}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classNurseryMediator}{NurseryMediator}}\ \{}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{comment}{//std::vector<Plant*>\ plants;\ \ \ \ \ \ ///<\ Plants\ registered\ with\ the\ mediator.}}
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{classStaff}{Staff}}*\ manager\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{classStaff}{Staff}}*\ staff\ =\ \textcolor{keyword}{nullptr};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00038\ \ \ \ \ std::vector<Customer*>\ customers;}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{classGreenHouse}{GreenHouse}}*\ inventoryRoot\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00041\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{classNurseryHub}{NurseryHub}}();}
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{classNurseryHub_a44051a8153a9b77f0333cef4264a178c}{\string~NurseryHub}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ createMgr();}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNurseryHub_a76f4fb7473188b1904dfe491fb976978}{assign}}(CommandPtr\ cmd)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNurseryHub_a03feb716f9e3d82d669f32f555e96617}{notify}}(\textcolor{keywordtype}{void}*\ sender,\ std::string\ event,\ std::string\ data)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNurseryHub_afd013abfc66cbebe13fb6000178bedf3}{registerPlant}}(\mbox{\hyperlink{classPlant}{Plant}}*\ p)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNurseryHub_a78be5c30e388f9be7f3c4ad175c8a0d9}{registerStaff}}(\mbox{\hyperlink{classStaff}{Staff}}*\ s)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{comment}{//\ bool\ isCareBusy(const\ GreenHousePlant*\ p)\ const\ override;}}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{comment}{//\ bool\ wasLastCareSuccessful(const\ GreenHousePlant*\ p)\ const\ override;}}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{void}\ beginCare(\mbox{\hyperlink{classGreenHousePlant}{GreenHousePlant}}*\ p,\ std::string\ type)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{void}\ finishCare(\mbox{\hyperlink{classGreenHousePlant}{GreenHousePlant}}*\ p,\ std::string\ type,\ \textcolor{keywordtype}{bool}\ success)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ std::vector<std::string>\ getPlantNamesByType(\mbox{\hyperlink{classOrderBuilder}{OrderBuilder}}*\ builder)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{double}\ sell(\mbox{\hyperlink{classOrder}{Order}}*\ order)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{void}\ setInventoryRoot(\mbox{\hyperlink{classGreenHouse}{GreenHouse}}*\ r)\ \{\ inventoryRoot\ =\ r;\ \}}
+\DoxyCodeLine{00082\ \ \ \ \ \mbox{\hyperlink{classGreenHouse}{GreenHouse}}*\ getInventoryRoot()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ inventoryRoot;\ \}}
+\DoxyCodeLine{00083\ \ \ \ \ std::string\ getStaffInfo()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00084\ \};}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

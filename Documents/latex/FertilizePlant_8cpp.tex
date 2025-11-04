@@ -1,0 +1,19 @@
+\doxysection{/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\+Fertilize\+Plant.cpp File Reference}
+\hypertarget{FertilizePlant_8cpp}{}\label{FertilizePlant_8cpp}\index{/home/josua/Code/C++/COS214/COS214-\/Project/Code/FertilizePlant.cpp@{/home/josua/Code/C++/COS214/COS214-\/Project/Code/FertilizePlant.cpp}}
+
+
+Implementation of the \doxylink{classFertilizePlant}{Fertilize\+Plant} command class.  
+
+
+{\ttfamily \#include "{}Fertilize\+Plant.\+h"{}}\newline
+{\ttfamily \#include "{}Green\+House\+Plant.\+h"{}}\newline
+{\ttfamily \#include "{}Care\+Strategy.\+h"{}}\newline
+{\ttfamily \#include "{}Plant\+State.\+h"{}}\newline
+Include dependency graph for Fertilize\+Plant.\+cpp\+:
+% FIG 0
+
+
+\doxysubsection{Detailed Description}
+Implementation of the \doxylink{classFertilizePlant}{Fertilize\+Plant} command class. 
+
+Executes the fertilization task for a specific greenhouse plant, calling Green\+House\+Plant’s feed method, which applies the fertilization strategy (FR3, Strategy Pattern) and updates the plant’s state (FR4, State Pattern). Assigned to \doxylink{classPlantCaretaker}{Plant\+Caretaker} via \doxylink{classNurseryHub}{Nursery\+Hub} (Mediator, FR7). Supports the \doxylink{classCommand}{Command} Pattern (FR5). 

@@ -21,6 +21,7 @@ class Order {
 
 private:
 	std::vector<OrderPlant*> items;
+	std::vector<Item*> allItems;
 	Customer* customer = nullptr;
 	PlantType* activePlant = nullptr;
 public:
@@ -60,6 +61,12 @@ public:
 	 * @brief Prints the order details.
 	 */
 	void printOrder() const;
+
+	/**
+	 * @brief Sell the items from the greenhouse
+	 * @return Total revenue from selling the items
+	 */
+	double sellOrder(GreenHouse* gh);
 };
 
 #endif

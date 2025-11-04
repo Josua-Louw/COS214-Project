@@ -1,0 +1,33 @@
+\doxysection{Seedling\+State.\+h}
+\hypertarget{SeedlingState_8h_source}{}\label{SeedlingState_8h_source}\index{/home/josua/Code/C++/COS214/COS214-\/Project/Code/SeedlingState.h@{/home/josua/Code/C++/COS214/COS214-\/Project/Code/SeedlingState.h}}
+\mbox{\hyperlink{SeedlingState_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SEEDLING\_STATE\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SEEDLING\_STATE\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <chrono>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{PlantState_8h}{PlantState.h}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}DyingState.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{JuvenileState_8h}{JuvenileState.h}}"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{using\ }CommandPtr\ =\ std::shared\_ptr<Command>;}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSeedlingState}{SeedlingState}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classPlantState}{PlantState}}\ \{}
+\DoxyCodeLine{00029\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSeedlingState_aae560a23ebd8cc0b7d121de86f403d1f}{transitionToNext}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classSeedlingState}{SeedlingState}}(\mbox{\hyperlink{classGreenHousePlant}{GreenHousePlant}}*\ plant);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{classSeedlingState}{\string~SeedlingState}}()\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}deleting\ SeedlingState"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00044\ \ \ \ \ \};}
+\DoxyCodeLine{00045\ \};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SEEDLING\_STATE\_H}}
+
+\end{DoxyCode}

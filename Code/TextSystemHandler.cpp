@@ -101,7 +101,7 @@ void TextSystemHandler::addPlant() {
     switch (itemType)
     {
     case 1:
-        newItem = new Plant(itemName, itemPrice);
+        newItem = new Plant(itemName, itemPrice, plantMaker);
         break;
     case 2:
         newItem = new PotAdapter(itemName, itemPrice);
@@ -151,42 +151,42 @@ void TextSystemHandler::processCustomerOrder() {
     std::getline(std::cin, customerID);
     std::cout << "Enter number of items to order: ";
     int numItems = getint();
-    std::vector<std::string> itemNames;
-    std::vector<OrderBuilder*> builders;
-    for (int i = 0; i < numItems; ++i) {
-        std::cout << "1. Plant" << std::endl;
-        std::cout << "2. Pot" << std::endl;
-        std::cout << "3. Seed Packet" << std::endl;
-        std::cout << "4. Decoration" << std::endl;
-        std::cout << "Select item type to order (1-4): ";
-        int itemType = getint();
-        std::cout << "Enter item name: ";
-        std::string itemName;
-        std::getline(std::cin, itemName);
-        itemNames.push_back(itemName);
-        switch (itemType)
-        {
-        case 1:
-            builders.push_back(new AddPlant(greenHouse));
-            break;
-        case 2:
-            builders.push_back(new AddPot(greenHouse));
-            break;
-        case 3:
-            builders.push_back(new AddSeed(greenHouse));
-            break;
-        case 4:
-            builders.push_back(new AddDecoration(greenHouse));
-            break;
-        default:
-            break;
-        }
-    }
+    // std::vector<std::string> itemNames;
+    // std::vector<OrderBuilder*> builders;
+    // for (int i = 0; i < numItems; ++i) {
+    //     std::cout << "1. Plant" << std::endl;
+    //     std::cout << "2. Pot" << std::endl;
+    //     std::cout << "3. Seed Packet" << std::endl;
+    //     std::cout << "4. Decoration" << std::endl;
+    //     std::cout << "Select item type to order (1-4): ";
+    //     int itemType = getint();
+    //     std::cout << "Enter item name: ";
+    //     std::string itemName;
+    //     std::getline(std::cin, itemName);
+    //     itemNames.push_back(itemName);
+    //     switch (itemType)
+    //     {
+    //     case 1:
+    //         builders.push_back(new AddPlant(greenHouse));
+    //         break;
+    //     case 2:
+    //         builders.push_back(new AddPot(greenHouse));
+    //         break;
+    //     case 3:
+    //         builders.push_back(new AddSeed(greenHouse));
+    //         break;
+    //     case 4:
+    //         builders.push_back(new AddDecoration(greenHouse));
+    //         break;
+    //     default:
+    //         break;
+    //     }
+    // }
 
-    Customer* customer = new Customer(customerID, nurseryHub, builders, itemNames);
-
+    // Customer* customer = new Customer(customerID, nurseryHub, builders, itemNames);
+    Customer* customer = new Customer(customerID, nurseryHub, greenHouse);
     customer->buy();
-
+    delete customer;
     std::cout << "Customer order processed for customer ID '" << customerID << "'." << std::endl;
     systemMenue();
 }

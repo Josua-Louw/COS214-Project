@@ -101,7 +101,9 @@ double Section::sell(Item* item) {
  * @return Pointer to the dynamically allocated Iterator* (caller responsible for delete).
 */ 
 Iterator<Item*>* Section::createIterator() {
-    return new ItemIterator(items);
+    std::vector<Item*> allItems;
+    collectAllItems(allItems);
+    return new ItemIterator(allItems);
 }
 
 /**
@@ -116,6 +118,14 @@ Item* Section::findItem(const std::string& itemName) {
     for (localIterator->first(); !localIterator->isDone(); localIterator->next()) {
         Item* item = localIterator->currentItem();
         if (item != nullptr && item->getName() == itemName) {
+            if (item->getType() == PLANT_TYPE::GREENHOUSE_PLANT)
+            {
+                Plant* plant = dynamic_cast<Plant*>(item);
+                if (plant && !plant->isPlantActive()) {
+                    continue; // Skip inactive greenhouse plants
+                }
+            }
+            
             delete localIterator;
             return item;
         }
@@ -126,6 +136,13 @@ Item* Section::findItem(const std::string& itemName) {
         for (subIterator->first(); !subIterator->isDone(); subIterator->next()) {
             Item* item = subIterator->currentItem();
             if (item != nullptr && item->getName() == itemName) {
+                if (item->getType() == PLANT_TYPE::GREENHOUSE_PLANT)
+                {
+                    Plant* plant = dynamic_cast<Plant*>(item);
+                    if (plant && !plant->isPlantActive()) {
+                        continue; // Skip inactive greenhouse plants
+                    }
+                }
                 delete subIterator;
                 return item;
             }
@@ -220,6 +237,18 @@ void Section::printSummaryHelper(int indentLevel) const {
         std::cout << indent << "  Subsections:" << std::endl;
         for (size_t i = 0; i < section.size(); ++i) {
             section[i]->printSummaryHelper(indentLevel + 1);
+        }
+    }
+}
+
+void Section::collectAllItems(std::vector<Item*>& allItems) {
+    for (auto* item : items) {
+        allItems.push_back(item);
+    }
+    for (auto* subsection : section) {
+        Section* sub = dynamic_cast<Section*>(subsection);
+        if (sub != nullptr) {
+            sub->collectAllItems(allItems);
         }
     }
 }

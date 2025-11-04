@@ -1,0 +1,100 @@
+\doxysection{Plant\+State Class Reference}
+\hypertarget{classPlantState}{}\label{classPlantState}\index{PlantState@{PlantState}}
+
+
+Abstract base class representing a state in a plant\textquotesingle{}s lifecycle.  
+
+
+
+
+{\ttfamily \#include $<$Plant\+State.\+h$>$}
+
+
+
+Inheritance diagram for Plant\+State\+:
+% FIG 0
+
+
+Collaboration diagram for Plant\+State\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classPlantState_a21cd156c2af73852ff8f0bdf91a923f7}{transition\+To\+Next}} ()=0
+\begin{DoxyCompactList}\small\item\em Transitions the plant to the next state in its lifecycle. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classPlantState_a161ce94f53bbe443c85e313688aa63b0}{\texorpdfstring{$\sim$}{\string~}\+Plant\+State}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor to ensure proper cleanup in derived classes. \end{DoxyCompactList}\item 
+\Hypertarget{classPlantState_a0c66b8119fcd8bdc9bcc541ef0aaf8f9}\label{classPlantState_a0c66b8119fcd8bdc9bcc541ef0aaf8f9} 
+{\bfseries Plant\+State} (\mbox{\hyperlink{classGreenHousePlant}{Green\+House\+Plant}} \texorpdfstring{$\ast$}{*}plant)
+\item 
+\Hypertarget{classPlantState_abca7a8c5fec889017ef37d87f1a9ce0b}\label{classPlantState_abca7a8c5fec889017ef37d87f1a9ce0b} 
+void {\bfseries set\+Plant\+Alive} (bool plant\+Exist)
+\item 
+\Hypertarget{classPlantState_a6185a1a6c03e386f01d05ee818c17cb2}\label{classPlantState_a6185a1a6c03e386f01d05ee818c17cb2} 
+bool {\bfseries is\+Alive} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classPlantState_a6814dc49e00284f4c118e063d6abe9a1}\label{classPlantState_a6814dc49e00284f4c118e063d6abe9a1} 
+std\+::atomic$<$ bool $>$ {\bfseries plant\+Alive} \{true\}
+\item 
+\Hypertarget{classPlantState_afec535554c6e730f73c1862a3dd3d3e3}\label{classPlantState_afec535554c6e730f73c1862a3dd3d3e3} 
+\mbox{\hyperlink{classGreenHousePlant}{Green\+House\+Plant}} \texorpdfstring{$\ast$}{*} {\bfseries plant\+\_\+} = nullptr
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Abstract base class representing a state in a plant\textquotesingle{}s lifecycle. 
+
+The \doxylink{classPlantState}{Plant\+State} class provides a common interface for all plant lifecycle states, such as seed, seedling, juvenile, mature, flowering, senescence, dying and dead states. It is an abstract class with pure virtual methods for handling care actions and transitioning to the next state. Derived classes implement specific behavior for each lifecycle stage. \begin{DoxyNote}{Note}
+This class is abstract and cannot be instantiated directly. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{classSeedState}{Seed\+State}, \doxylink{classSeedlingState}{Seedling\+State}, \doxylink{classJuvenileState}{Juvenile\+State}, \doxylink{classMatureState}{Mature\+State}, \doxylink{classFloweringState}{Flowering\+State}, \doxylink{classSenescenceState}{Senescence\+State}, \doxylink{classDyingState}{Dying\+State}, \doxylink{classDeadState}{Dead\+State} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classPlantState_a161ce94f53bbe443c85e313688aa63b0}\label{classPlantState_a161ce94f53bbe443c85e313688aa63b0} 
+\index{PlantState@{PlantState}!````~PlantState@{\texorpdfstring{$\sim$}{\string~}PlantState}}
+\index{````~PlantState@{\texorpdfstring{$\sim$}{\string~}PlantState}!PlantState@{PlantState}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}PlantState()}{\string~PlantState()}}
+{\footnotesize\ttfamily virtual Plant\+State\+::\texorpdfstring{$\sim$}{\string~}\+Plant\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Virtual destructor to ensure proper cleanup in derived classes. 
+
+Provides a virtual destructor to allow safe deletion of derived class objects through a \doxylink{classPlantState}{Plant\+State} pointer. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classPlantState_a21cd156c2af73852ff8f0bdf91a923f7}\label{classPlantState_a21cd156c2af73852ff8f0bdf91a923f7} 
+\index{PlantState@{PlantState}!transitionToNext@{transitionToNext}}
+\index{transitionToNext@{transitionToNext}!PlantState@{PlantState}}
+\doxysubsubsection{\texorpdfstring{transitionToNext()}{transitionToNext()}}
+{\footnotesize\ttfamily virtual void Plant\+State\+::transition\+To\+Next (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Transitions the plant to the next state in its lifecycle. 
+
+Defines the interface for transitioning the plant to its next lifecycle state, which may depend on care actions or other conditions. Derived classes implement this method to specify the next state (e.\+g., from seedling to juvenile or dying). \begin{DoxyNote}{Note}
+This is a pure virtual method, requiring implementation in derived classes. 
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{classSeedState}{Seed\+State}, \doxylink{classSeedlingState}{Seedling\+State}, \doxylink{classJuvenileState}{Juvenile\+State}, \doxylink{classMatureState}{Mature\+State}, \doxylink{classFloweringState}{Flowering\+State}, \doxylink{classSenescenceState}{Senescence\+State}, \doxylink{classDyingState}{Dying\+State}, \doxylink{classDeadState}{Dead\+State} 
+\end{DoxySeeAlso}
+
+
+Implemented in \mbox{\hyperlink{classDeadState_a5d5d7ffe804cf101502f5d09070788d3}{Dead\+State}}, \mbox{\hyperlink{classDyingState_a5acdc6a77bf2308a4727a0bf38277a6e}{Dying\+State}}, \mbox{\hyperlink{classFloweringState_a0f2ef88f6245065320c0d5184f988611}{Flowering\+State}}, \mbox{\hyperlink{classJuvenileState_a0e64df3cacb56e9d5a5be1975ec6b46d}{Juvenile\+State}}, \mbox{\hyperlink{classMatureState_a7e9e78e034eebb284eb70e822631a95e}{Mature\+State}}, \mbox{\hyperlink{classSeedlingState_aae560a23ebd8cc0b7d121de86f403d1f}{Seedling\+State}}, \mbox{\hyperlink{classSeedState_abbd40e312b7c7f67207d08502f2e404b}{Seed\+State}}, and \mbox{\hyperlink{classSenescenceState_ab877c165d46d275be66c66eafc856710}{Senescence\+State}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\mbox{\hyperlink{PlantState_8h}{Plant\+State.\+h}}\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/Plant\+State.\+cpp\end{DoxyCompactItemize}

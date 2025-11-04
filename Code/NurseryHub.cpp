@@ -1,11 +1,36 @@
 #include "NurseryHub.h"
 #include "Staff.h"
 #include "Plant.h"
+#include "GreenHousePlant.h"
 #include "Customer.h"
 #include "Command.h"
+#include "Manager.h"
+#include "ItemIterator.h"
+#include "PlantImplementor.h"
+#include "OrderBuilder.h"
 
 #include <algorithm>
+#include <stdexcept>
 #include <vector>
+#include <string>
+
+using CommandPtr = std::shared_ptr<Command>;
+
+NurseryHub::NurseryHub() : manager(nullptr), staff(nullptr) {
+	NurseryHub::createMgr();
+}
+
+void NurseryHub::createMgr() {
+	manager = new Manager("manager-1",this);
+	staff = manager;
+}
+
+NurseryHub::~NurseryHub() {
+	if (manager && staff)
+		delete staff;
+	manager = nullptr;
+	staff = nullptr;
+}
 
 template <typename T>
 static bool ptrPresent(const std::vector<T*>& vec, const T* p) {//helper to check if a raw pointer p is already in a std::vector
@@ -25,18 +50,12 @@ static bool ptrPresent(const std::vector<T*>& vec, const T* p) {//helper to chec
  * @note Part of the Mediator pattern—centralizes assignment logic
  * instead of letting colleagues reference each other directly.
  */
-void NurseryHub::assign(Command* cmd) {
+void NurseryHub::assign(CommandPtr cmd) {
 	if (!cmd) {
-		return;
+		throw std::invalid_argument("Command cannot be null");
 	}
-	//Try Chain-of-Responsibility entry points first
-	for (Staff* s : staff) {
-		if (s && s->handleRequest(cmd)) return;
-	}
-	//Fallback(just hand it to the first available staff)
-	for (Staff* s : staff) {
-		if (s) { s->receiveCommand(cmd); return;}
-	}
+
+	staff->receiveCommand(cmd);
 }
 
 /**
@@ -48,17 +67,17 @@ void NurseryHub::assign(Command* cmd) {
  *
  * @todo Route the event to interested colleagues (Staff, Customers).
  */
-void NurseryHub::notify(void* sender, std::string event, std::string data) {
-	// TODO - implement NurseryHub::notify
-	throw "Not yet implemented";
+void NurseryHub::notify(void*, std::string, std::string) {
+	//TODO: route/broadcast later
 }
 
 /**
  * @brief Register a plant with the mediator.
  */
 void NurseryHub::registerPlant(Plant* p) {
-	if (p && !ptrPresent(plants, p)) {
-		plants.push_back(p);
+	if (inventoryRoot)
+	{
+		inventoryRoot->expand(p);
 	}
 }
 
@@ -66,7 +85,119 @@ void NurseryHub::registerPlant(Plant* p) {
  * @brief Register a staff member with the mediator.
  */
 void NurseryHub::registerStaff(Staff* s) {
-	if (s && !ptrPresent(staff, s)) {
-		staff.push_back(s);
+	if (s && staff) {
+		staff->addStaffMember(s);
+		staff = s;
 	}
 }
+
+// bool NurseryHub::isCareBusy(const GreenHousePlant* p) const {
+// 	if (p) {
+//
+// 		return p->getBusy();
+//
+// 	} else {
+//
+// 		return false;
+// 	}
+// }
+//
+// bool NurseryHub::wasLastCareSuccessful(const GreenHousePlant* p) const {
+// 	if (p) {
+//
+// 		return p->getSuccess();
+// 	} else {
+//
+// 		return false;
+// 	}
+// }
+
+void NurseryHub::beginCare(GreenHousePlant* p, std::string type) {
+
+	if (!p || !p->getIsActive()) return;
+	p->markCareStarted(type);
+}
+
+void NurseryHub::finishCare(GreenHousePlant* p, std::string type, bool success) {
+
+	if (!p || !p->getIsActive()) return;
+	p->markCareFinished(success, type);
+}
+
+std::vector<std::string> NurseryHub::getPlantNamesByType(OrderBuilder* builder) const {
+	std::vector<std::string> names;
+	if (!builder) return names;
+	//names.reserve(plants.size());
+
+	//std::vector<Item*> items;
+	//items.reserve(plants.size());
+	// for (Plant* p : plants)
+	// 	items.push_back(static_cast<Item*>(p));
+
+	// ItemIterator it(items);
+	// for (it.first(); !it.isDone(); it.next()) {
+	// 	Item* item = it.currentItem();
+	// 	if (!item) continue;
+
+	// 	if (builder->checkType(item))
+	// 		names.push_back(item->getName());
+	// }
+	Iterator<Item*>* it = inventoryRoot->createIterator();
+	for (it->first(); !it->isDone(); it->next()) {
+		Item* item = it->currentItem();
+		if (!item) continue;
+		std::cout << "Checking item: " << item->getName() << std::endl;
+		if (builder->checkType(item))
+			names.push_back(item->getName());
+	}
+	delete it;
+	return names;
+}
+
+double NurseryHub::sell(Order* order) {
+	if (order == nullptr || inventoryRoot == nullptr) {
+		return 0.0;
+	}
+	return order->sellOrder(inventoryRoot);
+}
+
+std::string NurseryHub::getStaffInfo() const {
+	std::stringstream ss;
+	ss << "=== STAFF INFORMATION ===\n\n";
+	ss << "Registered Staff:\n";
+	Staff* current = staff;
+	std::vector<std::string> staffList;
+	while (current) {
+		staffList.push_back("- " + current->getId() + "\n");
+		current = current->getNextStaff();
+	}
+	std::reverse(staffList.begin(), staffList.end());
+	for (const auto& entry : staffList) {
+		ss << entry;
+	}
+	return ss.str();
+}
+
+// std::vector<std::string> NurseryHub::getPlantNamesByType(PLANT_TYPE type) const {
+// 	std::vector<std::string> names;
+// 	names.reserve(plants.size());
+//
+// 	//Convert vector<Plant*> -> vector<Item*>
+// 	std::vector<Item*> items;
+// 	items.reserve(plants.size());
+// 	for (Plant* p : plants) {
+// 		items.push_back(static_cast<Item*>(p));
+// 	}
+//
+// 	ItemIterator it(items);
+// 	for (it.first(); !it.isDone(); it.next()) {
+// 		Item* item = it.currentItem();
+// 		if (!item) {//currentItem() could be nullptr
+// 			continue;
+// 		}
+// 		if (item->getType() == type) {
+// 			names.push_back(item->getName());
+// 		}
+// 	}
+// 	return names;
+// }

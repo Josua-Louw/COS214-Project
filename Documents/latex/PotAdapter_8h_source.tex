@@ -1,0 +1,30 @@
+\doxysection{Pot\+Adapter.\+h}
+\hypertarget{PotAdapter_8h_source}{}\label{PotAdapter_8h_source}\index{/home/josua/Code/C++/COS214/COS214-\/Project/Code/PotAdapter.h@{/home/josua/Code/C++/COS214/COS214-\/Project/Code/PotAdapter.h}}
+\mbox{\hyperlink{PotAdapter_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ POTADAPTER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ POTADAPTER\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Pot_8h}{Pot.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Item_8h}{Item.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classPotAdapter}{PotAdapter}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classItem}{Item}}\ \{}
+\DoxyCodeLine{00018\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{classPot}{Pot}}*\ pot;}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{classPotAdapter_a564b56d79bac96d2be7eefe0a002be08}{PotAdapter}}(std::string\ name,\ \textcolor{keywordtype}{double}\ price)\ :\ pot(new\ \mbox{\hyperlink{classPot}{Pot}}(price,\ name))\ \{\}}
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{classPotAdapter_af6bb2db589f099ad76b7f7f620ca0bc6}{PotAdapter}}(\mbox{\hyperlink{classPot}{Pot}}*\ p)\ :\ pot(p)\ \{\}}
+\DoxyCodeLine{00036\ \ \ \ \ std::string\ \mbox{\hyperlink{classPotAdapter_a99c7561baece68bafdf188ea97e55dbd}{getName}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{classPotAdapter_a0acbcc647532b7a5f30d27c62e2c45ad}{\string~PotAdapter}}();}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classPotAdapter_a0ccc632984abc8098789a88599c1b3f7}{getPrice}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ PLANT\_TYPE\ \mbox{\hyperlink{classPotAdapter_a1c2f7e9e0cb363b5625fe53d0382c8dc}{getType}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{classOrderPlant}{OrderPlant}}*\ \mbox{\hyperlink{classPotAdapter_a8447a7df28c1e2f2e6f2f24309fb0b04}{getOrderPlant}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00047\ \};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ POTADAPTER\_H}}
+
+\end{DoxyCode}

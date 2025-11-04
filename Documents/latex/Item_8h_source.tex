@@ -1,0 +1,40 @@
+\doxysection{Item.\+h}
+\hypertarget{Item_8h_source}{}\label{Item_8h_source}\index{/home/josua/Code/C++/COS214/COS214-\/Project/Code/Item.h@{/home/josua/Code/C++/COS214/COS214-\/Project/Code/Item.h}}
+\mbox{\hyperlink{Item_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ ITEM\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ ITEM\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{GreenHouse_8h}{GreenHouse.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{comment}{//forward\ declaration}}
+\DoxyCodeLine{00008\ \textcolor{keyword}{enum\ class}\ PLANT\_TYPE;}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{//forward\ declaration}}
+\DoxyCodeLine{00011\ \textcolor{keyword}{enum\ class}\ PLANT\_TYPE;}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classItem}{Item}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classGreenHouse}{GreenHouse}}\ \{}
+\DoxyCodeLine{00029\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{virtual}\ std::string\ \mbox{\hyperlink{classItem_a9b6cc0c6903b1c89d51376d645863144}{getName}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classItem_abc213b52b45bd32dab76efa05b05dea4}{getPrice}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00040\ \ \ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{virtual}\ PLANT\_TYPE\ \mbox{\hyperlink{classItem_a20b37f4ceb7930c4e35d1b247e4363b2}{getType}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classOrderPlant}{OrderPlant}}*\ \mbox{\hyperlink{classItem_a8fccecaf375afc2b271330b4418c1548}{getOrderPlant}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classItem_af11f5c0709f76d8683d95d8476be85a4}{\string~Item}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classItem_afc98cd6fa9a1486d93cfa8c4a65d9b02}{expand}}(\mbox{\hyperlink{classGreenHouse}{GreenHouse}}*\ gh)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classItem_a496237e938255c1b3b0d07990c351855}{sell}}(\mbox{\hyperlink{classItem}{Item}}*\ item)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{classGreenHouse}{GreenHouse}}*\ \mbox{\hyperlink{classItem_a6c9cc9eb271efd094f0e72de7fbec5c0}{getSubsection}}(\textcolor{keyword}{const}\ std::string\&\ sectionName)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00061\ \ \ \ \ \mbox{\hyperlink{classIterator}{Iterator<Item*>}}*\ \mbox{\hyperlink{classItem_a06af31c2974e92883138d40448a2c506}{createIterator}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{classItem}{Item}}*\ \mbox{\hyperlink{classItem_a74fe8f0acbee1b97d348eac072e52faf}{findItem}}(\textcolor{keyword}{const}\ std::string\&\ itemName)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classItem_af44d230847c85447e642dd13c515ea79}{printSummary}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classItem_a8b97377d2f0055e802c82cdf96127718}{getTotalItemCount}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classItem_a392049ba38114a93e7bfd8a9bca2bf13}{printSummaryHelper}}(\textcolor{keywordtype}{int}\ indentLevel)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00066\ \};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ITEM\_H}}
+
+\end{DoxyCode}

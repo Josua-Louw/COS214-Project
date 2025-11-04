@@ -1,14 +1,20 @@
 #ifndef NURSERYMEDIATOR_H
 #define NURSERYMEDIATOR_H
 
+#include <sstream>
 #include <string>
+#include <vector>
+#include <memory>
 
 class Command;
 class GreenHousePlant;
+class GreenHouse;
 class Plant;
 class Staff;
 class Customer;
-
+class Order;
+class OrderBuilder;
+using CommandPtr = std::shared_ptr<Command>;
 /**
  * @file NurseryMediator.h
  * @brief Abstract mediator interface for coordinating communication in the nursery.
@@ -51,7 +57,7 @@ public:
 	 * @brief Assign a command via the mediator to an appropriate colleague.
 	 * @param cmd Command to be routed/assigned.
 	 */
-	virtual void assign(Command* cmd) = 0;
+	virtual void assign(CommandPtr cmd) = 0;
 
 	/**
 	 * @brief Register a plant with the mediator.
@@ -64,6 +70,19 @@ public:
 	 * @param s Staff member available for assignments/notifications.
 	 */
 	virtual void registerStaff(Staff* s) = 0;
+
+	//GreenHousePlant functions
+	// virtual bool isCareBusy(const GreenHousePlant* p) const = 0;
+	// virtual bool wasLastCareSuccessful(const GreenHousePlant* p) const = 0;
+	virtual void beginCare(GreenHousePlant* p, std::string type) = 0;               //caretaker grabbed job
+	virtual void finishCare(GreenHousePlant* p, std::string type, bool success) =0;//timer for command completed
+
+	virtual std::vector<std::string> getPlantNamesByType(class OrderBuilder* builder) const = 0;
+	virtual double sell(Order* order) = 0;
+
+	virtual void setInventoryRoot(GreenHouse* r) = 0;
+	virtual GreenHouse* getInventoryRoot() const = 0;
+	virtual std::string getStaffInfo() const = 0;
 };
 
 #endif

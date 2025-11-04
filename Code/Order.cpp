@@ -48,9 +48,25 @@ double total = 0.0;
  */
 void Order::addItem(Item* item) {
 	if (item){
+    //check if item is already in order:
+    for (const auto& existingItem : allItems) {
+        if (existingItem == item) {
+            return;
+        }
+    }
+
     if (activePlant && item->getType() != PLANT_TYPE::GREENHOUSE_PLANT)
     {
-      activePlant->decorate(item->getOrderPlant());
+      OrderPlant* tryDecorate = item->getOrderPlant();
+      try
+      {
+        activePlant->decorate(item->getOrderPlant());
+      }
+      catch(...)
+      {
+        items.push_back(tryDecorate);
+        activePlant = nullptr;
+      }      
     }
     else if (item->getType() == PLANT_TYPE::GREENHOUSE_PLANT)
     {
@@ -61,6 +77,7 @@ void Order::addItem(Item* item) {
     {
       items.push_back(item->getOrderPlant());
     }
+    allItems.push_back(item);
   }
 }
 
@@ -77,4 +94,13 @@ void Order::printOrder() const {
     std::cout << "--------------------------" << std::endl;
     std::cout << "Total: R" << std::fixed << std::setprecision(2) << getTotalCost() << std::endl;
     std::cout << "==========================" << std::endl;
+}
+
+double Order::sellOrder(GreenHouse* gh) {
+    double totalRevenue = 0.0;
+    for (Item* item : allItems) {
+        totalRevenue += gh->sell(item);
+    }
+    allItems.clear();
+    return totalRevenue;
 }

@@ -1,0 +1,171 @@
+\doxysection{Pot\+Adapter Class Reference}
+\hypertarget{classPotAdapter}{}\label{classPotAdapter}\index{PotAdapter@{PotAdapter}}
+
+
+Adapter class to adapt \doxylink{classPot}{Pot} to \doxylink{classItem}{Item} interface.  
+
+
+
+
+{\ttfamily \#include $<$Pot\+Adapter.\+h$>$}
+
+
+
+Inheritance diagram for Pot\+Adapter\+:
+% FIG 0
+
+
+Collaboration diagram for Pot\+Adapter\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPotAdapter_a564b56d79bac96d2be7eefe0a002be08}{Pot\+Adapter}} (std\+::string name, double price)
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{classPotAdapter}{Pot\+Adapter}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPotAdapter_af6bb2db589f099ad76b7f7f620ca0bc6}{Pot\+Adapter}} (\mbox{\hyperlink{classPot}{Pot}} \texorpdfstring{$\ast$}{*}p)
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{classPotAdapter}{Pot\+Adapter}. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classPotAdapter_a99c7561baece68bafdf188ea97e55dbd}{get\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em Gets the name of the pot. \end{DoxyCompactList}\item 
+\Hypertarget{classPotAdapter_a0acbcc647532b7a5f30d27c62e2c45ad}\label{classPotAdapter_a0acbcc647532b7a5f30d27c62e2c45ad} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Pot\+Adapter} ()
+\begin{DoxyCompactList}\small\item\em Destructor for \doxylink{classPotAdapter}{Pot\+Adapter}. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classPotAdapter_a0ccc632984abc8098789a88599c1b3f7}{get\+Price}} () const override
+\begin{DoxyCompactList}\small\item\em Gets the price of the item. \end{DoxyCompactList}\item 
+PLANT\+\_\+\+TYPE \mbox{\hyperlink{classPotAdapter_a1c2f7e9e0cb363b5625fe53d0382c8dc}{get\+Type}} () const override
+\begin{DoxyCompactList}\small\item\em Get the type of the item. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classOrderPlant}{Order\+Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classPotAdapter_a8447a7df28c1e2f2e6f2f24309fb0b04}{get\+Order\+Plant}} () const override
+\begin{DoxyCompactList}\small\item\em Get the \doxylink{classOrderPlant}{Order\+Plant} of the item. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classItem}{Item}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Item} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor to ensure proper cleanup in derived classes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classItem_afc98cd6fa9a1486d93cfa8c4a65d9b02}{expand}} (\mbox{\hyperlink{classGreenHouse}{Green\+House}} \texorpdfstring{$\ast$}{*}gh) override
+\begin{DoxyCompactList}\small\item\em Expands the greenhouse by adding a subsection. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classItem_a496237e938255c1b3b0d07990c351855}{sell}} (\mbox{\hyperlink{classItem}{Item}} \texorpdfstring{$\ast$}{*}item) override
+\begin{DoxyCompactList}\small\item\em Sells an item from the greenhouse. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classGreenHouse}{Green\+House}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classItem_a6c9cc9eb271efd094f0e72de7fbec5c0}{get\+Subsection}} (const std\+::string \&section\+Name) override
+\begin{DoxyCompactList}\small\item\em Gets a subsection of the greenhouse by name. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classIterator}{Iterator}}$<$ \mbox{\hyperlink{classItem}{Item}} \texorpdfstring{$\ast$}{*} $>$ \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classItem_a06af31c2974e92883138d40448a2c506}{create\+Iterator}} () override
+\begin{DoxyCompactList}\small\item\em Creates an iterator for traversing the greenhouse structure. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classItem}{Item}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classItem_a74fe8f0acbee1b97d348eac072e52faf}{find\+Item}} (const std\+::string \&item\+Name) override
+\begin{DoxyCompactList}\small\item\em Finds an item in the greenhouse by name. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classItem_af44d230847c85447e642dd13c515ea79}{print\+Summary}} () const override
+\begin{DoxyCompactList}\small\item\em Prints a summary of the greenhouse section or item. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classItem_a8b97377d2f0055e802c82cdf96127718}{get\+Total\+Item\+Count}} () const
+\begin{DoxyCompactList}\small\item\em Gets the total item count in the greenhouse. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classItem_a392049ba38114a93e7bfd8a9bca2bf13}{print\+Summary\+Helper}} (int indent\+Level) const
+\begin{DoxyCompactList}\small\item\em Helper function to print summary with indentation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classGreenHouse}{Green\+House}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Green\+House} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor for proper cleanup of derived classes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Adapter class to adapt \doxylink{classPot}{Pot} to \doxylink{classItem}{Item} interface. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classPotAdapter_a564b56d79bac96d2be7eefe0a002be08}\label{classPotAdapter_a564b56d79bac96d2be7eefe0a002be08} 
+\index{PotAdapter@{PotAdapter}!PotAdapter@{PotAdapter}}
+\index{PotAdapter@{PotAdapter}!PotAdapter@{PotAdapter}}
+\doxysubsubsection{\texorpdfstring{PotAdapter()}{PotAdapter()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Pot\+Adapter\+::\+Pot\+Adapter (\begin{DoxyParamCaption}\item[{std\+::string}]{name,  }\item[{double}]{price }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor for \doxylink{classPotAdapter}{Pot\+Adapter}. 
+
+Initializes with a new \doxylink{classPot}{Pot} instance. \Hypertarget{classPotAdapter_af6bb2db589f099ad76b7f7f620ca0bc6}\label{classPotAdapter_af6bb2db589f099ad76b7f7f620ca0bc6} 
+\index{PotAdapter@{PotAdapter}!PotAdapter@{PotAdapter}}
+\index{PotAdapter@{PotAdapter}!PotAdapter@{PotAdapter}}
+\doxysubsubsection{\texorpdfstring{PotAdapter()}{PotAdapter()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Pot\+Adapter\+::\+Pot\+Adapter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPot}{Pot}} \texorpdfstring{$\ast$}{*}}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor for \doxylink{classPotAdapter}{Pot\+Adapter}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & Pointer to the \doxylink{classPot}{Pot} object to be adapted. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classPotAdapter_a99c7561baece68bafdf188ea97e55dbd}\label{classPotAdapter_a99c7561baece68bafdf188ea97e55dbd} 
+\index{PotAdapter@{PotAdapter}!getName@{getName}}
+\index{getName@{getName}!PotAdapter@{PotAdapter}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily std\+::string Pot\+Adapter\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Gets the name of the pot. 
+
+\begin{DoxyReturn}{Returns}
+The name of the pot as a string. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classItem_a9b6cc0c6903b1c89d51376d645863144}{Item}}.
+
+\Hypertarget{classPotAdapter_a8447a7df28c1e2f2e6f2f24309fb0b04}\label{classPotAdapter_a8447a7df28c1e2f2e6f2f24309fb0b04} 
+\index{PotAdapter@{PotAdapter}!getOrderPlant@{getOrderPlant}}
+\index{getOrderPlant@{getOrderPlant}!PotAdapter@{PotAdapter}}
+\doxysubsubsection{\texorpdfstring{getOrderPlant()}{getOrderPlant()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classOrderPlant}{Order\+Plant}} \texorpdfstring{$\ast$}{*} Pot\+Adapter\+::get\+Order\+Plant (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get the \doxylink{classOrderPlant}{Order\+Plant} of the item. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to the implementation of the item of type \doxylink{classOrderPlant}{Order\+Plant}. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classItem_a8fccecaf375afc2b271330b4418c1548}{Item}}.
+
+\Hypertarget{classPotAdapter_a0ccc632984abc8098789a88599c1b3f7}\label{classPotAdapter_a0ccc632984abc8098789a88599c1b3f7} 
+\index{PotAdapter@{PotAdapter}!getPrice@{getPrice}}
+\index{getPrice@{getPrice}!PotAdapter@{PotAdapter}}
+\doxysubsubsection{\texorpdfstring{getPrice()}{getPrice()}}
+{\footnotesize\ttfamily double Pot\+Adapter\+::get\+Price (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Gets the price of the item. 
+
+\begin{DoxyReturn}{Returns}
+The price of the item as a double. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classItem_abc213b52b45bd32dab76efa05b05dea4}{Item}}.
+
+\Hypertarget{classPotAdapter_a1c2f7e9e0cb363b5625fe53d0382c8dc}\label{classPotAdapter_a1c2f7e9e0cb363b5625fe53d0382c8dc} 
+\index{PotAdapter@{PotAdapter}!getType@{getType}}
+\index{getType@{getType}!PotAdapter@{PotAdapter}}
+\doxysubsubsection{\texorpdfstring{getType()}{getType()}}
+{\footnotesize\ttfamily PLANT\+\_\+\+TYPE Pot\+Adapter\+::get\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get the type of the item. 
+
+\begin{DoxyReturn}{Returns}
+The type of the item as a PLANT\+\_\+\+TYPE enum. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classItem_a20b37f4ceb7930c4e35d1b247e4363b2}{Item}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\mbox{\hyperlink{PotAdapter_8h}{Pot\+Adapter.\+h}}\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/Pot\+Adapter.\+cpp\end{DoxyCompactItemize}

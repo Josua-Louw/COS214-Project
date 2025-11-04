@@ -1,0 +1,110 @@
+\doxysection{GUISystem\+Handler Class Reference}
+\hypertarget{classGUISystemHandler}{}\label{classGUISystemHandler}\index{GUISystemHandler@{GUISystemHandler}}
+
+
+Manages greenhouse operations and interfaces with the GUI.  
+
+
+
+
+{\ttfamily \#include $<$GUISystem\+Handler.\+h$>$}
+
+
+
+Inheritance diagram for GUISystem\+Handler\+:
+% FIG 0
+
+
+Collaboration diagram for GUISystem\+Handler\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classGUISystemHandler_af739dd332150bf89646cba9b678c23e9}{system\+Menue}} () override
+\item 
+void \mbox{\hyperlink{classGUISystemHandler_a4001304cfbfc5801f090e0a59039bcc9}{add\+Plant}} () override
+\item 
+void \mbox{\hyperlink{classGUISystemHandler_a70728c4330ab8ad0ee643ebfc78bb40f}{register\+Staff\+Member}} () override
+\item 
+void \mbox{\hyperlink{classGUISystemHandler_a83e4247911600d57f4f2bb174d224ee7}{process\+Customer\+Order}} () override
+\item 
+\Hypertarget{classGUISystemHandler_a5fedb440cb86dc7355f3ca81ae2e6afd}\label{classGUISystemHandler_a5fedb440cb86dc7355f3ca81ae2e6afd} 
+std\+::string {\bfseries get\+Greenhouse\+Summary} ()
+\item 
+\Hypertarget{classGUISystemHandler_a1f7570ad96459d133b1f4d5eeb76ea3e}\label{classGUISystemHandler_a1f7570ad96459d133b1f4d5eeb76ea3e} 
+std\+::string {\bfseries get\+Inventory} ()
+\item 
+\Hypertarget{classGUISystemHandler_aa0935cf00dfdd616984ff0ec7c3c9a30}\label{classGUISystemHandler_aa0935cf00dfdd616984ff0ec7c3c9a30} 
+std\+::string {\bfseries get\+Staff\+Info} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classSystemHandler}{System\+Handler}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classGreenHouse}{Green\+House}} \texorpdfstring{$\ast$}{*} {\bfseries get\+Green\+House} () const
+\item 
+\mbox{\hyperlink{classNurseryHub}{Nursery\+Hub}} \texorpdfstring{$\ast$}{*} {\bfseries get\+Nursery\+Hub} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classSystemHandler}{System\+Handler}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classNurseryHub}{Nursery\+Hub}} \texorpdfstring{$\ast$}{*} {\bfseries nursery\+Hub}
+\item 
+\mbox{\hyperlink{classGreenHouse}{Green\+House}} \texorpdfstring{$\ast$}{*} {\bfseries green\+House}
+\item 
+\mbox{\hyperlink{classPlantMaker}{Plant\+Maker}} \texorpdfstring{$\ast$}{*} {\bfseries plant\+Maker}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Manages greenhouse operations and interfaces with the GUI. 
+
+This class extends \doxylink{classSystemHandler}{System\+Handler} to implement specific functionalities such as adding plants, registering staff members, processing customer orders, and providing summaries of the greenhouse state. It utilizes various care strategies to manage plant care effectively. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classGUISystemHandler_a4001304cfbfc5801f090e0a59039bcc9}\label{classGUISystemHandler_a4001304cfbfc5801f090e0a59039bcc9} 
+\index{GUISystemHandler@{GUISystemHandler}!addPlant@{addPlant}}
+\index{addPlant@{addPlant}!GUISystemHandler@{GUISystemHandler}}
+\doxysubsubsection{\texorpdfstring{addPlant()}{addPlant()}}
+{\footnotesize\ttfamily void GUISystem\+Handler\+::add\+Plant (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classSystemHandler}{System\+Handler}}.
+
+\Hypertarget{classGUISystemHandler_a83e4247911600d57f4f2bb174d224ee7}\label{classGUISystemHandler_a83e4247911600d57f4f2bb174d224ee7} 
+\index{GUISystemHandler@{GUISystemHandler}!processCustomerOrder@{processCustomerOrder}}
+\index{processCustomerOrder@{processCustomerOrder}!GUISystemHandler@{GUISystemHandler}}
+\doxysubsubsection{\texorpdfstring{processCustomerOrder()}{processCustomerOrder()}}
+{\footnotesize\ttfamily void GUISystem\+Handler\+::process\+Customer\+Order (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classSystemHandler}{System\+Handler}}.
+
+\Hypertarget{classGUISystemHandler_a70728c4330ab8ad0ee643ebfc78bb40f}\label{classGUISystemHandler_a70728c4330ab8ad0ee643ebfc78bb40f} 
+\index{GUISystemHandler@{GUISystemHandler}!registerStaffMember@{registerStaffMember}}
+\index{registerStaffMember@{registerStaffMember}!GUISystemHandler@{GUISystemHandler}}
+\doxysubsubsection{\texorpdfstring{registerStaffMember()}{registerStaffMember()}}
+{\footnotesize\ttfamily void GUISystem\+Handler\+::register\+Staff\+Member (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classSystemHandler}{System\+Handler}}.
+
+\Hypertarget{classGUISystemHandler_af739dd332150bf89646cba9b678c23e9}\label{classGUISystemHandler_af739dd332150bf89646cba9b678c23e9} 
+\index{GUISystemHandler@{GUISystemHandler}!systemMenue@{systemMenue}}
+\index{systemMenue@{systemMenue}!GUISystemHandler@{GUISystemHandler}}
+\doxysubsubsection{\texorpdfstring{systemMenue()}{systemMenue()}}
+{\footnotesize\ttfamily void GUISystem\+Handler\+::system\+Menue (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classSystemHandler}{System\+Handler}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\mbox{\hyperlink{GUISystemHandler_8h}{GUISystem\+Handler.\+h}}\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/GUISystem\+Handler.\+cpp\end{DoxyCompactItemize}

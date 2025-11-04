@@ -1,0 +1,119 @@
+\doxysection{Plant\+Type Class Reference}
+\hypertarget{classPlantType}{}\label{classPlantType}\index{PlantType@{PlantType}}
+
+
+Represents the type of a plant. Inherits from \doxylink{classPlantDecorator}{Plant\+Decorator}. Provides method to get the type of the plant and clone the plant type.  
+
+
+
+
+{\ttfamily \#include $<$Plant\+Type.\+h$>$}
+
+
+
+Inheritance diagram for Plant\+Type\+:
+% FIG 0
+
+
+Collaboration diagram for Plant\+Type\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classPlantType_a97176817196133c7fd8fd56e30ca120b}\label{classPlantType_a97176817196133c7fd8fd56e30ca120b} 
+{\bfseries Plant\+Type} (double cost, const std\+::string \&name)
+\item 
+\Hypertarget{classPlantType_aa47bae1366afcc39df402bc7fff3b078}\label{classPlantType_aa47bae1366afcc39df402bc7fff3b078} 
+{\bfseries Plant\+Type} (const \mbox{\hyperlink{classPlantType}{Plant\+Type}} \&other)
+\item 
+PLANT\+\_\+\+TYPE \mbox{\hyperlink{classPlantType_a62d0ce5e0550b01520d85986c173f028}{get\+Type}} () const override
+\begin{DoxyCompactList}\small\item\em Gets the type of the plant. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlantImplementor}{Plant\+Implementor}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classPlantType_ae9fe6795920198cff1d7f9790a356e55}{clone}} () override
+\begin{DoxyCompactList}\small\item\em Creates a clone of the \doxylink{classPlantType}{Plant\+Type}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classPlantDecorator}{Plant\+Decorator}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Plant\+Decorator} (double cost, const std\+::string \&name)
+\item 
+\mbox{\hyperlink{classPlantDecorator_aeab3112a905ee40121aa3472da1c211b}{Plant\+Decorator}} (const \mbox{\hyperlink{classPlantDecorator}{Plant\+Decorator}} \&other)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classPlantDecorator_ac22e9f31ab48a99b7ca285e9239b91ab}{get\+Price}} () const override
+\begin{DoxyCompactList}\small\item\em Gets the price of the decorated plant. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classPlantDecorator_a75b485a18a77cf92755f3b9128d774ed}{get\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em Gets the name of the plant. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPlantDecorator_a99f5a9ebe97096413784d78f2a7b1d2a}{decorate}} (\mbox{\hyperlink{classOrderPlant}{Order\+Plant}} \texorpdfstring{$\ast$}{*}order\+Plant) override
+\begin{DoxyCompactList}\small\item\em Add decoration to the given plant. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classPlantDecorator_ac96952357f89417896bcc022c9c968de}{\texorpdfstring{$\sim$}{\string~}\+Plant\+Decorator}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor to ensure proper cleanup. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classOrderPlant}{Order\+Plant}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Order\+Plant} (double cost, const std\+::string \&name)
+\item 
+\mbox{\hyperlink{classOrderPlant_a2f26d17aec973d21877f89052b639162}{Order\+Plant}} (const \mbox{\hyperlink{classOrderPlant}{Order\+Plant}} \&)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Order\+Plant} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor to ensure proper cleanup in derived classes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classPlantImplementor}{Plant\+Implementor}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Plant\+Implementor} ()=default
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlantImplementor_a87801b3ef7e9abdc9c61eb051371a9e8}{Plant\+Implementor}} (const \mbox{\hyperlink{classPlantImplementor}{Plant\+Implementor}} \&)=default
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Plant\+Implementor} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor to ensure proper cleanup in derived classes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classOrderPlant}{Order\+Plant}}}
+\begin{DoxyCompactItemize}
+\item 
+double {\bfseries cost}
+\item 
+std\+::string {\bfseries name}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents the type of a plant. Inherits from \doxylink{classPlantDecorator}{Plant\+Decorator}. Provides method to get the type of the plant and clone the plant type. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classPlantType_ae9fe6795920198cff1d7f9790a356e55}\label{classPlantType_ae9fe6795920198cff1d7f9790a356e55} 
+\index{PlantType@{PlantType}!clone@{clone}}
+\index{clone@{clone}!PlantType@{PlantType}}
+\doxysubsubsection{\texorpdfstring{clone()}{clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlantImplementor}{Plant\+Implementor}} \texorpdfstring{$\ast$}{*} Plant\+Type\+::clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Creates a clone of the \doxylink{classPlantType}{Plant\+Type}. 
+
+\begin{DoxyReturn}{Returns}
+A pointer to the cloned \doxylink{classPlantType}{Plant\+Type}. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlantImplementor_aa019bd21868f3270e91c37f2c2303908}{Plant\+Implementor}}.
+
+\Hypertarget{classPlantType_a62d0ce5e0550b01520d85986c173f028}\label{classPlantType_a62d0ce5e0550b01520d85986c173f028} 
+\index{PlantType@{PlantType}!getType@{getType}}
+\index{getType@{getType}!PlantType@{PlantType}}
+\doxysubsubsection{\texorpdfstring{getType()}{getType()}}
+{\footnotesize\ttfamily PLANT\+\_\+\+TYPE Plant\+Type\+::get\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Gets the type of the plant. 
+
+\begin{DoxyReturn}{Returns}
+The type of the plant as a PLANT\+\_\+\+TYPE enum value. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classOrderPlant_a1210e855109d563dc809701a66385fba}{Order\+Plant}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\mbox{\hyperlink{PlantType_8h}{Plant\+Type.\+h}}\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/Plant\+Type.\+cpp\end{DoxyCompactItemize}

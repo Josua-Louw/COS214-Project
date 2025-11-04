@@ -1,0 +1,25 @@
+\doxysection{Water\+Limiting\+Strategy.\+h}
+\hypertarget{WaterLimitingStrategy_8h_source}{}\label{WaterLimitingStrategy_8h_source}\index{/home/josua/Code/C++/COS214/COS214-\/Project/Code/WaterLimitingStrategy.h@{/home/josua/Code/C++/COS214/COS214-\/Project/Code/WaterLimitingStrategy.h}}
+\mbox{\hyperlink{WaterLimitingStrategy_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ WATERLIMITINGSTRATEGY\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ WATERLIMITINGSTRATEGY\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{CareStrategy_8h}{CareStrategy.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Command.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00009\ \textcolor{keyword}{using\ }CommandPtr\ =\ std::shared\_ptr<Command>;}
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classWaterLimitingStrategy}{WaterLimitingStrategy}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classCareStrategy}{CareStrategy}}\ \{}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00031\ \ \ \ \ std::vector<CommandPtr>\ \mbox{\hyperlink{classWaterLimitingStrategy_ab7be93bb0f989ef69b4fecc207ccf795}{applyCare}}(\mbox{\hyperlink{classGreenHousePlant}{GreenHousePlant}}\ \&plant)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00036\ \ \ \ \ std::string\ \mbox{\hyperlink{classWaterLimitingStrategy_a6716c670bdb9d7bd6dba61c6e4b23f10}{getStrategyName}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00037\ \};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

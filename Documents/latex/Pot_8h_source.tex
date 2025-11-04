@@ -1,0 +1,22 @@
+\doxysection{Pot.\+h}
+\hypertarget{Pot_8h_source}{}\label{Pot_8h_source}\index{/home/josua/Code/C++/COS214/COS214-\/Project/Code/Pot.h@{/home/josua/Code/C++/COS214/COS214-\/Project/Code/Pot.h}}
+\mbox{\hyperlink{Pot_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ POT\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ POT\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{PlantDecorator_8h}{PlantDecorator.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classPot}{Pot}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classPlantDecorator}{PlantDecorator}}\ \{}
+\DoxyCodeLine{00019\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{classPot}{Pot}}()\ :\ \mbox{\hyperlink{classPlantDecorator}{PlantDecorator}}()\ \{\}}
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{classPot}{Pot}}(\textcolor{keywordtype}{double}\ cost,\ \textcolor{keyword}{const}\ std::string\&\ name)\ :\ \mbox{\hyperlink{classPlantDecorator}{PlantDecorator}}(cost,\ name)\ \{\}}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{classPot}{Pot}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classPot}{Pot}}\&\ other)\ :\ \mbox{\hyperlink{classPlantDecorator}{PlantDecorator}}(other)\ \{\}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00028\ \ \ \ \ PLANT\_TYPE\ \mbox{\hyperlink{classPot_a99514b4c17735b4c53113f00ca54c101}{getType}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{classPlantImplementor}{PlantImplementor}}*\ \mbox{\hyperlink{classPot_a39eb270c37c95047b5e6ea5286af7708}{clone}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00034\ \};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

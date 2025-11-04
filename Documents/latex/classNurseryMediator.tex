@@ -1,0 +1,127 @@
+\doxysection{Nursery\+Mediator Class Reference}
+\hypertarget{classNurseryMediator}{}\label{classNurseryMediator}\index{NurseryMediator@{NurseryMediator}}
+
+
+Abstract Mediator in the Mediator design pattern.  
+
+
+
+
+{\ttfamily \#include $<$Nursery\+Mediator.\+h$>$}
+
+
+
+Inheritance diagram for Nursery\+Mediator\+:
+% FIG 0
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classNurseryMediator_ab849a976586b97bf782e4a71f3a852f9}{notify}} (void \texorpdfstring{$\ast$}{*}sender, std\+::string event, std\+::string data)=0
+\item 
+virtual void \mbox{\hyperlink{classNurseryMediator_a92a82d4974ae6ff1247aa9c764ad7396}{assign}} (Command\+Ptr cmd)=0
+\begin{DoxyCompactList}\small\item\em Assign a command via the mediator to an appropriate colleague. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classNurseryMediator_af52e55f9a3d9e130973df56ef4341d0c}{register\+Plant}} (\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}p)=0
+\begin{DoxyCompactList}\small\item\em Register a plant with the mediator. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classNurseryMediator_a120c62a1951fdf4137cae7382bf1b57e}{register\+Staff}} (\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*}s)=0
+\begin{DoxyCompactList}\small\item\em Register a staff member with the mediator. \end{DoxyCompactList}\item 
+\Hypertarget{classNurseryMediator_ad6554388d62c26fbbe7350fbdf1e1211}\label{classNurseryMediator_ad6554388d62c26fbbe7350fbdf1e1211} 
+virtual void {\bfseries begin\+Care} (\mbox{\hyperlink{classGreenHousePlant}{Green\+House\+Plant}} \texorpdfstring{$\ast$}{*}p, std\+::string type)=0
+\item 
+\Hypertarget{classNurseryMediator_a71b72b21aab39c80b2d32788ff668612}\label{classNurseryMediator_a71b72b21aab39c80b2d32788ff668612} 
+virtual void {\bfseries finish\+Care} (\mbox{\hyperlink{classGreenHousePlant}{Green\+House\+Plant}} \texorpdfstring{$\ast$}{*}p, std\+::string type, bool success)=0
+\item 
+\Hypertarget{classNurseryMediator_a0e57ea986822e5373f7fae0d5df276c0}\label{classNurseryMediator_a0e57ea986822e5373f7fae0d5df276c0} 
+virtual std\+::vector$<$ std\+::string $>$ {\bfseries get\+Plant\+Names\+By\+Type} (class \mbox{\hyperlink{classOrderBuilder}{Order\+Builder}} \texorpdfstring{$\ast$}{*}builder) const =0
+\item 
+\Hypertarget{classNurseryMediator_abe34b75429ecf9e08330df478b23b925}\label{classNurseryMediator_abe34b75429ecf9e08330df478b23b925} 
+virtual double {\bfseries sell} (\mbox{\hyperlink{classOrder}{Order}} \texorpdfstring{$\ast$}{*}order)=0
+\item 
+\Hypertarget{classNurseryMediator_a3a077b6f544aff07abc3ed4d9abd59ac}\label{classNurseryMediator_a3a077b6f544aff07abc3ed4d9abd59ac} 
+virtual void {\bfseries set\+Inventory\+Root} (\mbox{\hyperlink{classGreenHouse}{Green\+House}} \texorpdfstring{$\ast$}{*}r)=0
+\item 
+\Hypertarget{classNurseryMediator_a9f883f31b41e96a82b2c662d9ed7eab0}\label{classNurseryMediator_a9f883f31b41e96a82b2c662d9ed7eab0} 
+virtual \mbox{\hyperlink{classGreenHouse}{Green\+House}} \texorpdfstring{$\ast$}{*} {\bfseries get\+Inventory\+Root} () const =0
+\item 
+\Hypertarget{classNurseryMediator_af3116fb969562439497d98baccaa788a}\label{classNurseryMediator_af3116fb969562439497d98baccaa788a} 
+virtual std\+::string {\bfseries get\+Staff\+Info} () const =0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Abstract Mediator in the Mediator design pattern. 
+
+Declares the operations used by colleagues to notify the mediator about events and to request assignments. Concrete mediator (\doxylink{classNurseryHub}{Nursery\+Hub}) implement how events are routed and how commands are assigned. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classNurseryMediator_a92a82d4974ae6ff1247aa9c764ad7396}\label{classNurseryMediator_a92a82d4974ae6ff1247aa9c764ad7396} 
+\index{NurseryMediator@{NurseryMediator}!assign@{assign}}
+\index{assign@{assign}!NurseryMediator@{NurseryMediator}}
+\doxysubsubsection{\texorpdfstring{assign()}{assign()}}
+{\footnotesize\ttfamily virtual void Nursery\+Mediator\+::assign (\begin{DoxyParamCaption}\item[{Command\+Ptr}]{cmd }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Assign a command via the mediator to an appropriate colleague. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cmd} & \doxylink{classCommand}{Command} to be routed/assigned. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classNurseryHub_a76f4fb7473188b1904dfe491fb976978}{Nursery\+Hub}}.
+
+\Hypertarget{classNurseryMediator_ab849a976586b97bf782e4a71f3a852f9}\label{classNurseryMediator_ab849a976586b97bf782e4a71f3a852f9} 
+\index{NurseryMediator@{NurseryMediator}!notify@{notify}}
+\index{notify@{notify}!NurseryMediator@{NurseryMediator}}
+\doxysubsubsection{\texorpdfstring{notify()}{notify()}}
+{\footnotesize\ttfamily virtual void Nursery\+Mediator\+::notify (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{sender,  }\item[{std\+::string}]{event,  }\item[{std\+::string}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classNurseryHub_a03feb716f9e3d82d669f32f555e96617}{Nursery\+Hub}}.
+
+\Hypertarget{classNurseryMediator_af52e55f9a3d9e130973df56ef4341d0c}\label{classNurseryMediator_af52e55f9a3d9e130973df56ef4341d0c} 
+\index{NurseryMediator@{NurseryMediator}!registerPlant@{registerPlant}}
+\index{registerPlant@{registerPlant}!NurseryMediator@{NurseryMediator}}
+\doxysubsubsection{\texorpdfstring{registerPlant()}{registerPlant()}}
+{\footnotesize\ttfamily virtual void Nursery\+Mediator\+::register\+Plant (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPlant}{Plant}} \texorpdfstring{$\ast$}{*}}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Register a plant with the mediator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & \doxylink{classPlant}{Plant} to be tracked and considered for routing/notifications. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classNurseryHub_afd013abfc66cbebe13fb6000178bedf3}{Nursery\+Hub}}.
+
+\Hypertarget{classNurseryMediator_a120c62a1951fdf4137cae7382bf1b57e}\label{classNurseryMediator_a120c62a1951fdf4137cae7382bf1b57e} 
+\index{NurseryMediator@{NurseryMediator}!registerStaff@{registerStaff}}
+\index{registerStaff@{registerStaff}!NurseryMediator@{NurseryMediator}}
+\doxysubsubsection{\texorpdfstring{registerStaff()}{registerStaff()}}
+{\footnotesize\ttfamily virtual void Nursery\+Mediator\+::register\+Staff (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStaff}{Staff}} \texorpdfstring{$\ast$}{*}}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Register a staff member with the mediator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & \doxylink{classStaff}{Staff} member available for assignments/notifications. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classNurseryHub_a78be5c30e388f9be7f3c4ad175c8a0d9}{Nursery\+Hub}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\mbox{\hyperlink{NurseryMediator_8h}{Nursery\+Mediator.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,34 @@
+\doxysection{Green\+House.\+h}
+\hypertarget{GreenHouse_8h_source}{}\label{GreenHouse_8h_source}\index{/home/josua/Code/C++/COS214/COS214-\/Project/Code/GreenHouse.h@{/home/josua/Code/C++/COS214/COS214-\/Project/Code/GreenHouse.h}}
+\mbox{\hyperlink{GreenHouse_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ GREENHOUSE\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ GREENHOUSE\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Iterator_8h}{Iterator.h}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classNurseryMediator}{NurseryMediator}};}
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classPlant}{Plant}};}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classGreenHouse}{GreenHouse}}\ \{}
+\DoxyCodeLine{00022\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{classNurseryMediator}{NurseryMediator}}*\ nurseryHub;}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classGreenHouse_a8e1fc3842b416374d661805a17516733}{\string~GreenHouse}}()\ \{\}}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classGreenHouse_a2392129c852e29041be945e62672d7c7}{expand}}(\mbox{\hyperlink{classGreenHouse}{GreenHouse}}*\ greenHouse)\ =\ 0;}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classGreenHouse_af41dd583538481d7cf3702dd84cc4f80}{sell}}(\mbox{\hyperlink{classItem}{Item}}*\ item)\ =\ 0;}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classGreenHouse}{GreenHouse}}*\ \mbox{\hyperlink{classGreenHouse_a6ec0154de0da4d520237e8186c037ce2}{getSubsection}}(\textcolor{keyword}{const}\ std::string\&\ sectionName)\ =\ 0;}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classIterator}{Iterator<Item*>}}*\ \mbox{\hyperlink{classGreenHouse_a98509e35ac2530d9969ffad9a48c86e9}{createIterator}}()\ =\ 0;}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classItem}{Item}}*\ \mbox{\hyperlink{classGreenHouse_ab24ab427fe31f79358fe3eb71ef67b1d}{findItem}}(\textcolor{keyword}{const}\ std::string\&\ itemName)\ =\ 0;}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{virtual}\ std::string\ \mbox{\hyperlink{classGreenHouse_a09bb46b4ba8f584519820cc4f41ab6b0}{getName}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classGreenHouse_a8c63c75888cbf0997f392037691e7ed3}{printSummary}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classGreenHouse_a28ad36f146bccad627e207499aacf1fd}{getTotalItemCount}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classGreenHouse_aa749f5b410622d6dbaf2499074e5d82c}{printSummaryHelper}}(\textcolor{keywordtype}{int}\ indentLevel)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00077\ \};}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

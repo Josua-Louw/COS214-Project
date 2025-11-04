@@ -1,0 +1,111 @@
+\doxysection{Water\+Plant Class Reference}
+\hypertarget{classWaterPlant}{}\label{classWaterPlant}\index{WaterPlant@{WaterPlant}}
+
+
+Concrete command for watering a plant in the \doxylink{classPlant}{Plant} Nursery Simulator.  
+
+
+
+
+{\ttfamily \#include $<$Water\+Plant.\+h$>$}
+
+
+
+Inheritance diagram for Water\+Plant\+:
+% FIG 0
+
+
+Collaboration diagram for Water\+Plant\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classWaterPlant_a6ebc6fdd2e859f5c882287c02f7e6476}{Water\+Plant}} (\mbox{\hyperlink{classGreenHousePlant}{Green\+House\+Plant}} \texorpdfstring{$\ast$}{*}plant, int time)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classWaterPlant}{Water\+Plant} command for a specific plant. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classWaterPlant_af72f48fdb6fdaba0780465a12d19f71d}{get\+Type}} () override
+\item 
+\mbox{\hyperlink{classGreenHousePlant}{Green\+House\+Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classWaterPlant_a54738a1703447ce98ea67a77af345fb8}{get\+Plant}} () override
+\item 
+void \mbox{\hyperlink{classWaterPlant_a81c2f65734e0abc9a205af146cabd901}{execute}} () override
+\begin{DoxyCompactList}\small\item\em Executes the watering task, updating the plant\textquotesingle{}s state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classCommand}{Command}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries get\+Abort\+Status} ()
+\item 
+void {\bfseries set\+Abort\+Status} (bool abort)
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Command} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor for proper cleanup of derived classes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classCommand}{Command}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::atomic$<$ bool $>$ {\bfseries abort} \{false\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Concrete command for watering a plant in the \doxylink{classPlant}{Plant} Nursery Simulator. 
+
+Implements the \doxylink{classCommand}{Command} Pattern to encapsulate the task of watering a specific plant. Assigned to \doxylink{classPlantCaretaker}{Plant\+Caretaker} via \doxylink{classNurseryHub}{Nursery\+Hub}, it interacts with a \doxylink{classPlant}{Plant} object to apply watering care, supporting the Strategy Pattern for care routines and State Pattern for plant life cycle updates. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classWaterPlant_a6ebc6fdd2e859f5c882287c02f7e6476}\label{classWaterPlant_a6ebc6fdd2e859f5c882287c02f7e6476} 
+\index{WaterPlant@{WaterPlant}!WaterPlant@{WaterPlant}}
+\index{WaterPlant@{WaterPlant}!WaterPlant@{WaterPlant}}
+\doxysubsubsection{\texorpdfstring{WaterPlant()}{WaterPlant()}}
+{\footnotesize\ttfamily Water\+Plant\+::\+Water\+Plant (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGreenHousePlant}{Green\+House\+Plant}} \texorpdfstring{$\ast$}{*}}]{plant,  }\item[{int}]{time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{classWaterPlant}{Water\+Plant} command for a specific plant. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em plant} & Pointer to the \doxylink{classGreenHousePlant}{Green\+House\+Plant} to be watered. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classWaterPlant_a81c2f65734e0abc9a205af146cabd901}\label{classWaterPlant_a81c2f65734e0abc9a205af146cabd901} 
+\index{WaterPlant@{WaterPlant}!execute@{execute}}
+\index{execute@{execute}!WaterPlant@{WaterPlant}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily void Water\+Plant\+::execute (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Executes the watering task, updating the plant\textquotesingle{}s state. 
+
+Calls the plant\textquotesingle{}s water method, which applies the appropriate care strategy and triggers state transitions if needed. Supports FR3 (Strategy) and FR4 (State) by ensuring watering aligns with the plant\textquotesingle{}s care requirements. 
+
+Implements \mbox{\hyperlink{classCommand_a6fd7d9bd8df8bfc881e4d6c7cd1878b7}{Command}}.
+
+\Hypertarget{classWaterPlant_a54738a1703447ce98ea67a77af345fb8}\label{classWaterPlant_a54738a1703447ce98ea67a77af345fb8} 
+\index{WaterPlant@{WaterPlant}!getPlant@{getPlant}}
+\index{getPlant@{getPlant}!WaterPlant@{WaterPlant}}
+\doxysubsubsection{\texorpdfstring{getPlant()}{getPlant()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classGreenHousePlant}{Green\+House\+Plant}} \texorpdfstring{$\ast$}{*} Water\+Plant\+::get\+Plant (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classCommand}{Command}}.
+
+\Hypertarget{classWaterPlant_af72f48fdb6fdaba0780465a12d19f71d}\label{classWaterPlant_af72f48fdb6fdaba0780465a12d19f71d} 
+\index{WaterPlant@{WaterPlant}!getType@{getType}}
+\index{getType@{getType}!WaterPlant@{WaterPlant}}
+\doxysubsubsection{\texorpdfstring{getType()}{getType()}}
+{\footnotesize\ttfamily std\+::string Water\+Plant\+::get\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classCommand}{Command}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/Water\+Plant.\+h\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\mbox{\hyperlink{WaterPlant_8cpp}{Water\+Plant.\+cpp}}\end{DoxyCompactItemize}

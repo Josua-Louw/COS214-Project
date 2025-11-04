@@ -1,0 +1,40 @@
+\doxysection{Plant.\+h}
+\hypertarget{Plant_8h_source}{}\label{Plant_8h_source}\index{/home/josua/Code/C++/COS214/COS214-\/Project/Code/Plant.h@{/home/josua/Code/C++/COS214/COS214-\/Project/Code/Plant.h}}
+\mbox{\hyperlink{Plant_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ PLANT\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ PLANT\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Item_8h}{Item.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{PlantImplementor_8h}{PlantImplementor.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}GreenHousePlant.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}PlantMaker.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{PlantType_8h}{PlantType.h}}"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classPlant}{Plant}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classItem}{Item}}}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{classPlantImplementor}{PlantImplementor}}*\ implementor;}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{classPlant}{Plant}}();}
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{classPlant}{Plant}}(\mbox{\hyperlink{classPlantImplementor}{PlantImplementor}}*\ impl);}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{classPlant}{Plant}}(\textcolor{keyword}{const}\ std::string\&\ name,\ \textcolor{keywordtype}{double}\ price,\ \mbox{\hyperlink{classPlantMaker}{PlantMaker}}*\ maker);}
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{classPlant}{Plant}}(\textcolor{keyword}{const}\ std::string\&\ name,\ \textcolor{keywordtype}{double}\ price,\ \mbox{\hyperlink{classNurseryMediator}{NurseryMediator}}*\ mediator,\ \mbox{\hyperlink{classCareStrategy}{CareStrategy}}*\ care,\ \mbox{\hyperlink{classPlantMaker}{PlantMaker}}*\ maker);}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPlant_a7028b5d45387c18d19dcd12535d8aed6}{convertToOrderType}}();}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classPlant_a1a6e78e58443899921fb32f1622dc0bc}{getPrice}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00058\ \ \ \ \ PLANT\_TYPE\ \mbox{\hyperlink{classPlant_a8591b3b9aa8e5d68db9b56484edd73e6}{getType}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00064\ \ \ \ \ std::string\ \mbox{\hyperlink{classPlant_a0a33e0decfc6403a5b72027ac5b90977}{getName}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \mbox{\hyperlink{classOrderPlant}{OrderPlant}}*\ \mbox{\hyperlink{classPlant_ab76163e4c4ea41a9cf36a90c864cce34}{getOrderPlant}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00072\ \ \ \ \ \mbox{\hyperlink{classPlant_ab0effb2b143e6da7b65ebd13a3b1fc29}{\string~Plant}}();}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{bool}\ isPlantActive()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00075\ \};}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ PLANT\_H}}
+
+\end{DoxyCode}

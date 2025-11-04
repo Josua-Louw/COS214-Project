@@ -1,0 +1,28 @@
+\doxysection{/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\+Plant\+Caretaker.cpp File Reference}
+\hypertarget{PlantCaretaker_8cpp}{}\label{PlantCaretaker_8cpp}\index{/home/josua/Code/C++/COS214/COS214-\/Project/Code/PlantCaretaker.cpp@{/home/josua/Code/C++/COS214/COS214-\/Project/Code/PlantCaretaker.cpp}}
+
+
+Implementation of the \doxylink{classPlantCaretaker}{Plant\+Caretaker} class.  
+
+
+{\ttfamily \#include "{}Plant\+Caretaker.\+h"{}}\newline
+{\ttfamily \#include $<$condition\+\_\+variable$>$}\newline
+{\ttfamily \#include $<$stdexcept$>$}\newline
+{\ttfamily \#include "{}Water\+Plant.\+h"{}}\newline
+{\ttfamily \#include "{}Fertilize\+Plant.\+h"{}}\newline
+{\ttfamily \#include "{}Nursery\+Mediator.\+h"{}}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+Include dependency graph for Plant\+Caretaker.\+cpp\+:
+% FIG 0
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{PlantCaretaker_8cpp_afc32edf075c294b2887c4b938f416ec5}\label{PlantCaretaker_8cpp_afc32edf075c294b2887c4b938f416ec5} 
+using {\bfseries Command\+Ptr} = std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classCommand}{Command}} $>$
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of the \doxylink{classPlantCaretaker}{Plant\+Caretaker} class. 
+
+Handles plant care tasks by processing \doxylink{classWaterPlant}{Water\+Plant} and \doxylink{classFertilizePlant}{Fertilize\+Plant} commands, supporting the \doxylink{classCommand}{Command} Pattern (FR5). Participates in the Chain of Responsibility Pattern (FR6) by handling or delegating tasks via next\+Staff. Interacts with \doxylink{classPlant}{Plant} (FR3 Strategy, FR4 State) and \doxylink{classNurseryHub}{Nursery\+Hub} (Mediator, FR7). 

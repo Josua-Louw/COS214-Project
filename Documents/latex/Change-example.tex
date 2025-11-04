@@ -1,0 +1,26 @@
+\doxysection{Change}
+\hypertarget{Change-example}{}\label{Change-example}Broadcast or route an event reported by a colleague.
+
+Broadcast or route an event reported by a colleague. 
+\begin{DoxyParams}{Parameters}
+{\em sender} & Originator of the event (generic pointer from the caller). \\
+\hline
+{\em event} & Event key or type (e.\+g., "{}\+CARE\+\_\+\+REQUEST"{}, "{}\+ORDER\+\_\+\+PLACED"{}). \\
+\hline
+{\em data} & Optional payload (generic/opaque).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Signatures intentionally follow the class diagram. Implementation details like types/ownership are defined in the concrete mediator. 
+
+This function\textquotesingle{}s parameters will need to be changed to work on different data types. 
+\end{DoxyNote}
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000007}{Todo}}]Modify the parameters to use appropriate types instead of generic pointers. \textquotesingle{}void\texorpdfstring{$\ast$}{*} sender\textquotesingle{} to a specific class pointer, and \textquotesingle{}std\+::string data\textquotesingle{} to a more suitable type. We can use overloading to have the notify work on plants or on staff or on customers specifically. \end{DoxyRefDesc}
+
+
+
+\begin{DoxyCodeInclude}{0}
+
+\end{DoxyCodeInclude}
+ 
