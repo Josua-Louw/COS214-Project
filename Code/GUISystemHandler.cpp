@@ -11,7 +11,7 @@ GUISystemHandler::GUISystemHandler() : m_window(nullptr) {
 }
 
 GUISystemHandler::~GUISystemHandler() {
-    //delete m_window;
+    delete m_window;
     //delete greenHouse;
     //delete nurseryHub;
     for (auto strategy : careStrategies) {

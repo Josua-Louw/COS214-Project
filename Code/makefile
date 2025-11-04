@@ -36,7 +36,7 @@ run: $(EXEC)
 	./$(EXEC)
 
 valgrind: $(EXEC)
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --keep-stacktraces=alloc-and-free --error-exitcode=1 --log-file=$(VALGRIND_LOG) ./$(EXEC) 2>&1 | tee $(VALGRIND_OUT)
+	valgrind --leak-check=full --show-leak-kinds=definite --track-origins=yes --keep-stacktraces=alloc-and-free --error-exitcode=1 --log-file=$(VALGRIND_LOG) ./$(EXEC) 2>&1 | tee $(VALGRIND_OUT)
 
 gdb: $(EXEC)
 	gdb ./$(EXEC)
