@@ -1,0 +1,124 @@
+\doxysection{Add\+Pot Class Reference}
+\hypertarget{classAddPot}{}\label{classAddPot}\index{AddPot@{AddPot}}
+
+
+Concrete class for adding potted plants to an order in a greenhouse management system. This class implements the build\+Part method to add potted plants to an order based on the item name.  
+
+
+
+
+{\ttfamily \#include $<$Add\+Pot.\+h$>$}
+
+
+
+Inheritance diagram for Add\+Pot\+:
+% FIG 0
+
+
+Collaboration diagram for Add\+Pot\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classAddPot_aeba549fdb92629a9726c055519135f70}{Add\+Pot}} (\mbox{\hyperlink{classGreenHouse}{Green\+House}} \texorpdfstring{$\ast$}{*}gh)
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{classAddPot}{Add\+Pot}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classOrder}{Order}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classAddPot_a047cbda058d056ec5eebf0330f3944a6}{build\+Part}} (\mbox{\hyperlink{classOrder}{Order}} \texorpdfstring{$\ast$}{*}order, std\+::string item\+Name)
+\begin{DoxyCompactList}\small\item\em Builds the part of the order by adding potted plants based on the item name. The method searches for potted plants in the greenhouse and adds them to the order. The method checks the plant type and adds it to the order if it matches the pot type. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classAddPot_a436186b2819561409529a1bae11fc0db}{check\+Type}} (\mbox{\hyperlink{classItem}{Item}} \texorpdfstring{$\ast$}{*}item)
+\begin{DoxyCompactList}\small\item\em Checks if the given plant is of potted type. The method verifies if the plant matches the criteria for being classified as a pot. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classOrderBuilder}{Order\+Builder}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classOrderBuilder_a17c935b73d886a71b07a7fc90a61de3a}{Order\+Builder}} (\mbox{\hyperlink{classGreenHouse}{Green\+House}} \texorpdfstring{$\ast$}{*}gh)
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{classOrderBuilder}{Order\+Builder}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classGreenHouse}{Green\+House}} \texorpdfstring{$\ast$}{*} {\bfseries get\+Green\+House} () const
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Order\+Builder} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor for proper cleanup of derived classes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classOrderBuilder}{Order\+Builder}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classGreenHouse}{Green\+House}} \texorpdfstring{$\ast$}{*} {\bfseries green\+House}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Concrete class for adding potted plants to an order in a greenhouse management system. This class implements the build\+Part method to add potted plants to an order based on the item name. 
+
+\begin{DoxyNote}{Note}
+This class inherits from the \doxylink{classOrderBuilder}{Order\+Builder} abstract class. 
+\end{DoxyNote}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classAddPot_aeba549fdb92629a9726c055519135f70}\label{classAddPot_aeba549fdb92629a9726c055519135f70} 
+\index{AddPot@{AddPot}!AddPot@{AddPot}}
+\index{AddPot@{AddPot}!AddPot@{AddPot}}
+\doxysubsubsection{\texorpdfstring{AddPot()}{AddPot()}}
+{\footnotesize\ttfamily Add\+Pot\+::\+Add\+Pot (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGreenHouse}{Green\+House}} \texorpdfstring{$\ast$}{*}}]{gh }\end{DoxyParamCaption})}
+
+
+
+Constructor for \doxylink{classAddPot}{Add\+Pot}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gh} & Pointer to the \doxylink{classGreenHouse}{Green\+House} instance. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classAddPot_a047cbda058d056ec5eebf0330f3944a6}\label{classAddPot_a047cbda058d056ec5eebf0330f3944a6} 
+\index{AddPot@{AddPot}!buildPart@{buildPart}}
+\index{buildPart@{buildPart}!AddPot@{AddPot}}
+\doxysubsubsection{\texorpdfstring{buildPart()}{buildPart()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classOrder}{Order}} \texorpdfstring{$\ast$}{*} Add\+Pot\+::build\+Part (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classOrder}{Order}} \texorpdfstring{$\ast$}{*}}]{order,  }\item[{std\+::string}]{item\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Builds the part of the order by adding potted plants based on the item name. The method searches for potted plants in the greenhouse and adds them to the order. The method checks the plant type and adds it to the order if it matches the pot type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em order} & Pointer to the current order. \\
+\hline
+{\em item\+Name} & Name of the pot item to be added.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the updated order. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classOrderBuilder_af8b78c8774a790ed4533eafa541af34c}{Order\+Builder}}.
+
+\Hypertarget{classAddPot_a436186b2819561409529a1bae11fc0db}\label{classAddPot_a436186b2819561409529a1bae11fc0db} 
+\index{AddPot@{AddPot}!checkType@{checkType}}
+\index{checkType@{checkType}!AddPot@{AddPot}}
+\doxysubsubsection{\texorpdfstring{checkType()}{checkType()}}
+{\footnotesize\ttfamily bool Add\+Pot\+::check\+Type (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classItem}{Item}} \texorpdfstring{$\ast$}{*}}]{item }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Checks if the given plant is of potted type. The method verifies if the plant matches the criteria for being classified as a pot. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em plant} & Pointer to the plant to be checked.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the plant is a pot, false otherwise. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classOrderBuilder}{Order\+Builder}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\mbox{\hyperlink{AddPot_8h}{Add\+Pot.\+h}}\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\mbox{\hyperlink{AddPot_8cpp}{Add\+Pot.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,86 @@
+\doxysection{Dead\+State Class Reference}
+\hypertarget{classDeadState}{}\label{classDeadState}\index{DeadState@{DeadState}}
+
+
+Represents the dead state in a plant\textquotesingle{}s lifecycle.  
+
+
+
+
+{\ttfamily \#include $<$Dead\+State.\+h$>$}
+
+
+
+Inheritance diagram for Dead\+State\+:
+% FIG 0
+
+
+Collaboration diagram for Dead\+State\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classDeadState_a5d5d7ffe804cf101502f5d09070788d3}{transition\+To\+Next}} () override
+\begin{DoxyCompactList}\small\item\em Transitions the plant to the next state in its lifecycle. \end{DoxyCompactList}\item 
+\Hypertarget{classDeadState_a3a009072a08a19a0cf8c80cf4e25ce84}\label{classDeadState_a3a009072a08a19a0cf8c80cf4e25ce84} 
+{\bfseries Dead\+State} (\mbox{\hyperlink{classGreenHousePlant}{Green\+House\+Plant}} \texorpdfstring{$\ast$}{*}plant)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classPlantState}{Plant\+State}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classPlantState_a161ce94f53bbe443c85e313688aa63b0}{\texorpdfstring{$\sim$}{\string~}\+Plant\+State}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor to ensure proper cleanup in derived classes. \end{DoxyCompactList}\item 
+{\bfseries Plant\+State} (\mbox{\hyperlink{classGreenHousePlant}{Green\+House\+Plant}} \texorpdfstring{$\ast$}{*}plant)
+\item 
+void {\bfseries set\+Plant\+Alive} (bool plant\+Exist)
+\item 
+bool {\bfseries is\+Alive} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classPlantState}{Plant\+State}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::atomic$<$ bool $>$ {\bfseries plant\+Alive} \{true\}
+\item 
+\mbox{\hyperlink{classGreenHousePlant}{Green\+House\+Plant}} \texorpdfstring{$\ast$}{*} {\bfseries plant\+\_\+} = nullptr
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents the dead state in a plant\textquotesingle{}s lifecycle. 
+
+The \doxylink{classDeadState}{Dead\+State} class models the final phase where the plant has died and all biological functions have ceased. It inherits from \doxylink{classPlantState}{Plant\+State}, part of the plant lifecycle state machine. No care actions or transitions are effective in this state, as the plant is permanently non-\/viable. \begin{DoxyNote}{Note}
+This is the terminal state of the plant’s lifecycle, with no possibility of recovery. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{classPlantState}{Plant\+State}, \doxylink{classDyingState}{Dying\+State} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classDeadState_a5d5d7ffe804cf101502f5d09070788d3}\label{classDeadState_a5d5d7ffe804cf101502f5d09070788d3} 
+\index{DeadState@{DeadState}!transitionToNext@{transitionToNext}}
+\index{transitionToNext@{transitionToNext}!DeadState@{DeadState}}
+\doxysubsubsection{\texorpdfstring{transitionToNext()}{transitionToNext()}}
+{\footnotesize\ttfamily void Dead\+State\+::transition\+To\+Next (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Transitions the plant to the next state in its lifecycle. 
+
+This method is stubbed and performs no operations, as there is no next state beyond the dead state in the plant’s lifecycle. \begin{DoxyNote}{Note}
+This method is intentionally empty, as the dead state is terminal. 
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlantState_a21cd156c2af73852ff8f0bdf91a923f7}{Plant\+State}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\mbox{\hyperlink{DeadState_8h}{Dead\+State.\+h}}\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/Dead\+State.\+cpp\end{DoxyCompactItemize}

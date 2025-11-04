@@ -1,0 +1,183 @@
+\doxysection{Plant\+Decorator Class Reference}
+\hypertarget{classPlantDecorator}{}\label{classPlantDecorator}\index{PlantDecorator@{PlantDecorator}}
+
+
+Abstract base class representing a plant decorator.  
+
+
+
+
+{\ttfamily \#include $<$Plant\+Decorator.\+h$>$}
+
+
+
+Inheritance diagram for Plant\+Decorator\+:
+% FIG 0
+
+
+Collaboration diagram for Plant\+Decorator\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classPlantDecorator_a714e61ba2f995ae14fe468d19a6973c0}\label{classPlantDecorator_a714e61ba2f995ae14fe468d19a6973c0} 
+{\bfseries Plant\+Decorator} (double cost, const std\+::string \&name)
+\item 
+\mbox{\hyperlink{classPlantDecorator_aeab3112a905ee40121aa3472da1c211b}{Plant\+Decorator}} (const \mbox{\hyperlink{classPlantDecorator}{Plant\+Decorator}} \&other)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classPlantDecorator_ac22e9f31ab48a99b7ca285e9239b91ab}{get\+Price}} () const override
+\begin{DoxyCompactList}\small\item\em Gets the price of the decorated plant. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classPlantDecorator_a75b485a18a77cf92755f3b9128d774ed}{get\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em Gets the name of the plant. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPlantDecorator_a99f5a9ebe97096413784d78f2a7b1d2a}{decorate}} (\mbox{\hyperlink{classOrderPlant}{Order\+Plant}} \texorpdfstring{$\ast$}{*}order\+Plant) override
+\begin{DoxyCompactList}\small\item\em Add decoration to the given plant. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classPlantDecorator_ac96952357f89417896bcc022c9c968de}{\texorpdfstring{$\sim$}{\string~}\+Plant\+Decorator}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor to ensure proper cleanup. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classOrderPlant}{Order\+Plant}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Order\+Plant} (double cost, const std\+::string \&name)
+\item 
+\mbox{\hyperlink{classOrderPlant_a2f26d17aec973d21877f89052b639162}{Order\+Plant}} (const \mbox{\hyperlink{classOrderPlant}{Order\+Plant}} \&)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+virtual PLANT\+\_\+\+TYPE \mbox{\hyperlink{classOrderPlant_a1210e855109d563dc809701a66385fba}{get\+Type}} () const =0
+\begin{DoxyCompactList}\small\item\em Gets the type of the plant implementor. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Order\+Plant} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor to ensure proper cleanup in derived classes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classPlantImplementor}{Plant\+Implementor}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Plant\+Implementor} ()=default
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlantImplementor_a87801b3ef7e9abdc9c61eb051371a9e8}{Plant\+Implementor}} (const \mbox{\hyperlink{classPlantImplementor}{Plant\+Implementor}} \&)=default
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Plant\+Implementor} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor to ensure proper cleanup in derived classes. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classPlantImplementor}{Plant\+Implementor}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classPlantImplementor_aa019bd21868f3270e91c37f2c2303908}{clone}} ()=0
+\begin{DoxyCompactList}\small\item\em Clones the plant implementor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classOrderPlant}{Order\+Plant}}}
+\begin{DoxyCompactItemize}
+\item 
+double {\bfseries cost}
+\item 
+std\+::string {\bfseries name}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Abstract base class representing a plant decorator. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classPlantDecorator_aeab3112a905ee40121aa3472da1c211b}\label{classPlantDecorator_aeab3112a905ee40121aa3472da1c211b} 
+\index{PlantDecorator@{PlantDecorator}!PlantDecorator@{PlantDecorator}}
+\index{PlantDecorator@{PlantDecorator}!PlantDecorator@{PlantDecorator}}
+\doxysubsubsection{\texorpdfstring{PlantDecorator()}{PlantDecorator()}}
+{\footnotesize\ttfamily Plant\+Decorator\+::\+Plant\+Decorator (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classPlantDecorator}{Plant\+Decorator}} \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Copy constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The \doxylink{classPlantDecorator}{Plant\+Decorator} object to copy from. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new \doxylink{classPlantDecorator}{Plant\+Decorator} object that is a copy of the given object. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This is a deep copy constructor. 
+\end{DoxyNote}
+\Hypertarget{classPlantDecorator_ac96952357f89417896bcc022c9c968de}\label{classPlantDecorator_ac96952357f89417896bcc022c9c968de} 
+\index{PlantDecorator@{PlantDecorator}!````~PlantDecorator@{\texorpdfstring{$\sim$}{\string~}PlantDecorator}}
+\index{````~PlantDecorator@{\texorpdfstring{$\sim$}{\string~}PlantDecorator}!PlantDecorator@{PlantDecorator}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}PlantDecorator()}{\string~PlantDecorator()}}
+{\footnotesize\ttfamily Plant\+Decorator\+::\texorpdfstring{$\sim$}{\string~}\+Plant\+Decorator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Virtual destructor to ensure proper cleanup. 
+
+\begin{DoxyNote}{Note}
+Deletes the component if it exists. 
+\end{DoxyNote}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classPlantDecorator_a99f5a9ebe97096413784d78f2a7b1d2a}\label{classPlantDecorator_a99f5a9ebe97096413784d78f2a7b1d2a} 
+\index{PlantDecorator@{PlantDecorator}!decorate@{decorate}}
+\index{decorate@{decorate}!PlantDecorator@{PlantDecorator}}
+\doxysubsubsection{\texorpdfstring{decorate()}{decorate()}}
+{\footnotesize\ttfamily void Plant\+Decorator\+::decorate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classOrderPlant}{Order\+Plant}} \texorpdfstring{$\ast$}{*}}]{order\+Plant }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Add decoration to the given plant. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em order\+Plant} & Pointer to the plant to be decorated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em const} & char\texorpdfstring{$\ast$}{*} if attempting to add more than one seed packet decoration. \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyWarning}{Warning}
+This function requires heap-\/allocated \doxylink{classOrderPlant}{Order\+Plant} objects to function correctly. 
+\end{DoxyWarning}
+
+
+Implements \mbox{\hyperlink{classOrderPlant_a1806444706a692cfda31eaac6a83fe51}{Order\+Plant}}.
+
+\Hypertarget{classPlantDecorator_a75b485a18a77cf92755f3b9128d774ed}\label{classPlantDecorator_a75b485a18a77cf92755f3b9128d774ed} 
+\index{PlantDecorator@{PlantDecorator}!getName@{getName}}
+\index{getName@{getName}!PlantDecorator@{PlantDecorator}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily std\+::string Plant\+Decorator\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Gets the name of the plant. 
+
+\begin{DoxyReturn}{Returns}
+The name of the plant as a string. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classOrderPlant_a6ee0e4aa43da9a300858bfc7054d6718}{Order\+Plant}}.
+
+\Hypertarget{classPlantDecorator_ac22e9f31ab48a99b7ca285e9239b91ab}\label{classPlantDecorator_ac22e9f31ab48a99b7ca285e9239b91ab} 
+\index{PlantDecorator@{PlantDecorator}!getPrice@{getPrice}}
+\index{getPrice@{getPrice}!PlantDecorator@{PlantDecorator}}
+\doxysubsubsection{\texorpdfstring{getPrice()}{getPrice()}}
+{\footnotesize\ttfamily double Plant\+Decorator\+::get\+Price (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Gets the price of the decorated plant. 
+
+\begin{DoxyReturn}{Returns}
+The price of the decorated plant as a double. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+If there is a component, the price is the sum of the decorator\textquotesingle{}s cost and the component\textquotesingle{}s price. 
+
+If there is no component, the price is just the decorator\textquotesingle{}s cost. 
+\end{DoxyNote}
+
+
+Implements \mbox{\hyperlink{classOrderPlant_a65e5d15a731d2d5d0b0aa5bcc45c5099}{Order\+Plant}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\mbox{\hyperlink{PlantDecorator_8h}{Plant\+Decorator.\+h}}\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/Plant\+Decorator.\+cpp\end{DoxyCompactItemize}

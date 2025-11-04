@@ -1,0 +1,171 @@
+\doxysection{Decoration\+Adapter Class Reference}
+\hypertarget{classDecorationAdapter}{}\label{classDecorationAdapter}\index{DecorationAdapter@{DecorationAdapter}}
+
+
+Adapter class to adapt \doxylink{classDecoration}{Decoration} to \doxylink{classItem}{Item} interface.  
+
+
+
+
+{\ttfamily \#include $<$Decoration\+Adapter.\+h$>$}
+
+
+
+Inheritance diagram for Decoration\+Adapter\+:
+% FIG 0
+
+
+Collaboration diagram for Decoration\+Adapter\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classDecorationAdapter_a2747a5051beb258e9e14dba15037d1a0}{Decoration\+Adapter}} (std\+::string name, double price)
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{classDecorationAdapter}{Decoration\+Adapter}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classDecorationAdapter_a20e30e987d095a68d26f68a4f6b669f1}{Decoration\+Adapter}} (\mbox{\hyperlink{classDecoration}{Decoration}} \texorpdfstring{$\ast$}{*}d)
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{classDecorationAdapter}{Decoration\+Adapter}. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classDecorationAdapter_a8d95f58e0ed0d44591e5451b8fa3ecc0}{get\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em Gets the name of the decoration. \end{DoxyCompactList}\item 
+\Hypertarget{classDecorationAdapter_a06cdbd8aab50e8336ddc7314e0cba417}\label{classDecorationAdapter_a06cdbd8aab50e8336ddc7314e0cba417} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Decoration\+Adapter} ()
+\begin{DoxyCompactList}\small\item\em Destructor for \doxylink{classDecorationAdapter}{Decoration\+Adapter}. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classDecorationAdapter_a0f3284dd4241a6d99eaaae169f6f5205}{get\+Price}} () const override
+\begin{DoxyCompactList}\small\item\em Gets the price of the item. \end{DoxyCompactList}\item 
+PLANT\+\_\+\+TYPE \mbox{\hyperlink{classDecorationAdapter_a70599c91a8d5f229671b226b1f75064f}{get\+Type}} () const override
+\begin{DoxyCompactList}\small\item\em Get the type of the item. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classOrderPlant}{Order\+Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classDecorationAdapter_a35f4b5d72c3fa641bf07675527cd3580}{get\+Order\+Plant}} () const override
+\begin{DoxyCompactList}\small\item\em Get the \doxylink{classOrderPlant}{Order\+Plant} of the item. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classItem}{Item}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Item} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor to ensure proper cleanup in derived classes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classItem_afc98cd6fa9a1486d93cfa8c4a65d9b02}{expand}} (\mbox{\hyperlink{classGreenHouse}{Green\+House}} \texorpdfstring{$\ast$}{*}gh) override
+\begin{DoxyCompactList}\small\item\em Expands the greenhouse by adding a subsection. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classItem_a496237e938255c1b3b0d07990c351855}{sell}} (\mbox{\hyperlink{classItem}{Item}} \texorpdfstring{$\ast$}{*}item) override
+\begin{DoxyCompactList}\small\item\em Sells an item from the greenhouse. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classGreenHouse}{Green\+House}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classItem_a6c9cc9eb271efd094f0e72de7fbec5c0}{get\+Subsection}} (const std\+::string \&section\+Name) override
+\begin{DoxyCompactList}\small\item\em Gets a subsection of the greenhouse by name. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classIterator}{Iterator}}$<$ \mbox{\hyperlink{classItem}{Item}} \texorpdfstring{$\ast$}{*} $>$ \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classItem_a06af31c2974e92883138d40448a2c506}{create\+Iterator}} () override
+\begin{DoxyCompactList}\small\item\em Creates an iterator for traversing the greenhouse structure. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classItem}{Item}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classItem_a74fe8f0acbee1b97d348eac072e52faf}{find\+Item}} (const std\+::string \&item\+Name) override
+\begin{DoxyCompactList}\small\item\em Finds an item in the greenhouse by name. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classItem_af44d230847c85447e642dd13c515ea79}{print\+Summary}} () const override
+\begin{DoxyCompactList}\small\item\em Prints a summary of the greenhouse section or item. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classItem_a8b97377d2f0055e802c82cdf96127718}{get\+Total\+Item\+Count}} () const
+\begin{DoxyCompactList}\small\item\em Gets the total item count in the greenhouse. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classItem_a392049ba38114a93e7bfd8a9bca2bf13}{print\+Summary\+Helper}} (int indent\+Level) const
+\begin{DoxyCompactList}\small\item\em Helper function to print summary with indentation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classGreenHouse}{Green\+House}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Green\+House} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor for proper cleanup of derived classes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Adapter class to adapt \doxylink{classDecoration}{Decoration} to \doxylink{classItem}{Item} interface. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classDecorationAdapter_a2747a5051beb258e9e14dba15037d1a0}\label{classDecorationAdapter_a2747a5051beb258e9e14dba15037d1a0} 
+\index{DecorationAdapter@{DecorationAdapter}!DecorationAdapter@{DecorationAdapter}}
+\index{DecorationAdapter@{DecorationAdapter}!DecorationAdapter@{DecorationAdapter}}
+\doxysubsubsection{\texorpdfstring{DecorationAdapter()}{DecorationAdapter()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Decoration\+Adapter\+::\+Decoration\+Adapter (\begin{DoxyParamCaption}\item[{std\+::string}]{name,  }\item[{double}]{price }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor for \doxylink{classDecorationAdapter}{Decoration\+Adapter}. 
+
+Initializes with a new \doxylink{classDecoration}{Decoration} instance. \Hypertarget{classDecorationAdapter_a20e30e987d095a68d26f68a4f6b669f1}\label{classDecorationAdapter_a20e30e987d095a68d26f68a4f6b669f1} 
+\index{DecorationAdapter@{DecorationAdapter}!DecorationAdapter@{DecorationAdapter}}
+\index{DecorationAdapter@{DecorationAdapter}!DecorationAdapter@{DecorationAdapter}}
+\doxysubsubsection{\texorpdfstring{DecorationAdapter()}{DecorationAdapter()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Decoration\+Adapter\+::\+Decoration\+Adapter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDecoration}{Decoration}} \texorpdfstring{$\ast$}{*}}]{d }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor for \doxylink{classDecorationAdapter}{Decoration\+Adapter}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & Pointer to the \doxylink{classDecoration}{Decoration} object to be adapted. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classDecorationAdapter_a8d95f58e0ed0d44591e5451b8fa3ecc0}\label{classDecorationAdapter_a8d95f58e0ed0d44591e5451b8fa3ecc0} 
+\index{DecorationAdapter@{DecorationAdapter}!getName@{getName}}
+\index{getName@{getName}!DecorationAdapter@{DecorationAdapter}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily std\+::string Decoration\+Adapter\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Gets the name of the decoration. 
+
+\begin{DoxyReturn}{Returns}
+The name of the decoration as a string. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classItem_a9b6cc0c6903b1c89d51376d645863144}{Item}}.
+
+\Hypertarget{classDecorationAdapter_a35f4b5d72c3fa641bf07675527cd3580}\label{classDecorationAdapter_a35f4b5d72c3fa641bf07675527cd3580} 
+\index{DecorationAdapter@{DecorationAdapter}!getOrderPlant@{getOrderPlant}}
+\index{getOrderPlant@{getOrderPlant}!DecorationAdapter@{DecorationAdapter}}
+\doxysubsubsection{\texorpdfstring{getOrderPlant()}{getOrderPlant()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classOrderPlant}{Order\+Plant}} \texorpdfstring{$\ast$}{*} Decoration\+Adapter\+::get\+Order\+Plant (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get the \doxylink{classOrderPlant}{Order\+Plant} of the item. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to the implementation of the item of type \doxylink{classOrderPlant}{Order\+Plant}. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classItem_a8fccecaf375afc2b271330b4418c1548}{Item}}.
+
+\Hypertarget{classDecorationAdapter_a0f3284dd4241a6d99eaaae169f6f5205}\label{classDecorationAdapter_a0f3284dd4241a6d99eaaae169f6f5205} 
+\index{DecorationAdapter@{DecorationAdapter}!getPrice@{getPrice}}
+\index{getPrice@{getPrice}!DecorationAdapter@{DecorationAdapter}}
+\doxysubsubsection{\texorpdfstring{getPrice()}{getPrice()}}
+{\footnotesize\ttfamily double Decoration\+Adapter\+::get\+Price (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Gets the price of the item. 
+
+\begin{DoxyReturn}{Returns}
+The price of the item as a double. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classItem_abc213b52b45bd32dab76efa05b05dea4}{Item}}.
+
+\Hypertarget{classDecorationAdapter_a70599c91a8d5f229671b226b1f75064f}\label{classDecorationAdapter_a70599c91a8d5f229671b226b1f75064f} 
+\index{DecorationAdapter@{DecorationAdapter}!getType@{getType}}
+\index{getType@{getType}!DecorationAdapter@{DecorationAdapter}}
+\doxysubsubsection{\texorpdfstring{getType()}{getType()}}
+{\footnotesize\ttfamily PLANT\+\_\+\+TYPE Decoration\+Adapter\+::get\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get the type of the item. 
+
+\begin{DoxyReturn}{Returns}
+The type of the item as a PLANT\+\_\+\+TYPE enum. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classItem_a20b37f4ceb7930c4e35d1b247e4363b2}{Item}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\mbox{\hyperlink{DecorationAdapter_8h}{Decoration\+Adapter.\+h}}\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/Decoration\+Adapter.\+cpp\end{DoxyCompactItemize}

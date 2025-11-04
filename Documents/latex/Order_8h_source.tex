@@ -1,0 +1,35 @@
+\doxysection{Order.\+h}
+\hypertarget{Order_8h_source}{}\label{Order_8h_source}\index{/home/josua/Code/C++/COS214/COS214-\/Project/Code/Order.h@{/home/josua/Code/C++/COS214/COS214-\/Project/Code/Order.h}}
+\mbox{\hyperlink{Order_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ ORDER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ ORDER\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Plant_8h}{Plant.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classCustomer}{Customer}};}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classOrder}{Order}}\ \{}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00023\ \ \ \ \ std::vector<OrderPlant*>\ items;}
+\DoxyCodeLine{00024\ \ \ \ \ std::vector<Item*>\ allItems;}
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{classCustomer}{Customer}}*\ customer\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{classPlantType}{PlantType}}*\ activePlant\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00027\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{classOrder_a7b6a660b03708ed5b4e1c4a6dc2a664a}{Order}}();}
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{classOrder_a8fb25876ccbd534465f5f96ef9bb2212}{\string~Order}}();}
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{classCustomer}{Customer}}*\ \mbox{\hyperlink{classOrder_acd11c01e17e8161b06941fc1df3bb8f1}{getCustomer}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classOrder_a733e870aca3947a7fb6b0b7f996f6224}{setCustomer}}(\mbox{\hyperlink{classCustomer}{Customer}}*\ c);}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classOrder_aa8ef569e9a5ba17cc1215cf32a7877d7}{getTotalCost}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classOrder_a6d2ddbf6e2b40e2b32664a4d16ab6e30}{addItem}}(\mbox{\hyperlink{classItem}{Item}}*\ item);}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classOrder_ae65d7c62ecc1903c4e419b9e800a2984}{getItemCount}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classOrder_a64be17bf3260942be50b8bac9e228687}{printOrder}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classOrder_a59e3fbfbd5b266a4613b0f90f347610d}{sellOrder}}(\mbox{\hyperlink{classGreenHouse}{GreenHouse}}*\ gh);}
+\DoxyCodeLine{00070\ \};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

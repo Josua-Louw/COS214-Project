@@ -1,0 +1,34 @@
+\doxysection{Plant\+Caretaker.\+h}
+\hypertarget{PlantCaretaker_8h_source}{}\label{PlantCaretaker_8h_source}\index{/home/josua/Code/C++/COS214/COS214-\/Project/Code/PlantCaretaker.h@{/home/josua/Code/C++/COS214/COS214-\/Project/Code/PlantCaretaker.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ PLANT\_CARETAKER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ PLANT\_CARETAKER\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Staff.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Command.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{NurseryMediator_8h}{NurseryMediator.h}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <mutex>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{using\ }CommandPtr\ =\ std::shared\_ptr<Command>;}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classPlantCaretaker}{PlantCaretaker}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classStaff}{Staff}}\ \{}
+\DoxyCodeLine{00022\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{classNurseryMediator}{NurseryMediator}}*\ nurseryHub;\ }
+\DoxyCodeLine{00024\ \ \ \ \ std::mutex\ staffMutex;}
+\DoxyCodeLine{00025\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{classPlantCaretaker_aff3e27c316754af0bc1af86c239ab318}{PlantCaretaker}}(\textcolor{keyword}{const}\ std::string\&\ \textcolor{keywordtype}{id},\ \mbox{\hyperlink{classNurseryMediator}{NurseryMediator}}*\ hub)\ :\ \mbox{\hyperlink{classStaff}{Staff}}(\mbox{\hyperlink{classPerson_a2711d352a03cebd2f5bf075300aa3455}{id}}),\ nurseryHub(hub)\ \{\}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPlantCaretaker_aab9479a442e16dfb1fbb5409c2b76062}{receiveCommand}}(CommandPtr\ command)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ printChain()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ markFree();}
+\DoxyCodeLine{00041\ \};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ PLANT\_CARETAKER\_H}}
+
+\end{DoxyCode}

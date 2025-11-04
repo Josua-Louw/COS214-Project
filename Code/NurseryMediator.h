@@ -1,6 +1,7 @@
 #ifndef NURSERYMEDIATOR_H
 #define NURSERYMEDIATOR_H
 
+#include <sstream>
 #include <string>
 #include <vector>
 #include <memory>
@@ -81,6 +82,7 @@ public:
 
 	virtual void setInventoryRoot(GreenHouse* r) = 0;
 	virtual GreenHouse* getInventoryRoot() const = 0;
+	virtual std::string getStaffInfo() const = 0;
 };
 
 #endif

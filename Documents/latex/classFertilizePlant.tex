@@ -1,0 +1,113 @@
+\doxysection{Fertilize\+Plant Class Reference}
+\hypertarget{classFertilizePlant}{}\label{classFertilizePlant}\index{FertilizePlant@{FertilizePlant}}
+
+
+Concrete command for fertilizing a plant in the \doxylink{classPlant}{Plant} Nursery Simulator.  
+
+
+
+
+{\ttfamily \#include $<$Fertilize\+Plant.\+h$>$}
+
+
+
+Inheritance diagram for Fertilize\+Plant\+:
+% FIG 0
+
+
+Collaboration diagram for Fertilize\+Plant\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classFertilizePlant_a7847d317f2253a61215d35fec600dd7a}{Fertilize\+Plant}} (\mbox{\hyperlink{classGreenHousePlant}{Green\+House\+Plant}} \texorpdfstring{$\ast$}{*}plant, int time)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classFertilizePlant}{Fertilize\+Plant} command for a specific greenhouse plant. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classFertilizePlant_ac7403ed616ad40f38efb15474bfd3551}{get\+Type}} () override
+\item 
+\mbox{\hyperlink{classGreenHousePlant}{Green\+House\+Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classFertilizePlant_a8170b9e4635336310f25248ff1ab7d22}{get\+Plant}} () override
+\item 
+void \mbox{\hyperlink{classFertilizePlant_ad8ede20d849d582846ee17896e6009b2}{execute}} () override
+\begin{DoxyCompactList}\small\item\em Executes the fertilization task. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classCommand}{Command}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries get\+Abort\+Status} ()
+\item 
+void {\bfseries set\+Abort\+Status} (bool abort)
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Command} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor for proper cleanup of derived classes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classCommand}{Command}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::atomic$<$ bool $>$ {\bfseries abort} \{false\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Concrete command for fertilizing a plant in the \doxylink{classPlant}{Plant} Nursery Simulator. 
+
+Implements the \doxylink{classCommand}{Command} Pattern (FR5) to encapsulate the task of fertilizing a specific greenhouse plant. Assigned to \doxylink{classPlantCaretaker}{Plant\+Caretaker} via \doxylink{classNurseryHub}{Nursery\+Hub} (FR7), it calls Green\+House\+Plant’s feed method, which uses \doxylink{classCareStrategy}{Care\+Strategy} (FR3) and updates \doxylink{classPlantState}{Plant\+State} (FR4). 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classFertilizePlant_a7847d317f2253a61215d35fec600dd7a}\label{classFertilizePlant_a7847d317f2253a61215d35fec600dd7a} 
+\index{FertilizePlant@{FertilizePlant}!FertilizePlant@{FertilizePlant}}
+\index{FertilizePlant@{FertilizePlant}!FertilizePlant@{FertilizePlant}}
+\doxysubsubsection{\texorpdfstring{FertilizePlant()}{FertilizePlant()}}
+{\footnotesize\ttfamily Fertilize\+Plant\+::\+Fertilize\+Plant (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGreenHousePlant}{Green\+House\+Plant}} \texorpdfstring{$\ast$}{*}}]{plant,  }\item[{int}]{time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{classFertilizePlant}{Fertilize\+Plant} command for a specific greenhouse plant. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em plant} & Pointer to the \doxylink{classGreenHousePlant}{Green\+House\+Plant} to be fertilized. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classFertilizePlant_ad8ede20d849d582846ee17896e6009b2}\label{classFertilizePlant_ad8ede20d849d582846ee17896e6009b2} 
+\index{FertilizePlant@{FertilizePlant}!execute@{execute}}
+\index{execute@{execute}!FertilizePlant@{FertilizePlant}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily void Fertilize\+Plant\+::execute (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Executes the fertilization task. 
+
+Executes the fertilization task, updating the plant’s state.
+
+Calls the plant’s feed method, which applies the fertilization strategy (e.\+g., \doxylink{classFertilizerBoostStrategy}{Fertilizer\+Boost\+Strategy}) and triggers state transitions (e.\+g., Juvenile\+State\+::handle\+Care). Supports FR3 and FR4. 
+
+Implements \mbox{\hyperlink{classCommand_a6fd7d9bd8df8bfc881e4d6c7cd1878b7}{Command}}.
+
+\Hypertarget{classFertilizePlant_a8170b9e4635336310f25248ff1ab7d22}\label{classFertilizePlant_a8170b9e4635336310f25248ff1ab7d22} 
+\index{FertilizePlant@{FertilizePlant}!getPlant@{getPlant}}
+\index{getPlant@{getPlant}!FertilizePlant@{FertilizePlant}}
+\doxysubsubsection{\texorpdfstring{getPlant()}{getPlant()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classGreenHousePlant}{Green\+House\+Plant}} \texorpdfstring{$\ast$}{*} Fertilize\+Plant\+::get\+Plant (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classCommand}{Command}}.
+
+\Hypertarget{classFertilizePlant_ac7403ed616ad40f38efb15474bfd3551}\label{classFertilizePlant_ac7403ed616ad40f38efb15474bfd3551} 
+\index{FertilizePlant@{FertilizePlant}!getType@{getType}}
+\index{getType@{getType}!FertilizePlant@{FertilizePlant}}
+\doxysubsubsection{\texorpdfstring{getType()}{getType()}}
+{\footnotesize\ttfamily std\+::string Fertilize\+Plant\+::get\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classCommand}{Command}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/Fertilize\+Plant.\+h\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\mbox{\hyperlink{FertilizePlant_8cpp}{Fertilize\+Plant.\+cpp}}\end{DoxyCompactItemize}

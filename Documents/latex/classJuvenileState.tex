@@ -1,0 +1,89 @@
+\doxysection{Juvenile\+State Class Reference}
+\hypertarget{classJuvenileState}{}\label{classJuvenileState}\index{JuvenileState@{JuvenileState}}
+
+
+Represents the juvenile state in a plant\textquotesingle{}s lifecycle.  
+
+
+
+
+{\ttfamily \#include $<$Juvenile\+State.\+h$>$}
+
+
+
+Inheritance diagram for Juvenile\+State\+:
+% FIG 0
+
+
+Collaboration diagram for Juvenile\+State\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classJuvenileState_a0e64df3cacb56e9d5a5be1975ec6b46d}{transition\+To\+Next}} () override
+\begin{DoxyCompactList}\small\item\em Transitions the plant to the next state in its lifecycle. \end{DoxyCompactList}\item 
+\Hypertarget{classJuvenileState_a34f4c80bc983c4ddb36e6bd6b431a120}\label{classJuvenileState_a34f4c80bc983c4ddb36e6bd6b431a120} 
+{\bfseries Juvenile\+State} (\mbox{\hyperlink{classGreenHousePlant}{Green\+House\+Plant}} \texorpdfstring{$\ast$}{*}plant)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classPlantState}{Plant\+State}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classPlantState_a161ce94f53bbe443c85e313688aa63b0}{\texorpdfstring{$\sim$}{\string~}\+Plant\+State}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor to ensure proper cleanup in derived classes. \end{DoxyCompactList}\item 
+{\bfseries Plant\+State} (\mbox{\hyperlink{classGreenHousePlant}{Green\+House\+Plant}} \texorpdfstring{$\ast$}{*}plant)
+\item 
+void {\bfseries set\+Plant\+Alive} (bool plant\+Exist)
+\item 
+bool {\bfseries is\+Alive} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classPlantState}{Plant\+State}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::atomic$<$ bool $>$ {\bfseries plant\+Alive} \{true\}
+\item 
+\mbox{\hyperlink{classGreenHousePlant}{Green\+House\+Plant}} \texorpdfstring{$\ast$}{*} {\bfseries plant\+\_\+} = nullptr
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents the juvenile state in a plant\textquotesingle{}s lifecycle. 
+
+The \doxylink{classJuvenileState}{Juvenile\+State} class models the phase where the plant is actively growing, developing its structure and strength before reaching maturity. It inherits from \doxylink{classPlantState}{Plant\+State}, part of the plant lifecycle state machine. Care actions, such as watering and fertilizing, are essential to support growth and enable progression to the mature state. \begin{DoxyNote}{Note}
+This stage is critical for establishing the plant’s foundation for maturity. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{classPlantState}{Plant\+State}, \doxylink{classMatureState}{Mature\+State}, \doxylink{classDyingState}{Dying\+State} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classJuvenileState_a0e64df3cacb56e9d5a5be1975ec6b46d}\label{classJuvenileState_a0e64df3cacb56e9d5a5be1975ec6b46d} 
+\index{JuvenileState@{JuvenileState}!transitionToNext@{transitionToNext}}
+\index{transitionToNext@{transitionToNext}!JuvenileState@{JuvenileState}}
+\doxysubsubsection{\texorpdfstring{transitionToNext()}{transitionToNext()}}
+{\footnotesize\ttfamily void Juvenile\+State\+::transition\+To\+Next (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Transitions the plant to the next state in its lifecycle. 
+
+Moves the plant from the juvenile state to the mature state if appropriate care has been provided. If care is insufficient, the plant transitions to the dying state. \begin{DoxyNote}{Note}
+The next state is typically the \doxylink{classMatureState}{Mature\+State} or, in case of inadequate care, the \doxylink{classDyingState}{Dying\+State}. 
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{classMatureState}{Mature\+State}, \doxylink{classDyingState}{Dying\+State} 
+\end{DoxySeeAlso}
+
+
+Implements \mbox{\hyperlink{classPlantState_a21cd156c2af73852ff8f0bdf91a923f7}{Plant\+State}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\mbox{\hyperlink{JuvenileState_8h}{Juvenile\+State.\+h}}\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/Juvenile\+State.\+cpp\end{DoxyCompactItemize}

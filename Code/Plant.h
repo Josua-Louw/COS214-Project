@@ -4,6 +4,7 @@
 #include "Item.h"
 #include "PlantImplementor.h"
 #include "GreenHousePlant.h"
+#include "PlantMaker.h"
 #include "PlantType.h"
 
 /**
@@ -30,8 +31,8 @@ private:
 public:
     Plant();
     Plant(PlantImplementor* impl);
-    Plant(const std::string& name, double price);
-    Plant(const std::string& name, double price, NurseryMediator* mediator, CareStrategy* care);
+    Plant(const std::string& name, double price, PlantMaker* maker);
+    Plant(const std::string& name, double price, NurseryMediator* mediator, CareStrategy* care, PlantMaker* maker);
     /**
      * @brief Converts the plant to an order type.
      * @details Defines the interface for converting the plant to an order type, with implementation details provided by derived classes based on the plant’s type.
@@ -69,6 +70,8 @@ public:
      * @details Cleans up resources associated with the Plant object.
      */
     ~Plant();
+
+    bool isPlantActive() const;
 };
 
 #endif // PLANT_H

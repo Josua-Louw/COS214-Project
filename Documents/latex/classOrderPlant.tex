@@ -1,0 +1,189 @@
+\doxysection{Order\+Plant Class Reference}
+\hypertarget{classOrderPlant}{}\label{classOrderPlant}\index{OrderPlant@{OrderPlant}}
+
+
+Abstract base class representing an orderable plant.  
+
+
+
+
+{\ttfamily \#include $<$Order\+Plant.\+h$>$}
+
+
+
+Inheritance diagram for Order\+Plant\+:
+% FIG 0
+
+
+Collaboration diagram for Order\+Plant\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classOrderPlant_a714263531c6de19026bb9464fda0f550}\label{classOrderPlant_a714263531c6de19026bb9464fda0f550} 
+{\bfseries Order\+Plant} (double cost, const std\+::string \&name)
+\item 
+\mbox{\hyperlink{classOrderPlant_a2f26d17aec973d21877f89052b639162}{Order\+Plant}} (const \mbox{\hyperlink{classOrderPlant}{Order\+Plant}} \&)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+virtual double \mbox{\hyperlink{classOrderPlant_a65e5d15a731d2d5d0b0aa5bcc45c5099}{get\+Price}} () const =0
+\begin{DoxyCompactList}\small\item\em Gets the price of the plant. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classOrderPlant_a1806444706a692cfda31eaac6a83fe51}{decorate}} (\mbox{\hyperlink{classOrderPlant}{Order\+Plant}} \texorpdfstring{$\ast$}{*}order\+Plant)=0
+\begin{DoxyCompactList}\small\item\em Add decoration to the given plant. \end{DoxyCompactList}\item 
+virtual std\+::string \mbox{\hyperlink{classOrderPlant_a6ee0e4aa43da9a300858bfc7054d6718}{get\+Name}} () const =0
+\begin{DoxyCompactList}\small\item\em Gets the name of the plant. \end{DoxyCompactList}\item 
+virtual PLANT\+\_\+\+TYPE \mbox{\hyperlink{classOrderPlant_a1210e855109d563dc809701a66385fba}{get\+Type}} () const =0
+\begin{DoxyCompactList}\small\item\em Gets the type of the plant implementor. \end{DoxyCompactList}\item 
+\Hypertarget{classOrderPlant_a0ab30c332e6c6e09e17ac532fbeaf646}\label{classOrderPlant_a0ab30c332e6c6e09e17ac532fbeaf646} 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Order\+Plant} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor to ensure proper cleanup in derived classes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classPlantImplementor}{Plant\+Implementor}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Plant\+Implementor} ()=default
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlantImplementor_a87801b3ef7e9abdc9c61eb051371a9e8}{Plant\+Implementor}} (const \mbox{\hyperlink{classPlantImplementor}{Plant\+Implementor}} \&)=default
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Plant\+Implementor} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor to ensure proper cleanup in derived classes. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classPlantImplementor}{Plant\+Implementor}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classPlantImplementor_aa019bd21868f3270e91c37f2c2303908}{clone}} ()=0
+\begin{DoxyCompactList}\small\item\em Clones the plant implementor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classOrderPlant_a6a35d9c94c4ef105b837ec3eb9bbc249}\label{classOrderPlant_a6a35d9c94c4ef105b837ec3eb9bbc249} 
+double {\bfseries cost}
+\item 
+\Hypertarget{classOrderPlant_a35cb63f854e2d1ee18d4f990ffd09a2d}\label{classOrderPlant_a35cb63f854e2d1ee18d4f990ffd09a2d} 
+std\+::string {\bfseries name}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Abstract base class representing an orderable plant. 
+
+The \doxylink{classOrderPlant}{Order\+Plant} class serves as an abstract base class for all orderable plants in the system. It defines the interface for getting the price, decorating the plant, and retrieving the type of the plant. Derived classes must implement these methods to provide specific behavior for different types of orderable plants. \begin{DoxyNote}{Note}
+This class is abstract and cannot be instantiated directly. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{classPlantImplementor}{Plant\+Implementor}, \doxylink{classPlantDecorator}{Plant\+Decorator}, \doxylink{classSeedPacket}{Seed\+Packet}, \doxylink{classDecoration}{Decoration}, \doxylink{classPot}{Pot} 
+\end{DoxySeeAlso}
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000008}{Todo}}]Implement concrete classes for different types of orderable plants. \end{DoxyRefDesc}
+\begin{DoxyWarning}{Warning}
+This class is not intended for direct use. 
+\end{DoxyWarning}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classOrderPlant_a2f26d17aec973d21877f89052b639162}\label{classOrderPlant_a2f26d17aec973d21877f89052b639162} 
+\index{OrderPlant@{OrderPlant}!OrderPlant@{OrderPlant}}
+\index{OrderPlant@{OrderPlant}!OrderPlant@{OrderPlant}}
+\doxysubsubsection{\texorpdfstring{OrderPlant()}{OrderPlant()}}
+{\footnotesize\ttfamily Order\+Plant\+::\+Order\+Plant (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classOrderPlant}{Order\+Plant}} \&}]{other }\end{DoxyParamCaption})}
+
+
+
+Copy constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The \doxylink{classOrderPlant}{Order\+Plant} object to copy from. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new \doxylink{classOrderPlant}{Order\+Plant} object that is a copy of the given object. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classOrderPlant_a1806444706a692cfda31eaac6a83fe51}\label{classOrderPlant_a1806444706a692cfda31eaac6a83fe51} 
+\index{OrderPlant@{OrderPlant}!decorate@{decorate}}
+\index{decorate@{decorate}!OrderPlant@{OrderPlant}}
+\doxysubsubsection{\texorpdfstring{decorate()}{decorate()}}
+{\footnotesize\ttfamily virtual void Order\+Plant\+::decorate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classOrderPlant}{Order\+Plant}} \texorpdfstring{$\ast$}{*}}]{order\+Plant }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Add decoration to the given plant. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em order\+Plant} & Pointer to the plant to be decorated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classPlantDecorator_a99f5a9ebe97096413784d78f2a7b1d2a}{Plant\+Decorator}}, and \mbox{\hyperlink{classSeedPacket_a43c531ec918afbeeafbc9ee0267c9e42}{Seed\+Packet}}.
+
+\Hypertarget{classOrderPlant_a6ee0e4aa43da9a300858bfc7054d6718}\label{classOrderPlant_a6ee0e4aa43da9a300858bfc7054d6718} 
+\index{OrderPlant@{OrderPlant}!getName@{getName}}
+\index{getName@{getName}!OrderPlant@{OrderPlant}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily virtual std\+::string Order\+Plant\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Gets the name of the plant. 
+
+\begin{DoxyReturn}{Returns}
+The name of the plant as a string. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlantImplementor_ae8d702a85bbae84a715593a071a17e62}{Plant\+Implementor}}.
+
+
+
+Implemented in \mbox{\hyperlink{classPlantDecorator_a75b485a18a77cf92755f3b9128d774ed}{Plant\+Decorator}}, and \mbox{\hyperlink{classSeedPacket_a1b5c16d6be0564ec83781ff466d2f472}{Seed\+Packet}}.
+
+\Hypertarget{classOrderPlant_a65e5d15a731d2d5d0b0aa5bcc45c5099}\label{classOrderPlant_a65e5d15a731d2d5d0b0aa5bcc45c5099} 
+\index{OrderPlant@{OrderPlant}!getPrice@{getPrice}}
+\index{getPrice@{getPrice}!OrderPlant@{OrderPlant}}
+\doxysubsubsection{\texorpdfstring{getPrice()}{getPrice()}}
+{\footnotesize\ttfamily virtual double Order\+Plant\+::get\+Price (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Gets the price of the plant. 
+
+\begin{DoxyReturn}{Returns}
+The price of the plant as a double. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlantImplementor_aca43daed510a22fe117d84ecf990a408}{Plant\+Implementor}}.
+
+
+
+Implemented in \mbox{\hyperlink{classPlantDecorator_ac22e9f31ab48a99b7ca285e9239b91ab}{Plant\+Decorator}}, and \mbox{\hyperlink{classSeedPacket_aef1b979c774285488d339c73480bd1b6}{Seed\+Packet}}.
+
+\Hypertarget{classOrderPlant_a1210e855109d563dc809701a66385fba}\label{classOrderPlant_a1210e855109d563dc809701a66385fba} 
+\index{OrderPlant@{OrderPlant}!getType@{getType}}
+\index{getType@{getType}!OrderPlant@{OrderPlant}}
+\doxysubsubsection{\texorpdfstring{getType()}{getType()}}
+{\footnotesize\ttfamily virtual PLANT\+\_\+\+TYPE Order\+Plant\+::get\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Gets the type of the plant implementor. 
+
+\begin{DoxyReturn}{Returns}
+The type of the plant implementor as a PLANT\+\_\+\+TYPE enum. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPlantImplementor_aaa0c955307ca7ec352fde01067053238}{Plant\+Implementor}}.
+
+
+
+Implemented in \mbox{\hyperlink{classDecoration_a7ff0b790cc67acc06dc319e2c151fe2a}{Decoration}}, \mbox{\hyperlink{classPlantType_a62d0ce5e0550b01520d85986c173f028}{Plant\+Type}}, \mbox{\hyperlink{classPot_a99514b4c17735b4c53113f00ca54c101}{Pot}}, and \mbox{\hyperlink{classSeedPacket_a6b0ddbca44dd8de583c966ec67d59de4}{Seed\+Packet}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\mbox{\hyperlink{OrderPlant_8h}{Order\+Plant.\+h}}\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/Order\+Plant.\+cpp\end{DoxyCompactItemize}

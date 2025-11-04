@@ -118,6 +118,14 @@ Item* Section::findItem(const std::string& itemName) {
     for (localIterator->first(); !localIterator->isDone(); localIterator->next()) {
         Item* item = localIterator->currentItem();
         if (item != nullptr && item->getName() == itemName) {
+            if (item->getType() == PLANT_TYPE::GREENHOUSE_PLANT)
+            {
+                Plant* plant = dynamic_cast<Plant*>(item);
+                if (plant && !plant->isPlantActive()) {
+                    continue; // Skip inactive greenhouse plants
+                }
+            }
+            
             delete localIterator;
             return item;
         }
@@ -128,6 +136,13 @@ Item* Section::findItem(const std::string& itemName) {
         for (subIterator->first(); !subIterator->isDone(); subIterator->next()) {
             Item* item = subIterator->currentItem();
             if (item != nullptr && item->getName() == itemName) {
+                if (item->getType() == PLANT_TYPE::GREENHOUSE_PLANT)
+                {
+                    Plant* plant = dynamic_cast<Plant*>(item);
+                    if (plant && !plant->isPlantActive()) {
+                        continue; // Skip inactive greenhouse plants
+                    }
+                }
                 delete subIterator;
                 return item;
             }

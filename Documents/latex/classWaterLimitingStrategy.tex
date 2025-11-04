@@ -1,0 +1,85 @@
+\doxysection{Water\+Limiting\+Strategy Class Reference}
+\hypertarget{classWaterLimitingStrategy}{}\label{classWaterLimitingStrategy}\index{WaterLimitingStrategy@{WaterLimitingStrategy}}
+
+
+Represents a care strategy that limits water intake to strengthen the plant.  
+
+
+
+
+{\ttfamily \#include $<$Water\+Limiting\+Strategy.\+h$>$}
+
+
+
+Inheritance diagram for Water\+Limiting\+Strategy\+:
+% FIG 0
+
+
+Collaboration diagram for Water\+Limiting\+Strategy\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ Command\+Ptr $>$ \mbox{\hyperlink{classWaterLimitingStrategy_ab7be93bb0f989ef69b4fecc207ccf795}{apply\+Care}} (\mbox{\hyperlink{classGreenHousePlant}{Green\+House\+Plant}} \&plant) override
+\begin{DoxyCompactList}\small\item\em Applies limited watering to the plant. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classWaterLimitingStrategy_a6716c670bdb9d7bd6dba61c6e4b23f10}{get\+Strategy\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em Returns the identifying name of this strategy ("{}\+Water Limiting Strategy"{}). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a care strategy that limits water intake to strengthen the plant. 
+
+This strategy is used for plants that require reduced watering intervals to improve root strength or prepare for specific growth phases.
+
+\begin{DoxyNote}{Note}
+Implements the Strategy design pattern. 
+\end{DoxyNote}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classWaterLimitingStrategy_ab7be93bb0f989ef69b4fecc207ccf795}\label{classWaterLimitingStrategy_ab7be93bb0f989ef69b4fecc207ccf795} 
+\index{WaterLimitingStrategy@{WaterLimitingStrategy}!applyCare@{applyCare}}
+\index{applyCare@{applyCare}!WaterLimitingStrategy@{WaterLimitingStrategy}}
+\doxysubsubsection{\texorpdfstring{applyCare()}{applyCare()}}
+{\footnotesize\ttfamily std\+::vector$<$ Command\+Ptr $>$ Water\+Limiting\+Strategy\+::apply\+Care (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGreenHousePlant}{Green\+House\+Plant}} \&}]{plant }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Applies limited watering to the plant. 
+
+Applies a limited watering schedule to the plant.
+
+\begin{DoxyNote}{Note}
+Used for plants that thrive under controlled water conditions.
+
+This method implements the behavior of the water-\/limiting care strategy. 
+\end{DoxyNote}
+
+
+Implements \mbox{\hyperlink{classCareStrategy_a59e9c7f5752fc2771616770769b6e3fc}{Care\+Strategy}}.
+
+\Hypertarget{classWaterLimitingStrategy_a6716c670bdb9d7bd6dba61c6e4b23f10}\label{classWaterLimitingStrategy_a6716c670bdb9d7bd6dba61c6e4b23f10} 
+\index{WaterLimitingStrategy@{WaterLimitingStrategy}!getStrategyName@{getStrategyName}}
+\index{getStrategyName@{getStrategyName}!WaterLimitingStrategy@{WaterLimitingStrategy}}
+\doxysubsubsection{\texorpdfstring{getStrategyName()}{getStrategyName()}}
+{\footnotesize\ttfamily std\+::string Water\+Limiting\+Strategy\+::get\+Strategy\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Returns the identifying name of this strategy ("{}\+Water Limiting Strategy"{}). 
+
+Returns the identifying name of this strategy.
+
+\begin{DoxyReturn}{Returns}
+The name of the care strategy ("{}\+Water Limiting Strategy"{}). 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classCareStrategy_adedd8cd8952a44c0f1df3d047308273e}{Care\+Strategy}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\mbox{\hyperlink{WaterLimitingStrategy_8h}{Water\+Limiting\+Strategy.\+h}}\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\mbox{\hyperlink{WaterLimitingStrategy_8cpp}{Water\+Limiting\+Strategy.\+cpp}}\end{DoxyCompactItemize}

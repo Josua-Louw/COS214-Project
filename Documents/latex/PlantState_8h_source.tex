@@ -1,0 +1,32 @@
+\doxysection{Plant\+State.\+h}
+\hypertarget{PlantState_8h_source}{}\label{PlantState_8h_source}\index{/home/josua/Code/C++/COS214/COS214-\/Project/Code/PlantState.h@{/home/josua/Code/C++/COS214/COS214-\/Project/Code/PlantState.h}}
+\mbox{\hyperlink{PlantState_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ PLANTSTATE\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ PLANTSTATE\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <atomic>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classGreenHousePlant}{GreenHousePlant}};}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classPlantState}{PlantState}}\ \{}
+\DoxyCodeLine{00023\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00024\ \ \ \ \ std::atomic<bool>\ plantAlive\{\textcolor{keyword}{true}\};}
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{classGreenHousePlant}{GreenHousePlant}}*\ plant\_\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00026\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPlantState_a21cd156c2af73852ff8f0bdf91a923f7}{transitionToNext}}()\ =\ 0;}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classPlantState_a161ce94f53bbe443c85e313688aa63b0}{\string~PlantState}}()\ \{std::cout\ <<\ \textcolor{stringliteral}{"{}deleting\ PlantState"{}}\ <<\ std::endl;\};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classPlantState}{PlantState}}(\mbox{\hyperlink{classGreenHousePlant}{GreenHousePlant}}*\ plant)\ :\ plant\_(plant)\ \{\};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{void}\ setPlantAlive(\textcolor{keywordtype}{bool}\ plantExist);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{bool}\ isAlive()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00048\ \};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ PLANTSTATE\_H}}
+
+\end{DoxyCode}

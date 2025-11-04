@@ -1,0 +1,27 @@
+\doxysection{Item\+Iterator.\+h}
+\hypertarget{ItemIterator_8h_source}{}\label{ItemIterator_8h_source}\index{/home/josua/Code/C++/COS214/COS214-\/Project/Code/ItemIterator.h@{/home/josua/Code/C++/COS214/COS214-\/Project/Code/ItemIterator.h}}
+\mbox{\hyperlink{ItemIterator_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ ITEMITERATOR\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ ITEMITERATOR\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Iterator_8h}{Iterator.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Item_8h}{Item.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classItemIterator}{ItemIterator}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classIterator}{Iterator}}<Item*>\ \{}
+\DoxyCodeLine{00024\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00025\ \ \ \ \ std::vector<Item*>\ items;\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ currentIndex;\ \ \ \ \ \ }
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{classItemIterator}{ItemIterator}}(\textcolor{keyword}{const}\ std::vector<Item*>\&\ itemList);}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classItemIterator_a8a44eb7958210175ff5a44a74a96d57a}{first}}();}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classItemIterator_a3d06941aa6db90a941fe70427d8fc70c}{next}}();}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classItemIterator_a41946dbbeacd6740989f098a262a90d7}{isDone}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{classItem}{Item}}*\ \mbox{\hyperlink{classItemIterator_a82f47a8fac2a80802181169c9c507685}{currentItem}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00052\ \};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ITEMITERATOR\_H}}
+
+\end{DoxyCode}

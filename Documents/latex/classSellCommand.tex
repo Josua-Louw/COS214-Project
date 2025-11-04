@@ -1,0 +1,113 @@
+\doxysection{Sell\+Command Class Reference}
+\hypertarget{classSellCommand}{}\label{classSellCommand}\index{SellCommand@{SellCommand}}
+
+
+Concrete command for selling a plant in the \doxylink{classPlant}{Plant} Nursery Simulator.  
+
+
+
+
+{\ttfamily \#include $<$Sell\+Command.\+h$>$}
+
+
+
+Inheritance diagram for Sell\+Command\+:
+% FIG 0
+
+
+Collaboration diagram for Sell\+Command\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classSellCommand_a203ebd09b8937ab298fdbfda628ea446}{Sell\+Command}} (\mbox{\hyperlink{classCustomer}{Customer}} \texorpdfstring{$\ast$}{*}customer)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classSellCommand}{Sell\+Command} for a specific plant and order. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classSellCommand_a17323b3d39045775a6da856e94a8d0db}{get\+Type}} ()
+\item 
+\mbox{\hyperlink{classGreenHousePlant}{Green\+House\+Plant}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classSellCommand_adc86391d10ab1a0e5de458b00199213a}{get\+Plant}} ()
+\item 
+void \mbox{\hyperlink{classSellCommand_ad58606c7f2da10773afce8d6cc85f873}{execute}} () override
+\begin{DoxyCompactList}\small\item\em Executes the sale, updating inventory and order status. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classCommand}{Command}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries get\+Abort\+Status} ()
+\item 
+void {\bfseries set\+Abort\+Status} (bool abort)
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Command} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor for proper cleanup of derived classes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classCommand}{Command}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::atomic$<$ bool $>$ {\bfseries abort} \{false\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Concrete command for selling a plant in the \doxylink{classPlant}{Plant} Nursery Simulator. 
+
+Implements the \doxylink{classCommand}{Command} Pattern to encapsulate the task of processing a plant sale. Assigned to \doxylink{classSalesManager}{Sales\+Manager} via \doxylink{classNurseryHub}{Nursery\+Hub}, it interacts with a \doxylink{classPlant}{Plant} and \doxylink{classOrder}{Order} to complete a customer transaction, updating inventory and supporting the Builder/\+Decorator Patterns for order customization. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classSellCommand_a203ebd09b8937ab298fdbfda628ea446}\label{classSellCommand_a203ebd09b8937ab298fdbfda628ea446} 
+\index{SellCommand@{SellCommand}!SellCommand@{SellCommand}}
+\index{SellCommand@{SellCommand}!SellCommand@{SellCommand}}
+\doxysubsubsection{\texorpdfstring{SellCommand()}{SellCommand()}}
+{\footnotesize\ttfamily Sell\+Command\+::\+Sell\+Command (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classCustomer}{Customer}} \texorpdfstring{$\ast$}{*}}]{customer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{classSellCommand}{Sell\+Command} for a specific plant and order. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em plant} & Pointer to the \doxylink{classPlant}{Plant} to be sold. \\
+\hline
+{\em order} & Pointer to the \doxylink{classOrder}{Order} containing the plant. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classSellCommand_ad58606c7f2da10773afce8d6cc85f873}\label{classSellCommand_ad58606c7f2da10773afce8d6cc85f873} 
+\index{SellCommand@{SellCommand}!execute@{execute}}
+\index{execute@{execute}!SellCommand@{SellCommand}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily void Sell\+Command\+::execute (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Executes the sale, updating inventory and order status. 
+
+Adds the plant to the order and removes it from the greenhouse inventory by calling sell on the plant (as a \doxylink{classGreenHouse}{Green\+House} leaf). Updates the order\textquotesingle{}s total cost, supporting customer transactions (FR5, FR8, FR10). 
+
+Implements \mbox{\hyperlink{classCommand_a6fd7d9bd8df8bfc881e4d6c7cd1878b7}{Command}}.
+
+\Hypertarget{classSellCommand_adc86391d10ab1a0e5de458b00199213a}\label{classSellCommand_adc86391d10ab1a0e5de458b00199213a} 
+\index{SellCommand@{SellCommand}!getPlant@{getPlant}}
+\index{getPlant@{getPlant}!SellCommand@{SellCommand}}
+\doxysubsubsection{\texorpdfstring{getPlant()}{getPlant()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classGreenHousePlant}{Green\+House\+Plant}} \texorpdfstring{$\ast$}{*} Sell\+Command\+::get\+Plant (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classCommand}{Command}}.
+
+\Hypertarget{classSellCommand_a17323b3d39045775a6da856e94a8d0db}\label{classSellCommand_a17323b3d39045775a6da856e94a8d0db} 
+\index{SellCommand@{SellCommand}!getType@{getType}}
+\index{getType@{getType}!SellCommand@{SellCommand}}
+\doxysubsubsection{\texorpdfstring{getType()}{getType()}}
+{\footnotesize\ttfamily std\+::string Sell\+Command\+::get\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classCommand}{Command}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/Sell\+Command.\+h\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\mbox{\hyperlink{SellCommand_8cpp}{Sell\+Command.\+cpp}}\end{DoxyCompactItemize}

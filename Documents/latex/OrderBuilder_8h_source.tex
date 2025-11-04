@@ -1,0 +1,30 @@
+\doxysection{Order\+Builder.\+h}
+\hypertarget{OrderBuilder_8h_source}{}\label{OrderBuilder_8h_source}\index{/home/josua/Code/C++/COS214/COS214-\/Project/Code/OrderBuilder.h@{/home/josua/Code/C++/COS214/COS214-\/Project/Code/OrderBuilder.h}}
+\mbox{\hyperlink{OrderBuilder_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ ORDERBUILDER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ ORDERBUILDER\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{GreenHouse_8h}{GreenHouse.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classItem}{Item}};}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classOrder}{Order}};}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classOrderBuilder}{OrderBuilder}}\ \{}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{classGreenHouse}{GreenHouse}}*\ greenHouse;}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{classOrderBuilder_a17c935b73d886a71b07a7fc90a61de3a}{OrderBuilder}}(\mbox{\hyperlink{classGreenHouse}{GreenHouse}}*\ gh)\ :\ greenHouse(gh)\ \{\}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{classGreenHouse}{GreenHouse}}*\ getGreenHouse()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ greenHouse;\ \}}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classOrder}{Order}}*\ \mbox{\hyperlink{classOrderBuilder_af8b78c8774a790ed4533eafa541af34c}{buildPart}}(\mbox{\hyperlink{classOrder}{Order}}*\ order,\ std::string\ itemName)\ =\ 0;}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classOrderBuilder_a1ac2317684f3dd80ebff5fdfd3c28f44}{\string~OrderBuilder}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ checkType(\mbox{\hyperlink{classItem}{Item}}*\ item)\ =\ 0;}
+\DoxyCodeLine{00054\ \};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

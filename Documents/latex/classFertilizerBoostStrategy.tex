@@ -1,0 +1,85 @@
+\doxysection{Fertilizer\+Boost\+Strategy Class Reference}
+\hypertarget{classFertilizerBoostStrategy}{}\label{classFertilizerBoostStrategy}\index{FertilizerBoostStrategy@{FertilizerBoostStrategy}}
+
+
+Represents a care strategy that enhances plant growth through application of fertilizer.  
+
+
+
+
+{\ttfamily \#include $<$Fertilizer\+Boost\+Strategy.\+h$>$}
+
+
+
+Inheritance diagram for Fertilizer\+Boost\+Strategy\+:
+% FIG 0
+
+
+Collaboration diagram for Fertilizer\+Boost\+Strategy\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ Command\+Ptr $>$ \mbox{\hyperlink{classFertilizerBoostStrategy_ac65040af0d671638503cca29e21e4c1a}{apply\+Care}} (\mbox{\hyperlink{classGreenHousePlant}{Green\+House\+Plant}} \&plant) override
+\begin{DoxyCompactList}\small\item\em Applies fertilizer care to the plant. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classFertilizerBoostStrategy_ac58c58007c2169035ad30a76eb587131}{get\+Strategy\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em Returns the name of this strategy ("{}\+Fertilizer Boost Strategy"{}). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a care strategy that enhances plant growth through application of fertilizer. 
+
+This class is a concrete implementation of the \doxylink{classCareStrategy}{Care\+Strategy} interface. It defines how plants should be treated when a fertilizer boost is applied as part of their care strategy.
+
+\begin{DoxyNote}{Note}
+Implements the Strategy design pattern. 
+\end{DoxyNote}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classFertilizerBoostStrategy_ac65040af0d671638503cca29e21e4c1a}\label{classFertilizerBoostStrategy_ac65040af0d671638503cca29e21e4c1a} 
+\index{FertilizerBoostStrategy@{FertilizerBoostStrategy}!applyCare@{applyCare}}
+\index{applyCare@{applyCare}!FertilizerBoostStrategy@{FertilizerBoostStrategy}}
+\doxysubsubsection{\texorpdfstring{applyCare()}{applyCare()}}
+{\footnotesize\ttfamily std\+::vector$<$ Command\+Ptr $>$ Fertilizer\+Boost\+Strategy\+::apply\+Care (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGreenHousePlant}{Green\+House\+Plant}} \&}]{plant }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Applies fertilizer care to the plant. 
+
+Applies fertilizer-\/based care to the plant.
+
+\begin{DoxyNote}{Note}
+This method defines how the plant receives fertilizer to promote healthy growth.
+
+This method is part of the Strategy pattern and defines how this specific care approach benefits the plant. 
+\end{DoxyNote}
+
+
+Implements \mbox{\hyperlink{classCareStrategy_a59e9c7f5752fc2771616770769b6e3fc}{Care\+Strategy}}.
+
+\Hypertarget{classFertilizerBoostStrategy_ac58c58007c2169035ad30a76eb587131}\label{classFertilizerBoostStrategy_ac58c58007c2169035ad30a76eb587131} 
+\index{FertilizerBoostStrategy@{FertilizerBoostStrategy}!getStrategyName@{getStrategyName}}
+\index{getStrategyName@{getStrategyName}!FertilizerBoostStrategy@{FertilizerBoostStrategy}}
+\doxysubsubsection{\texorpdfstring{getStrategyName()}{getStrategyName()}}
+{\footnotesize\ttfamily std\+::string Fertilizer\+Boost\+Strategy\+::get\+Strategy\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Returns the name of this strategy ("{}\+Fertilizer Boost Strategy"{}). 
+
+Returns the identifying name of this strategy.
+
+\begin{DoxyNote}{Note}
+Used for debugging or UI purposes to indicate which care strategy is currently active. 
+\end{DoxyNote}
+
+
+Implements \mbox{\hyperlink{classCareStrategy_adedd8cd8952a44c0f1df3d047308273e}{Care\+Strategy}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\mbox{\hyperlink{FertilizerBoostStrategy_8h}{Fertilizer\+Boost\+Strategy.\+h}}\item 
+/home/josua/\+Code/\+C++/\+COS214/\+COS214-\/\+Project/\+Code/\mbox{\hyperlink{FertilizerBoostStrategy_8cpp}{Fertilizer\+Boost\+Strategy.\+cpp}}\end{DoxyCompactItemize}

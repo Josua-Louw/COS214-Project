@@ -1,0 +1,24 @@
+\doxysection{Iterator.\+h}
+\hypertarget{Iterator_8h_source}{}\label{Iterator_8h_source}\index{/home/josua/Code/C++/COS214/COS214-\/Project/Code/Iterator.h@{/home/josua/Code/C++/COS214/COS214-\/Project/Code/Iterator.h}}
+\mbox{\hyperlink{Iterator_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ ITERATOR\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ ITERATOR\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classPlant}{Plant}};\ \textcolor{comment}{//\ Forward\ declaration}}
+\DoxyCodeLine{00005\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classItem}{Item}};\ \textcolor{comment}{//\ Forward\ declaration}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classIterator}{Iterator}}\ \{}
+\DoxyCodeLine{00023\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classIterator_ace58b658db7a3023dd07ffc5e66d992f}{\string~Iterator}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classIterator_a6f13cc79a1574086c63ce4ddba1d3d9f}{first}}()\ =\ 0;}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classIterator_a94a7b0c50676cd9ee924eddece41d8d4}{next}}()\ =\ 0;}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classIterator_a9be4cac2471ddcf68a75c12088498d5f}{isDone}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{virtual}\ T\ \mbox{\hyperlink{classIterator_a600526b76eff8dad301ad8a075094a67}{currentItem}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00047\ \};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

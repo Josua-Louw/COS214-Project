@@ -2,6 +2,8 @@
 #include "ItemIterator.h"
 #include <iostream>
 
+#include "PlantMaker.h"
+
 Plant::Plant()
      : implementor(nullptr) {
     // default left intentionally null
@@ -12,14 +14,14 @@ Plant::Plant(PlantImplementor* impl)
 
 }
 
-Plant::Plant(const std::string& name, double price, NurseryMediator* mediator, CareStrategy* care) 
+Plant::Plant(const std::string& name, double price, NurseryMediator* mediator, CareStrategy* care, PlantMaker* maker)
 {
-    implementor = new GreenHousePlant(name, price, mediator, care);
+    implementor = maker->makePlant(name, price, mediator, care);
 }
 
-Plant::Plant(const std::string& name, double price) 
+Plant::Plant(const std::string& name, double price, PlantMaker* maker)
 {
-    implementor = new GreenHousePlant(name, price);
+    implementor = maker->makePlant(name,price,nullptr,nullptr);
 }
 
 void Plant::convertToOrderType()
@@ -27,8 +29,17 @@ void Plant::convertToOrderType()
     if (implementor) {
         std::string name = implementor->getName();
         double price = implementor->getPrice();
-        delete implementor;
-        implementor = new PlantType(price, name);
+        if (implementor->getType() == PLANT_TYPE::GREENHOUSE_PLANT) 
+        {
+            GreenHousePlant* ghPlant = dynamic_cast<GreenHousePlant*>(implementor);
+            if (ghPlant) {
+                ghPlant->deactivatePlant();
+            }
+            implementor = new PlantType(price, name);
+            std::cout << "Plant converted to OrderPlant type: " << name << std::endl;
+        }
+    } else {
+        implementor = new PlantType(0.0, "Unnamed Plant");
     }
 }
 
@@ -53,23 +64,42 @@ std::string Plant::getName() const
 Plant::~Plant()
 {
     if (implementor) {
-        delete implementor;
-        implementor = nullptr;
+        if (implementor->getType() == PLANT_TYPE::GREENHOUSE_PLANT)
+        {
+            GreenHousePlant* ghPlant = dynamic_cast<GreenHousePlant*>(implementor);
+            if (ghPlant) {
+                ghPlant->deactivatePlant();
+            }
+        } else {
+            delete implementor;
+            implementor = nullptr;
+        }
     }
 }
 
 OrderPlant* Plant::getOrderPlant() const {
     if (implementor)
     {
-        if (getType() == PLANT_TYPE::GREENHOUSE_PLANT)
+        if (implementor->getType() == PLANT_TYPE::GREENHOUSE_PLANT)
         {
             // Convert GreenHousePlant to PlantType for OrderPlant
             std::string name = implementor->getName();
             double price = implementor->getPrice();
             PlantType tempPlantType(price, name);
             return dynamic_cast<OrderPlant*>(tempPlantType.clone());
+        } else {
+            return dynamic_cast<OrderPlant*>(implementor->clone());
         }
-        return dynamic_cast<OrderPlant*>(implementor->clone());
     }
     return nullptr;
+}
+
+bool Plant::isPlantActive() const {
+    if (implementor && implementor->getType() == PLANT_TYPE::GREENHOUSE_PLANT) {
+        GreenHousePlant* ghPlant = dynamic_cast<GreenHousePlant*>(implementor);
+        if (ghPlant) {
+            return ghPlant->getIsActive();
+        }
+    }
+    return false; // Non-greenhouse plants are considered inactive in this context
 }
